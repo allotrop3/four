@@ -2,7 +2,7 @@
   "name": "fourjs",
   "version": "0.0.0",
   "description": "Four JS WebGL-based physics engine",
-  "main": "main.js",
+  "main": "dist/scripts/four.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
