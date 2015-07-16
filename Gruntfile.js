@@ -2,9 +2,9 @@ module.exports = function(grunt)
 {
    grunt.initConfig({
       config: {
-         src: 'src/scripts',
-         dist: 'dist/scripts',
-         cache: '.tmp/scripts',
+         src: './src/scripts',
+         dist: './dist/scripts',
+         cache: './.tmp/scripts',
          output: 'four.js'
       },
       jshint: {
