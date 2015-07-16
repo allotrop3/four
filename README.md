@@ -1,2 +1,2 @@
-# ![Four JS](/dist/images/fourjs.png =75x) Four JS
+# <img src="/dist/images/fourjs.png" alt="Four JS" height="75px"> Four JS
 Four JS
