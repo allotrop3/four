@@ -1,2 +1,2 @@
-# <img src="/dist/images/fourjs.png" alt="Four JS" height="75px"> Four JS
+# <img src="/dist/images/fourjs-icon.png" alt="Four JS" height="70px"> Four JS
 Four JS
