@@ -5,7 +5,7 @@ let gl = require('./gl');
 
 class Framebuffer extends Entity
 {
-   constructor(name, colorAttachment, depthAttachment, scene)
+   constructor(colorAttachment, depthAttachment, scene, name = 'framebuffer')
    {
       super(name);
 

@@ -5,7 +5,7 @@ let gl = require('./gl');
 
 class Program extends Entity
 {
-   constructor(name, vertexShader, fragmentShader, attributes = {}, uniforms = {})
+   constructor(vertexShader, fragmentShader, attributes = {}, uniforms = {}, name = 'program')
    {
       super(name);
 

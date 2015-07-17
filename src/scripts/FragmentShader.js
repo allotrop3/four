@@ -5,7 +5,7 @@ let gl = require('./gl');
 
 class FragmentShader extends Shader
 {
-   constructor(name, path)
+   constructor(path, name = 'fragment.shader')
    {
       super(name, path, gl.FRAGMENT_SHADER);
    }

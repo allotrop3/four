@@ -20,7 +20,8 @@ function ajax(url)
          }
          else
          {
-            let error = new Error(request.statusText);
+            let status = `${url}: ${request.statusText}`;
+            let error = new Error(status);
 
             reject(error);
          }

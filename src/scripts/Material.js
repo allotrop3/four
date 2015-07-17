@@ -4,9 +4,13 @@ let Entity = require('./Entity');
 
 class Material extends Entity
 {
-   constructor(name)
+   constructor(ambient, diffuse, shading = 'smooth', name = 'material')
    {
       super(name);
+
+      this.ambient = ambient;
+      this.diffuse = diffuse;
+      this.shading = shading;
    }
 }
 

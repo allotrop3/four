@@ -5,13 +5,15 @@ let gl = require('./gl');
 
 class Renderbuffer extends Entity
 {
-   constructor(name, width, height)
+   constructor(width, height, name = 'renderbuffer')
    {
       super(name);
 
       this.buffer = gl.createRenderbuffer();
       this.width = width;
       this.height = height;
+
+      this.configure();
    }
 
    configure()

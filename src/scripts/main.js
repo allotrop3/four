@@ -1,8 +1,7 @@
 'use strict';
 
-let ajax = require('./utils/ajax');
+var Uniform = require('./Uniform');
 
-ajax('/src/scripts/Framebuffer.js').then(function(response)
-{
-   console.log(response);
-});
+var u = new Uniform('u_projection', '3fv');
+
+u.set([5, 2, 1]);

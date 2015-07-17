@@ -6,7 +6,7 @@ let ajax = require('./utils/ajax');
 
 class Shader extends Entity
 {
-   constructor(name, path, type)
+   constructor(path, type, name = 'shader')
    {
       super(name);
 
