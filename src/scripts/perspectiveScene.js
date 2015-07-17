@@ -1,6 +1,6 @@
 'use strict';
 
-var Scene = require('./scene');
+var Scene = require('./Scene');
 
 class perspectiveScene extends Scene
 {

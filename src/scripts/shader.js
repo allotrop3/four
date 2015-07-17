@@ -1,6 +1,6 @@
 'use strict';
 
-var Entity = require('./entity');
+var Entity = require('./Entity');
 var gl = require('./gl');
 var ajax = require('./utils/ajax');
 

@@ -1,6 +1,6 @@
 'use strict';
 
-var Entity = require('./entity');
+var Entity = require('./Entity');
 
 class Material extends Entity
 {

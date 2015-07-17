@@ -1,6 +1,6 @@
 'use strict';
 
-var Entity = require('./entity');
+var Entity = require('./Entity');
 var glm = require('gl-matrix');
 var mat4 = glm.mat4;
 var mat3 = glm.mat3;
@@ -40,7 +40,7 @@ class Scene extends Entity
    {
       let stack = this.stack;
 
-      if (stack.length) 
+      if (stack.length)
       {
          let modelViewMatrix = this.modelViewMatrix;
          let previousScene = stack.pop();
