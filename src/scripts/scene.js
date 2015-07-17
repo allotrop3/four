@@ -18,9 +18,13 @@ class Scene extends Entity
       this.stack = [];
    }
 
+   configure()
+   {
+   }
+
    bind()
    {
-       
+
    }
 
    save()

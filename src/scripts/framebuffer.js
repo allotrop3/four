@@ -1,6 +1,7 @@
 'use strict';
 
 var Entity = require('./entity');
+var gl = require('./gl');
 
 class Framebuffer extends Entity
 {
@@ -8,26 +9,33 @@ class Framebuffer extends Entity
    {
       super(name);
 
-      this.buffer = undefined;
+      this.buffer = gl.createFramebuffer();
       this.colorAttachment = colorAttachment;
       this.depthAttachment = depthAttachment;
       this.scene = scene;
    }
 
+   configure()
+   {
+
+   }
+
    lock()
    {
-      
+
    }
 
    bind()
    {
+      let buffer = this.buffer;
 
+      gl.bindFramebuffer(gl.FRAMEBUFFER, buffer);
    }
 
    unbind()
    {
-
-   }   
+      gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+   }
 }
 
 module.exports = Framebuffer;
