@@ -1,8 +1,8 @@
 'use strict';
 
-var Entity = require('./Entity');
-var gl = require('./gl');
-var ajax = require('./utils/ajax');
+let Entity = require('./Entity');
+let gl = require('./gl');
+let ajax = require('./utils/ajax');
 
 class Shader extends Entity
 {

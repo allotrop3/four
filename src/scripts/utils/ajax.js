@@ -1,12 +1,12 @@
 'use strict';
 
-var promise = require('./promise');
+let promise = require('./promise');
 
 function ajax(url)
 {
    return promise(function(resolve, reject)
    {
-      var request = new XMLHttpRequest();
+      let request = new XMLHttpRequest();
 
       request.open('get', url);
 

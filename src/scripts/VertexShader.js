@@ -1,7 +1,7 @@
 'use strict';
 
-var Shader = require('./Shader');
-var gl = require('./gl');
+let Shader = require('./Shader');
+let gl = require('./gl');
 
 class VertexShader extends Shader
 {

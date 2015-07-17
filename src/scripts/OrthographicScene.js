@@ -1,6 +1,6 @@
 'use strict';
 
-var Scene = require('./Scene');
+let Scene = require('./Scene');
 
 class orthographicScene extends Scene
 {

@@ -1,9 +1,9 @@
 'use strict';
 
-var Entity = require('./Entity');
-var glm = require('gl-matrix');
-var mat4 = glm.mat4;
-var mat3 = glm.mat3;
+let Entity = require('./Entity');
+let glm = require('gl-matrix');
+let mat4 = glm.mat4;
+let mat3 = glm.mat3;
 
 class Scene extends Entity
 {

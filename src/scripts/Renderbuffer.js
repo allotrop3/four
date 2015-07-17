@@ -1,7 +1,7 @@
 'use strict';
 
-var Entity = require('./Entity');
-var gl = require('./gl');
+let Entity = require('./Entity');
+let gl = require('./gl');
 
 class Renderbuffer extends Entity
 {
@@ -16,8 +16,8 @@ class Renderbuffer extends Entity
 
    configure()
    {
-      var width = this.width;
-      var height = this.height;
+      let width = this.width;
+      let height = this.height;
 
       this.bind();
 
