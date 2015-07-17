@@ -20,6 +20,7 @@ class Scene extends Entity
 
    configure()
    {
+
    }
 
    bind()
