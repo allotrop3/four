@@ -22,14 +22,14 @@ class Shader extends Entity
 
    compile(source)
    {
-      var buffer = this.buffer;
+      let buffer = this.buffer;
 
       gl.shaderSource(buffer, source);
       gl.compileShader(buffer);
 
       if (gl.getShaderParameter(buffer, gl.COMPILE_STATUS))
       {
-         var error = gl.getShaderInfoLog(buffer);
+         let error = gl.getShaderInfoLog(buffer);
 
          gl.deleteShader(buffer);
 
