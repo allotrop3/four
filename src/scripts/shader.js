@@ -2,6 +2,7 @@
 
 var Entity = require('./entity');
 var gl = require('./gl');
+var ajax = require('./utils/ajax');
 
 class Shader extends Entity
 {
@@ -10,12 +11,13 @@ class Shader extends Entity
       super(name);
 
       this.buffer = gl.createShader(type);
-      this.path = path;
+
+      this.fetch(path);
    }
 
-   fetch()
+   fetch(path)
    {
-
+      ajax(path).then(this.compile);
    }
 
    compile(source)

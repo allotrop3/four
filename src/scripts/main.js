@@ -1,19 +1,19 @@
 'use strict';
 
 var Framebuffer = require('./framebuffer');
-var Ajax = require('./ajax');
-var promising = new Ajax('/src/scripts/main.js');
+var ajax = require('./utils/ajax');
 
-// console.log(promising.then);
-promising.then(function(response)
+
+ajax('/src/scripts/main.js').then(function(response)
 {
    console.log(response);
+}).then(function()
+{
+   console.log(arguments);
 });
 
-// console.log(new Ajax('/src/scripts/main.js'));
-
 var instance = new Framebuffer();
-window.instance = instance;
+
 instance.destroy();
 
 console.log(instance);
