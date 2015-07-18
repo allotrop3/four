@@ -16,16 +16,13 @@ class Attribute extends Entity
       this.normalized = normalized;
    }
 
-   bind(stride, offset)
+   enable(stride, offset)
    {
-      this.enable();
+      let location = this.location;
 
-      gl.vertexAttribPointer(this.location, this.length, this.format, this.normalized, stride, offset);
-   }
+      gl.enableVertexAttribArray(location);
 
-   enable()
-   {
-      gl.enableVertexAttribArray(this.location);
+      gl.vertexAttribPointer(location, this.length, this.format, this.normalized, stride, offset);
    }
 
    disable()
