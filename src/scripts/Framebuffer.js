@@ -5,29 +5,13 @@ let gl = require('./gl');
 
 class Framebuffer extends Entity
 {
-   constructor(colorAttachment, depthAttachment, scene, level = 0, name = 'framebuffer')
+   constructor(scene, level = 0, name = 'framebuffer')
    {
       super(name);
 
-      this.buffer = gl.createFramebuffer();
-      this.colorAttachment = colorAttachment;
-      this.depthAttachment = depthAttachment;
+      this.buffer = null;
       this.scene = scene;
       this.level = level;
-   }
-
-   configure()
-   {
-      let colorAttachment = this.colorAttachment;
-      let depthAttachment = this.depthAttachment;
-
-      this.bind();
-
-      gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, colorAttachment, this.level);
-      gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, depthAttachment);
-
-      this.check();
-      this.unbind();
    }
 
    enable()
