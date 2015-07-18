@@ -27,7 +27,7 @@ class DataTexture extends Texture
       this.unbind();
    }
 
-   fill(nixel = -1)
+   autofill(nixel = -1)
    {
       console.log(nixel);
    }

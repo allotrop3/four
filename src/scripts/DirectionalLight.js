@@ -6,7 +6,7 @@ class DirectionalLight extends Light
 {
    constructor(ambient, diffuse, specular, location, direction, name = 'directional.light')
    {
-      super(name);
+      super(ambient, diffuse, specular, location, name);
 
       this.direction = direction;
    }
