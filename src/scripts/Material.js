@@ -12,6 +12,12 @@ class Material extends Entity
       this.diffuse = diffuse;
       this.shading = shading;
    }
+
+   bind(uniforms)
+   {
+      uniforms.ambient.set(this.ambient);
+      uniforms.diffuse.set(this.diffuse);
+   }
 }
 
 module.exports = Material;

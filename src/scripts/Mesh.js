@@ -1,6 +1,6 @@
 'use strict';
 
-var Entity = require('./Entity');
+let Entity = require('./Entity');
 
 class Mesh extends Entity
 {

@@ -67,6 +67,21 @@ class Scene extends Entity
       mat4.rotate(modelViewMatrix, modelViewMatrix, rotation, axis);
    }
 
+   rotateX(rotation)
+   {
+      this.rotate(rotation, 'x');
+   }
+
+   rotateY(rotation)
+   {
+      this.rotate(rotation, 'y');
+   }
+
+   rotateZ(rotation)
+   {
+      this.rotate(rotation, 'z');
+   }
+
    translate(translation)
    {
       let modelViewMatrix = this.modelViewMatrix;

@@ -1,7 +1,7 @@
 'use strict';
 
-var Entity = require('./Entity');
-var gl = require('./gl');
+let Entity = require('./Entity');
+let gl = require('./gl');
 
 class Uniform extends Entity
 {

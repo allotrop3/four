@@ -1,6 +1,6 @@
 'use strict';
 
-var Material = require('./Material');
+let Material = require('./Material');
 
 class PhongMaterial extends Material
 {
@@ -10,6 +10,14 @@ class PhongMaterial extends Material
 
       this.specular = specular;
       this.shininess = shininess;
+   }
+
+   bind(uniforms)
+   {
+      super.bind(uniforms);
+
+      uniforms.specular.set(this.specular);
+      uniforms.shininess.set(this.shininess);
    }
 }
 
