@@ -9,7 +9,7 @@ class Uniform extends Entity
    {
       super(name);
 
-      this.uniform = uniform;
+      this.uniform = `u_${uniform}`;
       this.location = gl.getUniformLocation(program, uniform);
       this.method = `uniform${format}`;
    }

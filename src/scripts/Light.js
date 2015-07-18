@@ -1,7 +1,6 @@
 'use strict';
 
 let Entity = require('./Entity');
-let unit = 0;
 
 class Light extends Entity
 {
@@ -13,22 +12,14 @@ class Light extends Entity
       this.diffuse = diffuse;
       this.specular = specular;
       this.location = location;
-      this.unit = unit++;
    }
 
-   bind(uniforms)
+   bind(uniform)
    {
-      let uniform = uniforms[this.unit];
-
-      if (uniform === undefined)
-      {
-         throw new Error(`no uniforms ${this.name}`);
-      }
-
-      uniforms.ambient.set(this.ambient);
-      uniforms.diffuse.set(this.diffuse);
-      uniforms.specular.set(this.specular);
-      uniforms.location.set(this.location);
+      uniform.ambient.set(this.ambient);
+      uniform.diffuse.set(this.diffuse);
+      uniform.specular.set(this.specular);
+      uniform.location.set(this.location);
    }
 }
 

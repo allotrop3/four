@@ -1,7 +1,6 @@
 'use strict';
 
 let Light = require('./Light');
-let unit = 0;
 
 class PointLight extends Light
 {
@@ -12,14 +11,11 @@ class PointLight extends Light
       this.coefficient = coefficient;
       this.linear = linear;
       this.quadratic = quadratic;
-      this.unit = unit++;
    }
 
-   bind(uniforms)
+   bind(uniform)
    {
-      super.bind(uniforms);
-
-      let uniform = uniforms[this.unit];
+      super.bind(uniform);
 
       uniform.coefficient.set(this.coefficient);
       uniform.linear.set(this.linear);
