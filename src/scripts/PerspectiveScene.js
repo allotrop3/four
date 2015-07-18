@@ -9,7 +9,7 @@ class PerspectiveScene extends Scene
 {
    constructor(fov, ratio, near, far, direction, location, up, background = [0, 0, 0, 1], name = 'perspective.scene')
    {
-      super(name, background);
+      super(background, name);
 
       this.fov = fov;
       this.ratio = ratio;

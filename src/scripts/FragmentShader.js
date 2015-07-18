@@ -7,7 +7,7 @@ class FragmentShader extends Shader
 {
    constructor(path, name = 'fragment.shader')
    {
-      super(name, path, gl.FRAGMENT_SHADER);
+      super(path, gl.FRAGMENT_SHADER, name);
    }
 }
 

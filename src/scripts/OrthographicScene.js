@@ -9,7 +9,7 @@ class OrthographicScene extends Scene
 {
    constructor(left, right, bottom, top, near, far, background = [0, 0, 0, 1], name = 'orthographic.scene')
    {
-      super(name, background);
+      super(background, name);
 
       this.left = left;
       this.right = right;

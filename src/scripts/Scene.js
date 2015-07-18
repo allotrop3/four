@@ -57,7 +57,7 @@ class Scene extends Entity
       mat4.scale(modelViewMatrix, modelViewMatrix, scale);
    }
 
-   rotate(rotation, pivot = 'y')
+   rotate(rotation, pivot)
    {
       let axis = this.axis[pivot];
       let modelViewMatrix = this.modelViewMatrix;

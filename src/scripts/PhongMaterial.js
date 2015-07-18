@@ -6,18 +6,18 @@ class PhongMaterial extends Material
 {
    constructor(ambient, diffuse, specular, shininess = 75, shading = 'smooth', name = 'phong.material')
    {
-      super(name, ambient, diffuse, shading);
+      super(ambient, diffuse, shading, name);
 
       this.specular = specular;
       this.shininess = shininess;
    }
 
-   bind(uniforms)
+   bind(uniform)
    {
-      super.bind(uniforms);
+      super.bind(uniform);
 
-      uniforms.specular.set(this.specular);
-      uniforms.shininess.set(this.shininess);
+      uniform.specular.set(this.specular);
+      uniform.shininess.set(this.shininess);
    }
 }
 

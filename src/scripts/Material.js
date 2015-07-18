@@ -13,10 +13,10 @@ class Material extends Entity
       this.shading = shading;
    }
 
-   bind(uniforms)
+   bind(uniform)
    {
-      uniforms.ambient.set(this.ambient);
-      uniforms.diffuse.set(this.diffuse);
+      uniform.ambient.set(this.ambient);
+      uniform.diffuse.set(this.diffuse);
    }
 }
 

@@ -7,7 +7,7 @@ class VertexShader extends Shader
 {
    constructor(path, name = 'vertex.shader')
    {
-      super(name, path, gl.VERTEX_SHADER);
+      super(path, gl.VERTEX_SHADER, name);
    }
 }
 
