@@ -4,7 +4,7 @@ let Material = require('./Material');
 
 class PhongMaterial extends Material
 {
-   constructor(ambient, diffuse, specular, shininess = 75, shading = 'smooth', name = 'phong.material')
+   constructor(ambient, diffuse, specular, shading, shininess = 75, name = 'phong.material')
    {
       super(ambient, diffuse, shading, name);
 

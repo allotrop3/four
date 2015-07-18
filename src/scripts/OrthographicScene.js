@@ -7,7 +7,7 @@ let mat4 = glm.mat4;
 
 class OrthographicScene extends Scene
 {
-   constructor(left, right, bottom, top, near, far, background = [0, 0, 0, 1], name = 'orthographic.scene')
+   constructor(left, right, bottom, top, near, far, background, name = 'orthographic.scene')
    {
       super(background, name);
 

@@ -7,7 +7,7 @@ let mat4 = glm.mat4;
 
 class PerspectiveScene extends Scene
 {
-   constructor(fov, ratio, near, far, direction, location, up, background = [0, 0, 0, 1], name = 'perspective.scene')
+   constructor(fov, ratio, near, far, direction, location, up, background, name = 'perspective.scene')
    {
       super(background, name);
 

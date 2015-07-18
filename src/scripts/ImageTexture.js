@@ -5,7 +5,7 @@ var gl = require('./gl');
 
 class ImageTexture extends Texture
 {
-   constructor(image, level = 0, components = gl.RGB, format = gl.UNSIGNED_BYTE, magnification = gl.NEAREST, minification = gl.NEAREST, S = gl.CLAMP_TO_EDGE, T = gl.CLAMP_TO_EDGE, name = 'image.texture')
+   constructor(image, level, components, magnification, minification, S, T, format = gl.UNSIGNED_BYTE, name = 'image.texture')
    {
       super(image, level, components, format, magnification, minification, S, T, name);
    }
