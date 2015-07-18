@@ -21,11 +21,9 @@ class Program extends Entity
    link()
    {
       let buffer = this.buffer;
-      let vertexShader = this.vertexShader;
-      let fragmentShader = this.fragmentShader;
 
-      gl.attachShader(buffer, vertexShader);
-      gl.attachShader(buffer, fragmentShader);
+      gl.attachShader(buffer, this.vertexShader);
+      gl.attachShader(buffer, this.fragmentShader);
 
       gl.linkProgram(buffer);
 

@@ -33,8 +33,7 @@ class Scene extends Entity
 
    save()
    {
-      let modelViewMatrix = this.modelViewMatrix;
-      let currentScene = mat4.clone(modelViewMatrix);
+      let currentScene = mat4.clone(this.modelViewMatrix);
 
       this.stack.push(currentScene);
    }
@@ -45,10 +44,9 @@ class Scene extends Entity
 
       if (stack.length)
       {
-         let modelViewMatrix = this.modelViewMatrix;
          let previousScene = stack.pop();
 
-         mat4.copy(modelViewMatrix, previousScene);
+         mat4.copy(this.modelViewMatrix, previousScene);
       }
    }
 

@@ -27,9 +27,7 @@ class Framebuffer extends Entity
 
    bind()
    {
-      let buffer = this.buffer;
-
-      gl.bindFramebuffer(gl.FRAMEBUFFER, buffer);
+      gl.bindFramebuffer(gl.FRAMEBUFFER, this.buffer);
    }
 
    unbind()

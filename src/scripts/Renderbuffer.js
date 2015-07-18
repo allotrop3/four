@@ -18,21 +18,16 @@ class Renderbuffer extends Entity
 
    configure()
    {
-      let width = this.width;
-      let height = this.height;
-
       this.bind();
 
-      gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, width, height);
+      gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, this.width, this.height);
 
       this.unbind();
    }
 
    bind()
    {
-      let buffer = this.buffer;
-
-      gl.bindRenderbuffer(gl.RENDERBUFFER, buffer);
+      gl.bindRenderbuffer(gl.RENDERBUFFER, this.buffer);
    }
 
    unbind()
