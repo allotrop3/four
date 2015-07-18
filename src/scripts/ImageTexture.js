@@ -8,6 +8,8 @@ class ImageTexture extends Texture
    constructor(image, level, components, magnification, minification, S, T, format = gl.UNSIGNED_BYTE, name = 'image.texture')
    {
       super(image, level, components, format, magnification, minification, S, T, name);
+
+      this.configure();
    }
 
    configure()

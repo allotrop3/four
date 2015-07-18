@@ -32,7 +32,7 @@ module.exports = function(grunt)
       },
       watch: {
          files: ['<%= jshint.files %>'],
-         tasks: ['jshint', 'browserify', 'babel']
+         tasks: ['browserify', 'babel']
       }
    });
 
@@ -41,5 +41,5 @@ module.exports = function(grunt)
    grunt.loadNpmTasks('grunt-babel');
    grunt.loadNpmTasks('grunt-contrib-watch');
 
-   grunt.registerTask('default', ['jshint', 'browserify', 'babel']);
+   grunt.registerTask('default', ['browserify', 'babel']);
 };

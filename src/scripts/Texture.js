@@ -20,6 +20,8 @@ class Texture extends Entity
       this.S = S;
       this.T = T;
       this.unit = unit++;
+
+      configure();
    }
 
    configure()

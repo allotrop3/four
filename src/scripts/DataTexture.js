@@ -5,12 +5,15 @@ var gl = require('./gl');
 
 class DataTexture extends Texture
 {
-   constructor(level, width, height, components, magnification, minification, S, T, image = null, format = gl.FLOAT, name = 'data.texture')
+   constructor(level, width, height, length, components, magnification, minification, S, T, image = null, format = gl.FLOAT, name = 'data.texture')
    {
       super(image, level, components, format, magnification, minification, S, T, name);
 
       this.width = width;
       this.height = height;
+
+      this.autofill();
+      this.configure();
    }
 
    configure()
@@ -29,7 +32,11 @@ class DataTexture extends Texture
 
    autofill(nixel = -1)
    {
-      console.log(nixel);
+      let image = this.image;
+      let count = this.width * this.height * this.length - image.length;
+      let nixels = `,${nixel}`.repeat(count).substring(1).split(',').map(parseFloat);
+
+      image.push(nixels);
    }
 }
 
