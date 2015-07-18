@@ -32,7 +32,7 @@ class Texture extends Entity
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, this.T);
    }
 
-   bind(sampler)
+   bind(sampler = false)
    {
       let unit = this.unit;
       let active = gl.TEXTURE0 + unit;
@@ -40,7 +40,10 @@ class Texture extends Entity
       gl.activeTexture(active);
       gl.bindTexture(gl.TEXTURE_2D, this.buffer);
 
-      sampler.set(unit);
+      if (sampler)
+      {
+         sampler.set(unit);
+      }
    }
 
    unbind()

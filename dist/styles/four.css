@@ -24,6 +24,11 @@ li
    margin-bottom: 5px;
 }
 
+canvas
+{
+   border: 1px dotted #ccc;
+}
+
 .fourjs
 {
    font:; 300 30px/2 'helvetica neue';

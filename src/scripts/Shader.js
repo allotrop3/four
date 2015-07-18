@@ -27,7 +27,15 @@ class Shader extends Entity
       gl.shaderSource(buffer, source);
       gl.compileShader(buffer);
 
-      if (gl.getShaderParameter(buffer, gl.COMPILE_STATUS))
+      this.check();
+   }
+
+   check()
+   {
+      let buffer = this.buffer;
+      let status = gl.getShaderParameter(buffer, gl.COMPILE_STATUS);
+
+      if (!status)
       {
          let error = gl.getShaderInfoLog(buffer);
 

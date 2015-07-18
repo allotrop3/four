@@ -27,7 +27,20 @@ class Program extends Entity
 
       gl.linkProgram(buffer);
 
-      if (gl.getProgramParameter(buffer, gl.LINK_STATUS))
+      this.check();
+   }
+
+   bind()
+   {
+      gl.useProgram(this.buffer);
+   }
+
+   check()
+   {
+      let buffer = this.buffer;
+      let status = gl.getProgramParameter(buffer, gl.LINK_STATUS);
+
+      if (!status)
       {
          let error = gl.getProgramInfoLog(buffer);
 
@@ -35,11 +48,6 @@ class Program extends Entity
 
          throw new Error(error);
       }
-   }
-
-   bind()
-   {
-      gl.useProgram(this.buffer);
    }
 }
 
