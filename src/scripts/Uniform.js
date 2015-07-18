@@ -5,11 +5,12 @@ let gl = require('./gl');
 
 class Uniform extends Entity
 {
-   constructor(program, uniform, format, name = 'uniform')
+   constructor(program, uniform, format, name = `uniform`)
    {
       super(name);
 
-      this.uniform = gl.getUniformLocation(program, uniform);
+      this.uniform = uniform;
+      this.location = gl.getUniformLocation(program, uniform);
       this.method = `uniform${format}`;
    }
 

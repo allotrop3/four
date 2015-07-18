@@ -1,11 +1,25 @@
 'use strict';
 
+let indices = {};
+
 class Entity
 {
    constructor(name = 'entity')
    {
-      this.name = name;
+      this.name = this.index(name);
       this.destroyed = false;
+   }
+
+   index(name)
+   {
+      if (indices[name] === undefined)
+      {
+         indices[name] = -1;
+      }
+
+      indices[name]++;
+
+      return `${name}.0${indices[name]}`;
    }
 
    destroy()

@@ -9,6 +9,7 @@ class Attribute extends Entity
    {
       super(name);
 
+      this.attribute = attribute;
       this.location = gl.getAttributeLocation(program, attribute);
       this.length = length;
       this.format = gl[format];
