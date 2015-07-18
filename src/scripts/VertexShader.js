@@ -5,9 +5,9 @@ let gl = require('./gl');
 
 class VertexShader extends Shader
 {
-   constructor(path, name = 'vertex.shader')
+   constructor(name = 'vertex.shader', path)
    {
-      super(path, gl.VERTEX_SHADER, name);
+      super(name, path, gl.VERTEX_SHADER);
    }
 }
 

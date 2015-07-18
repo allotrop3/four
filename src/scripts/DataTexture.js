@@ -5,9 +5,9 @@ var gl = require('./gl');
 
 class DataTexture extends Texture
 {
-   constructor(level, width, height, length, components, magnification, minification, S, T, image = null, format = gl.FLOAT, name = 'data.texture')
+   constructor(name = 'data.texture', image = [], level, width, height, length, components, format = gl.FLOAT, magnification, minification, S, T)
    {
-      super(image, level, components, format, magnification, minification, S, T, name);
+      super(name, image, level, components, format, magnification, minification, S, T);
 
       this.width = width;
       this.height = height;

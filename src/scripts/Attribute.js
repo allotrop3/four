@@ -5,7 +5,7 @@ let gl = require('./gl');
 
 class Attribute extends Entity
 {
-   constructor(program, attribute, length, format = 'FLOAT', normalized = false, name = 'attribute')
+   constructor(name = 'attribute', program, attribute, length, format = 'FLOAT', normalized = false)
    {
       super(name);
 

@@ -5,9 +5,9 @@ var gl = require('./gl');
 
 class ImageTexture extends Texture
 {
-   constructor(image, level, components, magnification, minification, S, T, format = gl.UNSIGNED_BYTE, name = 'image.texture')
+   constructor(name = 'image.texture', image, lod, components, format = gl.UNSIGNED_BYTE, magnification, minification, S, T)
    {
-      super(image, level, components, format, magnification, minification, S, T, name);
+      super(name, image, lod, components, format, magnification, minification, S, T);
 
       this.configure();
    }
@@ -20,7 +20,7 @@ class ImageTexture extends Texture
 
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
 
-      gl.texImage2D(gl.TEXTURE_2D, this.level, components, components, this.format, this.image);
+      gl.texImage2D(gl.TEXTURE_2D, this.lod, components, components, this.format, this.image);
 
       this.unbind();
    }

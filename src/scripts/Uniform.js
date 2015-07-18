@@ -5,7 +5,7 @@ let gl = require('./gl');
 
 class Uniform extends Entity
 {
-   constructor(program, uniform, format, name = `uniform`)
+   constructor(name = 'uniform', program, uniform, format)
    {
       super(name);
 

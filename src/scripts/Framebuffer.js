@@ -5,13 +5,12 @@ let gl = require('./gl');
 
 class Framebuffer extends Entity
 {
-   constructor(scene, level = 0, name = 'framebuffer')
+   constructor(name = 'framebuffer', scene)
    {
       super(name);
 
       this.buffer = null;
       this.scene = scene;
-      this.level = level;
    }
 
    enable()

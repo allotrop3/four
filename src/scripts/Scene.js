@@ -5,10 +5,11 @@ let gl = require('./gl');
 let glm = require('gl-matrix');
 let mat4 = glm.mat4;
 let mat3 = glm.mat3;
+let axis = { x: [1, 0, 0], y: [0, 1, 0], z: [0, 0, 1] };
 
 class Scene extends Entity
 {
-   constructor(background = [0, 0, 0, 1], name = 'scene')
+   constructor(name = 'scene', background = [0, 0, 0, 1])
    {
       super(name);
 
@@ -17,7 +18,6 @@ class Scene extends Entity
       this.projectionMatrix = mat4.create();
       this.normalMatrix = mat3.create();
       this.stack = [];
-      this.axis = { x: [1, 0, 0], y: [0, 1, 0], z: [0, 0, 1] };
    }
 
    configure()
@@ -59,10 +59,9 @@ class Scene extends Entity
 
    rotate(rotation, pivot)
    {
-      let axis = this.axis[pivot];
       let modelViewMatrix = this.modelViewMatrix;
 
-      mat4.rotate(modelViewMatrix, modelViewMatrix, rotation, axis);
+      mat4.rotate(modelViewMatrix, modelViewMatrix, rotation, axis[pivot]);
    }
 
    rotateX(rotation)

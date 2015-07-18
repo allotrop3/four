@@ -4,9 +4,9 @@ let Light = require('./Light');
 
 class PointLight extends Light
 {
-   constructor(ambient, diffuse, specular, coefficient, linear, quadratic, location, name = 'point.light')
+   constructor(name = 'point.light', ambient, diffuse, specular, coefficient, linear, quadratic, intensity, location)
    {
-      super(ambient, diffuse, specular, location, name);
+      super(name, ambient, diffuse, specular, intensity, location);
 
       this.coefficient = coefficient;
       this.linear = linear;

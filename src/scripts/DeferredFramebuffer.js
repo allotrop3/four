@@ -5,9 +5,9 @@ let gl = require('./gl');
 
 class DeferredFramebuffer extends Framebuffer
 {
-   constructor(colorAttachment, depthAttachment, scene, level, name = 'deferred.framebuffer')
+   constructor(name = 'deferred.framebuffer', colorAttachment, depthAttachment, scene)
    {
-      super(scene, level, name);
+      super(name, scene);
 
       this.buffer = gl.createFramebuffer();
       this.colorAttachment = colorAttachment;
@@ -20,7 +20,7 @@ class DeferredFramebuffer extends Framebuffer
    {
       this.bind();
 
-      gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.colorAttachment, this.level);
+      gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.colorAttachment, 0);
       gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, this.depthAttachment);
 
       this.check();

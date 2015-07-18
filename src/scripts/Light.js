@@ -4,13 +4,14 @@ let Entity = require('./Entity');
 
 class Light extends Entity
 {
-   constructor(ambient, diffuse, specular, location, name = 'light')
+   constructor(name = 'light', ambient, diffuse, specular, intensity = 1, location)
    {
       super(name);
 
       this.ambient = ambient;
       this.diffuse = diffuse;
       this.specular = specular;
+      this.intensity = intensity;
       this.location = location;
    }
 
@@ -19,6 +20,7 @@ class Light extends Entity
       uniform.ambient.set(this.ambient);
       uniform.diffuse.set(this.diffuse);
       uniform.specular.set(this.specular);
+      uniform.intensity.set(this.intensity);
       uniform.location.set(this.location);
    }
 }

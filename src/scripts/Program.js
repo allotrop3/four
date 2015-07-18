@@ -5,15 +5,13 @@ let gl = require('./gl');
 
 class Program extends Entity
 {
-   constructor(vertexShader, fragmentShader, name = 'program')
+   constructor(name = 'program', vertexShader, fragmentShader)
    {
       super(name);
 
       this.buffer = gl.createProgram();
       this.vertexShader = vertexShader;
       this.fragmentShader = fragmentShader;
-      this.attributes = attributes;
-      this.uniforms = uniforms;
 
       this.link();
    }

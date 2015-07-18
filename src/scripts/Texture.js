@@ -6,13 +6,13 @@ let unit = 0;
 
 class Texture extends Entity
 {
-   constructor(image, level = 0, components = gl.RGB, format = gl.UNSIGNED_BYTE, magnification = gl.NEAREST, minification = gl.NEAREST, S = gl.CLAMP_TO_EDGE, T = gl.CLAMP_TO_EDGE, name = 'texture')
+   constructor(name = 'texture', image, lod = 0, components = gl.RGB, format = gl.UNSIGNED_BYTE, magnification = gl.NEAREST, minification = gl.NEAREST, S = gl.CLAMP_TO_EDGE, T = gl.CLAMP_TO_EDGE)
    {
       super(name);
 
       this.buffer = gl.createTexture();
       this.image = image;
-      this.level = level;
+      this.lod = lod;
       this.components = components;
       this.format = format;
       this.magnification = magnification;
