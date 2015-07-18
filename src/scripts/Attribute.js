@@ -5,7 +5,7 @@ let gl = require('./gl');
 
 class Attribute extends Entity
 {
-   constructor(program, attribute, length, format = 'FLOAT', name = 'attribute')
+   constructor(program, attribute, length, format = 'FLOAT', normalized = false, name = 'attribute')
    {
       super(name);
 
@@ -13,13 +13,14 @@ class Attribute extends Entity
       this.location = gl.getAttributeLocation(program, attribute);
       this.length = length;
       this.format = gl[format];
+      this.normalized = normalized;
    }
 
    bind(stride, offset)
    {
       this.enable();
 
-      gl.vertexAttribPointer(this.location, this.length, this.format, false, stride, offset);
+      gl.vertexAttribPointer(this.location, this.length, this.format, this.normalized, stride, offset);
    }
 
    enable()
