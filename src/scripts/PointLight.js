@@ -1,6 +1,7 @@
 'use strict';
 
 let Light = require('./Light');
+let unit = 0;
 
 class PointLight extends Light
 {
@@ -11,6 +12,7 @@ class PointLight extends Light
       this.coefficient = coefficient;
       this.linear = linear;
       this.quadratic = quadratic;
+      this.unit = unit++;
    }
 
    bind(uniforms)
@@ -19,15 +21,10 @@ class PointLight extends Light
 
       let uniform = uniforms[this.unit];
 
-      if (uniform === undefined)
-      {
-         throw new Error(`no uniforms ${this.name}`);
-      }
-
-      uniforms.coefficient.set(this.coefficient);
-      uniforms.linear.set(this.linear);
-      uniforms.quadratic.set(this.quadratic);
-      uniforms.location.set(this.location);
+      uniform.coefficient.set(this.coefficient);
+      uniform.linear.set(this.linear);
+      uniform.quadratic.set(this.quadratic);
+      uniform.location.set(this.location);
    }
 }
 
