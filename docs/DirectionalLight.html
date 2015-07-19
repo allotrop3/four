@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Texture</title>
+    <title>JSDoc: Class: DirectionalLight</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Texture</h1>
+    <h1 class="page-title">Class: DirectionalLight</h1>
 
     
 
@@ -29,7 +29,7 @@
 <header>
     
         <h2>
-        Texture
+        DirectionalLight
         </h2>
         
     
@@ -42,14 +42,14 @@
 
     
 
-    <h4 class="name" id="Texture"><span class="type-signature">(abstract) </span>new Texture<span class="signature">(name<span class="signature-attributes">opt</span>, image, lod<span class="signature-attributes">opt</span>, components<span class="signature-attributes">opt</span>, format<span class="signature-attributes">opt</span>, magnification<span class="signature-attributes">opt</span>, minification<span class="signature-attributes">opt</span>, S<span class="signature-attributes">opt</span>, T<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="DirectionalLight"><span class="type-signature"></span>new DirectionalLight<span class="signature">(name<span class="signature-attributes">opt</span>, ambient, diffuse, specular, intensity<span class="signature-attributes">opt</span>, location<span class="signature-attributes">opt</span>, direction<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Texture is a wrapper on WebGLTexture
+    DirectionalLight is a directional light source to illuminate the scene
 </div>
 
 
@@ -116,25 +116,25 @@
             
                 <td class="default">
                 
-                    attribute
+                    directional.light
                 
                 </td>
             
 
-            <td class="description last">Name of the Texture instance</td>
+            <td class="description last">Instance name</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>image</code></td>
+                <td class="name"><code>ambient</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array</span>
+<span class="param-type">vec3</span>
 
 
             
@@ -156,20 +156,20 @@
                 </td>
             
 
-            <td class="description last">Initial texture data</td>
+            <td class="description last">Ambient component</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>lod</code></td>
+                <td class="name"><code>diffuse</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">vec3</span>
 
 
             
@@ -177,8 +177,6 @@
 
             
                 <td class="attributes">
-                
-                    &lt;optional><br>
                 
 
                 
@@ -190,25 +188,23 @@
             
                 <td class="default">
                 
-                    0
-                
                 </td>
             
 
-            <td class="description last">Level of detail</td>
+            <td class="description last">Diffuse component</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>components</code></td>
+                <td class="name"><code>specular</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">vec3</span>
 
 
             
@@ -216,8 +212,6 @@
 
             
                 <td class="attributes">
-                
-                    &lt;optional><br>
                 
 
                 
@@ -229,19 +223,17 @@
             
                 <td class="default">
                 
-                    gl.RGB
-                
                 </td>
             
 
-            <td class="description last">Texture components per texel</td>
+            <td class="description last">Specular component</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>format</code></td>
+                <td class="name"><code>intensity</code></td>
             
 
             <td class="type">
@@ -268,25 +260,25 @@
             
                 <td class="default">
                 
-                    gl.UNSIGNED_BYTE
+                    1
                 
                 </td>
             
 
-            <td class="description last">Component data format</td>
+            <td class="description last">Light intensity</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>magnification</code></td>
+                <td class="name"><code>location</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">vec3</span>
 
 
             
@@ -307,25 +299,25 @@
             
                 <td class="default">
                 
-                    gl.NEAREST
+                    [0, 0, 0]
                 
                 </td>
             
 
-            <td class="description last">Magnification sampling filter</td>
+            <td class="description last">Light position</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>minification</code></td>
+                <td class="name"><code>direction</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">vec3</span>
 
 
             
@@ -346,90 +338,12 @@
             
                 <td class="default">
                 
-                    gl.NEAREST
+                    [0, 0, 0]
                 
                 </td>
             
 
-            <td class="description last">Minification sampling filter</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>S</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    gl.CLAMP_TO_EDGE
-                
-                </td>
-            
-
-            <td class="description last">Horizontal wrapping</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>T</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    gl.CLAMP_TO_EDGE
-                
-                </td>
-            
-
-            <td class="description last">Vertex wrapping</td>
+            <td class="description last">Light direction</td>
         </tr>
 
     
@@ -470,7 +384,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Texture.js.html">Texture.js</a>, <a href="Texture.js.html#line7">line 7</a>
+        <a href="DirectionalLight.js.html">DirectionalLight.js</a>, <a href="DirectionalLight.js.html#line5">line 5</a>
     </li></ul></dd>
     
 
@@ -506,7 +420,7 @@
 
 
     <ul>
-        <li>Entity</li>
+        <li><a href="Light.html">Light</a></li>
     </ul>
 
 
@@ -521,7 +435,241 @@
     
 
     
+        <h3 class="subsection-title">Members</h3>
 
+        
+            
+<h4 class="name" id=".direction"><span class="type-signature">(private, static) </span>direction<span class="type-signature"> :vec3</span></h4>
+
+
+
+
+<div class="description">
+    Light direction
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">vec3</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>[0, 0, 0]</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="DirectionalLight.js.html">DirectionalLight.js</a>, <a href="DirectionalLight.js.html#line24">line 24</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".bind"><span class="type-signature">(static) </span>bind<span class="signature">(uniform)</span><span class="type-signature"> &rarr; {undefined}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Set directional light shader uniform values
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>uniform</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Directional light shader uniforms</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="DirectionalLight.js.html">DirectionalLight.js</a>, <a href="DirectionalLight.js.html#line33">line 33</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
     
 
     
