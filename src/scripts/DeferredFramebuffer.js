@@ -4,7 +4,7 @@ let Framebuffer = require('./Framebuffer');
 let gl = require('./gl');
 
 /**
- * DeferredFramebuffer is a wrapper on WebGLFramebuffer containers
+ * DeferredFramebuffer is a wrapper on WebGLFramebuffer buffers
  * to support off-screen rendering
  * @class DeferredFramebuffer
  * @name Entity.Framebuffer.DeferredFramebuffer
@@ -21,7 +21,7 @@ class DeferredFramebuffer extends Framebuffer
       super({ name, scene });
 
       /**
-       * Render target
+       * WebGL framebuffer
        * @var {WebGLFramebuffer} Entity.Framebuffer.DeferredFramebuffer.buffer
        * @default WebGLFramebuffer
        * @private

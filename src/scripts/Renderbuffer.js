@@ -4,7 +4,7 @@ let Entity = require('./Entity');
 let gl = require('./gl');
 
 /**
- * Renderbuffer is a wrapper on the WebGLRenderbuffer container
+ * Renderbuffer is a wrapper on WebGLRenderbuffer buffers
  * @class Renderbuffer
  * @name Entity.Renderbuffer
  * @extends Entity
@@ -14,12 +14,12 @@ let gl = require('./gl');
  */
 class Renderbuffer extends Entity
 {
-   constructor(name = 'renderbuffer', width, height)
+   constructor({ name = 'renderbuffer', width, height } = {})
    {
-      super(name);
+      super({ name });
 
       /**
-       * WebGL renderbuffer container
+       * WebGL renderbuffer
        * @var {WebGLRenderbuffer} Entity.Renderbuffer.buffer
        * @default WebGLRenderbuffer
        * @private

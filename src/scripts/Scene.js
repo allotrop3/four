@@ -19,9 +19,9 @@ let axis = { x: [1, 0, 0], y: [0, 1, 0], z: [0, 0, 1] };
  */
 class Scene extends Entity
 {
-   constructor(name = 'scene', background = [0, 0, 0, 1])
+   constructor({ name = 'scene', background = [0, 0, 0, 1] } = {})
    {
-      super(name);
+      super({ name });
 
       /**
        * Scene background color

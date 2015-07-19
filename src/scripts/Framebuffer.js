@@ -4,7 +4,7 @@ let Entity = require('./Entity');
 let gl = require('./gl');
 
 /**
- * Framebuffer is a wrapper on the WebGLFramebuffer container
+ * Framebuffer is a wrapper on WebGLFramebuffer buffers
  * @class Framebuffer
  * @name Entity.Framebuffer
  * @extends Entity
@@ -18,7 +18,7 @@ class Framebuffer extends Entity
       super({ name });
 
       /**
-       * Render target
+       * WebGL framebuffer
        * @var {object} Entity.Framebuffer.buffer
        * @default null
        * @private

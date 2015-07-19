@@ -98,13 +98,13 @@
 
         
             
-<h4 class="name" id="buffer"><span class="type-signature">(private) </span>buffer<span class="type-signature"> :WebGLFramebuffer</span></h4>
+<h4 class="name" id="components"><span class="type-signature">(private) </span>components<span class="type-signature"> :number</span></h4>
 
 
 
 
 <div class="description">
-    WebGL framebuffer container
+    Texture components per texel
 </div>
 
 
@@ -113,7 +113,7 @@
     <ul>
         <li>
             
-<span class="param-type">WebGLFramebuffer</span>
+<span class="param-type">number</span>
 
 
         </li>
@@ -148,11 +148,16 @@
     
 
     
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>gl.RGB</li>
+        </ul></dd>
+    
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line1883">line 1883</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2494">line 2494</a>
     </li></ul></dd>
     
 
@@ -170,13 +175,13 @@
 
         
             
-<h4 class="name" id="colorAttachment"><span class="type-signature">(private) </span>colorAttachment<span class="type-signature"> :<a href="Entity.Texture.ImageTexture.html">Entity.Texture.ImageTexture</a>|<a href="Entity.Texture.DataTexture.html">Entity.Texture.DataTexture</a></span></h4>
+<h4 class="name" id="format"><span class="type-signature">(private) </span>format<span class="type-signature"> :number</span></h4>
 
 
 
 
 <div class="description">
-    Framebuffer color attachment
+    Component data format
 </div>
 
 
@@ -185,10 +190,7 @@
     <ul>
         <li>
             
-<span class="param-type"><a href="Entity.Texture.ImageTexture.html">Entity.Texture.ImageTexture</a></span>
-|
-
-<span class="param-type"><a href="Entity.Texture.DataTexture.html">Entity.Texture.DataTexture</a></span>
+<span class="param-type">number</span>
 
 
         </li>
@@ -223,11 +225,16 @@
     
 
     
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>gl.UNSIGNED_BYTE</li>
+        </ul></dd>
+    
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line1887">line 1887</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2499">line 2499</a>
     </li></ul></dd>
     
 
@@ -245,13 +252,13 @@
 
         
             
-<h4 class="name" id="depthAttachment"><span class="type-signature">(private) </span>depthAttachment<span class="type-signature"> :Renderbuffer</span></h4>
+<h4 class="name" id="lod"><span class="type-signature">(private) </span>lod<span class="type-signature"> :number</span></h4>
 
 
 
 
 <div class="description">
-    Framebuffer depth attachment
+    Level of detail
 </div>
 
 
@@ -260,7 +267,7 @@
     <ul>
         <li>
             
-<span class="param-type">Renderbuffer</span>
+<span class="param-type">number</span>
 
 
         </li>
@@ -295,11 +302,324 @@
     
 
     
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>0</li>
+        </ul></dd>
+    
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line1891">line 1891</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2489">line 2489</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="magnification"><span class="type-signature">(private) </span>magnification<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    Magnification sampling filter
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>gl.NEAREST</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2504">line 2504</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="minification"><span class="type-signature">(private) </span>minification<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    Minification sampling filter
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>gl.NEAREST</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2509">line 2509</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="S"><span class="type-signature">(private) </span>S<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    Horizontal texture wrapping
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>gl.CLAMP_TO_EDGE</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2514">line 2514</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="T"><span class="type-signature">(private) </span>T<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    Vertex texture wrapping
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>gl.CLAMP_TO_EDGE</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2519">line 2519</a>
     </li></ul></dd>
     
 
@@ -333,13 +653,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Entity.html">Entity</a></li><li><a href="Entity.Attribute.html">Attribute</a></li><li><a href="Entity.Framebuffer.html">Framebuffer</a></li><li><a href="Entity.Framebuffer.DeferredFramebuffer.html">DeferredFramebuffer</a></li><li><a href="Entity.Light.html">Light</a></li><li><a href="Entity.Light.DirectionalLight.html">DirectionalLight</a></li><li><a href="Entity.Light.PointLight.html">PointLight</a></li><li><a href="Entity.Material.html">Material</a></li><li><a href="Entity.Material.PhongMaterial.html">PhongMaterial</a></li><li><a href="Entity.Mesh.html">Mesh</a></li><li><a href="Entity.Program.html">Program</a></li><li><a href="Entity.Scene.OrthographicScene.html">OrthographicScene</a></li><li><a href="Entity.Scene.PerspectiveScene.html">PerspectiveScene</a></li><li><a href="Entity.Shader.FragmentShader.html">FragmentShader</a></li><li><a href="Entity.Texture.DataTexture.html">DataTexture</a></li><li><a href="Entity.Texture.ImageTexture.html">ImageTexture</a></li><li><a href="glMatrix.html">glMatrix</a></li><li><a href="mat2.html">mat2</a></li><li><a href="mat2d.html">mat2d</a></li><li><a href="mat3.html">mat3</a></li><li><a href="mat4.html">mat4</a></li><li><a href="quat.html">quat</a></li><li><a href="Texture.html">Texture</a></li><li><a href="vec2.html">vec2</a></li><li><a href="vec3.html">vec3</a></li><li><a href="vec4.html">vec4</a></li></ul><h3>Global</h3><ul><li><a href="global.html#buffer">buffer</a></li><li><a href="global.html#colorAttachment">colorAttachment</a></li><li><a href="global.html#depthAttachment">depthAttachment</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Entity.html">Entity</a></li><li><a href="Entity.Attribute.html">Attribute</a></li><li><a href="Entity.Framebuffer.html">Framebuffer</a></li><li><a href="Entity.Framebuffer.DeferredFramebuffer.html">DeferredFramebuffer</a></li><li><a href="Entity.Light.html">Light</a></li><li><a href="Entity.Light.DirectionalLight.html">DirectionalLight</a></li><li><a href="Entity.Light.PointLight.html">PointLight</a></li><li><a href="Entity.Light.SpotLight.html">SpotLight</a></li><li><a href="Entity.Material.html">Material</a></li><li><a href="Entity.Material.PhongMaterial.html">PhongMaterial</a></li><li><a href="Entity.Mesh.html">Mesh</a></li><li><a href="Entity.Program.html">Program</a></li><li><a href="Entity.Renderbuffer.html">Renderbuffer</a></li><li><a href="Entity.Renderer.html">Renderer</a></li><li><a href="Entity.Scene.html">Scene</a></li><li><a href="Entity.Scene.OrthographicScene.html">OrthographicScene</a></li><li><a href="Entity.Scene.PerspectiveScene.html">PerspectiveScene</a></li><li><a href="Entity.Shader.html">Shader</a></li><li><a href="Entity.Shader.FragmentShader.html">FragmentShader</a></li><li><a href="Entity.Texture.html">Texture</a></li><li><a href="Entity.Texture.DataTexture.html">DataTexture</a></li><li><a href="Entity.Texture.ImageTexture.html">ImageTexture</a></li><li><a href="glMatrix.html">glMatrix</a></li><li><a href="mat2.html">mat2</a></li><li><a href="mat2d.html">mat2d</a></li><li><a href="mat3.html">mat3</a></li><li><a href="mat4.html">mat4</a></li><li><a href="quat.html">quat</a></li><li><a href="vec2.html">vec2</a></li><li><a href="vec3.html">vec3</a></li><li><a href="vec4.html">vec4</a></li></ul><h3>Global</h3><ul><li><a href="global.html#components">components</a></li><li><a href="global.html#format">format</a></li><li><a href="global.html#lod">lod</a></li><li><a href="global.html#magnification">magnification</a></li><li><a href="global.html#minification">minification</a></li><li><a href="global.html#S">S</a></li><li><a href="global.html#T">T</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Sun Jul 19 2015 22:55:39 GMT+0100 (BST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Mon Jul 20 2015 00:10:25 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -5,7 +5,7 @@ let gl = require('./gl');
 let ajax = require('./utils/ajax');
 
 /**
- * Shader is a wrapper on WebGLShader containers
+ * Shader is a wrapper on WebGLShader buffers
  * @class Shader
  * @name Entity.Shader
  * @extends Entity

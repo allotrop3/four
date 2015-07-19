@@ -4,13 +4,13 @@ var Texture = require('./Texture');
 var gl = require('./gl');
 
 /**
- * ImageTexture is a wrapper on WebGLTexture containers
+ * ImageTexture is a wrapper on WebGLTexture buffers
  * to support detailing mesh surfaces
  * @class ImageTexture
  * @name Entity.Texture.ImageTexture
  * @extends Entity.Texture
  * @param {string} [name=image.texture] - Instance name
- * @param {Array} [image=[]] - Initial texture data
+ * @param {Array} [image=[]] - Texture data
  * @param {number} [lod=0] - Level of detail
  * @param {number} [components=gl.RGB] - Texture components per texel
  * @param {number} [format=gl.UNSIGNED_BYTE] - Component data format

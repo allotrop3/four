@@ -4,7 +4,7 @@ let Shader = require('./Shader');
 let gl = require('./gl');
 
 /**
- * FragmentShader is a wrapper on WebGLShader containers
+ * FragmentShader is a wrapper on WebGLShader buffers
  * @class FragmentShader
  * @name Entity.Shader.FragmentShader
  * @extends Entity.Shader

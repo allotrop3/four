@@ -14,9 +14,9 @@ let gl = require('./gl');
  */
 class Program extends Entity
 {
-   constructor(name = 'program', vertexShader, fragmentShader)
+   constructor({ name = 'program', vertexShader, fragmentShader })
    {
-      super(name);
+      super({ name });
 
       /**
        * WebGL program container

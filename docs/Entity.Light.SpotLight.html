@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: PhongMaterial</title>
+    <title>JSDoc: Class: SpotLight</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: PhongMaterial</h1>
+    <h1 class="page-title">Class: SpotLight</h1>
 
     
 
@@ -29,9 +29,9 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="Entity.html">Entity</a><a href="Entity.Material.html">.Material</a>.</span>
+            <span class="ancestors"><a href="Entity.html">Entity</a><a href="Entity.Light.html">.Light</a>.</span>
         
-        PhongMaterial
+        SpotLight
         </h2>
         
     
@@ -44,14 +44,15 @@
 
     
 
-    <h4 class="name" id="PhongMaterial"><span class="type-signature"></span>new PhongMaterial<span class="signature">(name<span class="signature-attributes">opt</span>, ambient, diffuse, specular, shading<span class="signature-attributes">opt</span>, shininess<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="SpotLight"><span class="type-signature"></span>new SpotLight<span class="signature">(name<span class="signature-attributes">opt</span>, ambient, diffuse, specular, exponent, cutoff, intensity<span class="signature-attributes">opt</span>, location<span class="signature-attributes">opt</span>, direction<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Phong shading using the Blinn-Phong shading model
+    SpotLight is a local light source pointing in a particular
+direction to illuminate an area of the scene
 </div>
 
 
@@ -118,7 +119,7 @@
             
                 <td class="default">
                 
-                    phong.material
+                    point.light
                 
                 </td>
             
@@ -235,13 +236,13 @@
 
         <tr>
             
-                <td class="name"><code>shading</code></td>
+                <td class="name"><code>exponent</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">number</span>
 
 
             
@@ -249,8 +250,6 @@
 
             
                 <td class="attributes">
-                
-                    &lt;optional><br>
                 
 
                 
@@ -262,19 +261,52 @@
             
                 <td class="default">
                 
-                    smooth
-                
                 </td>
             
 
-            <td class="description last">Surface shading method</td>
+            <td class="description last">Light fade intensity</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>shininess</code></td>
+                <td class="name"><code>cutoff</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Light cutoff</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>intensity</code></td>
             
 
             <td class="type">
@@ -301,12 +333,90 @@
             
                 <td class="default">
                 
-                    75
+                    1
                 
                 </td>
             
 
-            <td class="description last">Surface light reflectivity</td>
+            <td class="description last">Light intensity</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>location</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    [0, 0, 0]
+                
+                </td>
+            
+
+            <td class="description last">Light position</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>direction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    [0, 0, 0]
+                
+                </td>
+            
+
+            <td class="description last">Light direction</td>
         </tr>
 
     
@@ -347,7 +457,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2199">line 2199</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2441">line 2441</a>
     </li></ul></dd>
     
 
@@ -383,7 +493,7 @@
 
 
     <ul>
-        <li><a href="Entity.Material.html">Entity.Material</a></li>
+        <li><a href="Entity.Light.html">Entity.Light</a></li>
     </ul>
 
 
@@ -402,13 +512,13 @@
 
         
             
-<h4 class="name" id=".shininess"><span class="type-signature">(private, static) </span>shininess<span class="type-signature"> :number</span></h4>
+<h4 class="name" id=".cutoff"><span class="type-signature">(private, static) </span>cutoff<span class="type-signature"> :number</span></h4>
 
 
 
 
 <div class="description">
-    Surface light reflectivity
+    Light cutoff
 </div>
 
 
@@ -452,16 +562,11 @@
     
 
     
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy">
-            <li>75</li>
-        </ul></dd>
-    
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2214">line 2214</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2460">line 2460</a>
     </li></ul></dd>
     
 
@@ -479,13 +584,13 @@
 
         
             
-<h4 class="name" id=".specular"><span class="type-signature">(private, static) </span>specular<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
+<h4 class="name" id=".direction"><span class="type-signature">(private, static) </span>direction<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
 
 
 
 
 <div class="description">
-    Specular component
+    Light direction
 </div>
 
 
@@ -529,11 +634,88 @@
     
 
     
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>[0, 0, 0]</li>
+        </ul></dd>
+    
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2210">line 2210</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2464">line 2464</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".exponent"><span class="type-signature">(private, static) </span>exponent<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    Light fade intensity
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2456">line 2456</a>
     </li></ul></dd>
     
 
@@ -567,7 +749,7 @@
 
 
 <div class="description">
-    Set phong material shader uniform values
+    Set spotlight shader uniform values
 </div>
 
 
@@ -619,7 +801,7 @@
 
             
 
-            <td class="description last">Material shader uniforms</td>
+            <td class="description last">Light shader uniforms</td>
         </tr>
 
     
@@ -660,7 +842,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2219">line 2219</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2469">line 2469</a>
     </li></ul></dd>
     
 

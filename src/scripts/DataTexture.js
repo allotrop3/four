@@ -4,13 +4,13 @@ var Texture = require('./Texture');
 var gl = require('./gl');
 
 /**
- * DataTexture is a wrapper on WebGLTexture containers
+ * DataTexture is a wrapper on WebGLTexture buffers
  * to support data textures used in GPGPU techniques
  * @class DataTexture
  * @name Entity.Texture.DataTexture
  * @extends Entity.Texture
  * @param {string} [name=data.texture] - Instance name
- * @param {Array} [image=[]] - Initial texture data
+ * @param {Array} [image=[]] - Texture data
  * @param {number} [lod=0] - Level of detail
  * @param {number} width - Texture width
  * @param {number} height - Texture height

@@ -12,7 +12,7 @@ let gl = require('./gl');
  * @param {Entity.Program} [program] - Program in which the vertex attribute is used
  * @param {string} attribute - Shader variable name
  * @param {number} length - Number of components
- * @param {string} [format=gl.FLOAT] - Component data format
+ * @param {number} [format=gl.FLOAT] - Component data format
  * @param {boolean} [normalized=false] - Force normalized components
  */
 class Attribute extends Entity

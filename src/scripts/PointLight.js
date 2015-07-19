@@ -3,7 +3,7 @@
 let Light = require('./Light');
 
 /**
- * PointLight is an local light source to illuminate the an area of the scene
+ * PointLight is a local light source to illuminate an area of the scene
  * @class PointLight
  * @name Entity.Light.PointLight
  * @extends Entity.Light
@@ -19,9 +19,9 @@ let Light = require('./Light');
  */
 class PointLight extends Light
 {
-   constructor(name = 'point.light', ambient, diffuse, specular, coefficient, linear, quadratic, intensity, location)
+   constructor({ name = 'point.light', ambient, diffuse, specular, coefficient, linear, quadratic, intensity, location } = {})
    {
-      super(name, ambient, diffuse, specular, intensity, location);
+      super({ name, ambient, diffuse, specular, intensity, location });
 
       /**
        * Coefficient component
