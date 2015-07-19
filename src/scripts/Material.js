@@ -15,7 +15,7 @@ let shades = { flat: 1, smooth: 0 };
  */
 class Material extends Entity
 {
-   constructor({ name = 'material', ambient, diffuse, shading = 'smooth' })
+   constructor({ name = 'material', ambient, diffuse, shading = 'smooth' } = {})
    {
       super({ name });
 

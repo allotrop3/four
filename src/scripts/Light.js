@@ -16,7 +16,7 @@ let Entity = require('./Entity');
  */
 class Light extends Entity
 {
-   constructor({ name = 'light', ambient, diffuse, specular, intensity = 1, location = [0, 0, 0] })
+   constructor({ name = 'light', ambient, diffuse, specular, intensity = 1, location = [0, 0, 0] } = {})
    {
       super({ name });
 
