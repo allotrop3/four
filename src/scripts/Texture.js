@@ -8,7 +8,6 @@ let unit = 0;
  * Texture is a wrapper on WebGLTexture
  * @abstract
  * @class Texture
- * @name Texture
  * @extends Entity
  * @param {string} [name=attribute] - Name of the Texture instance
  * @param {Array} image - Initial texture data

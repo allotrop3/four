@@ -6,8 +6,8 @@ let gl = require('./gl');
 /**
  * FragmentShader is a wrapper on WebGLShader containers
  * @class FragmentShader
- * @name FragmentShader
- * @extends Shader
+ * @name Entity.Shader.FragmentShader
+ * @extends Entity.Shader
  * @param {string} [name=fragment.shader] - Instance name
  * @param {string} path - Filepath to fragment shader source
  */

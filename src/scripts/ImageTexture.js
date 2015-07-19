@@ -7,8 +7,8 @@ var gl = require('./gl');
  * ImageTexture is a wrapper on WebGLTexture containers
  * to support data textures used in GPGPU techniques
  * @class ImageTexture
- * @name ImageTexture
- * @extends Texture
+ * @name Entity.Texture.ImageTexture
+ * @extends Entity.Texture
  * @param {string} [name=image.texture] - Instance name
  * @param {Array} [image=[]] - Initial texture data
  * @param {number} [lod=0] - Level of detail
@@ -31,7 +31,7 @@ class ImageTexture extends Texture
    /**
     * Apply appropriate texture parameters
     * and push data into texture buffer
-    * @function ImageTexture.configure
+    * @function Entity.Texture.ImageTexture.configure
     * @returns {undefined}
     */
    configure()

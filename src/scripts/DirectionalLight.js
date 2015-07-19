@@ -5,8 +5,8 @@ let Light = require('./Light');
 /**
  * DirectionalLight is a directional light source to illuminate the scene
  * @class DirectionalLight
- * @name DirectionalLight
- * @extends Light
+ * @name Entity.Light.DirectionalLight
+ * @extends Entity.Light
  * @param {string} [name=directional.light] - Instance name
  * @param {vec3} ambient - Ambient component
  * @param {vec3} diffuse - Diffuse component
@@ -23,7 +23,7 @@ class DirectionalLight extends Light
 
       /**
        * Light direction
-       * @var {vec3} DirectionalLight.direction
+       * @var {vec3} Entity.Light.DirectionalLight.direction
        * @default [0, 0, 0]
        * @private
        */
@@ -32,7 +32,7 @@ class DirectionalLight extends Light
 
    /**
     * Set directional light shader uniform values
-    * @function DirectionalLight.bind
+    * @function Entity.Light.DirectionalLight.bind
     * @param {object} uniform - Directional light shader uniforms
     * @returns {undefined}
     */

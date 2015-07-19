@@ -5,8 +5,8 @@ let indices = {};
 /**
  * Entity is the base class
  * @class Entity
- * @name Entity
  * @param {string} [name=entity] - Instance name
+ * @property {boolean} [destroyed=false] - Entity delete flag
  */
 class Entity
 {

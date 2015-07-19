@@ -5,8 +5,8 @@ let Material = require('./Material');
 /**
  * Phong shading using the Blinn-Phong shading model
  * @class PhongMaterial
- * @name PhongMaterial
- * @extends Material
+ * @name Entity.Material.PhongMaterial
+ * @extends Entity.Material
  * @param {string} [name=phong.material] - Instance name
  * @param {vec3} ambient - Ambient component
  * @param {vec3} diffuse - Diffuse component
@@ -22,14 +22,14 @@ class PhongMaterial extends Material
 
       /**
        * Specular component
-       * @var {vec3} PhongMaterial.specular
+       * @var {vec3} Entity.Material.PhongMaterial.specular
        * @private
        */
       this.specular = specular;
 
       /**
        * Surface light reflectivity
-       * @var {number} PhongMaterial.shininess
+       * @var {number} Entity.Material.PhongMaterial.shininess
        * @default 75
        * @private
        */
@@ -38,7 +38,7 @@ class PhongMaterial extends Material
 
    /**
     * Set phong material shader uniform values
-    * @function PhongMaterial.bind
+    * @function Entity.Material.PhongMaterial.bind
     * @param {object} uniform - Phong material shader uniforms
     * @returns {undefined}
     */

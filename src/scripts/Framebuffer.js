@@ -6,10 +6,11 @@ let gl = require('./gl');
 /**
  * Framebuffer is a wrapper on the WebGLFramebuffer container
  * @class Framebuffer
- * @name Framebuffer
+ * @name Entity.Framebuffer
  * @extends Entity
- * @param {string} [name=framebuffer] - The name of the framebuffer instance
+ * @param {string} [name=framebuffer] - Instance name
  * @param {OrthographicScene|PerspectiveScene} scene - View configuration
+ * @property {object} [buffer=null] - Render target
  */
 class Framebuffer extends Entity
 {
@@ -18,8 +19,8 @@ class Framebuffer extends Entity
       super({ name });
 
       /**
-       * WebGL framebuffer container
-       * @var {object} Framebuffer.buffer
+       * Render target
+       * @var {object} Entity.Framebuffer.buffer
        * @default null
        * @private
        */
@@ -27,7 +28,7 @@ class Framebuffer extends Entity
 
       /**
        * Framebuffer scene
-       * @var {OrthographicScene|PerspectiveScene} Framebuffer.scene
+       * @var {OrthographicScene|PerspectiveScene} Entity.Framebuffer.scene
        * @default undefined
        * @private
        */
@@ -37,7 +38,7 @@ class Framebuffer extends Entity
    /**
     * Enable the framebuffer and associated
     * scene as the current render target
-    * @function Framebuffer.enable
+    * @function Entity.Framebuffer.enable
     * @returns {undefined}
     */
    enable()
@@ -49,7 +50,7 @@ class Framebuffer extends Entity
    /**
     * Bind the framebuffer as the current
     * render target
-    * @function Framebuffer.bind
+    * @function Entity.Framebuffer.bind
     * @returns {undefined}
     */
    bind()
@@ -59,7 +60,7 @@ class Framebuffer extends Entity
 
    /**
     * Unbind the framebuffer
-    * @function Framebuffer.unbind
+    * @function Entity.Framebuffer.unbind
     * @returns {undefined}
     */
    unbind()
@@ -70,7 +71,7 @@ class Framebuffer extends Entity
    /**
     * Flush the contents of the framebuffers'
     * color and depth attachments
-    * @function Framebuffer.flush
+    * @function Entity.Framebuffer.flush
     * @returns {undefined}
     */
    flush()
@@ -81,7 +82,7 @@ class Framebuffer extends Entity
 
    /**
     * Check the framebuffer compile status
-    * @function Framebuffer.check
+    * @function Entity.Framebuffer.check
     * @returns {undefined|Error}
     */
    check()

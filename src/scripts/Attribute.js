@@ -6,10 +6,10 @@ let gl = require('./gl');
 /**
  * Attribute is a wrapper on shader vertex attributes
  * @class Attribute
- * @name Attribute
+ * @name Entity.Attribute
  * @extends Entity
  * @param {string} [name=attribute] - Instance name
- * @param {Program} [program] - Program in which the vertex attribute is used
+ * @param {Entity.Program} [program] - Program in which the vertex attribute is used
  * @param {string} attribute - Shader variable name
  * @param {number} length - Number of components
  * @param {string} [format=gl.FLOAT] - Component data format
@@ -23,35 +23,35 @@ class Attribute extends Entity
 
       /**
        * Shader variable name
-       * @var {object} [Attribute.attribute=a_${Framebuffer.attribute}]
+       * @var {object} [Entity.Attribute.attribute=a_${Framebuffer.attribute}]
        * @private
        */
       this.attribute = `a_${attribute}`;
 
       /**
        * Shader vertex attribute location
-       * @var {number} [Attribute.location=gl.getAttributeLocation]
+       * @var {number} [Entity.Attribute.location=gl.getAttributeLocation]
        * @private
        */
       this.location = gl.getAttributeLocation(program, attribute);
 
       /**
        * Number of components
-       * @var {number} Attribute.length
+       * @var {number} Entity.Attribute.length
        * @private
        */
       this.length = length;
 
       /**
        * Component data format
-       * @var {number} [Attribute.format=gl.FLOAT]
+       * @var {number} [Entity.Attribute.format=gl.FLOAT]
        * @private
        */
       this.format = format;
 
       /**
        * Force normalized components
-       * @var {number} [Attribute.normalized=false]
+       * @var {number} [Entity.Attribute.normalized=false]
        * @private
        */
       this.normalized = normalized;
@@ -60,7 +60,7 @@ class Attribute extends Entity
    /**
     * Enable vertex attribute and configure
     * its pointer on the bound VBO
-    * @function Attribute.enable
+    * @function Entity.Attribute.enable
     * @returns {undefined}
     */
    enable(stride, offset)
@@ -74,7 +74,7 @@ class Attribute extends Entity
 
    /**
     * Disable vertex attribute
-    * @function Attribute.disable
+    * @function Entity.Attribute.disable
     * @returns {undefined}
     */
    disable()

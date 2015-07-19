@@ -6,7 +6,7 @@ let shades = { flat: 1, smooth: 0 };
 /**
  * Materials dictate the mesh shading
  * @class Material
- * @name Material
+ * @name Entity.Material
  * @extends Entity
  * @param {string} [name=material] - Instance name
  * @param {vec3} ambient - Ambient component
@@ -21,21 +21,21 @@ class Material extends Entity
 
       /**
        * Ambient component
-       * @var {vec3} Material.ambient
+       * @var {vec3} Entity.Material.ambient
        * @private
        */
       this.ambient = ambient;
 
       /**
        * Diffuse component
-       * @var {vec3} Material.diffuse
+       * @var {vec3} Entity.Material.diffuse
        * @private
        */
       this.diffuse = diffuse;
 
       /**
        * Surface shading method
-       * @var {string} Material.shading
+       * @var {string} Entity.Material.shading
        * @default smooth
        * @private
        */
@@ -44,7 +44,7 @@ class Material extends Entity
 
    /**
     * Set material shader uniform values
-    * @function Material.bind
+    * @function Entity.Material.bind
     * @param {object} uniform - Material shader uniforms
     * @returns {undefined}
     */

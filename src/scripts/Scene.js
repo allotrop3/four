@@ -7,6 +7,18 @@ let mat4 = glm.mat4;
 let mat3 = glm.mat3;
 let axis = { x: [1, 0, 0], y: [0, 1, 0], z: [0, 0, 1] };
 
+/**
+ * Scene
+ * @class Scene
+ * @name Entity.Scene
+ * @extends Entity
+ * @param {string} [name=scene] - Instance name
+ * @param {vec4} [background=[0, 0, 0, 1]] - Scene background color
+ * @property {mat4} [modelViewMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] - Modelview matrix
+ * @property {mat4} [projectionMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] - Projection matrix
+ * @property {mat3} [normalMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0]] - Normal matrix
+ * @property {Array} [stack=[]] - View transformation stack
+ */
 class Scene extends Entity
 {
    constructor(name = 'scene', background = [0, 0, 0, 1])

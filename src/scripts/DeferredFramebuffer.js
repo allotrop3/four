@@ -7,12 +7,13 @@ let gl = require('./gl');
  * DeferredFramebuffer is a wrapper on WebGLFramebuffer containers
  * to support off-screen rendering
  * @class DeferredFramebuffer
- * @name DeferredFramebuffer
- * @extends Framebuffer
+ * @name Entity.Framebuffer.DeferredFramebuffer
+ * @extends Entity.Framebuffer
  * @param {string} [name=deferred.framebuffer] - Instance name
- * @param {ImageTexture|DataTexture} colorAttachment - Framebuffer color attachment
- * @param {Renderbuffer} depthAttachment - Framebuffer depth attachment
- * @param {OrthographicScene|PerspectiveScene} scene - View configuration
+ * @param {Entity.Texture.ImageTexture|Entity.Texture.DataTexture} colorAttachment - Framebuffer color attachment
+ * @param {Entity.Renderbuffer} depthAttachment - Framebuffer depth attachment
+ * @param {Entity.Scene.OrthographicScene|Entity.Scene.PerspectiveScene} scene - View configuration
+ * @property {WebGLFramebuffer} [buffer=WebGLFramebuffer] - Render target
  */
 class DeferredFramebuffer extends Framebuffer
 {
@@ -21,22 +22,22 @@ class DeferredFramebuffer extends Framebuffer
       super({ name, scene });
 
       /**
-       * WebGL framebuffer container
-       * @var {WebGLFramebuffer} DeferredFramebuffer.buffer
+       * Render target
+       * @var {WebGLFramebuffer} Entity.Framebuffer.DeferredFramebuffer.buffer
        * @private
        */
       this.buffer = gl.createFramebuffer();
 
       /**
        * Framebuffer color attachment
-       * @var {ImageTexture|DataTexture} DeferredFramebuffer.colorAttachment
+       * @var {Entity.Texture.ImageTexture|Entity.Texture.DataTexture} Entity.Framebuffer.DeferredFramebuffer.colorAttachment
        * @private
        */
       this.colorAttachment = colorAttachment;
 
       /**
        * Framebuffer depth attachment
-       * @var {Renderbuffer} DeferredFramebuffer.depthAttachment
+       * @var {Renderbuffer} Entity.Framebuffer.DeferredFramebuffer.depthAttachment
        * @private
        */
       this.depthAttachment = depthAttachment;
@@ -46,7 +47,7 @@ class DeferredFramebuffer extends Framebuffer
 
    /**
     * Attach color and depth buffers
-    * @function DeferredFramebuffer.confgure
+    * @function Entity.Framebuffer.DeferredFramebuffer.configure
     * @returns {undefined}
     */
    configure()

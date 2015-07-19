@@ -5,7 +5,7 @@ let Entity = require('./Entity');
 /**
  * Light is a global light source to illuminate the scene
  * @class Light
- * @name Light
+ * @name Entity.Light
  * @extends Entity
  * @param {string} [name=light] - Instance name
  * @param {vec3} ambient - Ambient component
@@ -22,28 +22,28 @@ class Light extends Entity
 
       /**
        * Ambient component
-       * @var {vec3} Light.ambient
+       * @var {vec3}Entity.Lightambient
        * @private
        */
       this.ambient = ambient;
 
       /**
        * Diffuse component
-       * @var {vec3} Light.diffuse
+       * @var {vec3} Entity.Light.diffuse
        * @private
        */
       this.diffuse = diffuse;
 
       /**
        * Specular component
-       * @var {vec3} Light.specular
+       * @var {vec3} Entity.Light.specular
        * @private
        */
       this.specular = specular;
 
       /**
        * Light intensity
-       * @var {number} Light.intensity
+       * @var {number} Entity.Light.intensity
        * @default 1
        * @private
        */
@@ -51,7 +51,7 @@ class Light extends Entity
 
       /**
        * Light position
-       * @var {vec3} Light.location
+       * @var {vec3} Entity.Light.location
        * @default [0, 0, 0]
        * @private
        */
@@ -60,7 +60,7 @@ class Light extends Entity
 
    /**
     * Set global light shader uniform values
-    * @function Light.bind
+    * @function Entity.Light.bind
     * @param {object} uniform - Light shader uniforms
     * @returns {undefined}
     */

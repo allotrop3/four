@@ -9,8 +9,8 @@ let mat4 = glm.mat4;
  * OrthographicScene configures an othographic projection into
  * the associated framebuffer
  * @class OrthographicScene
- * @name OrthographicScene
- * @extends Scene
+ * @name Entity.Scene.OrthographicScene
+ * @extends Entity.Scene
  * @param {string} [name=orthographic.scene] - Instance name
  * @param {vec4} [background=[0, 0, 0, 1]] - Scene background color
  * @param {number} [left=-1] - View left start
@@ -28,7 +28,7 @@ class OrthographicScene extends Scene
 
       /**
        * View left start
-       * @var {number} OrthographicScene.left
+       * @var {number} Entity.Scene.OrthographicScene.left
        * @default -1
        * @private
        */
@@ -36,21 +36,21 @@ class OrthographicScene extends Scene
 
       /**
        * View right end
-       * @var {number} OrthographicScene.right
+       * @var {number} Entity.Scene.OrthographicScene.right
        * @private
        */
       this.right = right;
 
       /**
        * View bottom end
-       * @var {number} OrthographicScene.bottom
+       * @var {number} Entity.Scene.OrthographicScene.bottom
        * @private
        */
       this.bottom = bottom;
 
       /**
        * View top start
-       * @var {number} OrthographicScene.top
+       * @var {number} Entity.Scene.OrthographicScene.top
        * @default -1
        * @private
        */
@@ -58,7 +58,7 @@ class OrthographicScene extends Scene
 
       /**
        * Observable start
-       * @var {number} OrthographicScene.near
+       * @var {number} Entity.Scene.OrthographicScene.near
        * @default 0.1
        * @private
        */
@@ -66,7 +66,7 @@ class OrthographicScene extends Scene
 
       /**
        * Observable end
-       * @var {number} OrthographicScene.far
+       * @var {number} Entity.Scene.OrthographicScene.far
        * @default 1
        * @private
        */
@@ -75,7 +75,7 @@ class OrthographicScene extends Scene
 
    /**
     * Configure a mat4 orthographic projection
-    * @function OrthographicScene.configure
+    * @function Entity.Scene.OrthographicScene.configure
     * @returns {undefined}
     */
    configure()
@@ -88,7 +88,7 @@ class OrthographicScene extends Scene
 
    /**
     * Apply orthographic projection to active framebuffer
-    * @function OrthographicScene.bind
+    * @function Entity.Scene.OrthographicScene.bind
     * @returns {undefined}
     */
    bind()

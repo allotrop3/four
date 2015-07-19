@@ -5,7 +5,7 @@ let Entity = require('./Entity');
 /**
  * Mesh
  * @class Mesh
- * @name Mesh
+ * @name Entity.Mesh
  * @extends Entity
  * @param {string} [name=mesh] - Instance name
  */

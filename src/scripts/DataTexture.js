@@ -7,8 +7,8 @@ var gl = require('./gl');
  * DataTexture is a wrapper on WebGLTexture containers
  * to support data textures used in GPGPU techniques
  * @class DataTexture
- * @name DataTexture
- * @extends Texture
+ * @name Entity.Texture.DataTexture
+ * @extends Entity.Texture
  * @param {string} [name=data.texture] - Instance name
  * @param {Array} [image=[]] - Initial texture data
  * @param {number} [lod=0] - Level of detail
@@ -30,14 +30,14 @@ class DataTexture extends Texture
 
       /**
        * Texture width
-       * @var {number} DataTexture.width
+       * @var {number} Entity.Texture.DataTexture.width
        * @private
        */
       this.width = width;
 
       /**
        * Texture height
-       * @var {number} DataTexture.height
+       * @var {number} Entity.Texture.DataTexture.height
        * @private
        */
       this.height = height;
@@ -49,7 +49,7 @@ class DataTexture extends Texture
    /**
     * Apply appropriate texture parameters
     * and push data into texture buffer
-    * @function DataTexture.configure
+    * @function Entity.Texture.DataTexture.configure
     * @returns {undefined}
     */
    configure()
@@ -69,7 +69,7 @@ class DataTexture extends Texture
    /**
     * Push null pixel values at the back of the
     * texture data to fill and validate it
-    * @function DataTexture.autofill
+    * @function Entity.Texture.DataTexture.autofill
     * @param {number} [nixel=-1] Null pixel value
     * @returns {undefined}
     */
