@@ -8,7 +8,9 @@ let mat3 = glm.mat3;
 let axis = { x: [1, 0, 0], y: [0, 1, 0], z: [0, 0, 1] };
 
 /**
- * Scene
+ * Scene encapsulates functionality to transform the view,
+ * including scaling, rotating and translating, and configure
+ * projections into framebuffers
  * @class Scene
  * @name Entity.Scene
  * @extends Entity
@@ -62,17 +64,33 @@ class Scene extends Entity
       this.stack = [];
    }
 
+   /**
+    * Configure the scene
+    * @function Entity.Scene.configure
+    * @returns {undefined}
+    */
    configure()
    {
       gl.enable(gl.CULL_FACE);
       gl.frontFace(gl.CCW);
    }
 
+   /**
+    * Bind the scene
+    * @function Entity.Scene.configure
+    * @returns {undefined}
+    */
    bind()
    {
       gl.clearColor.apply(gl, this.background);
    }
 
+   /**
+    * Push the current state of the scene into
+    * the view transformation stack
+    * @function Entity.Scene.save
+    * @returns {undefined}
+    */
    save()
    {
       let currentScene = mat4.clone(this.modelViewMatrix);
@@ -80,6 +98,12 @@ class Scene extends Entity
       this.stack.push(currentScene);
    }
 
+   /**
+    * Revert the current scene to last
+    * state in view transformation stack
+    * @function Entity.Scene.restore
+    * @returns {undefined}
+    */
    restore()
    {
       let stack = this.stack;
@@ -92,6 +116,12 @@ class Scene extends Entity
       }
    }
 
+   /**
+    * Scale the scene by a given magnitude
+    * @function Entity.Scene.scale
+    * @param {number} scale - Scale multiplier
+    * @returns {undefined}
+    */
    scale(scale)
    {
       let modelViewMatrix = this.modelViewMatrix;
@@ -99,6 +129,13 @@ class Scene extends Entity
       mat4.scale(modelViewMatrix, modelViewMatrix, scale);
    }
 
+   /**
+    * Rotate the scene by a given magnitude and axis
+    * @function Entity.Scene.rotate
+    * @param {number} rotation - Rotation in radians
+    * @param {string} pivot - Axis to rotate around
+    * @returns {undefined}
+    */
    rotate(rotation, pivot)
    {
       let modelViewMatrix = this.modelViewMatrix;
@@ -106,21 +143,48 @@ class Scene extends Entity
       mat4.rotate(modelViewMatrix, modelViewMatrix, rotation, axis[pivot]);
    }
 
+   /**
+    * Rotate the scene by a given magnitude
+    * around the x axis
+    * @function Entity.Scene.rotateX
+    * @param {number} rotation - Rotation in radians
+    * @returns {undefined}
+    */
    rotateX(rotation)
    {
       this.rotate(rotation, 'x');
    }
 
+   /**
+    * Rotate the scene by a given magnitude
+    * around the y axis
+    * @function Entity.Scene.rotateX
+    * @param {number} rotation - Rotation in radians
+    * @returns {undefined}
+    */
    rotateY(rotation)
    {
       this.rotate(rotation, 'y');
    }
 
+   /**
+    * Rotate the scene by a given magnitude
+    * around the z axis
+    * @function Entity.Scene.rotateZ
+    * @param {number} rotation - Rotation in radians
+    * @returns {undefined}
+    */
    rotateZ(rotation)
    {
       this.rotate(rotation, 'z');
    }
 
+   /**
+    * Translate the scene by a given vector
+    * @function Entity.Scene.translate
+    * @param {vec3} translation - Translation vector
+    * @returns {undefined}
+    */
    translate(translation)
    {
       let modelViewMatrix = this.modelViewMatrix;
