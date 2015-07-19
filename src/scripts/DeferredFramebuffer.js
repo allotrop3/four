@@ -12,7 +12,7 @@ let gl = require('./gl');
  * @param {string} [name=deferred.framebuffer] - Instance name
  * @param {ImageTexture|DataTexture} colorAttachment - Framebuffer color attachment
  * @param {Renderbuffer} depthAttachment - Framebuffer depth attachment
- * @param {Scene} scene - View configuration
+ * @param {OrthographicScene|PerspectiveScene} scene - View configuration
  */
 class DeferredFramebuffer extends Framebuffer
 {

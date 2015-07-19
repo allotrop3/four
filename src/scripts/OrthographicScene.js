@@ -11,7 +11,7 @@ let mat4 = glm.mat4;
  * @class OrthographicScene
  * @name OrthographicScene
  * @extends Scene
- * @param {string} [name=mesh] - Instance name
+ * @param {string} [name=orthographic.scene] - Instance name
  * @param {vec4} [background=[0, 0, 0, 1]] - Scene background color
  * @param {number} [left=-1] - View left start
  * @param {number} right - View right end

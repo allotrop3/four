@@ -17,8 +17,8 @@ let unit = 0;
  * @param {number} [format=gl.UNSIGNED_BYTE] - Component data format
  * @param {number} [magnification=gl.NEAREST] - Magnification sampling filter
  * @param {number} [minification=gl.NEAREST] - Minification sampling filter
- * @param {number} [S=gl.CLAMP_TO_EDGE] - Horizontal wrapping
- * @param {number} [T=gl.CLAMP_TO_EDGE] - Vertex wrapping
+ * @param {number} [S=gl.CLAMP_TO_EDGE] - Horizontal texture wrapping
+ * @param {number} [T=gl.CLAMP_TO_EDGE] - Vertex texture wrapping
  */
 class Texture extends Entity
 {

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: DataTexture</title>
+    <title>JSDoc: Class: PerspectiveScene</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: DataTexture</h1>
+    <h1 class="page-title">Class: PerspectiveScene</h1>
 
     
 
@@ -29,7 +29,7 @@
 <header>
     
         <h2>
-        DataTexture
+        PerspectiveScene
         </h2>
         
     
@@ -42,15 +42,15 @@
 
     
 
-    <h4 class="name" id="DataTexture"><span class="type-signature"></span>new DataTexture<span class="signature">(name<span class="signature-attributes">opt</span>, image<span class="signature-attributes">opt</span>, lod<span class="signature-attributes">opt</span>, width, height, length<span class="signature-attributes">opt</span>, components<span class="signature-attributes">opt</span>, format<span class="signature-attributes">opt</span>, magnification<span class="signature-attributes">opt</span>, minification<span class="signature-attributes">opt</span>, S<span class="signature-attributes">opt</span>, T<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="PerspectiveScene"><span class="type-signature"></span>new PerspectiveScene<span class="signature">(name<span class="signature-attributes">opt</span>, background<span class="signature-attributes">opt</span>, width, height, fov<span class="signature-attributes">opt</span>, ratio, near<span class="signature-attributes">opt</span>, far<span class="signature-attributes">opt</span>, direction, location, up<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    DataTexture is a wrapper on WebGLTexture containers
-to support data textures used in GPGPU techniques
+    PerspectiveScene configures a perspective projection into
+the associated framebuffer
 </div>
 
 
@@ -117,7 +117,7 @@ to support data textures used in GPGPU techniques
             
                 <td class="default">
                 
-                    data.texture
+                    perspective.scene
                 
                 </td>
             
@@ -129,13 +129,13 @@ to support data textures used in GPGPU techniques
 
         <tr>
             
-                <td class="name"><code>image</code></td>
+                <td class="name"><code>background</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array</span>
+<span class="param-type"><a href="vec4.html">vec4</a></span>
 
 
             
@@ -156,51 +156,12 @@ to support data textures used in GPGPU techniques
             
                 <td class="default">
                 
-                    []
+                    [0, 0, 0, 1]
                 
                 </td>
             
 
-            <td class="description last">Initial texture data</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>lod</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
-
-            <td class="description last">Level of detail</td>
+            <td class="description last">Scene background color</td>
         </tr>
 
     
@@ -235,7 +196,7 @@ to support data textures used in GPGPU techniques
                 </td>
             
 
-            <td class="description last">Texture width</td>
+            <td class="description last">View width</td>
         </tr>
 
     
@@ -270,14 +231,14 @@ to support data textures used in GPGPU techniques
                 </td>
             
 
-            <td class="description last">Texture height</td>
+            <td class="description last">View height</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>length</code></td>
+                <td class="name"><code>fov</code></td>
             
 
             <td class="type">
@@ -304,19 +265,54 @@ to support data textures used in GPGPU techniques
             
                 <td class="default">
                 
-                    3
+                    45
                 
                 </td>
             
 
-            <td class="description last">Number of components</td>
+            <td class="description last">Field of view</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>components</code></td>
+                <td class="name"><code>ratio</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">View aspect ratio</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>near</code></td>
             
 
             <td class="type">
@@ -343,19 +339,19 @@ to support data textures used in GPGPU techniques
             
                 <td class="default">
                 
-                    gl.RGB
+                    0.1
                 
                 </td>
             
 
-            <td class="description last">Texture components per texel</td>
+            <td class="description last">Observable start</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>format</code></td>
+                <td class="name"><code>far</code></td>
             
 
             <td class="type">
@@ -382,25 +378,95 @@ to support data textures used in GPGPU techniques
             
                 <td class="default">
                 
-                    gl.FLOAT
+                    1000
                 
                 </td>
             
 
-            <td class="description last">Component data format</td>
+            <td class="description last">Observable end</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>magnification</code></td>
+                <td class="name"><code>direction</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">View direction</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>location</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Vantage position</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>up</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="vec3.html">vec3</a></span>
 
 
             
@@ -421,129 +487,12 @@ to support data textures used in GPGPU techniques
             
                 <td class="default">
                 
-                    gl.NEAREST
+                    [0, 1, 0]
                 
                 </td>
             
 
-            <td class="description last">Magnification sampling filter</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>minification</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    gl.NEAREST
-                
-                </td>
-            
-
-            <td class="description last">Minification sampling filter</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>S</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    gl.CLAMP_TO_EDGE
-                
-                </td>
-            
-
-            <td class="description last">Horizontal texture wrapping</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>T</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    gl.CLAMP_TO_EDGE
-                
-                </td>
-            
-
-            <td class="description last">Vertex texture wrapping</td>
+            <td class="description last">Scene orientation</td>
         </tr>
 
     
@@ -584,7 +533,7 @@ to support data textures used in GPGPU techniques
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line1836">line 1836</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2134">line 2134</a>
     </li></ul></dd>
     
 
@@ -620,7 +569,7 @@ to support data textures used in GPGPU techniques
 
 
     <ul>
-        <li><a href="Texture.html">Texture</a></li>
+        <li>Scene</li>
     </ul>
 
 
@@ -639,13 +588,239 @@ to support data textures used in GPGPU techniques
 
         
             
+<h4 class="name" id=".direction"><span class="type-signature">(private, static) </span>direction<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
+
+
+
+
+<div class="description">
+    View direction
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2178">line 2178</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".far"><span class="type-signature">(private, static) </span>far<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    Observable end
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>1000</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2173">line 2173</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".fov"><span class="type-signature">(private, static) </span>fov<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    Field of view
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>45</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2159">line 2159</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
 <h4 class="name" id=".height"><span class="type-signature">(private, static) </span>height<span class="type-signature"> :number</span></h4>
 
 
 
 
 <div class="description">
-    Texture height
+    View height
 </div>
 
 
@@ -693,7 +868,305 @@ to support data textures used in GPGPU techniques
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line1858">line 1858</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2155">line 2155</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".location"><span class="type-signature">(private, static) </span>location<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
+
+
+
+
+<div class="description">
+    Vantage position
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2182">line 2182</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".near"><span class="type-signature">(private, static) </span>near<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    Observable start
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>0.1</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2168">line 2168</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".ratio"><span class="type-signature">(private, static) </span>ratio<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    View aspect ratio
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2164">line 2164</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".up"><span class="type-signature">(private, static) </span>up<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
+
+
+
+
+<div class="description">
+    Scene orientation
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>[0, 1, 0]</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2186">line 2186</a>
     </li></ul></dd>
     
 
@@ -717,7 +1190,7 @@ to support data textures used in GPGPU techniques
 
 
 <div class="description">
-    Texture width
+    View width
 </div>
 
 
@@ -765,7 +1238,7 @@ to support data textures used in GPGPU techniques
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line1854">line 1854</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2151">line 2151</a>
     </li></ul></dd>
     
 
@@ -792,15 +1265,14 @@ to support data textures used in GPGPU techniques
 
     
 
-    <h4 class="name" id=".autofill"><span class="type-signature">(static) </span>autofill<span class="signature">(nixel<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {undefined}</span></h4>
+    <h4 class="name" id=".bind"><span class="type-signature">(static) </span>bind<span class="signature">()</span><span class="type-signature"> &rarr; {undefined}</span></h4>
 
     
 
 
 
 <div class="description">
-    Push null pixel values at the back of the
-texture data to fill and validate it
+    Apply perspective projection to active framebuffer
 </div>
 
 
@@ -809,75 +1281,6 @@ texture data to fill and validate it
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>nixel</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    -1
-                
-                </td>
-            
-
-            <td class="description last">Null pixel value</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -913,7 +1316,7 @@ texture data to fill and validate it
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line1867">line 1867</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2195">line 2195</a>
     </li></ul></dd>
     
 
@@ -969,8 +1372,7 @@ texture data to fill and validate it
 
 
 <div class="description">
-    Apply appropriate texture parameters
-and push data into texture buffer
+    Configure a mat4 perspective projection
 </div>
 
 
@@ -1014,7 +1416,7 @@ and push data into texture buffer
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line1862">line 1862</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2191">line 2191</a>
     </li></ul></dd>
     
 
