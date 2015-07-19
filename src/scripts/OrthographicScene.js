@@ -73,6 +73,11 @@ class OrthographicScene extends Scene
       this.far = far;
    }
 
+   /**
+    * Configure a mat4 orthographic projection
+    * @function OrthographicScene.configure
+    * @returns {undefined}
+    */
    configure()
    {
       super.configure();
@@ -81,6 +86,11 @@ class OrthographicScene extends Scene
       mat4.identity(this.modelViewMatrix);
    }
 
+   /**
+    * Apply orthographic projection to active framebuffer
+    * @function OrthographicScene.bind
+    * @returns {undefined}
+    */
    bind()
    {
       super.bind();
