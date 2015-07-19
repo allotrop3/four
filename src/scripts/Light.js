@@ -7,7 +7,7 @@ let Entity = require('./Entity');
  * @class Light
  * @name Light
  * @extends Entity
- * @param {string} [name=directional.light] - Instance name
+ * @param {string} [name=light] - Instance name
  * @param {vec3} ambient - Ambient component
  * @param {vec3} diffuse - Diffuse component
  * @param {vec3} specular - Specular component

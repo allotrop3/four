@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: DeferredFramebuffer</title>
+    <title>JSDoc: Class: Light</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: DeferredFramebuffer</h1>
+    <h1 class="page-title">Class: Light</h1>
 
     
 
@@ -29,7 +29,7 @@
 <header>
     
         <h2>
-        DeferredFramebuffer
+        Light
         </h2>
         
     
@@ -42,15 +42,14 @@
 
     
 
-    <h4 class="name" id="DeferredFramebuffer"><span class="type-signature"></span>new DeferredFramebuffer<span class="signature">(name<span class="signature-attributes">opt</span>, colorAttachment, depthAttachment, scene)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Light"><span class="type-signature"></span>new Light<span class="signature">(name<span class="signature-attributes">opt</span>, ambient, diffuse, specular, intensity<span class="signature-attributes">opt</span>, location<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    DeferredFramebuffer is a wrapper on WebGLFramebuffer containers
-to support off-screen rendering
+    Light is a global light source to illuminate the scene
 </div>
 
 
@@ -117,7 +116,7 @@ to support off-screen rendering
             
                 <td class="default">
                 
-                    deferred.framebuffer
+                    light
                 
                 </td>
             
@@ -129,16 +128,13 @@ to support off-screen rendering
 
         <tr>
             
-                <td class="name"><code>colorAttachment</code></td>
+                <td class="name"><code>ambient</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="ImageTexture.html">ImageTexture</a></span>
-|
-
-<span class="param-type"><a href="DataTexture.html">DataTexture</a></span>
+<span class="param-type"><a href="vec3.html">vec3</a></span>
 
 
             
@@ -160,20 +156,20 @@ to support off-screen rendering
                 </td>
             
 
-            <td class="description last">Framebuffer color attachment</td>
+            <td class="description last">Ambient component</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>depthAttachment</code></td>
+                <td class="name"><code>diffuse</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Renderbuffer</span>
+<span class="param-type"><a href="vec3.html">vec3</a></span>
 
 
             
@@ -195,20 +191,20 @@ to support off-screen rendering
                 </td>
             
 
-            <td class="description last">Framebuffer depth attachment</td>
+            <td class="description last">Diffuse component</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>scene</code></td>
+                <td class="name"><code>specular</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Scene</span>
+<span class="param-type"><a href="vec3.html">vec3</a></span>
 
 
             
@@ -230,7 +226,85 @@ to support off-screen rendering
                 </td>
             
 
-            <td class="description last">View configuration</td>
+            <td class="description last">Specular component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>intensity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last">Light intensity</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>location</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    [0, 0, 0]
+                
+                </td>
+            
+
+            <td class="description last">Light position</td>
         </tr>
 
     
@@ -271,7 +345,7 @@ to support off-screen rendering
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line1873">line 1873</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2013">line 2013</a>
     </li></ul></dd>
     
 
@@ -307,7 +381,7 @@ to support off-screen rendering
 
 
     <ul>
-        <li><a href="Framebuffer.html">Framebuffer</a></li>
+        <li><a href="Entity.html">Entity</a></li>
     </ul>
 
 
@@ -326,13 +400,13 @@ to support off-screen rendering
 
         
             
-<h4 class="name" id=".buffer"><span class="type-signature">(private, static) </span>buffer<span class="type-signature"> :WebGLFramebuffer</span></h4>
+<h4 class="name" id=".ambient"><span class="type-signature">(private, static) </span>ambient<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
 
 
 
 
 <div class="description">
-    WebGL framebuffer container
+    Ambient component
 </div>
 
 
@@ -341,7 +415,7 @@ to support off-screen rendering
     <ul>
         <li>
             
-<span class="param-type">WebGLFramebuffer</span>
+<span class="param-type"><a href="vec3.html">vec3</a></span>
 
 
         </li>
@@ -380,7 +454,7 @@ to support off-screen rendering
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line1883">line 1883</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2024">line 2024</a>
     </li></ul></dd>
     
 
@@ -398,13 +472,13 @@ to support off-screen rendering
 
         
             
-<h4 class="name" id=".colorAttachment"><span class="type-signature">(private, static) </span>colorAttachment<span class="type-signature"> :<a href="ImageTexture.html">ImageTexture</a>|<a href="DataTexture.html">DataTexture</a></span></h4>
+<h4 class="name" id=".diffuse"><span class="type-signature">(private, static) </span>diffuse<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
 
 
 
 
 <div class="description">
-    Framebuffer color attachment
+    Diffuse component
 </div>
 
 
@@ -413,10 +487,7 @@ to support off-screen rendering
     <ul>
         <li>
             
-<span class="param-type"><a href="ImageTexture.html">ImageTexture</a></span>
-|
-
-<span class="param-type"><a href="DataTexture.html">DataTexture</a></span>
+<span class="param-type"><a href="vec3.html">vec3</a></span>
 
 
         </li>
@@ -455,7 +526,7 @@ to support off-screen rendering
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line1887">line 1887</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2028">line 2028</a>
     </li></ul></dd>
     
 
@@ -473,13 +544,13 @@ to support off-screen rendering
 
         
             
-<h4 class="name" id=".depthAttachment"><span class="type-signature">(private, static) </span>depthAttachment<span class="type-signature"> :Renderbuffer</span></h4>
+<h4 class="name" id=".intensity"><span class="type-signature">(private, static) </span>intensity<span class="type-signature"> :number</span></h4>
 
 
 
 
 <div class="description">
-    Framebuffer depth attachment
+    Light intensity
 </div>
 
 
@@ -488,7 +559,161 @@ to support off-screen rendering
     <ul>
         <li>
             
-<span class="param-type">Renderbuffer</span>
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>1</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2036">line 2036</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".location"><span class="type-signature">(private, static) </span>location<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
+
+
+
+
+<div class="description">
+    Light position
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>[0, 0, 0]</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2041">line 2041</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".specular"><span class="type-signature">(private, static) </span>specular<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
+
+
+
+
+<div class="description">
+    Specular component
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="vec3.html">vec3</a></span>
 
 
         </li>
@@ -527,7 +752,7 @@ to support off-screen rendering
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line1891">line 1891</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2032">line 2032</a>
     </li></ul></dd>
     
 
@@ -554,14 +779,14 @@ to support off-screen rendering
 
     
 
-    <h4 class="name" id=".confgure"><span class="type-signature">(static) </span>confgure<span class="signature">()</span><span class="type-signature"> &rarr; {undefined}</span></h4>
+    <h4 class="name" id=".bind"><span class="type-signature">(static) </span>bind<span class="signature">(uniform)</span><span class="type-signature"> &rarr; {undefined}</span></h4>
 
     
 
 
 
 <div class="description">
-    Attach color and depth buffers
+    Set global light shader uniform values
 </div>
 
 
@@ -570,6 +795,55 @@ to support off-screen rendering
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>uniform</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Light shader uniforms</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -605,7 +879,7 @@ to support off-screen rendering
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line1895">line 1895</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2046">line 2046</a>
     </li></ul></dd>
     
 
