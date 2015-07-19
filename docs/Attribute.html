@@ -42,14 +42,14 @@
 
     
 
-    <h4 class="name" id="Attribute"><span class="type-signature"></span>new Attribute<span class="signature">(name<span class="signature-attributes">opt</span>, program, attribute, length, format<span class="signature-attributes">opt</span>, normalized<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Attribute"><span class="type-signature"></span>new Attribute<span class="signature">(name<span class="signature-attributes">opt</span>, program<span class="signature-attributes">opt</span>, attribute, length, format<span class="signature-attributes">opt</span>, normalized<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Attribute is a wrapper on shader attributes.
+    Attribute is a wrapper on shader vertex attributes
 </div>
 
 
@@ -143,6 +143,8 @@
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
 
@@ -156,7 +158,7 @@
                 </td>
             
 
-            <td class="description last">Program in which the attribute is used</td>
+            <td class="description last">Program in which the vertex attribute is used</td>
         </tr>
 
     
@@ -191,7 +193,7 @@
                 </td>
             
 
-            <td class="description last">Variable name as used in the shader</td>
+            <td class="description last">Shader variable name</td>
         </tr>
 
     
@@ -260,12 +262,12 @@
             
                 <td class="default">
                 
-                    FLOAT
+                    gl.FLOAT
                 
                 </td>
             
 
-            <td class="description last">Data format</td>
+            <td class="description last">Component data format</td>
         </tr>
 
     
@@ -304,7 +306,7 @@
                 </td>
             
 
-            <td class="description last">Force normalized values</td>
+            <td class="description last">Force normalized components</td>
         </tr>
 
     
@@ -345,7 +347,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Attribute.js.html">Attribute.js</a>, <a href="Attribute.js.html#line8">line 8</a>
+        <a href="Attribute.js.html">Attribute.js</a>, <a href="Attribute.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -406,7 +408,7 @@
 
 
 <div class="description">
-    Variable name as used in the shader.
+    Shader variable name
 </div>
 
 
@@ -476,8 +478,511 @@
 
 
         
+            
+<h4 class="name" id=".format"><span class="type-signature">(private, static) </span>format<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    Component data format
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
     
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>gl.FLOAT</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Attribute.js.html">Attribute.js</a>, <a href="Attribute.js.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".length"><span class="type-signature">(private, static) </span>length<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    Number of components
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Attribute.js.html">Attribute.js</a>, <a href="Attribute.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".location"><span class="type-signature">(private, static) </span>location<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    Shader vertex attribute location
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>gl.getAttributeLocation</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Attribute.js.html">Attribute.js</a>, <a href="Attribute.js.html#line33">line 33</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".normalized"><span class="type-signature">(private, static) </span>normalized<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    Force normalized components
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Attribute.js.html">Attribute.js</a>, <a href="Attribute.js.html#line54">line 54</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".disable"><span class="type-signature">(static) </span>disable<span class="signature">()</span><span class="type-signature"> &rarr; {undefined}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Disable vertex attribute
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Attribute.js.html">Attribute.js</a>, <a href="Attribute.js.html#line77">line 77</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".enable"><span class="type-signature">(static) </span>enable<span class="signature">()</span><span class="type-signature"> &rarr; {undefined}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Enable vertex attribute and configure
+its pointer on the bound VBO
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Attribute.js.html">Attribute.js</a>, <a href="Attribute.js.html#line62">line 62</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
     
 
     
@@ -493,13 +998,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Attribute.html">Attribute</a></li><li><a href="Framebuffer.html">Framebuffer</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Attribute.html">Attribute</a></li><li><a href="DataTexture.html">DataTexture</a></li><li><a href="Framebuffer.html">Framebuffer</a></li><li><a href="Texture.html">Texture</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Sun Jul 19 2015 18:00:51 GMT+0100 (BST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Sun Jul 19 2015 18:36:31 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>

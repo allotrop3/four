@@ -2,16 +2,14 @@
 
 let Entity = require('./Entity');
 let gl = require('./gl');
-let errors = require('./utils/errors');
-let typer = require('./utils/typer');
 
 /**
- * Framebuffer is a wrapper on the WebGLFramebuffer container.
+ * Framebuffer is a wrapper on the WebGLFramebuffer container
  * @class Framebuffer
  * @name Framebuffer
  * @extends Entity
- * @param {string=} [name=framebuffer] - The name of the framebuffer instance.
- * @param {Scene} scene - View configuration.
+ * @param {string} [name=framebuffer] - The name of the framebuffer instance
+ * @param {Scene} scene - View configuration
  */
 class Framebuffer extends Entity
 {
@@ -22,7 +20,7 @@ class Framebuffer extends Entity
       let args = arguments[0];
 
       /**
-       * WebGL framebuffer container.
+       * WebGL framebuffer container
        * @var {object} Framebuffer.buffer
        * @default null
        * @private
@@ -30,7 +28,7 @@ class Framebuffer extends Entity
       this.buffer = null;
 
       /**
-       * Framebuffer scene.
+       * Framebuffer scene
        * @var {Scene} Framebuffer.scene
        * @default undefined
        * @private
@@ -38,32 +36,10 @@ class Framebuffer extends Entity
       this.scene = args.scene;
    }
 
-   get buffer()
-   {
-      console.log(this);
-      errors.access('Framebuffer.buffer');
-   }
-
-   set buffer(value)
-   {
-      errors.immutable('Framebuffer.buffer');
-   }
-
-   get scene()
-   {
-      errors.access('Framebuffer.scene');
-   }
-
-   set scene(value)
-   {
-      return typer.valid(value, 'Scene');
-   }
-
    /**
     * Enable the framebuffer and associated
-    * scene as the current render target.
-    * @function Framebuffer.enable
-    * @returns {undefined}
+    * scene as the current render target
+    * @function {undefined} Framebuffer.enable
     */
    enable()
    {
@@ -73,7 +49,7 @@ class Framebuffer extends Entity
 
    /**
     * Bind the framebuffer as the current
-    * render target.
+    * render target
     * @function Framebuffer.bind
     * @returns {undefined}
     */
@@ -83,7 +59,7 @@ class Framebuffer extends Entity
    }
 
    /**
-    * Unbind the framebuffer.
+    * Unbind the framebuffer
     * @function Framebuffer.unbind
     * @returns {undefined}
     */
@@ -94,7 +70,7 @@ class Framebuffer extends Entity
 
    /**
     * Flush the contents of the framebuffers'
-    * color and depth attachments.
+    * color and depth attachments
     * @function Framebuffer.flush
     * @returns {undefined}
     */
@@ -105,7 +81,7 @@ class Framebuffer extends Entity
    }
 
    /**
-    * Check the framebuffer compile status.
+    * Check the framebuffer compile status
     * @function Framebuffer.check
     * @returns {undefined|Error}
     */
@@ -137,7 +113,7 @@ class Framebuffer extends Entity
       {
          gl.deleteFramebuffer(this.buffer);
 
-         errors.exception(error);
+         throw new Error(error);
       }
    }
 }

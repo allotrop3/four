@@ -10,11 +10,6 @@ class Entity
       this.destroyed = false;
    }
 
-   get type()
-   {
-      return this.constructor.name;
-   }
-
    index(name)
    {
       if (indices[name] === undefined)
