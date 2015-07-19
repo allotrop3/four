@@ -11,7 +11,6 @@ let gl = require('./gl');
  * @param {string} [name=renderbuffer] - Instance name
  * @param {number} width - Buffer width
  * @param {number} height - Buffer height
- * @property {WebGLRenderbuffer} [buffer=WebGLRenderbuffer] - WebGL renderbuffer container
  */
 class Renderbuffer extends Entity
 {
@@ -22,6 +21,7 @@ class Renderbuffer extends Entity
       /**
        * WebGL renderbuffer container
        * @var {WebGLRenderbuffer} Entity.Renderbuffer.buffer
+       * @default WebGLRenderbuffer
        * @private
        */
       this.buffer = gl.createRenderbuffer();

@@ -14,10 +14,6 @@ let axis = { x: [1, 0, 0], y: [0, 1, 0], z: [0, 0, 1] };
  * @extends Entity
  * @param {string} [name=scene] - Instance name
  * @param {vec4} [background=[0, 0, 0, 1]] - Scene background color
- * @property {mat4} [modelViewMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] - Modelview matrix
- * @property {mat4} [projectionMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] - Projection matrix
- * @property {mat3} [normalMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0]] - Normal matrix
- * @property {Array} [stack=[]] - View transformation stack
  */
 class Scene extends Entity
 {
@@ -25,10 +21,44 @@ class Scene extends Entity
    {
       super(name);
 
+      /**
+       * Scene background color
+       * @var {number} Entity.Scene.background
+       * @default [0, 0, 0, 1]
+       * @private
+       */
       this.background = background;
+
+      /**
+       * Modelview matrix
+       * @var {number} Entity.Scene.modelViewMatrix
+       * @default [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       * @private
+       */
       this.modelViewMatrix = mat4.create();
+
+      /**
+       * Projection matrix
+       * @var {number} Entity.Scene.projectionMatrix
+       * @default [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       * @private
+       */
       this.projectionMatrix = mat4.create();
+
+      /**
+       * Normal matrix
+       * @var {number} Entity.Scene.normalMatrix
+       * @default [0, 0, 0, 0, 0, 0, 0, 0, 0]
+       * @private
+       */
       this.normalMatrix = mat3.create();
+
+      /**
+       * View transformation stack
+       * @var {number} Entity.Scene.stack
+       * @default []
+       * @private
+       */
       this.stack = [];
    }
 

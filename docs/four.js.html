@@ -1908,10 +1908,10 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
  * @param {Entity.Texture.ImageTexture|Entity.Texture.DataTexture} colorAttachment - Framebuffer color attachment
  * @param {Entity.Renderbuffer} depthAttachment - Framebuffer depth attachment
  * @param {Entity.Scene.OrthographicScene|Entity.Scene.PerspectiveScene} scene - View configuration
- * @property {WebGLFramebuffer} [buffer=WebGLFramebuffer] - Render target
  */var DeferredFramebuffer=(function(_Framebuffer){_inherits(DeferredFramebuffer,_Framebuffer);function DeferredFramebuffer(){var _ref3=arguments.length &lt;= 0 || arguments[0] === undefined?{}:arguments[0];var _ref3$name=_ref3.name;var name=_ref3$name === undefined?"deferred.framebuffer":_ref3$name;var colorAttachment=_ref3.colorAttachment;var depthAttachment=_ref3.depthAttachment;var scene=_ref3.scene;_classCallCheck(this,DeferredFramebuffer);_get(Object.getPrototypeOf(DeferredFramebuffer.prototype),"constructor",this).call(this,{name:name,scene:scene}); /**
        * Render target
        * @var {WebGLFramebuffer} Entity.Framebuffer.DeferredFramebuffer.buffer
+       * @default WebGLFramebuffer
        * @private
        */this.buffer = gl.createFramebuffer(); /**
        * Framebuffer color attachment
@@ -1951,7 +1951,6 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
  * Entity is the base class
  * @class Entity
  * @param {string} [name=entity] - Instance name
- * @property {boolean} [destroyed=false] - Entity delete flag
  */var Entity=(function(){function Entity(){var _ref5=arguments.length &lt;= 0 || arguments[0] === undefined?{}:arguments[0];var _ref5$name=_ref5.name;var name=_ref5$name === undefined?"entity":_ref5$name;_classCallCheck(this,Entity); /**
        * Entity name
        * @var {string} Entity.name
@@ -1986,7 +1985,6 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
  * @extends Entity
  * @param {string} [name=framebuffer] - Instance name
  * @param {OrthographicScene|PerspectiveScene} scene - View configuration
- * @property {object} [buffer=null] - Render target
  */var Framebuffer=(function(_Entity2){_inherits(Framebuffer,_Entity2);function Framebuffer(){var _ref7=arguments.length &lt;= 0 || arguments[0] === undefined?{}:arguments[0];var _ref7$name=_ref7.name;var name=_ref7$name === undefined?"framebuffer":_ref7$name;var scene=_ref7.scene;_classCallCheck(this,Framebuffer);_get(Object.getPrototypeOf(Framebuffer.prototype),"constructor",this).call(this,{name:name}); /**
        * Render target
        * @var {object} Entity.Framebuffer.buffer
@@ -2022,7 +2020,7 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
     * @returns {undefined|Error}
     */value:function check(){var status=gl.checkFramebufferStatus(gl.FRAMEBUFFER);var exception=false;switch(status){case gl.FRAMEBUFFER_UNSUPPORTED:exception = "unsupported";break;case gl.FRAMEBUFFER_INCOMPLETE_ATTACHMENT:exception = "attachments incomplete";break;case gl.FRAMEBUFFER_INCOMPLETE_DIMENSIONS:exception = "dimensions incomplete";break;case gl.FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:exception = "attachment missing";break;}if(exception){gl.deleteFramebuffer(this.buffer);throw new Error(error);}}}]);return Framebuffer;})(Entity);module.exports = Framebuffer;},{"./Entity":15,"./gl":36}],18:[function(require,module,exports){"use strict";var Texture=require("./Texture");var gl=require("./gl"); /**
  * ImageTexture is a wrapper on WebGLTexture containers
- * to support data textures used in GPGPU techniques
+ * to support detailing mesh surfaces
  * @class ImageTexture
  * @name Entity.Texture.ImageTexture
  * @extends Entity.Texture
@@ -2290,10 +2288,10 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
  * @param {string} [name=program] - Instance name
  * @param {Entity.Shader.VertexShader} vertexShader - Vertex shader
  * @param {Entity.Shader.FragmentShader} fragmentShader - Fragment shader
- * @property {WebGLProgram} [buffer=WebGLProgram] - WebGL program container
  */var Program=(function(_Entity6){_inherits(Program,_Entity6);function Program(name,vertexShader,fragmentShader){if(name === undefined)name = "program";_classCallCheck(this,Program);_get(Object.getPrototypeOf(Program.prototype),"constructor",this).call(this,name); /**
        * WebGL program container
        * @var {WebGLProgram} Entity.Program.program
+       * @default WebGLProgram
        * @private
        */this.buffer = gl.createProgram(); /**
        * Vertex shader
@@ -2324,10 +2322,10 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
  * @param {string} [name=renderbuffer] - Instance name
  * @param {number} width - Buffer width
  * @param {number} height - Buffer height
- * @property {WebGLRenderbuffer} [buffer=WebGLRenderbuffer] - WebGL renderbuffer container
  */var Renderbuffer=(function(_Entity7){_inherits(Renderbuffer,_Entity7);function Renderbuffer(name,width,height){if(name === undefined)name = "renderbuffer";_classCallCheck(this,Renderbuffer);_get(Object.getPrototypeOf(Renderbuffer.prototype),"constructor",this).call(this,name); /**
        * WebGL renderbuffer container
        * @var {WebGLRenderbuffer} Entity.Renderbuffer.buffer
+       * @default WebGLRenderbuffer
        * @private
        */this.buffer = gl.createRenderbuffer(); /**
        * Buffer width
@@ -2362,11 +2360,32 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
  * @extends Entity
  * @param {string} [name=scene] - Instance name
  * @param {vec4} [background=[0, 0, 0, 1]] - Scene background color
- * @property {mat4} [modelViewMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] - Modelview matrix
- * @property {mat4} [projectionMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] - Projection matrix
- * @property {mat3} [normalMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0]] - Normal matrix
- * @property {Array} [stack=[]] - View transformation stack
- */var Scene=(function(_Entity9){_inherits(Scene,_Entity9);function Scene(){var name=arguments.length &lt;= 0 || arguments[0] === undefined?"scene":arguments[0];var background=arguments.length &lt;= 1 || arguments[1] === undefined?[0,0,0,1]:arguments[1];_classCallCheck(this,Scene);_get(Object.getPrototypeOf(Scene.prototype),"constructor",this).call(this,name);this.background = background;this.modelViewMatrix = mat4.create();this.projectionMatrix = mat4.create();this.normalMatrix = mat3.create();this.stack = [];}_createClass(Scene,[{key:"configure",value:function configure(){gl.enable(gl.CULL_FACE);gl.frontFace(gl.CCW);}},{key:"bind",value:function bind(){gl.clearColor.apply(gl,this.background);}},{key:"save",value:function save(){var currentScene=mat4.clone(this.modelViewMatrix);this.stack.push(currentScene);}},{key:"restore",value:function restore(){var stack=this.stack;if(stack.length){var previousScene=stack.pop();mat4.copy(this.modelViewMatrix,previousScene);}}},{key:"scale",value:function scale(_scale){var modelViewMatrix=this.modelViewMatrix;mat4.scale(modelViewMatrix,modelViewMatrix,_scale);}},{key:"rotate",value:function rotate(rotation,pivot){var modelViewMatrix=this.modelViewMatrix;mat4.rotate(modelViewMatrix,modelViewMatrix,rotation,axis[pivot]);}},{key:"rotateX",value:function rotateX(rotation){this.rotate(rotation,"x");}},{key:"rotateY",value:function rotateY(rotation){this.rotate(rotation,"y");}},{key:"rotateZ",value:function rotateZ(rotation){this.rotate(rotation,"z");}},{key:"translate",value:function translate(translation){var modelViewMatrix=this.modelViewMatrix;mat4.translate(modelViewMatrix,modelViewMatrix,translation);}}]);return Scene;})(Entity);module.exports = Scene;},{"./Entity":15,"./gl":36,"gl-matrix":1}],30:[function(require,module,exports){"use strict";var Entity=require("./Entity");var gl=require("./gl");var ajax=require("./utils/ajax");var Shader=(function(_Entity10){_inherits(Shader,_Entity10);function Shader(_x19,type){var _ref15=arguments.length &lt;= 0 || arguments[0] === undefined?{}:arguments[0];var _ref15$name=_ref15.name;var name=_ref15$name === undefined?"shader":_ref15$name;var path=_ref15.path;_classCallCheck(this,Shader);_get(Object.getPrototypeOf(Shader.prototype),"constructor",this).call(this,{name:name});this.buffer = gl.createShader(type);this.fetch(path);}_createClass(Shader,[{key:"fetch",value:function fetch(path){ajax(path).then(this.compile);}},{key:"compile",value:function compile(source){var buffer=this.buffer;gl.shaderSource(buffer,source);gl.compileShader(buffer);this.check();}},{key:"check",value:function check(){var buffer=this.buffer;var status=gl.getShaderParameter(buffer,gl.COMPILE_STATUS);if(!status){var _error2=gl.getShaderInfoLog(buffer);gl.deleteShader(buffer);throw new Error(_error2);}}}]);return Shader;})(Entity);module.exports = Shader;},{"./Entity":15,"./gl":36,"./utils/ajax":38}],31:[function(require,module,exports){"use strict";var Light=require("./Light");var SpotLight=(function(_Light3){_inherits(SpotLight,_Light3);function SpotLight(name,ambient,diffuse,specular,exponent,cutoff,intensity,location,direction){if(name === undefined)name = "spot.light";_classCallCheck(this,SpotLight);_get(Object.getPrototypeOf(SpotLight.prototype),"constructor",this).call(this,name,ambient,diffuse,specular,intensity,location);this.exponent = exponent;this.cutoff = cutoff;this.direction = direction;}_createClass(SpotLight,[{key:"bind",value:function bind(uniform){_get(Object.getPrototypeOf(SpotLight.prototype),"bind",this).call(this,uniform);uniform.exponent.set(this.exponent);uniform.cutoff.set(this.cutoff);uniform.direction.set(this.direction);}}]);return SpotLight;})(Light);module.exports = SpotLight;},{"./Light":19}],32:[function(require,module,exports){"use strict";var Entity=require("./Entity");var gl=require("./gl");var unit=0; /**
+ */var Scene=(function(_Entity9){_inherits(Scene,_Entity9);function Scene(){var name=arguments.length &lt;= 0 || arguments[0] === undefined?"scene":arguments[0];var background=arguments.length &lt;= 1 || arguments[1] === undefined?[0,0,0,1]:arguments[1];_classCallCheck(this,Scene);_get(Object.getPrototypeOf(Scene.prototype),"constructor",this).call(this,name); /**
+       * Scene background color
+       * @var {number} Entity.Scene.background
+       * @default [0, 0, 0, 1]
+       * @private
+       */this.background = background; /**
+       * Modelview matrix
+       * @var {number} Entity.Scene.modelViewMatrix
+       * @default [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       * @private
+       */this.modelViewMatrix = mat4.create(); /**
+       * Projection matrix
+       * @var {number} Entity.Scene.projectionMatrix
+       * @default [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       * @private
+       */this.projectionMatrix = mat4.create(); /**
+       * Normal matrix
+       * @var {number} Entity.Scene.normalMatrix
+       * @default [0, 0, 0, 0, 0, 0, 0, 0, 0]
+       * @private
+       */this.normalMatrix = mat3.create(); /**
+       * View transformation stack
+       * @var {number} Entity.Scene.stack
+       * @default []
+       * @private
+       */this.stack = [];}_createClass(Scene,[{key:"configure",value:function configure(){gl.enable(gl.CULL_FACE);gl.frontFace(gl.CCW);}},{key:"bind",value:function bind(){gl.clearColor.apply(gl,this.background);}},{key:"save",value:function save(){var currentScene=mat4.clone(this.modelViewMatrix);this.stack.push(currentScene);}},{key:"restore",value:function restore(){var stack=this.stack;if(stack.length){var previousScene=stack.pop();mat4.copy(this.modelViewMatrix,previousScene);}}},{key:"scale",value:function scale(_scale){var modelViewMatrix=this.modelViewMatrix;mat4.scale(modelViewMatrix,modelViewMatrix,_scale);}},{key:"rotate",value:function rotate(rotation,pivot){var modelViewMatrix=this.modelViewMatrix;mat4.rotate(modelViewMatrix,modelViewMatrix,rotation,axis[pivot]);}},{key:"rotateX",value:function rotateX(rotation){this.rotate(rotation,"x");}},{key:"rotateY",value:function rotateY(rotation){this.rotate(rotation,"y");}},{key:"rotateZ",value:function rotateZ(rotation){this.rotate(rotation,"z");}},{key:"translate",value:function translate(translation){var modelViewMatrix=this.modelViewMatrix;mat4.translate(modelViewMatrix,modelViewMatrix,translation);}}]);return Scene;})(Entity);module.exports = Scene;},{"./Entity":15,"./gl":36,"gl-matrix":1}],30:[function(require,module,exports){"use strict";var Entity=require("./Entity");var gl=require("./gl");var ajax=require("./utils/ajax");var Shader=(function(_Entity10){_inherits(Shader,_Entity10);function Shader(_x19,type){var _ref15=arguments.length &lt;= 0 || arguments[0] === undefined?{}:arguments[0];var _ref15$name=_ref15.name;var name=_ref15$name === undefined?"shader":_ref15$name;var path=_ref15.path;_classCallCheck(this,Shader);_get(Object.getPrototypeOf(Shader.prototype),"constructor",this).call(this,{name:name});this.buffer = gl.createShader(type);this.fetch(path);}_createClass(Shader,[{key:"fetch",value:function fetch(path){ajax(path).then(this.compile);}},{key:"compile",value:function compile(source){var buffer=this.buffer;gl.shaderSource(buffer,source);gl.compileShader(buffer);this.check();}},{key:"check",value:function check(){var buffer=this.buffer;var status=gl.getShaderParameter(buffer,gl.COMPILE_STATUS);if(!status){var _error2=gl.getShaderInfoLog(buffer);gl.deleteShader(buffer);throw new Error(_error2);}}}]);return Shader;})(Entity);module.exports = Shader;},{"./Entity":15,"./gl":36,"./utils/ajax":38}],31:[function(require,module,exports){"use strict";var Light=require("./Light");var SpotLight=(function(_Light3){_inherits(SpotLight,_Light3);function SpotLight(name,ambient,diffuse,specular,exponent,cutoff,intensity,location,direction){if(name === undefined)name = "spot.light";_classCallCheck(this,SpotLight);_get(Object.getPrototypeOf(SpotLight.prototype),"constructor",this).call(this,name,ambient,diffuse,specular,intensity,location);this.exponent = exponent;this.cutoff = cutoff;this.direction = direction;}_createClass(SpotLight,[{key:"bind",value:function bind(uniform){_get(Object.getPrototypeOf(SpotLight.prototype),"bind",this).call(this,uniform);uniform.exponent.set(this.exponent);uniform.cutoff.set(this.cutoff);uniform.direction.set(this.direction);}}]);return SpotLight;})(Light);module.exports = SpotLight;},{"./Light":19}],32:[function(require,module,exports){"use strict";var Entity=require("./Entity");var gl=require("./gl");var unit=0; /**
  * Texture is a wrapper on WebGLTexture
  * @abstract
  * @class Texture
@@ -2405,7 +2424,7 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Sun Jul 19 2015 23:19:56 GMT+0100 (BST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Sun Jul 19 2015 23:33:06 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>

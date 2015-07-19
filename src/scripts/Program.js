@@ -11,7 +11,6 @@ let gl = require('./gl');
  * @param {string} [name=program] - Instance name
  * @param {Entity.Shader.VertexShader} vertexShader - Vertex shader
  * @param {Entity.Shader.FragmentShader} fragmentShader - Fragment shader
- * @property {WebGLProgram} [buffer=WebGLProgram] - WebGL program container
  */
 class Program extends Entity
 {
@@ -22,6 +21,7 @@ class Program extends Entity
       /**
        * WebGL program container
        * @var {WebGLProgram} Entity.Program.program
+       * @default WebGLProgram
        * @private
        */
       this.buffer = gl.createProgram();

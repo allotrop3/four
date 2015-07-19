@@ -13,7 +13,6 @@ let gl = require('./gl');
  * @param {Entity.Texture.ImageTexture|Entity.Texture.DataTexture} colorAttachment - Framebuffer color attachment
  * @param {Entity.Renderbuffer} depthAttachment - Framebuffer depth attachment
  * @param {Entity.Scene.OrthographicScene|Entity.Scene.PerspectiveScene} scene - View configuration
- * @property {WebGLFramebuffer} [buffer=WebGLFramebuffer] - Render target
  */
 class DeferredFramebuffer extends Framebuffer
 {
@@ -24,6 +23,7 @@ class DeferredFramebuffer extends Framebuffer
       /**
        * Render target
        * @var {WebGLFramebuffer} Entity.Framebuffer.DeferredFramebuffer.buffer
+       * @default WebGLFramebuffer
        * @private
        */
       this.buffer = gl.createFramebuffer();
