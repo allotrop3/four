@@ -17,46 +17,44 @@ let gl = require('./gl');
  */
 class Attribute extends Entity
 {
-   constructor(name = 'attribute', program, attribute, length, format = gl.FLOAT, normalized = false)
+   constructor({ name = 'attribute', program, attribute, length, format = gl.FLOAT, normalized = false } = {})
    {
-      super(name);
-
-      let args = arguments[0];
+      super({ name });
 
       /**
        * Shader variable name
        * @var {object} [Attribute.attribute=a_${Framebuffer.attribute}]
        * @private
        */
-      this.attribute = `a_${args.attribute}`;
+      this.attribute = `a_${attribute}`;
 
       /**
        * Shader vertex attribute location
        * @var {number} [Attribute.location=gl.getAttributeLocation]
        * @private
        */
-      this.location = gl.getAttributeLocation(args.program, args.attribute);
+      this.location = gl.getAttributeLocation(program, attribute);
 
       /**
        * Number of components
        * @var {number} Attribute.length
        * @private
        */
-      this.length = args.length;
+      this.length = length;
 
       /**
        * Component data format
        * @var {number} [Attribute.format=gl.FLOAT]
        * @private
        */
-      this.format = args.format;
+      this.format = format;
 
       /**
        * Force normalized components
        * @var {number} [Attribute.normalized=false]
        * @private
        */
-      this.normalized = args.normalized;
+      this.normalized = normalized;
    }
 
    /**

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: DataTexture.js</title>
+    <title>JSDoc: Source: ImageTexture.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: DataTexture.js</h1>
+    <h1 class="page-title">Source: ImageTexture.js</h1>
 
     
 
@@ -32,54 +32,36 @@ var Texture = require('./Texture');
 var gl = require('./gl');
 
 /**
- * DataTexture is a wrapper on WebGLTexture containers
+ * ImageTexture is a wrapper on WebGLTexture containers
  * to support data textures used in GPGPU techniques
- * @class DataTexture
- * @name DataTexture
+ * @class ImageTexture
+ * @name ImageTexture
  * @extends Texture
- * @param {string} [name=data.texture] - Instance name
+ * @param {string} [name=image.texture] - Instance name
  * @param {Array} [image=[]] - Initial texture data
  * @param {number} [lod=0] - Level of detail
- * @param {number} width - Texture width
- * @param {number} height - Texture height
- * @param {number} [length=3] - Number of components
  * @param {number} [components=gl.RGB] - Texture components per texel
- * @param {number} [format=gl.FLOAT] - Component data format
+ * @param {number} [format=gl.UNSIGNED_BYTE] - Component data format
  * @param {number} [magnification=gl.NEAREST] - Magnification sampling filter
  * @param {number} [minification=gl.NEAREST] - Minification sampling filter
  * @param {number} [S=gl.CLAMP_TO_EDGE] - Horizontal texture wrapping
  * @param {number} [T=gl.CLAMP_TO_EDGE] - Vertex texture wrapping
  */
-class DataTexture extends Texture
+class ImageTexture extends Texture
 {
-   constructor(name = 'data.texture', image = [], lod, width, height, length = 3, components, format = gl.FLOAT, magnification, minification, S, T)
+   constructor(name = 'image.texture', image, lod, components, format, magnification, minification, S, T)
    {
       let args = arguments[0];
 
       super(args.name, args.image, args.lod, args.components, args.format, args.magnification, args.minification, args.S, args.T);
 
-      /**
-       * Texture width
-       * @var {number} DataTexture.width
-       * @private
-       */
-      this.width = args.width;
-
-      /**
-       * Texture height
-       * @var {number} DataTexture.height
-       * @private
-       */
-      this.height = args.height;
-
-      this.autofill();
       this.configure();
    }
 
    /**
     * Apply appropriate texture parameters
     * and push data into texture buffer
-    * @function DataTexture.configure
+    * @function ImageTexture.configure
     * @returns {undefined}
     */
    configure()
@@ -88,32 +70,15 @@ class DataTexture extends Texture
 
       let components = this.components;
 
-      gl.pixelStorei(gl.PACK_ALIGNMENT, 1);
-      gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
 
-      gl.texImage2D(gl.TEXTURE_2D, this.lod, components, this.width, this.height, 0, components, this.format, this.image);
+      gl.texImage2D(gl.TEXTURE_2D, this.lod, components, components, this.format, this.image);
 
       this.unbind();
    }
-
-   /**
-    * Push null pixel values at the back of the
-    * texture data to fill and validate it
-    * @function DataTexture.autofill
-    * @param {number} [nixel=-1] Null pixel value
-    * @returns {undefined}
-    */
-   autofill(nixel = -1)
-   {
-      let image = this.image;
-      let count = this.width * this.height * this.length - image.length;
-      let nixels = `,${nixel}`.repeat(count).substring(1).split(',').map(parseFloat);
-
-      image.push(nixels);
-   }
 }
 
-module.exports = DataTexture;</code></pre>
+module.exports = ImageTexture;</code></pre>
         </article>
     </section>
 

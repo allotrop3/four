@@ -17,11 +17,9 @@ let Light = require('./Light');
  */
 class DirectionalLight extends Light
 {
-   constructor(name = 'directional.light', ambient, diffuse, specular, intensity, location, direction = [0, 0, 0])
+   constructor({ name = 'directional.light', ambient, diffuse, specular, intensity, location, direction = [0, 0, 0] } = {})
    {
-      super(name, ambient, diffuse, specular, intensity, location);
-
-      let args = arguments[0];
+      super({ name, ambient, diffuse, specular, intensity, location });
 
       /**
        * Light direction
@@ -29,7 +27,7 @@ class DirectionalLight extends Light
        * @default [0, 0, 0]
        * @private
        */
-      this.direction = args.direction;
+      this.direction = direction;
    }
 
    /**

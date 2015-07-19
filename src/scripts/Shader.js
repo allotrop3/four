@@ -6,9 +6,9 @@ let ajax = require('./utils/ajax');
 
 class Shader extends Entity
 {
-   constructor(name = 'shader', path, type)
+   constructor({ name = 'shader', path } = {}, type)
    {
-      super(name);
+      super({ name });
 
       this.buffer = gl.createShader(type);
 

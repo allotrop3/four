@@ -10,17 +10,15 @@ let indices = {};
  */
 class Entity
 {
-   constructor(name = 'entity')
+   constructor({ name = 'entity' } = {})
    {
-      let args = arguments[0];
-
       /**
        * Entity name
        * @var {string} Entity.name
        * @default '${name}.0${indices[name]}'
        * @private
        */
-      this.name = this.index(args.name);
+      this.name = this.index(name);
 
       /**
        * Entity delete flag

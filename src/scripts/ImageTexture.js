@@ -3,15 +3,37 @@
 var Texture = require('./Texture');
 var gl = require('./gl');
 
+/**
+ * ImageTexture is a wrapper on WebGLTexture containers
+ * to support data textures used in GPGPU techniques
+ * @class ImageTexture
+ * @name ImageTexture
+ * @extends Texture
+ * @param {string} [name=image.texture] - Instance name
+ * @param {Array} [image=[]] - Initial texture data
+ * @param {number} [lod=0] - Level of detail
+ * @param {number} [components=gl.RGB] - Texture components per texel
+ * @param {number} [format=gl.UNSIGNED_BYTE] - Component data format
+ * @param {number} [magnification=gl.NEAREST] - Magnification sampling filter
+ * @param {number} [minification=gl.NEAREST] - Minification sampling filter
+ * @param {number} [S=gl.CLAMP_TO_EDGE] - Horizontal texture wrapping
+ * @param {number} [T=gl.CLAMP_TO_EDGE] - Vertex texture wrapping
+ */
 class ImageTexture extends Texture
 {
-   constructor(name = 'image.texture', image, lod, components, format = gl.UNSIGNED_BYTE, magnification, minification, S, T)
+   constructor({ name = 'image.texture', image, lod, components, format, magnification, minification, S, T } = {})
    {
-      super(name, image, lod, components, format, magnification, minification, S, T);
+      super({ name, image, lod, components, format, magnification, minification, S, T });
 
       this.configure();
    }
 
+   /**
+    * Apply appropriate texture parameters
+    * and push data into texture buffer
+    * @function ImageTexture.configure
+    * @returns {undefined}
+    */
    configure()
    {
       super.configure();

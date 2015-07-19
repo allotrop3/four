@@ -14,15 +14,6 @@ module.exports = function(grunt)
          },
          files: ['<%= config.src %>/**/*.js']
       },
-      jsdoc: {
-         dist: {
-            src: '<%= config.src %>/**/*.js',
-            options: {
-               destination: '<%= config.docs %>',
-               ignoreWarnings: true
-            }
-         }
-      },
       browserify: {
          dist: {
             files: {
@@ -40,6 +31,15 @@ module.exports = function(grunt)
             }
          }
       },
+      jsdoc: {
+         dist: {
+            src: '<%= config.dist %>/**/*.js',
+            options: {
+               destination: '<%= config.docs %>',
+               ignoreWarnings: true
+            }
+         }
+      },
       watch: {
          files: ['<%= jshint.files %>'],
          tasks: ['default']
@@ -47,10 +47,10 @@ module.exports = function(grunt)
    });
 
    grunt.loadNpmTasks('grunt-contrib-jshint');
-   grunt.loadNpmTasks('grunt-jsdoc');
    grunt.loadNpmTasks('grunt-browserify');
    grunt.loadNpmTasks('grunt-babel');
+   grunt.loadNpmTasks('grunt-jsdoc');
    grunt.loadNpmTasks('grunt-contrib-watch');
 
-   grunt.registerTask('default', ['jsdoc', 'browserify', 'babel']);
+   grunt.registerTask('default', ['browserify', 'babel', 'jsdoc']);
 };

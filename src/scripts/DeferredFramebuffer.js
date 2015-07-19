@@ -16,11 +16,9 @@ let gl = require('./gl');
  */
 class DeferredFramebuffer extends Framebuffer
 {
-   constructor(name = 'deferred.framebuffer', colorAttachment, depthAttachment, scene)
+   constructor({ name = 'deferred.framebuffer', colorAttachment, depthAttachment, scene } = {})
    {
-      super(name, scene);
-
-      let args = arguments[0];
+      super({ name, scene });
 
       /**
        * WebGL framebuffer container
@@ -34,14 +32,14 @@ class DeferredFramebuffer extends Framebuffer
        * @var {ImageTexture|DataTexture} DeferredFramebuffer.colorAttachment
        * @private
        */
-      this.colorAttachment = args.colorAttachment;
+      this.colorAttachment = colorAttachment;
 
       /**
        * Framebuffer depth attachment
        * @var {Renderbuffer} DeferredFramebuffer.depthAttachment
        * @private
        */
-      this.depthAttachment = args.depthAttachment;
+      this.depthAttachment = depthAttachment;
 
       this.configure();
    }

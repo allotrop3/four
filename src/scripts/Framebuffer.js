@@ -13,11 +13,9 @@ let gl = require('./gl');
  */
 class Framebuffer extends Entity
 {
-   constructor(name = 'framebuffer', scene)
+   constructor({ name = 'framebuffer', scene } = {})
    {
-      super(name);
-
-      let args = arguments[0];
+      super({ name });
 
       /**
        * WebGL framebuffer container
@@ -33,7 +31,7 @@ class Framebuffer extends Entity
        * @default undefined
        * @private
        */
-      this.scene = args.scene;
+      this.scene = scene;
    }
 
    /**

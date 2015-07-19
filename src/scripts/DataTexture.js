@@ -24,25 +24,23 @@ var gl = require('./gl');
  */
 class DataTexture extends Texture
 {
-   constructor(name = 'data.texture', image = [], lod, width, height, length = 3, components, format = gl.FLOAT, magnification, minification, S, T)
+   constructor({ name = 'data.texture', image = [], lod, width, height, length = 3, components, format = gl.FLOAT, magnification, minification, S, T } = {})
    {
-      super(name, image, lod, components, format, magnification, minification, S, T);
-
-      let args = arguments[0];
+      super({ name, image, lod, components, format, magnification, minification, S, T });
 
       /**
        * Texture width
        * @var {number} DataTexture.width
        * @private
        */
-      this.width = args.width;
+      this.width = width;
 
       /**
        * Texture height
        * @var {number} DataTexture.height
        * @private
        */
-      this.height = args.height;
+      this.height = height;
 
       this.autofill();
       this.configure();
@@ -50,7 +48,7 @@ class DataTexture extends Texture
 
    /**
     * Apply appropriate texture parameters
-    * and push data into texture
+    * and push data into texture buffer
     * @function DataTexture.configure
     * @returns {undefined}
     */
