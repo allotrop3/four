@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Light.js</title>
+    <title>JSDoc: Source: Entity.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Light.js</h1>
+    <h1 class="page-title">Source: Entity.js</h1>
 
     
 
@@ -28,44 +28,69 @@
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
 
-let Entity = require('./Entity');
+let indices = {};
 
 /**
- * Light is an global light source to illuminate the scene
- * @class Light
- * @name Light
- * @extends Entity
- * @param {string} [name=directional.light] - Instance name
- * @param {vec3} ambient - Ambient component
- * @param {vec3} diffuse - Diffuse component
- * @param {vec3} specular - Specular component
- * @param {number} [intensity=1] - Light intensity
- * @param {vec3} [location=[0, 0, 0]] - Light position
+ * Entity is the base class
+ * @class Entity
+ * @name Entity
+ * @param {string} [name=entity] - Instance name
  */
-class Light extends Entity
+class Entity
 {
-   constructor(name = 'light', ambient, diffuse, specular, intensity = 1, location = [0, 0, 0])
+   constructor(name = 'entity')
    {
-      super(name);
+      let args = arguments[0];
 
-      this.ambient = ambient;
-      this.diffuse = diffuse;
-      this.specular = specular;
-      this.intensity = intensity;
-      this.location = location;
+      /**
+       * Entity name
+       * @var {string} Entity.name
+       * @default '${name}.0${indices[name]}'
+       * @private
+       */
+      this.name = this.index(args.name);
+
+      /**
+       * Entity delete flag
+       * @var {boolean} Entity.destroyed
+       * @default false
+       * @private
+       */
+      this.destroyed = false;
    }
 
-   bind(uniform)
+   /**
+    * Autogenerate a name with an index based on
+    * its number of instantiations
+    * @function Entity.index
+    * @param {string} [name=entity] - Entity name
+    * @returns {string}
+    */
+   index(name)
    {
-      uniform.ambient.set(this.ambient);
-      uniform.diffuse.set(this.diffuse);
-      uniform.specular.set(this.specular);
-      uniform.intensity.set(this.intensity);
-      uniform.location.set(this.location);
+      if (indices[name] === undefined)
+      {
+         indices[name] = -1;
+      }
+
+      indices[name]++;
+
+      return `${name}.0${indices[name]}`;
+   }
+
+   /**
+    * Flag entity for deletion
+    * @function Entity.destroy
+    * @returns {undefined}
+    */
+   destroy()
+   {
+      this.destroyed = true;
    }
 }
 
-module.exports = Light;</code></pre>
+module.exports = Entity;
+</code></pre>
         </article>
     </section>
 

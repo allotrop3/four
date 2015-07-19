@@ -21,13 +21,15 @@ class DirectionalLight extends Light
    {
       super(name, ambient, diffuse, specular, intensity, location);
 
+      let args = arguments[0];
+
       /**
        * Light direction
        * @var {vec3} DirectionalLight.direction
        * @default [0, 0, 0]
        * @private
        */
-      this.direction = direction;
+      this.direction = args.direction;
    }
 
    /**

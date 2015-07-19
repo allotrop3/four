@@ -39,7 +39,8 @@ class Framebuffer extends Entity
    /**
     * Enable the framebuffer and associated
     * scene as the current render target
-    * @function {undefined} Framebuffer.enable
+    * @function Framebuffer.enable
+    * @returns {undefined}
     */
    enable()
    {
