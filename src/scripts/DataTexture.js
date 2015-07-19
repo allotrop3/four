@@ -9,7 +9,7 @@ var gl = require('./gl');
  * @class DataTexture
  * @name DataTexture
  * @extends Texture
- * @param {string} [name=attribute] - Name of the DataTexture instance
+ * @param {string} [name=data.texture] - Instance name
  * @param {Array} [image=[]] - Initial texture data
  * @param {number} [lod=0] - Level of detail
  * @param {number} width - Texture width
@@ -28,19 +28,21 @@ class DataTexture extends Texture
    {
       super(name, image, lod, components, format, magnification, minification, S, T);
 
+      let args = arguments[0];
+
       /**
        * Texture width
        * @var {number} DataTexture.width
        * @private
        */
-      this.width = width;
+      this.width = args.width;
 
       /**
        * Texture height
        * @var {number} DataTexture.height
        * @private
        */
-      this.height = height;
+      this.height = args.height;
 
       this.autofill();
       this.configure();

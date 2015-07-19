@@ -8,7 +8,7 @@ let gl = require('./gl');
  * @class Attribute
  * @name Attribute
  * @extends Entity
- * @param {string} [name=attribute] - Name of the Attribute instance
+ * @param {string} [name=attribute] - Instance name
  * @param {Program} [program] - Program in which the vertex attribute is used
  * @param {string} attribute - Shader variable name
  * @param {number} length - Number of components

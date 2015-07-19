@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Framebuffer</title>
+    <title>JSDoc: Class: DeferredFramebuffer</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Framebuffer</h1>
+    <h1 class="page-title">Class: DeferredFramebuffer</h1>
 
     
 
@@ -29,7 +29,7 @@
 <header>
     
         <h2>
-        Framebuffer
+        DeferredFramebuffer
         </h2>
         
     
@@ -42,14 +42,15 @@
 
     
 
-    <h4 class="name" id="Framebuffer"><span class="type-signature"></span>new Framebuffer<span class="signature">(name<span class="signature-attributes">opt</span>, scene)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="DeferredFramebuffer"><span class="type-signature"></span>new DeferredFramebuffer<span class="signature">(name<span class="signature-attributes">opt</span>, colorAttachment, depthAttachment, scene)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Framebuffer is a wrapper on the WebGLFramebuffer container
+    DeferredFramebuffer is a wrapper on WebGLFramebuffer containers
+to support off-screen rendering
 </div>
 
 
@@ -116,12 +117,85 @@
             
                 <td class="default">
                 
-                    framebuffer
+                    deferred.framebuffer
                 
                 </td>
             
 
-            <td class="description last">The name of the framebuffer instance</td>
+            <td class="description last">Instance name</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>colorAttachment</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">ImageTexture</span>
+|
+
+<span class="param-type"><a href="DataTexture.html">DataTexture</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Framebuffer color attachment</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>depthAttachment</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Renderbuffer</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Framebuffer depth attachment</td>
         </tr>
 
     
@@ -197,7 +271,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Framebuffer.js.html">Framebuffer.js</a>, <a href="Framebuffer.js.html#line6">line 6</a>
+        <a href="DeferredFramebuffer.js.html">DeferredFramebuffer.js</a>, <a href="DeferredFramebuffer.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -233,7 +307,7 @@
 
 
     <ul>
-        <li>Entity</li>
+        <li><a href="Framebuffer.html">Framebuffer</a></li>
     </ul>
 
 
@@ -252,7 +326,7 @@
 
         
             
-<h4 class="name" id=".buffer"><span class="type-signature">(private, static) </span>buffer<span class="type-signature"> :object</span></h4>
+<h4 class="name" id=".buffer"><span class="type-signature">(private, static) </span>buffer<span class="type-signature"> :WebGLFramebuffer</span></h4>
 
 
 
@@ -267,7 +341,7 @@
     <ul>
         <li>
             
-<span class="param-type">object</span>
+<span class="param-type">WebGLFramebuffer</span>
 
 
         </li>
@@ -302,16 +376,11 @@
     
 
     
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy">
-            <li>null</li>
-        </ul></dd>
-    
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Framebuffer.js.html">Framebuffer.js</a>, <a href="Framebuffer.js.html#line22">line 22</a>
+        <a href="DeferredFramebuffer.js.html">DeferredFramebuffer.js</a>, <a href="DeferredFramebuffer.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -329,13 +398,13 @@
 
         
             
-<h4 class="name" id=".scene"><span class="type-signature">(private, static) </span>scene<span class="type-signature"> :Scene</span></h4>
+<h4 class="name" id=".colorAttachment"><span class="type-signature">(private, static) </span>colorAttachment<span class="type-signature"> :ImageTexture|<a href="DataTexture.html">DataTexture</a></span></h4>
 
 
 
 
 <div class="description">
-    Framebuffer scene
+    Framebuffer color attachment
 </div>
 
 
@@ -344,7 +413,10 @@
     <ul>
         <li>
             
-<span class="param-type">Scene</span>
+<span class="param-type">ImageTexture</span>
+|
+
+<span class="param-type"><a href="DataTexture.html">DataTexture</a></span>
 
 
         </li>
@@ -379,16 +451,83 @@
     
 
     
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy">
-            <li>undefined</li>
-        </ul></dd>
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="DeferredFramebuffer.js.html">DeferredFramebuffer.js</a>, <a href="DeferredFramebuffer.js.html#line32">line 32</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".depthAttachment"><span class="type-signature">(private, static) </span>depthAttachment<span class="type-signature"> :Renderbuffer</span></h4>
+
+
+
+
+<div class="description">
+    Framebuffer depth attachment
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Renderbuffer</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Framebuffer.js.html">Framebuffer.js</a>, <a href="Framebuffer.js.html#line30">line 30</a>
+        <a href="DeferredFramebuffer.js.html">DeferredFramebuffer.js</a>, <a href="DeferredFramebuffer.js.html#line39">line 39</a>
     </li></ul></dd>
     
 
@@ -415,15 +554,14 @@
 
     
 
-    <h4 class="name" id=".bind"><span class="type-signature">(static) </span>bind<span class="signature">()</span><span class="type-signature"> &rarr; {undefined}</span></h4>
+    <h4 class="name" id=".confgure"><span class="type-signature">(static) </span>confgure<span class="signature">()</span><span class="type-signature"> &rarr; {undefined}</span></h4>
 
     
 
 
 
 <div class="description">
-    Bind the framebuffer as the current
-render target
+    Attach color and depth buffers
 </div>
 
 
@@ -467,311 +605,7 @@ render target
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Framebuffer.js.html">Framebuffer.js</a>, <a href="Framebuffer.js.html#line50">line 50</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">undefined</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".check"><span class="type-signature">(static) </span>check<span class="signature">()</span><span class="type-signature"> &rarr; {undefined|Error}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Check the framebuffer compile status
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Framebuffer.js.html">Framebuffer.js</a>, <a href="Framebuffer.js.html#line83">line 83</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">undefined</span>
-|
-
-<span class="param-type">Error</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".flush"><span class="type-signature">(static) </span>flush<span class="signature">()</span><span class="type-signature"> &rarr; {undefined}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Flush the contents of the framebuffers'
-color and depth attachments
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Framebuffer.js.html">Framebuffer.js</a>, <a href="Framebuffer.js.html#line71">line 71</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">undefined</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".unbind"><span class="type-signature">(static) </span>unbind<span class="signature">()</span><span class="type-signature"> &rarr; {undefined}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Unbind the framebuffer
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Framebuffer.js.html">Framebuffer.js</a>, <a href="Framebuffer.js.html#line61">line 61</a>
+        <a href="DeferredFramebuffer.js.html">DeferredFramebuffer.js</a>, <a href="DeferredFramebuffer.js.html#line49">line 49</a>
     </li></ul></dd>
     
 
