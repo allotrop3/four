@@ -29,6 +29,11 @@ canvas
    border: 1px dotted #ccc;
 }
 
+a
+{
+   display: inline-block;
+}
+
 .fourjs
 {
    font:; 300 30px/2 'helvetica neue';
@@ -40,4 +45,9 @@ canvas
    height: 70px;
    display: inline-block;
    vertical-align: middle;
+}
+
+.fourjs__docs
+{
+   margin-bottom: 25px;
 }
