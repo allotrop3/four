@@ -8,8 +8,7 @@
  * @author Jason Petersen
  * @version 0.0.0
  */
-
-var FOUR = {
+var four = {
    glm: require('gl-matrix'),
    gl: require('./gl'),
    Entity: require('./Entity'),
@@ -38,4 +37,4 @@ var FOUR = {
    Uniform: require('./Uniform')
 };
 
-window.FOUR = FOUR;
+module.exports = window.four = four;
