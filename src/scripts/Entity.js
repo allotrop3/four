@@ -48,6 +48,17 @@ class Entity
    }
 
    /**
+    * Validate the identity of an entity
+    * @function Entity.is
+    * @param {string} identity - Entity name to check for
+    * @returns {boolean}
+    */
+   is(identity)
+   {
+      return this.name.match(identity, 'i') !== null;
+   }
+
+   /**
     * Flag entity for deletion
     * @function Entity.destroy
     * @returns {undefined}

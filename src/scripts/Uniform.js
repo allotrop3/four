@@ -15,9 +15,9 @@ let gl = require('./gl');
  */
 class Uniform extends Entity
 {
-   constructor(name = 'uniform', program, uniform, format)
+   constructor({ name = 'uniform', program, uniform, format } = {})
    {
-      super(name);
+      super({ name });
 
       /**
        * Shader variable name
