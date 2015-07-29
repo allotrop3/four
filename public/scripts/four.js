@@ -2016,9 +2016,10 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
  * @param {number} [minification=gl.NEAREST] - Minification sampling filter
  * @param {number} [S=gl.CLAMP_TO_EDGE] - Horizontal texture wrapping
  * @param {number} [T=gl.CLAMP_TO_EDGE] - Vertex texture wrapping
+ * @param {boolean|number} [anisotropy=false] - Level of anisotropic filtering
  */var ImageTexture=(function(_Texture2){_inherits(ImageTexture,_Texture2);function ImageTexture(){var _ref9=arguments.length <= 0 || arguments[0] === undefined?{}:arguments[0];var _ref9$name=_ref9.name;var name=_ref9$name === undefined?'image.texture':_ref9$name;var image=_ref9.image;var lod=_ref9.lod;var components=_ref9.components;var format=_ref9.format;var magnification=_ref9.magnification;var minification=_ref9.minification;var S=_ref9.S;var T=_ref9.T;var _ref9$anisotropy=_ref9.anisotropy;var anisotropy=_ref9$anisotropy === undefined?false:_ref9$anisotropy;_classCallCheck(this,ImageTexture);_get(Object.getPrototypeOf(ImageTexture.prototype),"constructor",this).call(this,{name:name,image:image,lod:lod,components:components,format:format,magnification:magnification,minification:minification,S:S,T:T}); /**
        * Anisotropic filter handle
-       * @var {function} Entity.Texture.anisotropicFilter
+       * @var {function} Entity.Texture.ImageTexture.anisotropicFilter
        * @default false
        * @private
        */this.anisotropicFilter = gl.getExtension('EXT_texture_filter_anisotropic'); /**

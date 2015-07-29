@@ -18,6 +18,7 @@ var gl = require('./gl');
  * @param {number} [minification=gl.NEAREST] - Minification sampling filter
  * @param {number} [S=gl.CLAMP_TO_EDGE] - Horizontal texture wrapping
  * @param {number} [T=gl.CLAMP_TO_EDGE] - Vertex texture wrapping
+ * @param {boolean|number} [anisotropy=false] - Level of anisotropic filtering
  */
 class ImageTexture extends Texture
 {
@@ -27,7 +28,7 @@ class ImageTexture extends Texture
         
       /**
        * Anisotropic filter handle
-       * @var {function} Entity.Texture.anisotropicFilter
+       * @var {function} Entity.Texture.ImageTexture.anisotropicFilter
        * @default false
        * @private
        */
