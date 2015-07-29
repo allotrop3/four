@@ -2027,7 +2027,7 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
        * @var {boolean|number} Entity.Texture.ImageTexture.anisotropy
        * @default false
        * @private
-       */this.anisotropy = this.checkAanisotropy(anisotropy);this.configure();} /**
+       */this.anisotropy = this.checkAnisotropy(anisotropy);this.configure();} /**
     * Apply appropriate texture parameters
     * and push data into texture buffer
     * @function Entity.Texture.ImageTexture.configure

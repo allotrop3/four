@@ -40,7 +40,7 @@ class ImageTexture extends Texture
        * @default false
        * @private
        */
-      this.anisotropy = this.checkAanisotropy(anisotropy);
+      this.anisotropy = this.checkAnisotropy(anisotropy);
 
       this.configure();
    }
