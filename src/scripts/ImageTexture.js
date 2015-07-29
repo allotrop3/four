@@ -21,9 +21,26 @@ var gl = require('./gl');
  */
 class ImageTexture extends Texture
 {
-   constructor({ name = 'image.texture', image, lod, components, format, magnification, minification, S, T } = {})
+   constructor({ name = 'image.texture', image, lod, components, format, magnification, minification, S, T, anisotropy = false } = {})
    {
       super({ name, image, lod, components, format, magnification, minification, S, T });
+        
+      /**
+       * Anisotropic filter handle
+       * @var {function} Entity.Texture.anisotropicFilter
+       * @default false
+       * @private
+       */
+      this.anisotropicFilter = gl.getExtension('EXT_texture_filter_anisotropic');
+      
+      /**
+       * Level of anisotropic filtering to
+       * improve rendering quality of textures
+       * @var {boolean|number} Entity.Texture.ImageTexture.anisotropy
+       * @default false
+       * @private
+       */
+      this.anisotropy = this.checkAanisotropy(anisotropy);
 
       this.configure();
    }
@@ -39,12 +56,39 @@ class ImageTexture extends Texture
       super.configure();
 
       let components = this.components;
+      let anisotropy = this.anisotropy;
+      
+      if (anisotropy)
+      {
+         gl.texParameterf(gl.TEXTURE_2D, this.anisotropicFilter.TEXTURE_MAX_ANISOTROPY, anisotropy);
+      }
 
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
 
       gl.texImage2D(gl.TEXTURE_2D, this.lod, components, components, this.format, this.image);
 
       this.unbind();
+   }
+   
+   /**
+    * Check there anisotropy support and a supported
+    * option is used
+    * @function Entity.Texture.ImageTexture.checkAnisotropy
+    * @param {boolean|number} anisotropy - Level of anisotropic filtering
+    * @returns {number|boolean}
+    */
+   checkAnisotropy(anisotropy)
+   {
+      let anisotropicFilter = this.anisotropicFilter;
+      
+      if (anisotropicFilter && anisotropy !== false)
+      {  
+         let maxAnisotropy = gl.getParameter(anisotropicFilter.MAX_TEXTURE_MAX_ANISOTROPY_EXT);
+         
+         anisotropy = Math.min(anisotropy, Math.max(anisotropy, maxAnisotropy));
+      }
+      
+      return anisotropy = false;
    }
 }
 
