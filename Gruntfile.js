@@ -7,12 +7,12 @@ module.exports = function(grunt)
             source: './src/scripts/**/*.js',
             cache: './.tmp/scripts/four.js'
          },
-         dist: {
-            root: './dist/scripts',
-            concatenated: './dist/scripts/four.js',
-            minified: './dist/scripts/four.min.js'
-         },
-         docs: './docs'
+         public: {
+            root: './public/scripts',
+            concatenated: './public/scripts/four.js',
+            minified: './public/scripts/four.min.js',
+            docs: './public/docs'
+         }
       },
       jshint: {
          options: {
@@ -33,7 +33,7 @@ module.exports = function(grunt)
          },
          dist: {
             files: {
-               '<%= config.dist.concatenated %>': '<%= config.src.cache %>'
+               '<%= config.public.concatenated %>': '<%= config.src.cache %>'
             }
          }
       },
@@ -44,15 +44,15 @@ module.exports = function(grunt)
          },
          dist: {
             files: {
-               '<%= config.dist.minified %>': '<%= config.dist.concatenated %>'
+               '<%= config.public.minified %>': '<%= config.public.concatenated %>'
             }
          }
       },
       jsdoc: {
          dist: {
-            src: '<%= config.dist.concatenated %>',
+            src: '<%= config.public.concatenated %>',
             options: {
-               destination: '<%= config.docs %>',
+               destination: '<%= config.public.docs %>',
                ignoreWarnings: true
             }
          }

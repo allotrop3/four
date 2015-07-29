@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: PointLight</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: PointLight</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+            <span class="ancestors"><a href="Entity.html">Entity</a><a href="Entity.Light.html">.Light</a>.</span>
+        
+        PointLight
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    <h4 class="name" id="PointLight"><span class="type-signature"></span>new PointLight<span class="signature">(name<span class="signature-attributes">opt</span>, ambient, diffuse, specular, coefficient, linear, quadratic, intensity<span class="signature-attributes">opt</span>, location<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    PointLight is a local light source to illuminate an area of the scene
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    point.light
+                
+                </td>
+            
+
+            <td class="description last">Instance name</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ambient</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Ambient component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>diffuse</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Diffuse component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>specular</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Specular component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>coefficient</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Coefficient component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>linear</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Linear component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>quadratic</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Quadratic component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>intensity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last">Light intensity</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>location</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    [0, 0, 0]
+                
+                </td>
+            
+
+            <td class="description last">Light position</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2235">line 2235</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="Entity.Light.html">Entity.Light</a></li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".coefficient"><span class="type-signature">(private, static) </span>coefficient<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
+
+
+
+
+<div class="description">
+    Coefficient component
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2249">line 2249</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".linear"><span class="type-signature">(private, static) </span>linear<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
+
+
+
+
+<div class="description">
+    Linear component
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2253">line 2253</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".quadratic"><span class="type-signature">(private, static) </span>quadratic<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
+
+
+
+
+<div class="description">
+    Quadratic component
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2257">line 2257</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".bind"><span class="type-signature">(static) </span>bind<span class="signature">(uniform)</span><span class="type-signature"> &rarr; {undefined}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Set point light shader uniform values
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>uniform</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Light shader uniforms</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line2261">line 2261</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Entity.html">Entity</a></li><li><a href="Entity.Attribute.html">Attribute</a></li><li><a href="Entity.Fluid.html">Fluid</a></li><li><a href="Entity.Framebuffer.html">Framebuffer</a></li><li><a href="Entity.Framebuffer.DeferredFramebuffer.html">DeferredFramebuffer</a></li><li><a href="Entity.Light.html">Light</a></li><li><a href="Entity.Light.DirectionalLight.html">DirectionalLight</a></li><li><a href="Entity.Light.PointLight.html">PointLight</a></li><li><a href="Entity.Light.SpotLight.html">SpotLight</a></li><li><a href="Entity.Material.html">Material</a></li><li><a href="Entity.Material.PhongMaterial.html">PhongMaterial</a></li><li><a href="Entity.Mesh.html">Mesh</a></li><li><a href="Entity.Program.html">Program</a></li><li><a href="Entity.Renderbuffer.html">Renderbuffer</a></li><li><a href="Entity.Renderer.html">Renderer</a></li><li><a href="Entity.Scene.html">Scene</a></li><li><a href="Entity.Scene.OrthographicScene.html">OrthographicScene</a></li><li><a href="Entity.Scene.PerspectiveScene.html">PerspectiveScene</a></li><li><a href="Entity.Shader.html">Shader</a></li><li><a href="Entity.Shader.FragmentShader.html">FragmentShader</a></li><li><a href="Entity.Shader.VertexShader.html">VertexShader</a></li><li><a href="Entity.Texture.html">Texture</a></li><li><a href="Entity.Texture.DataTexture.html">DataTexture</a></li><li><a href="Entity.Texture.ImageTexture.html">ImageTexture</a></li><li><a href="Entity.Uniform.html">Uniform</a></li><li><a href="glMatrix.html">glMatrix</a></li><li><a href="mat2.html">mat2</a></li><li><a href="mat2d.html">mat2d</a></li><li><a href="mat3.html">mat3</a></li><li><a href="mat4.html">mat4</a></li><li><a href="quat.html">quat</a></li><li><a href="vec2.html">vec2</a></li><li><a href="vec3.html">vec3</a></li><li><a href="vec4.html">vec4</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Wed Jul 29 2015 20:26:52 GMT+0100 (GMT Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
