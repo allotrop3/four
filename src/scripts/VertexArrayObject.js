@@ -13,39 +13,28 @@ class VertexArrayObject extends Entity
 		super({ name });
 		
 		this.mesh = mesh;
-		this.attributes = this.generate(attributes);
+		this.attributes = attributes.map(this.offset);
 		this.stride = 0;
 	}
 	
-	generate(attributes)
+	offset(attribute)
 	{
-		let config = [];
-		let offset = 0;
+		let bytes = attribute.getByteCount();
 		
-		for (let index in attributes)
-		{
-			let attribute = attributes[index];
-			let bytes = attribute.getByteCount();
-			
-			config.push({
-				attribute: attribute,
-				offset: offset += bytes
-			});
-			
-			this.stride += bytes;
-		}
-		
-		return config;
+		return {
+			object: attribute,
+			offset: this.stride += bytes
+		};
 	}
 	
 	enable(attribute)
 	{
-		attribute.attribute.enable(attribute.stride, attribute.offset);
+		attribute.object.enable(this.stride, attribute.offset);
 	}
 	
 	disable(attribute)
 	{
-		attribute.attribute.disable();
+		attribute.object.disable();
 	}
 	
 	bind()
