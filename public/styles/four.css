@@ -5,7 +5,7 @@
 
 body
 {
-   font: 300 14px/1.3 'helvetica neue';
+   font: 300 14px/1.3 'helvetica neue', Arial, San-serif;
    letter-spacing: 0.5px;
    margin: 0 auto;
    max-width: 970px;

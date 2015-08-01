@@ -56,6 +56,16 @@ class Attribute extends Entity
        */
       this.normalized = normalized;
    }
+   
+   /**
+    * Compute total number of bytes
+    * @function Entity.Attribute.getByteCount
+    * @returns {number}
+    */
+   getByteCount()
+   {
+      return this.length * this.format.BYTES_PER_ELEMENT;
+   }
 
    /**
     * Enable vertex attribute and configure

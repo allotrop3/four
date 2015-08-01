@@ -1,4 +1,4 @@
-"use strict";var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if("value" in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(_x27,_x28,_x29){var _again=true;_function: while(_again) {var object=_x27,property=_x28,receiver=_x29;desc = parent = getter = undefined;_again = false;if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {_x27 = parent;_x28 = property;_x29 = receiver;_again = true;continue _function;}}else if("value" in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _inherits(subClass,superClass){if(typeof superClass !== "function" && superClass !== null){throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require == "function" && require;if(!u && a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '" + o + "'");throw (f.code = "MODULE_NOT_FOUND",f);}var l=n[o] = {exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e);},l,l.exports,e,t,n,r);}return n[o].exports;}var i=typeof require == "function" && require;for(var o=0;o < r.length;o++) s(r[o]);return s;})({1:[function(require,module,exports){ /**
+"use strict";var _createClass=(function(){function defineProperties(target,props){for(var i=0;i < props.length;i++) {var descriptor=props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if("value" in descriptor)descriptor.writable = true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};})();var _get=function get(_x28,_x29,_x30){var _again=true;_function: while(_again) {var object=_x28,property=_x29,receiver=_x30;desc = parent = getter = undefined;_again = false;if(object === null)object = Function.prototype;var desc=Object.getOwnPropertyDescriptor(object,property);if(desc === undefined){var parent=Object.getPrototypeOf(object);if(parent === null){return undefined;}else {_x28 = parent;_x29 = property;_x30 = receiver;_again = true;continue _function;}}else if("value" in desc){return desc.value;}else {var getter=desc.get;if(getter === undefined){return undefined;}return getter.call(receiver);}}};function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _inherits(subClass,superClass){if(typeof superClass !== "function" && superClass !== null){throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);}subClass.prototype = Object.create(superClass && superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__ = superClass;}(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require == "function" && require;if(!u && a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '" + o + "'");throw (f.code = "MODULE_NOT_FOUND",f);}var l=n[o] = {exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e);},l,l.exports,e,t,n,r);}return n[o].exports;}var i=typeof require == "function" && require;for(var o=0;o < r.length;o++) s(r[o]);return s;})({1:[function(require,module,exports){ /**
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
  * @author Colin MacKenzie IV
@@ -1825,15 +1825,19 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
        * @var {number} [Entity.Attribute.normalized=false]
        * @private
        */this.normalized = normalized;} /**
+    * Compute total number of bytes
+    * @function Entity.Attribute.getByteCount
+    * @returns {number}
+    */_createClass(Attribute,[{key:"getByteCount",value:function getByteCount(){return this.length * this.format.BYTES_PER_ELEMENT;} /**
     * Enable vertex attribute and configure
     * its pointer on the bound VBO
     * @function Entity.Attribute.enable
     * @returns {undefined}
-    */_createClass(Attribute,[{key:"enable",value:function enable(stride,offset){var location=this.location;gl.enableVertexAttribArray(location);gl.vertexAttribPointer(location,this.length,this.format,this.normalized,stride,offset);} /**
+    */},{key:"enable",value:function enable(stride,offset){var location=this.location;gl.enableVertexAttribArray(location);gl.vertexAttribPointer(location,this.length,this.format,this.normalized,stride,offset);} /**
     * Disable vertex attribute
     * @function Entity.Attribute.disable
     * @returns {undefined}
-    */},{key:"disable",value:function disable(){gl.disableVertAttribArray(this.location);}}]);return Attribute;})(Entity);module.exports = Attribute;},{"./Entity":15,"./gl":37}],12:[function(require,module,exports){'use strict';var Texture=require('./Texture');var gl=require('./gl'); /**
+    */},{key:"disable",value:function disable(){gl.disableVertAttribArray(this.location);}}]);return Attribute;})(Entity);module.exports = Attribute;},{"./Entity":15,"./gl":38}],12:[function(require,module,exports){'use strict';var Texture=require('./Texture');var gl=require('./gl'); /**
  * DataTexture is a wrapper on WebGLTexture buffers
  * to support data textures used in GPGPU techniques
  * @class DataTexture
@@ -1870,7 +1874,7 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
     * @function Entity.Texture.DataTexture.autofill
     * @param {number} [nixel=-1] Null pixel value
     * @returns {undefined}
-    */},{key:"autofill",value:function autofill(){var nixel=arguments.length <= 0 || arguments[0] === undefined?-1:arguments[0];var image=this.image;var count=this.width * this.height * this.length - image.length;var nixels=("," + nixel).repeat(count).substring(1).split(',').map(parseFloat);image.push(nixels);}}]);return DataTexture;})(Texture);module.exports = DataTexture;},{"./Texture":33,"./gl":37}],13:[function(require,module,exports){'use strict';var Framebuffer=require('./Framebuffer');var gl=require('./gl'); /**
+    */},{key:"autofill",value:function autofill(){var nixel=arguments.length <= 0 || arguments[0] === undefined?-1:arguments[0];var image=this.image;var count=this.width * this.height * this.length - image.length;var nixels=("," + nixel).repeat(count).substring(1).split(',').map(parseFloat);image.push(nixels);}}]);return DataTexture;})(Texture);module.exports = DataTexture;},{"./Texture":33,"./gl":38}],13:[function(require,module,exports){'use strict';var Framebuffer=require('./Framebuffer');var gl=require('./gl'); /**
  * DeferredFramebuffer is a wrapper on WebGLFramebuffer buffers
  * to support off-screen rendering
  * @class DeferredFramebuffer
@@ -1897,7 +1901,7 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
     * Attach color and depth buffers
     * @function Entity.Framebuffer.DeferredFramebuffer.configure
     * @returns {undefined}
-    */_createClass(DeferredFramebuffer,[{key:"configure",value:function configure(){this.bind();gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,this.colorAttachment,0);gl.framebufferRenderbuffer(gl.FRAMEBUFFER,gl.DEPTH_ATTACHMENT,gl.RENDERBUFFER,this.depthAttachment);this.check();this.unbind();}}]);return DeferredFramebuffer;})(Framebuffer);module.exports = DeferredFramebuffer;},{"./Framebuffer":18,"./gl":37}],14:[function(require,module,exports){'use strict';var Light=require('./Light'); /**
+    */_createClass(DeferredFramebuffer,[{key:"configure",value:function configure(){this.bind();gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,this.colorAttachment,0);gl.framebufferRenderbuffer(gl.FRAMEBUFFER,gl.DEPTH_ATTACHMENT,gl.RENDERBUFFER,this.depthAttachment);this.check();this.unbind();}}]);return DeferredFramebuffer;})(Framebuffer);module.exports = DeferredFramebuffer;},{"./Framebuffer":18,"./gl":38}],14:[function(require,module,exports){'use strict';var Light=require('./Light'); /**
  * DirectionalLight is a directional light source to illuminate the scene
  * @class DirectionalLight
  * @name Entity.Light.DirectionalLight
@@ -1954,14 +1958,14 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
  * @name Entity.Fluid
  * @extends Entity
  * @param {string} [name=fluid] - Instance name
- */var Fluid=(function(_Entity2){_inherits(Fluid,_Entity2);function Fluid(){var _ref6=arguments.length <= 0 || arguments[0] === undefined?{}:arguments[0];var _ref6$name=_ref6.name;var name=_ref6$name === undefined?'fluid':_ref6$name;_classCallCheck(this,Fluid);_get(Object.getPrototypeOf(Fluid.prototype),"constructor",this).call(this,{name:name});}return Fluid;})(Entity);module.exports = Fluid;},{"./Entity":15,"./gl":37}],17:[function(require,module,exports){'use strict';var Shader=require('./Shader');var gl=require('./gl'); /**
+ */var Fluid=(function(_Entity2){_inherits(Fluid,_Entity2);function Fluid(){var _ref6=arguments.length <= 0 || arguments[0] === undefined?{}:arguments[0];var _ref6$name=_ref6.name;var name=_ref6$name === undefined?'fluid':_ref6$name;_classCallCheck(this,Fluid);_get(Object.getPrototypeOf(Fluid.prototype),"constructor",this).call(this,{name:name});}return Fluid;})(Entity);module.exports = Fluid;},{"./Entity":15,"./gl":38}],17:[function(require,module,exports){'use strict';var Shader=require('./Shader');var gl=require('./gl'); /**
  * FragmentShader is a wrapper on WebGLShader buffers
  * @class FragmentShader
  * @name Entity.Shader.FragmentShader
  * @extends Entity.Shader
  * @param {string} [name=fragment.shader] - Instance name
  * @param {string} path - Filepath to fragment shader source
- */var FragmentShader=(function(_Shader){_inherits(FragmentShader,_Shader);function FragmentShader(){var _ref7=arguments.length <= 0 || arguments[0] === undefined?{}:arguments[0];var _ref7$name=_ref7.name;var name=_ref7$name === undefined?'fragment.shader':_ref7$name;var path=_ref7.path;_classCallCheck(this,FragmentShader);_get(Object.getPrototypeOf(FragmentShader.prototype),"constructor",this).call(this,{name:name,path:path},gl.FRAGMENT_SHADER);}return FragmentShader;})(Shader);module.exports = FragmentShader;},{"./Shader":31,"./gl":37}],18:[function(require,module,exports){'use strict';var Entity=require('./Entity');var gl=require('./gl'); /**
+ */var FragmentShader=(function(_Shader){_inherits(FragmentShader,_Shader);function FragmentShader(){var _ref7=arguments.length <= 0 || arguments[0] === undefined?{}:arguments[0];var _ref7$name=_ref7.name;var name=_ref7$name === undefined?'fragment.shader':_ref7$name;var path=_ref7.path;_classCallCheck(this,FragmentShader);_get(Object.getPrototypeOf(FragmentShader.prototype),"constructor",this).call(this,{name:name,path:path},gl.FRAGMENT_SHADER);}return FragmentShader;})(Shader);module.exports = FragmentShader;},{"./Shader":31,"./gl":38}],18:[function(require,module,exports){'use strict';var Entity=require('./Entity');var gl=require('./gl'); /**
  * Framebuffer is a wrapper on WebGLFramebuffer buffers
  * @class Framebuffer
  * @name Entity.Framebuffer
@@ -2001,7 +2005,7 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
     * Check the framebuffer compile status
     * @function Entity.Framebuffer.check
     * @returns {undefined|Error}
-    */},{key:"check",value:function check(){var status=gl.checkFramebufferStatus(gl.FRAMEBUFFER);var exception=false;switch(status){case gl.FRAMEBUFFER_UNSUPPORTED:exception = 'unsupported';break;case gl.FRAMEBUFFER_INCOMPLETE_ATTACHMENT:exception = 'attachments incomplete';break;case gl.FRAMEBUFFER_INCOMPLETE_DIMENSIONS:exception = 'dimensions incomplete';break;case gl.FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:exception = 'attachment missing';break;}if(exception){gl.deleteFramebuffer(this.buffer);throw new Error(error);}}}]);return Framebuffer;})(Entity);module.exports = Framebuffer;},{"./Entity":15,"./gl":37}],19:[function(require,module,exports){'use strict';var Texture=require('./Texture');var gl=require('./gl'); /**
+    */},{key:"check",value:function check(){var status=gl.checkFramebufferStatus(gl.FRAMEBUFFER);var exception=false;switch(status){case gl.FRAMEBUFFER_UNSUPPORTED:exception = 'unsupported';break;case gl.FRAMEBUFFER_INCOMPLETE_ATTACHMENT:exception = 'attachments incomplete';break;case gl.FRAMEBUFFER_INCOMPLETE_DIMENSIONS:exception = 'dimensions incomplete';break;case gl.FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:exception = 'attachment missing';break;}if(exception){gl.deleteFramebuffer(this.buffer);throw new Error(error);}}}]);return Framebuffer;})(Entity);module.exports = Framebuffer;},{"./Entity":15,"./gl":38}],19:[function(require,module,exports){'use strict';var Texture=require('./Texture');var gl=require('./gl'); /**
  * ImageTexture is a wrapper on WebGLTexture buffers
  * to support detailing mesh surfaces
  * @class ImageTexture
@@ -2039,7 +2043,7 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
     * @function Entity.Texture.ImageTexture.checkAnisotropy
     * @param {boolean|number} anisotropy - Level of anisotropic filtering
     * @returns {number|boolean}
-    */},{key:"checkAnisotropy",value:function checkAnisotropy(anisotropy){var anisotropicFilter=this.anisotropicFilter;if(anisotropicFilter && anisotropy !== false){var maxAnisotropy=gl.getParameter(anisotropicFilter.MAX_TEXTURE_MAX_ANISOTROPY_EXT);anisotropy = Math.min(anisotropy,Math.max(anisotropy,maxAnisotropy));}return anisotropy = false;}}]);return ImageTexture;})(Texture);module.exports = ImageTexture;},{"./Texture":33,"./gl":37}],20:[function(require,module,exports){'use strict';var Entity=require('./Entity'); /**
+    */},{key:"checkAnisotropy",value:function checkAnisotropy(anisotropy){var anisotropicFilter=this.anisotropicFilter;if(anisotropicFilter && anisotropy !== false){var maxAnisotropy=gl.getParameter(anisotropicFilter.MAX_TEXTURE_MAX_ANISOTROPY_EXT);anisotropy = Math.min(anisotropy,Math.max(anisotropy,maxAnisotropy));}return anisotropy = false;}}]);return ImageTexture;})(Texture);module.exports = ImageTexture;},{"./Texture":33,"./gl":38}],20:[function(require,module,exports){'use strict';var Entity=require('./Entity'); /**
  * Light is a global light source to illuminate the scene
  * @class Light
  * @name Entity.Light
@@ -2160,7 +2164,7 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
     * Apply orthographic projection to active framebuffer
     * @function Entity.Scene.OrthographicScene.bind
     * @returns {undefined}
-    */},{key:"bind",value:function bind(){_get(Object.getPrototypeOf(OrthographicScene.prototype),"bind",this).call(this);gl.disable(gl.DEPTH_TEST);gl.viewport(0,0,this.right,this.top);}}]);return OrthographicScene;})(Scene);module.exports = OrthographicScene;},{"./Scene":30,"./gl":37,"gl-matrix":1}],24:[function(require,module,exports){'use strict';var Scene=require('./Scene');var gl=require('./gl');var glm=require('gl-matrix');var mat4=glm.mat4; /**
+    */},{key:"bind",value:function bind(){_get(Object.getPrototypeOf(OrthographicScene.prototype),"bind",this).call(this);gl.disable(gl.DEPTH_TEST);gl.viewport(0,0,this.right,this.top);}}]);return OrthographicScene;})(Scene);module.exports = OrthographicScene;},{"./Scene":30,"./gl":38,"gl-matrix":1}],24:[function(require,module,exports){'use strict';var Scene=require('./Scene');var gl=require('./gl');var glm=require('gl-matrix');var mat4=glm.mat4; /**
  * PerspectiveScene configures a perspective projection into
  * the associated framebuffer
  * @class PerspectiveScene
@@ -2225,7 +2229,7 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
     * Apply perspective projection to active framebuffer
     * @function Entity.Scene.PerspectiveScene.bind
     * @returns {undefined}
-    */},{key:"bind",value:function bind(){_get(Object.getPrototypeOf(PerspectiveScene.prototype),"bind",this).call(this);gl.enable(gl.DEPTH_TEST);gl.viewport(0,0,this.width,this.height);}}]);return PerspectiveScene;})(Scene);module.exports = PerspectiveScene;},{"./Scene":30,"./gl":37,"gl-matrix":1}],25:[function(require,module,exports){'use strict';var Material=require('./Material'); /**
+    */},{key:"bind",value:function bind(){_get(Object.getPrototypeOf(PerspectiveScene.prototype),"bind",this).call(this);gl.enable(gl.DEPTH_TEST);gl.viewport(0,0,this.width,this.height);}}]);return PerspectiveScene;})(Scene);module.exports = PerspectiveScene;},{"./Scene":30,"./gl":38,"gl-matrix":1}],25:[function(require,module,exports){'use strict';var Material=require('./Material'); /**
  * Phong shading using the Blinn-Phong shading model
  * @class PhongMaterial
  * @name Entity.Material.PhongMaterial
@@ -2315,7 +2319,7 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
     * shader link status
     * @function Entity.Program.check
     * @returns {undefined}
-    */},{key:"check",value:function check(){var buffer=this.buffer;var status=gl.getProgramParameter(buffer,gl.LINK_STATUS);if(!status){var _error=gl.getProgramInfoLog(buffer);gl.deleteProgram(buffer);throw new Error(_error);}}}]);return Program;})(Entity);module.exports = Program;},{"./Entity":15,"./gl":37}],28:[function(require,module,exports){'use strict';var Entity=require('./Entity');var gl=require('./gl'); /**
+    */},{key:"check",value:function check(){var buffer=this.buffer;var status=gl.getProgramParameter(buffer,gl.LINK_STATUS);if(!status){var _error=gl.getProgramInfoLog(buffer);gl.deleteProgram(buffer);throw new Error(_error);}}}]);return Program;})(Entity);module.exports = Program;},{"./Entity":15,"./gl":38}],28:[function(require,module,exports){'use strict';var Entity=require('./Entity');var gl=require('./gl'); /**
  * Renderbuffer is a wrapper on WebGLRenderbuffer buffers
  * @class Renderbuffer
  * @name Entity.Renderbuffer
@@ -2348,7 +2352,7 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
     * Unbind the renderbuffer
     * @function Entity.Renderbuffer.unbind
     * @returns {undefined}
-    */},{key:"unbind",value:function unbind(){gl.bindRenderbuffer(gl.RENDERBUFFER,null);}}]);return Renderbuffer;})(Entity);module.exports = Renderbuffer;},{"./Entity":15,"./gl":37}],29:[function(require,module,exports){'use strict';var Entity=require('./Entity'); /**
+    */},{key:"unbind",value:function unbind(){gl.bindRenderbuffer(gl.RENDERBUFFER,null);}}]);return Renderbuffer;})(Entity);module.exports = Renderbuffer;},{"./Entity":15,"./gl":38}],29:[function(require,module,exports){'use strict';var Entity=require('./Entity'); /**
  * Renderer
  * @class Renderer
  * @name Entity.Renderer
@@ -2440,7 +2444,7 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
     * @function Entity.Scene.translate
     * @param {vec3} translation - Translation vector
     * @returns {undefined}
-    */},{key:"translate",value:function translate(translation){var modelViewMatrix=this.modelViewMatrix;mat4.translate(modelViewMatrix,modelViewMatrix,translation);}}]);return Scene;})(Entity);module.exports = Scene;},{"./Entity":15,"./gl":37,"gl-matrix":1}],31:[function(require,module,exports){'use strict';var Entity=require('./Entity');var gl=require('./gl');var ajax=require('./utils/ajax'); /**
+    */},{key:"translate",value:function translate(translation){var modelViewMatrix=this.modelViewMatrix;mat4.translate(modelViewMatrix,modelViewMatrix,translation);}}]);return Scene;})(Entity);module.exports = Scene;},{"./Entity":15,"./gl":38,"gl-matrix":1}],31:[function(require,module,exports){'use strict';var Entity=require('./Entity');var gl=require('./gl');var ajax=require('./utils/ajax'); /**
  * Shader is a wrapper on WebGLShader buffers
  * @class Shader
  * @name Entity.Shader
@@ -2467,7 +2471,7 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
     * Validate shader compile status
     * @function Entity.Shader.check
     * @returns {undefined}
-    */},{key:"check",value:function check(){var buffer=this.buffer;var status=gl.getShaderParameter(buffer,gl.COMPILE_STATUS);if(!status){var _error2=gl.getShaderInfoLog(buffer);gl.deleteShader(buffer);throw new Error(_error2);}return true;}}]);return Shader;})(Entity);module.exports = Shader;},{"./Entity":15,"./gl":37,"./utils/ajax":39}],32:[function(require,module,exports){'use strict';var Light=require('./Light'); /**
+    */},{key:"check",value:function check(){var buffer=this.buffer;var status=gl.getShaderParameter(buffer,gl.COMPILE_STATUS);if(!status){var _error2=gl.getShaderInfoLog(buffer);gl.deleteShader(buffer);throw new Error(_error2);}return true;}}]);return Shader;})(Entity);module.exports = Shader;},{"./Entity":15,"./gl":38,"./utils/ajax":40}],32:[function(require,module,exports){'use strict';var Light=require('./Light'); /**
  * SpotLight is a local light source pointing in a particular
  * direction to illuminate an area of the scene
  * @class SpotLight
@@ -2577,7 +2581,7 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
     * Unbind the texture
     * @function Entity.Texture.unbind
     * @returns {undefined}
-    */},{key:"unbind",value:function unbind(){gl.bindTexture(gl.TEXTURE_2D,null);}}]);return Texture;})(Entity);module.exports = Texture;},{"./Entity":15,"./gl":37}],34:[function(require,module,exports){'use strict';var Entity=require('./Entity');var gl=require('./gl'); /**
+    */},{key:"unbind",value:function unbind(){gl.bindTexture(gl.TEXTURE_2D,null);}}]);return Texture;})(Entity);module.exports = Texture;},{"./Entity":15,"./gl":38}],34:[function(require,module,exports){'use strict';var Entity=require('./Entity');var gl=require('./gl'); /**
  * Uniform is a wrapper on shader WebGLUniformLocation uniforms
  * @class Uniform
  * @name Entity.Uniform
@@ -2604,19 +2608,21 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
     * @function Entity.Uniform.set
     * @param {*} value - Shader uniform value
     * @returns {undefined}
-    */_createClass(Uniform,[{key:"set",value:function set(value){gl[this.method](this.location,value);}}]);return Uniform;})(Entity);module.exports = Uniform;},{"./Entity":15,"./gl":37}],35:[function(require,module,exports){'use strict';var Shader=require('./Shader');var gl=require('./gl'); /**
+    */_createClass(Uniform,[{key:"set",value:function set(value){gl[this.method](this.location,value);}}]);return Uniform;})(Entity);module.exports = Uniform;},{"./Entity":15,"./gl":38}],35:[function(require,module,exports){'use strict';var Entity=require('./Entity');var gl=require('./gl'); // const Int8Array_BYTES_PER_ELEMENT = gl.Int8Array.BYTES_PER_ELEMENT;
+// const Uint8Array_BYTES_PER_ELEMENT = gl.Uint8Array.BYTES_PER_ELEMENT;
+var VertexArrayObject=(function(_Entity14){_inherits(VertexArrayObject,_Entity14);function VertexArrayObject(){var _ref25=arguments.length <= 0 || arguments[0] === undefined?{}:arguments[0];var _ref25$name=_ref25.name;var name=_ref25$name === undefined?'vertex.array.object':_ref25$name;var mesh=_ref25.mesh;var _ref25$attributes=_ref25.attributes;var attributes=_ref25$attributes === undefined?[]:_ref25$attributes;_classCallCheck(this,VertexArrayObject);_get(Object.getPrototypeOf(VertexArrayObject.prototype),"constructor",this).call(this,{name:name});this.mesh = mesh;this.attributes = this.generate(attributes);this.stride = 0;}_createClass(VertexArrayObject,[{key:"generate",value:function generate(attributes){var config=[];var offset=0;for(var index in attributes) {var attribute=attributes[index];var bytes=attribute.getByteCount();config.push({attribute:attribute,offset:offset += bytes});this.stride += bytes;}return config;}},{key:"enable",value:function enable(attribute){attribute.attribute.enable(attribute.stride,attribute.offset);}},{key:"disable",value:function disable(attribute){attribute.attribute.disable();}},{key:"bind",value:function bind(){this.attributes.map(this.enable);}},{key:"unbind",value:function unbind(){this.attributes.map(this.disable);}}]);return VertexArrayObject;})(Entity);module.exports = VertexArrayObject;},{"./Entity":15,"./gl":38}],36:[function(require,module,exports){'use strict';var Shader=require('./Shader');var gl=require('./gl'); /**
  * VertexShader is a wrapper on WebGLShader buffers
  * @class VertexShader
  * @name Entity.Shader.VertexShader
  * @extends Entity.Shader
  * @param {string} [name=vertex.shader] - Instance name
  * @param {string} path - Filepath to vertex shader source
- */var VertexShader=(function(_Shader2){_inherits(VertexShader,_Shader2);function VertexShader(){var _ref25=arguments.length <= 0 || arguments[0] === undefined?{}:arguments[0];var _ref25$name=_ref25.name;var name=_ref25$name === undefined?'vertex.shader':_ref25$name;var path=_ref25.path;_classCallCheck(this,VertexShader);_get(Object.getPrototypeOf(VertexShader.prototype),"constructor",this).call(this,{name:name,path:path},gl.VERTEX_SHADER);}return VertexShader;})(Shader);module.exports = VertexShader;},{"./Shader":31,"./gl":37}],36:[function(require,module,exports){'use strict'; /**
+ */var VertexShader=(function(_Shader2){_inherits(VertexShader,_Shader2);function VertexShader(){var _ref26=arguments.length <= 0 || arguments[0] === undefined?{}:arguments[0];var _ref26$name=_ref26.name;var name=_ref26$name === undefined?'vertex.shader':_ref26$name;var path=_ref26.path;_classCallCheck(this,VertexShader);_get(Object.getPrototypeOf(VertexShader.prototype),"constructor",this).call(this,{name:name,path:path},gl.VERTEX_SHADER);}return VertexShader;})(Shader);module.exports = VertexShader;},{"./Shader":31,"./gl":38}],37:[function(require,module,exports){'use strict'; /**
  * @fileoverview FourJS - FourJS is a plug-and-play WebGL-based physics
  * engine using advanced GPGPU techniques to maximise capabilities and
  * performance.
  * FourJS on [GitHub]{@link https://github.com/allotrop3/fourjs.git} or [download]{@link http://fourjs/dist/scripts/four.js}.
  * @author Jason Petersen
  * @version 0.0.0
- */var four={glm:require('gl-matrix'),gl:require('./gl'),Entity:require('./Entity'),Attribute:require('./Attribute'),Fluid:require('./Fluid'),Framebuffer:require('./Framebuffer'),DeferredFramebuffer:require('./DeferredFramebuffer'),Light:require('./Light'),DirectionalLight:require('./DirectionalLight'),PointLight:require('./PointLight'),SpotLight:require('./SpotLight'),Material:require('./Material'),PhongMaterial:require('./PhongMaterial'),Mesh:require('./Mesh'),Program:require('./Program'),Renderbuffer:require('./Renderbuffer'),Scene:require('./Scene'),OrthographicScene:require('./OrthographicScene'),PerspectiveScene:require('./PerspectiveScene'),Shader:require('./Shader'),FragmentShader:require('./FragmentShader'),VertexShader:require('./VertexShader'),Texture:require('./Texture'),DataTexture:require('./DataTexture'),ImageTexture:require('./ImageTexture'),Uniform:require('./Uniform')};module.exports = window.four = four;},{"./Attribute":11,"./DataTexture":12,"./DeferredFramebuffer":13,"./DirectionalLight":14,"./Entity":15,"./Fluid":16,"./FragmentShader":17,"./Framebuffer":18,"./ImageTexture":19,"./Light":20,"./Material":21,"./Mesh":22,"./OrthographicScene":23,"./PerspectiveScene":24,"./PhongMaterial":25,"./PointLight":26,"./Program":27,"./Renderbuffer":28,"./Scene":30,"./Shader":31,"./SpotLight":32,"./Texture":33,"./Uniform":34,"./VertexShader":35,"./gl":37,"gl-matrix":1}],37:[function(require,module,exports){'use strict';var canvas=document.querySelector('canvas');var gl=canvas.getContext('webgl');module.exports = gl;},{}],38:[function(require,module,exports){'use strict';var gl=require('./gl');},{"./gl":37}],39:[function(require,module,exports){'use strict';var promise=require('./promise');function ajax(url){return promise(function(resolve,reject){var request=new XMLHttpRequest();request.open('get',url);request.onload = function(){var status=request.status;if(status === 200){resolve(request.response);}else {var _status=url + ": " + request.statusText;var _error3=new Error(_status);reject(_error3);}};request.send();});}module.exports = ajax;},{"./promise":40}],40:[function(require,module,exports){'use strict';function promise(handler){return new Promise(handler);}module.exports = promise;},{}]},{},[11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]);
+ */var four={glm:require('gl-matrix'),gl:require('./gl'),Entity:require('./Entity'),Attribute:require('./Attribute'),Fluid:require('./Fluid'),Framebuffer:require('./Framebuffer'),DeferredFramebuffer:require('./DeferredFramebuffer'),Light:require('./Light'),DirectionalLight:require('./DirectionalLight'),PointLight:require('./PointLight'),SpotLight:require('./SpotLight'),Material:require('./Material'),PhongMaterial:require('./PhongMaterial'),Mesh:require('./Mesh'),Program:require('./Program'),Renderbuffer:require('./Renderbuffer'),Scene:require('./Scene'),OrthographicScene:require('./OrthographicScene'),PerspectiveScene:require('./PerspectiveScene'),Shader:require('./Shader'),FragmentShader:require('./FragmentShader'),VertexShader:require('./VertexShader'),Texture:require('./Texture'),DataTexture:require('./DataTexture'),ImageTexture:require('./ImageTexture'),Uniform:require('./Uniform')};module.exports = window.four = four;},{"./Attribute":11,"./DataTexture":12,"./DeferredFramebuffer":13,"./DirectionalLight":14,"./Entity":15,"./Fluid":16,"./FragmentShader":17,"./Framebuffer":18,"./ImageTexture":19,"./Light":20,"./Material":21,"./Mesh":22,"./OrthographicScene":23,"./PerspectiveScene":24,"./PhongMaterial":25,"./PointLight":26,"./Program":27,"./Renderbuffer":28,"./Scene":30,"./Shader":31,"./SpotLight":32,"./Texture":33,"./Uniform":34,"./VertexShader":36,"./gl":38,"gl-matrix":1}],38:[function(require,module,exports){'use strict';var canvas=document.querySelector('canvas');var gl=canvas.getContext('webgl');module.exports = gl;},{}],39:[function(require,module,exports){'use strict';var gl=require('./gl');},{"./gl":38}],40:[function(require,module,exports){'use strict';var promise=require('./promise');function ajax(url){return promise(function(resolve,reject){var request=new XMLHttpRequest();request.open('get',url);request.onload = function(){var status=request.status;if(status === 200){resolve(request.response);}else {var _status=url + ": " + request.statusText;var _error3=new Error(_status);reject(_error3);}};request.send();});}module.exports = ajax;},{"./promise":41}],41:[function(require,module,exports){'use strict';function promise(handler){return new Promise(handler);}module.exports = promise;},{}]},{},[11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41]);
 //# sourceMappingURL=four.js.map
