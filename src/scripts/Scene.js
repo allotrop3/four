@@ -5,7 +5,7 @@ let gl = require('./gl');
 let glm = require('gl-matrix');
 let mat4 = glm.mat4;
 let mat3 = glm.mat3;
-let axis = { x: [1, 0, 0], y: [0, 1, 0], z: [0, 0, 1] };
+const axis = { x: [1, 0, 0], y: [0, 1, 0], z: [0, 0, 1] };
 
 /**
  * Scene encapsulates functionality to transform the view,

@@ -22,6 +22,7 @@ class Mesh extends Entity
    {
       super({ name });
       
+      
       this.vao = vao;
       this.vertices = vertices;
       this.colors = colors;
