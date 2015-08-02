@@ -6,34 +6,42 @@ let gl = require('./gl');
 
 /**
  * VertexArrayObject retains the attributes associated with 
- * the rendering for a given, therefore providing a handler
+ * the rendering for an associated mesh, therefore providing a handler
  * to manage their referencing in the vertex shader
  * @class VertexArrayObject
  * @name Entity.VertexArrayObject
  * @extends Entity
  * @param {string} [name=vertex.array.object] - Instance name
  * @param {Entity.Mesh} mesh - Mesh
+ * @param {boolean} [indexed=false] - Flag element array usage
  * @param {Array} [attributes=[]] - Mesh vertex attributs
  */
 class VertexArrayObject extends Entity
 {
-	constructor({ name = 'vertex.array.object', mesh, attributes = [] } = {})
+	constructor({ name = 'vertex.array.object', indexed = false, attributes = [] } = {})
 	{
 		super({ name });
 		
 		/**
-       * Mesh
-       * @var {Entity.Mesh} Entity.VertexArrayObject.mesh
+       * Mesh vertex array buffer
+       * @var {WebGLBuffer} Entity.VertexArrayObject.buffer
        * @private
        */
-		this.mesh = mesh;
+		this.buffer = gl.createBuffer();
+		
+		/**
+       * Mesh element array buffer
+       * @var {WebGLBuffer} Entity.VertexArrayObject.eBuffer
+       * @private
+       */
+		this.eBuffer = gl.createBuffer();
 		
 		/**
        * Mesh vertex attributes
        * @var {Array} Entity.VertexArrayObject.attributes
        * @private
        */
-		this.attributes = attributes.map(this.offset);
+		this.attributes = attributes.map(this.generate);
 		
 		/**
        * Mesh vertex attributes byte count
@@ -48,11 +56,11 @@ class VertexArrayObject extends Entity
     * Compute the byte offset for a given 
 	 * vertex attribute attribute within the
 	 * vertex array buffer object
-    * @function Entity.VertexArrayObject.offset
+    * @function Entity.VertexArrayObject.generate
     * @param {Entity.Attribute} attribute - Vertex attribute to evaluate
     * @returns {object}
     */
-	offset(attribute)
+	generate(attribute)
 	{
 		let bytes = attribute.getByteCount();
 		
@@ -85,22 +93,38 @@ class VertexArrayObject extends Entity
 	}
 	
 	/**
-    * Bind and enable the mesh and vertex attributes respectively
+    * Bind and enable the vertex buffer object
+	 * and attributes respectively
     * @function Entity.VertexArrayObject.bind
     * @returns {undefined}
     */
 	bind()
-	{
+	{	
+		gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
+		
+		if (this.indexed)
+		{
+			gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.eBuffer);
+		}
+		
 		this.attributes.map(this.enable);
 	}
 	
 	/**
-    * Unbind and disable the mesh and vertex attributes respectively
+    * Unbind and disable the vertex buffer object
+	 * and attributes respectively
     * @function Entity.VertexArrayObject.unbind
     * @returns {undefined}
     */
 	unbind()
-	{
+	{		
+		gl.bindBuffer(gl.ARRAY_BUFFER, null);
+		
+		if (this.indexed)
+		{
+			gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
+		}
+		
 		this.attributes.map(this.disable);
 	}
 }
