@@ -9,16 +9,16 @@ let gl = require('./gl');
  * @name Entity.Mesh
  * @extends Entity
  * @param {string} [name=mesh] - Instance name
+ * @param {Entity.VertexArrayObject} vao - Vertex array object handler
  * @param {Array} [vertices=[]] - Mesh vertex positions
  * @param {Array} [colors=[]] - Mesh vertex colors
  * @param {Array} [uvs=[]] - Mesh vertex uv mapping
  * @param {boolean|Array} [indices=false] - Mesh draw indices
- * @param {number} [primitive=gl.TRIANGLES] - Mesh vertex construction method
- * @param {number} [method=gl.STATIC_DRAW] - Mesh vertex draw method
+ * @param {number} [usage=gl.STATIC_DRAW] - Mesh vertex draw usage
  */
 class Mesh extends Entity
 {
-   constructor({ name = 'mesh', vao, vertices = [], colors = [], uvs = [], normals = [], indices = false, primitive = gl.TRIANGLES, method = gl.STATIC_DRAW } = {})
+   constructor({ name = 'mesh', vao, vertices = [], colors = [], uvs = [], normals = [], indices = [], usage = gl.STATIC_DRAW } = {})
    {
       super({ name });
       
@@ -28,11 +28,18 @@ class Mesh extends Entity
       this.uvs = uvs;
       this.normals = normals;
       this.data = this.combine();
-      this.indices = indices;
-      this.primitive = primitive;
-      this.method = method;
+      this.indices = new Uint16Array(indices);
+      this.usage = usage;
    }
    
+   /**
+    * Fetch vertex attributes' values at the
+    * given index
+    * @callback Entity.Mesh.weave
+    * @param {string} [empty=undefined] - Filler value
+    * @param {number} index - Filler array index
+    * @returns {Array}
+    */
    weave(empty, index)
    {
       let vertex = this.vertices[index];
@@ -43,19 +50,64 @@ class Mesh extends Entity
       return [].concat(vertex, color, uv, normal);
    }
    
+   /**
+    * Interleave mesh attributes for optimal perforance
+    * @function Entity.Mesh.combine
+    * @returns {Float32Array}
+    */
    combine()
    {
-      return '0'.repeat(this.vertices.length).substring(1).split(',').map(this.weave);
+      let data = 'undefined'.repeat(this.vertices.length).substring(1).split(',').map(this.weave);
+      
+      return new Float32Array(data);
    }
    
+   /**
+    * Configure the vao contents for rendering
+    * @function Entity.Mesh.configure
+    * @returns {undefined}
+    */
    configure()
    {
+      let vao = this.vao;
+      let usage = this.usage;
       
+      vao.bind();
+      
+      gl.bufferData(gl.ARRAY_BUFFER, this.data, usage);
+      
+      if (vao.indexed)
+      {
+         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, this.indices, usage);
+      }
+      
+      vao.unbind();
    }
    
-   draw()
+   /**
+    * Render mesh
+    * @function Entity.Mesh.draw
+    * @param {number} [primitive=gl.TRIANGLES] - Mesh vertex construction method
+    * @param {number} [offset=0] - Index to start drawing from
+    * @param {boolean|number} [count=false] - Number of vertices to draw
+    * @returns {undefined}
+    */
+   draw(primitive = gl.TRIANGLES, offset = 0, count = false)
    {
+      let vao = this.vao;
       
+      vao.bind();
+      
+      if (vao.indexed)
+      {
+         gl.drawElements(primitive, count, gl.UNSIGNED_SHORT, offset);
+      }
+      else
+      {
+         gl.drawArrays(primitive, offset, count);
+      }
+      
+      vao.unbind();
    }
 }
 

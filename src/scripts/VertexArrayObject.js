@@ -7,12 +7,11 @@ let gl = require('./gl');
 /**
  * VertexArrayObject retains the attributes associated with 
  * the rendering for an associated mesh, therefore providing a handler
- * to manage their referencing in the vertex shader
+ * to manage their referencing in the vertex shader at render time
  * @class VertexArrayObject
  * @name Entity.VertexArrayObject
  * @extends Entity
  * @param {string} [name=vertex.array.object] - Instance name
- * @param {Entity.Mesh} mesh - Mesh
  * @param {boolean} [indexed=false] - Flag element array usage
  * @param {Array} [attributes=[]] - Mesh vertex attributs
  */
