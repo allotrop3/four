@@ -1971,7 +1971,7 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
  * @name Entity.Framebuffer
  * @extends Entity
  * @param {string} [name=framebuffer] - Instance name
- * @param {OrthographicScene|PerspectiveScene} scene - View configuration
+ * @param {Entity.Scene.OrthographicScene|Entity.Scene.PerspectiveScene} scene - View configuration
  */var Framebuffer=(function(_Entity3){_inherits(Framebuffer,_Entity3);function Framebuffer(){var _ref8=arguments.length <= 0 || arguments[0] === undefined?{}:arguments[0];var _ref8$name=_ref8.name;var name=_ref8$name === undefined?'framebuffer':_ref8$name;var scene=_ref8.scene;_classCallCheck(this,Framebuffer);_get(Object.getPrototypeOf(Framebuffer.prototype),"constructor",this).call(this,{name:name}); /**
        * WebGL framebuffer
        * @var {object} Entity.Framebuffer.buffer
@@ -2608,9 +2608,55 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
     * @function Entity.Uniform.set
     * @param {*} value - Shader uniform value
     * @returns {undefined}
-    */_createClass(Uniform,[{key:"set",value:function set(value){gl[this.method](this.location,value);}}]);return Uniform;})(Entity);module.exports = Uniform;},{"./Entity":15,"./gl":38}],35:[function(require,module,exports){'use strict';var Entity=require('./Entity');var gl=require('./gl'); // const Int8Array_BYTES_PER_ELEMENT = gl.Int8Array.BYTES_PER_ELEMENT;
-// const Uint8Array_BYTES_PER_ELEMENT = gl.Uint8Array.BYTES_PER_ELEMENT;
-var VertexArrayObject=(function(_Entity14){_inherits(VertexArrayObject,_Entity14);function VertexArrayObject(){var _ref25=arguments.length <= 0 || arguments[0] === undefined?{}:arguments[0];var _ref25$name=_ref25.name;var name=_ref25$name === undefined?'vertex.array.object':_ref25$name;var mesh=_ref25.mesh;var _ref25$attributes=_ref25.attributes;var attributes=_ref25$attributes === undefined?[]:_ref25$attributes;_classCallCheck(this,VertexArrayObject);_get(Object.getPrototypeOf(VertexArrayObject.prototype),"constructor",this).call(this,{name:name});this.mesh = mesh;this.attributes = attributes.map(this.offset);this.stride = 0;}_createClass(VertexArrayObject,[{key:"offset",value:function offset(attribute){var bytes=attribute.getByteCount();return {object:attribute,offset:this.stride += bytes};}},{key:"enable",value:function enable(attribute){attribute.attribute.enable(this.stride,attribute.offset);}},{key:"disable",value:function disable(attribute){attribute.attribute.disable();}},{key:"bind",value:function bind(){this.attributes.map(this.enable);}},{key:"unbind",value:function unbind(){this.attributes.map(this.disable);}}]);return VertexArrayObject;})(Entity);module.exports = VertexArrayObject;},{"./Entity":15,"./gl":38}],36:[function(require,module,exports){'use strict';var Shader=require('./Shader');var gl=require('./gl'); /**
+    */_createClass(Uniform,[{key:"set",value:function set(value){gl[this.method](this.location,value);}}]);return Uniform;})(Entity);module.exports = Uniform;},{"./Entity":15,"./gl":38}],35:[function(require,module,exports){'use strict';var Entity=require('./Entity');var gl=require('./gl'); /**
+ * VertexArrayObject retains the attributes associated with 
+ * the rendering for a given, therefore providing a handler
+ * to manage their referencing in the vertex shader
+ * @class VertexArrayObject
+ * @name Entity.VertexArrayObject
+ * @extends Entity
+ * @param {string} [name=vertex.array.object] - Instance name
+ * @param {Entity.Mesh} mesh - Mesh
+ * @param {Array} [attributes=[]] - Mesh vertex attributs
+ */var VertexArrayObject=(function(_Entity14){_inherits(VertexArrayObject,_Entity14);function VertexArrayObject(){var _ref25=arguments.length <= 0 || arguments[0] === undefined?{}:arguments[0];var _ref25$name=_ref25.name;var name=_ref25$name === undefined?'vertex.array.object':_ref25$name;var mesh=_ref25.mesh;var _ref25$attributes=_ref25.attributes;var attributes=_ref25$attributes === undefined?[]:_ref25$attributes;_classCallCheck(this,VertexArrayObject);_get(Object.getPrototypeOf(VertexArrayObject.prototype),"constructor",this).call(this,{name:name}); /**
+       * Mesh
+       * @var {Entity.Mesh} Entity.VertexArrayObject.mesh
+       * @private
+       */this.mesh = mesh; /**
+       * Mesh vertex attributes
+       * @var {Array} Entity.VertexArrayObject.attributes
+       * @private
+       */this.attributes = attributes.map(this.offset); /**
+       * Mesh vertex attributes byte count
+       * @var {number} Entity.VertexArrayObject.stride
+       * @private
+		 * @default 0
+       */this.stride = 0;} /**
+    * Compute the byte offset for a given 
+	 * vertex attribute attribute within the
+	 * vertex array buffer object
+    * @function Entity.VertexArrayObject.offset
+    * @param {Entity.Attribute} attribute - Vertex attribute to evaluate
+    * @returns {object}
+    */_createClass(VertexArrayObject,[{key:"offset",value:function offset(attribute){var bytes=attribute.getByteCount();return {object:attribute,offset:this.stride += bytes};} /**
+    * Enable the given vertex attribute
+    * @callback Entity.VertexArrayObject.enable
+    * @param {Entity.Attribute} attribute - Vertex attribute to enable
+    * @returns {undefined}
+    */},{key:"enable",value:function enable(attribute){attribute.object.enable(this.stride,attribute.offset);} /**
+    * Disable the given vertex attribute
+    * @callback Entity.VertexArrayObject.disable
+    * @param {Entity.Attribute} attribute - Vertex attribute to disable
+    * @returns {undefined}
+    */},{key:"disable",value:function disable(attribute){attribute.object.disable();} /**
+    * Bind and enable the mesh and vertex attributes respectively
+    * @function Entity.VertexArrayObject.bind
+    * @returns {undefined}
+    */},{key:"bind",value:function bind(){this.attributes.map(this.enable);} /**
+    * Unbind and disable the mesh and vertex attributes respectively
+    * @function Entity.VertexArrayObject.unbind
+    * @returns {undefined}
+    */},{key:"unbind",value:function unbind(){this.attributes.map(this.disable);}}]);return VertexArrayObject;})(Entity);module.exports = VertexArrayObject;},{"./Entity":15,"./gl":38}],36:[function(require,module,exports){'use strict';var Shader=require('./Shader');var gl=require('./gl'); /**
  * VertexShader is a wrapper on WebGLShader buffers
  * @class VertexShader
  * @name Entity.Shader.VertexShader

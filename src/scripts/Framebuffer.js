@@ -9,7 +9,7 @@ let gl = require('./gl');
  * @name Entity.Framebuffer
  * @extends Entity
  * @param {string} [name=framebuffer] - Instance name
- * @param {OrthographicScene|PerspectiveScene} scene - View configuration
+ * @param {Entity.Scene.OrthographicScene|Entity.Scene.PerspectiveScene} scene - View configuration
  */
 class Framebuffer extends Entity
 {
