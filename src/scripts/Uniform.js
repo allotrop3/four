@@ -2,6 +2,19 @@
 
 let Entity = require('./Entity');
 let gl = require('./gl');
+let formats = {
+   i: '1i',
+   vec2i: '2iv',
+   vec3i: '3iv',
+   vec4i: '4iv',
+   f: '1f',
+   vec2f: '2fv',
+   vec3f: '3fv',
+   vec4f: '4fv',
+   mat2: 'Matrix2fv',
+   mat3: 'Matrix3fv',
+   mat4: 'Matrix4fv'
+};
 
 /**
  * Uniform is a wrapper on shader WebGLUniformLocation uniforms
@@ -31,7 +44,7 @@ class Uniform extends Entity
        * @var {WebGLUniformLocation} [Entity.Uniform.location=WebGLUniformLocation]
        * @private
        */
-      this.location = gl.getUniformLocation(program.buffer, uniform);
+      this.location = gl.getUniformLocation(program.buffer, this.uniform);
 
       /**
        * Uniform setter method
@@ -39,7 +52,7 @@ class Uniform extends Entity
        * @default uniform${format}
        * @private
        */
-      this.method = `uniform${format}`;
+      this.method = `uniform${formats[format]}`;
    }
 
    /**

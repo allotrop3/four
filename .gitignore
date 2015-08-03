@@ -4,3 +4,4 @@ public/docs
 public/scripts
 *.log
 jsconfig.json
+.idea

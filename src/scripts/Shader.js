@@ -66,8 +66,9 @@ class Shader extends Entity
    {
       let buffer = this.buffer;
       let status = gl.getShaderParameter(buffer, gl.COMPILE_STATUS);
+      let context = gl.isContextLost();
 
-      if (!status)
+      if (!status && !context)
       {
          let error = gl.getShaderInfoLog(buffer);
 
@@ -75,8 +76,6 @@ class Shader extends Entity
 
          throw new Error(error);
       }
-
-      return true;
    }
 }
 

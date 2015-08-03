@@ -33,7 +33,7 @@ class Attribute extends Entity
        * @var {number} [Entity.Attribute.location=gl.getAttributeLocation]
        * @private
        */
-      this.location = gl.getAttributeLocation(program.buffer, attribute);
+      this.location = gl.getAttribLocation(program.buffer, this.attribute);
 
       /**
        * Number of components

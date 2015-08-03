@@ -42,6 +42,13 @@ class DataTexture extends Texture
        */
       this.height = height;
 
+      /**
+       * Number of color components per pixel
+       * @var {number} Entity.Texture.DataTexture.length
+       * @private
+       */
+      this.length = length;
+
       this.autofill();
       this.configure();
    }
@@ -57,11 +64,12 @@ class DataTexture extends Texture
       super.configure();
 
       let components = this.components;
+      let image = new Float32Array(this.image);
 
       gl.pixelStorei(gl.PACK_ALIGNMENT, 1);
       gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
 
-      gl.texImage2D(gl.TEXTURE_2D, this.lod, components, this.width, this.height, 0, components, this.format, this.image);
+      gl.texImage2D(gl.TEXTURE_2D, this.lod, components, this.width, this.height, 0, components, this.format, image);
 
       this.unbind();
    }
@@ -79,7 +87,7 @@ class DataTexture extends Texture
       let count = this.width * this.height * this.length - image.length;
       let nixels = `,${nixel}`.repeat(count).substring(1).split(',').map(parseFloat);
 
-      image.push(nixels);
+      image.push.apply(image, nixels);
    }
 }
 

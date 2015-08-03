@@ -2,13 +2,13 @@
 
 let promise = require('./promise');
 
-function ajax(url)
+function ajax(url, async = false)
 {
    return promise(function(resolve, reject)
    {
       let request = new XMLHttpRequest();
 
-      request.open('get', url);
+      request.open('get', url, async);
 
       request.onload = function()
       {

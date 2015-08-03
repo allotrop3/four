@@ -80,8 +80,9 @@ class Program extends Entity
    {
       let buffer = this.buffer;
       let status = gl.getProgramParameter(buffer, gl.LINK_STATUS);
+      let context = gl.isContextLost();
 
-      if (!status)
+      if (!status && !context)
       {
          let error = gl.getProgramInfoLog(buffer);
 
