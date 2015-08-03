@@ -19,6 +19,7 @@ function main()
 	let frame1 = new FOUR.DeferredFramebuffer({ colorAttachment: dtex1, depthAttachment: rend1, scene: orth1 });
 	let persp1 = new FOUR.PerspectiveScene({ width: 50, height: 50, direction: [0, 1, 1], location: [10, 10, 10] });
 	let view = new FOUR.Framebuffer({ scene: persp1 });
+	let itex1 = new FOUR.ImageTexture({ image: document.querySelector('.fourjs__image'), anisotropy: 4 });
 	
 	console.log(vertShader1);
 	console.log(fragShader1);
@@ -32,6 +33,7 @@ function main()
 	console.log(frame1);
 	console.log(persp1);
 	console.log(view);
+	console.log(itex1);
 }
 
 setTimeout(main, 3000);

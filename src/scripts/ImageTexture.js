@@ -12,7 +12,7 @@ var gl = require('./gl');
  * @param {string} [name=image.texture] - Instance name
  * @param {Array} [image=[]] - Texture data
  * @param {number} [lod=0] - Level of detail
- * @param {number} [components=gl.RGB] - Texture components per texel
+ * @param {number} [components=gl.RGBA] - Texture components per texel
  * @param {number} [format=gl.UNSIGNED_BYTE] - Component data format
  * @param {number} [magnification=gl.NEAREST] - Magnification sampling filter
  * @param {number} [minification=gl.NEAREST] - Minification sampling filter
@@ -86,10 +86,10 @@ class ImageTexture extends Texture
       {
          let maxAnisotropy = gl.getParameter(anisotropicFilter.MAX_TEXTURE_MAX_ANISOTROPY_EXT);
 
-         anisotropy = Math.min(anisotropy, Math.max(anisotropy, maxAnisotropy));
+         return Math.min(anisotropy, Math.max(anisotropy, maxAnisotropy));
       }
 
-      return anisotropy = false;
+      return false;
    }
 }
 

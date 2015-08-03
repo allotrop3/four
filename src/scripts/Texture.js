@@ -13,7 +13,7 @@ let unit = 0;
  * @param {string} [name=attribute] - Name of the Texture instance
  * @param {Array} image - Texture data
  * @param {number} [lod=0] - Level of detail
- * @param {number} [components=gl.RGB] - Texture components per texel
+ * @param {number} [components=gl.RGBA] - Texture components per texel
  * @param {number} [format=gl.UNSIGNED_BYTE] - Component data format
  * @param {number} [magnification=gl.NEAREST] - Magnification sampling filter
  * @param {number} [minification=gl.NEAREST] - Minification sampling filter
@@ -22,7 +22,7 @@ let unit = 0;
  */
 class Texture extends Entity
 {
-   constructor({ name = 'texture', image, lod = 0, components = gl.RGB, format = gl.UNSIGNED_BYTE, magnification = gl.NEAREST, minification = gl.NEAREST, S = gl.CLAMP_TO_EDGE, T = gl.CLAMP_TO_EDGE } = {})
+   constructor({ name = 'texture', image, lod = 0, components = gl.RGBA, format = gl.UNSIGNED_BYTE, magnification = gl.NEAREST, minification = gl.NEAREST, S = gl.CLAMP_TO_EDGE, T = gl.CLAMP_TO_EDGE } = {})
    {
       super({ name });
 
