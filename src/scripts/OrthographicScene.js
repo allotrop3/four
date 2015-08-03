@@ -71,6 +71,8 @@ class OrthographicScene extends Scene
        * @private
        */
       this.far = far;
+
+      this.configure();
    }
 
    /**

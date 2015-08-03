@@ -104,8 +104,6 @@ class Texture extends Entity
        * @private
        */
       this.unit = unit++;
-
-      this.configure();
    }
 
    /**

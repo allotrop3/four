@@ -87,28 +87,28 @@ class Framebuffer extends Entity
    check()
    {
       let status = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
-      let exception = false;
+      let error = false;
 
       switch (status)
       {
          case gl.FRAMEBUFFER_UNSUPPORTED:
-            exception = 'unsupported';
+            error = 'unsupported';
             break;
 
          case gl.FRAMEBUFFER_INCOMPLETE_ATTACHMENT:
-            exception = 'attachments incomplete';
+            error = 'attachments incomplete';
             break;
 
          case gl.FRAMEBUFFER_INCOMPLETE_DIMENSIONS:
-            exception = 'dimensions incomplete';
+            error = 'dimensions incomplete';
             break;
 
          case gl.FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:
-            exception = 'attachment missing';
+            error = 'attachment missing';
             break;
       }
 
-      if (exception)
+      if (error)
       {
          gl.deleteFramebuffer(this.buffer);
 

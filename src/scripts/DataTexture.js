@@ -24,7 +24,7 @@ var gl = require('./gl');
  */
 class DataTexture extends Texture
 {
-   constructor({ name = 'data.texture', image = [], lod, width, height, length = 3, components, format = gl.FLOAT, magnification, minification, S, T } = {})
+   constructor({ name = 'data.texture', image = [], lod, width, height, length = 3, components = gl.RGB, format = gl.FLOAT, magnification, minification, S, T } = {})
    {
       super({ name, image, lod, components, format, magnification, minification, S, T });
 
@@ -68,6 +68,8 @@ class DataTexture extends Texture
 
       gl.pixelStorei(gl.PACK_ALIGNMENT, 1);
       gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
+
+      gl.getExtension('OES_texture_float');
 
       gl.texImage2D(gl.TEXTURE_2D, this.lod, components, this.width, this.height, 0, components, this.format, image);
 

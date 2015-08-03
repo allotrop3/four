@@ -16,7 +16,6 @@ let mat4 = glm.mat4;
  * @param {number} width - View width
  * @param {number} height - View height
  * @param {number} [fov=45] - Field of view
- * @param {number} ratio - View aspect ratio
  * @param {number} [near=0.1] - Observable start
  * @param {number} [far=1000] - Observable end
  * @param {vec3} direction - View direction
@@ -25,7 +24,7 @@ let mat4 = glm.mat4;
  */
 class PerspectiveScene extends Scene
 {
-   constructor({ name = 'perspective.scene', background, width, height, fov = 45, ratio, near = 0.1, far = 1000, direction, location, up = [0, 1, 0] } = {})
+   constructor({ name = 'perspective.scene', background, width, height, fov = 45, near = 0.1, far = 1000, direction, location, up = [0, 1, 0] } = {})
    {
       super({ name, background });
 
@@ -56,7 +55,7 @@ class PerspectiveScene extends Scene
        * @var {number} Entity.Scene.PerspectiveScene.ratio
        * @private
        */
-      this.ratio = ratio;
+      this.ratio = width / height;
 
       /**
        * Observable start
@@ -95,6 +94,8 @@ class PerspectiveScene extends Scene
        * @private
        */
       this.up = up;
+
+      this.configure();
    }
 
    /**

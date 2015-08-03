@@ -2,7 +2,7 @@
 
 let Entity = require('./Entity');
 let gl = require('./gl');
-let formats = {
+const formats = {
    i: '1i',
    vec2i: '2iv',
    vec3i: '3iv',
