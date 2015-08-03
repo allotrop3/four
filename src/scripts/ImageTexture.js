@@ -25,7 +25,7 @@ class ImageTexture extends Texture
    constructor({ name = 'image.texture', image, lod, components, format, magnification, minification, S, T, anisotropy = false } = {})
    {
       super({ name, image, lod, components, format, magnification, minification, S, T });
-        
+
       /**
        * Anisotropic filter handle
        * @var {function} Entity.Texture.ImageTexture.anisotropicFilter
@@ -33,7 +33,7 @@ class ImageTexture extends Texture
        * @private
        */
       this.anisotropicFilter = gl.getExtension('EXT_texture_filter_anisotropic');
-      
+
       /**
        * Level of anisotropic filtering to
        * improve rendering quality of textures
@@ -58,7 +58,7 @@ class ImageTexture extends Texture
 
       let components = this.components;
       let anisotropy = this.anisotropy;
-      
+
       if (anisotropy)
       {
          gl.texParameterf(gl.TEXTURE_2D, this.anisotropicFilter.TEXTURE_MAX_ANISOTROPY, anisotropy);
@@ -70,9 +70,9 @@ class ImageTexture extends Texture
 
       this.unbind();
    }
-   
+
    /**
-    * Check there anisotropy support and a supported
+    * Check there is anisotropy support and a supported
     * option is used
     * @function Entity.Texture.ImageTexture.checkAnisotropy
     * @param {boolean|number} anisotropy - Level of anisotropic filtering
@@ -81,14 +81,14 @@ class ImageTexture extends Texture
    checkAnisotropy(anisotropy)
    {
       let anisotropicFilter = this.anisotropicFilter;
-      
+
       if (anisotropicFilter && anisotropy !== false)
-      {  
+      {
          let maxAnisotropy = gl.getParameter(anisotropicFilter.MAX_TEXTURE_MAX_ANISOTROPY_EXT);
-         
+
          anisotropy = Math.min(anisotropy, Math.max(anisotropy, maxAnisotropy));
       }
-      
+
       return anisotropy = false;
    }
 }

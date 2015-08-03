@@ -2034,7 +2034,7 @@ out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;out[1] = iy * qw + iw * -qy + 
     * @function Entity.Texture.ImageTexture.configure
     * @returns {undefined}
     */_createClass(ImageTexture,[{key:"configure",value:function configure(){_get(Object.getPrototypeOf(ImageTexture.prototype),"configure",this).call(this);var components=this.components;var anisotropy=this.anisotropy;if(anisotropy){gl.texParameterf(gl.TEXTURE_2D,this.anisotropicFilter.TEXTURE_MAX_ANISOTROPY,anisotropy);}gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);gl.texImage2D(gl.TEXTURE_2D,this.lod,components,components,this.format,this.image);this.unbind();} /**
-    * Check there anisotropy support and a supported
+    * Check there is anisotropy support and a supported
     * option is used
     * @function Entity.Texture.ImageTexture.checkAnisotropy
     * @param {boolean|number} anisotropy - Level of anisotropic filtering
