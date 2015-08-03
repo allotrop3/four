@@ -38,12 +38,12 @@ class Shader extends Entity
     */
    fetch(path)
    {
-      ajax(path).then(this.compile);
+      ajax(path).then(this.compile.bind(this));
    }
 
    /**
     * Compile the shader source
-    * @function Entity.Shader.compile
+    * @callback Entity.Shader.compile
     * @param {string} source - Shader source
     * @returns {undefined}
     */
@@ -53,7 +53,7 @@ class Shader extends Entity
 
       gl.shaderSource(buffer, source);
       gl.compileShader(buffer);
-
+      
       this.check();
    }
 

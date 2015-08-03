@@ -1,5 +1,6 @@
 node_modules
 .tmp
-dist/scripts
+public/docs
+public/scripts
 *.log
 jsconfig.json

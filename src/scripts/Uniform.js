@@ -31,7 +31,7 @@ class Uniform extends Entity
        * @var {WebGLUniformLocation} [Entity.Uniform.location=WebGLUniformLocation]
        * @private
        */
-      this.location = gl.getUniformLocation(program, uniform);
+      this.location = gl.getUniformLocation(program.buffer, uniform);
 
       /**
        * Uniform setter method

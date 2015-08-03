@@ -8,7 +8,7 @@
  * @author Jason Petersen
  * @version 0.0.0
  */
-var four = {
+var FOUR = {
    glm: require('gl-matrix'),
    gl: require('./gl'),
    Entity: require('./Entity'),
@@ -34,7 +34,8 @@ var four = {
    Texture: require('./Texture'),
    DataTexture: require('./DataTexture'),
    ImageTexture: require('./ImageTexture'),
-   Uniform: require('./Uniform')
+   Uniform: require('./Uniform'),
+   VertexArrayObject: require('./VertexArrayObject')
 };
 
-module.exports = window.four = four;
+module.exports = window.FOUR = FOUR;

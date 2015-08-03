@@ -1,7 +1,7 @@
 'use strict';
 
 let Entity = require('./Entity');
-let shades = { flat: 1, smooth: 0 };
+const shades = { flat: 1, smooth: 0 };
 
 /**
  * Materials dictate the mesh shading

@@ -33,7 +33,7 @@ class Attribute extends Entity
        * @var {number} [Entity.Attribute.location=gl.getAttributeLocation]
        * @private
        */
-      this.location = gl.getAttributeLocation(program, attribute);
+      this.location = gl.getAttributeLocation(program.buffer, attribute);
 
       /**
        * Number of components
@@ -55,6 +55,16 @@ class Attribute extends Entity
        * @private
        */
       this.normalized = normalized;
+   }
+   
+   /**
+    * Compute total number of bytes
+    * @function Entity.Attribute.getByteCount
+    * @returns {number}
+    */
+   getByteCount()
+   {
+      return this.length * this.format.BYTES_PER_ELEMENT;
    }
 
    /**
