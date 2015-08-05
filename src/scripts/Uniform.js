@@ -63,7 +63,18 @@ class Uniform extends Entity
     */
    set(value)
    {
-      gl[this.method](this.location, value);
+      let location = this.location;
+      let method = this.method;
+      let setter = gl[this.method].bind(gl, this.location);
+
+      if (method.match('Matrix') !== null)
+      {
+         setter(false, value);
+      }
+      else
+      {
+         setter(value);
+      }
    }
 }
 
