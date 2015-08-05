@@ -20,6 +20,13 @@ class Entity
       this.name = this.index(name);
 
       /**
+       * Entity base name
+       * @var {string} Entity.basename
+       * @private
+       */
+      this.basename = name;
+
+      /**
        * Entity delete flag
        * @var {boolean} Entity.destroyed
        * @default false

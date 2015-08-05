@@ -76,6 +76,8 @@ class Shader extends Entity
 
          throw new Error(error);
       }
+
+      return true;
    }
 }
 

@@ -20,6 +20,9 @@ function main()
 	let persp1 = new FOUR.PerspectiveScene({ width: 50, height: 50, direction: [0, 1, 1], location: [10, 10, 10] });
 	let view = new FOUR.Framebuffer({ scene: persp1 });
 	let itex1 = new FOUR.ImageTexture({ image: document.querySelector('.fourjs__image'), anisotropy: 4 });
+	let matrl1 = new FOUR.Material({ ambient: [0.1, 0.4, 0.4], diffuse: [0, 0, 0] });
+	let pmatrl1 = new FOUR.PhongMaterial({ ambient: [0.1, 0.4, 0.4], diffuse: [0, 0, 0], specular: [0.3, 0.1, 0.1], shininess: 90 });
+
 
 	console.log(vertShader1);
 	console.log(fragShader1);
@@ -34,7 +37,8 @@ function main()
 	console.log(persp1);
 	console.log(view);
 	console.log(itex1);
+	console.log(matrl1);
+	console.log(pmatrl1);
 }
-
 
 setTimeout(main, 3000);

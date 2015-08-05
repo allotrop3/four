@@ -2,28 +2,36 @@ module.exports = function(grunt)
 {
    grunt.initConfig({
       config: {
-         src: {
+         source: {
             root: './src/scripts',
             source: './src/scripts/**/*.js',
-            cache: './.tmp/scripts/four.js'
-         },
-         public: {
-            root: './public/scripts',
+            cache: './.tmp/scripts/four.js',
             concatenated: './public/scripts/four.js',
             minified: './public/scripts/four.min.js',
             docs: './public/docs'
+         },
+         test: {
+            root: './test',
+            source: './test/**/*.js',
+            cache: './.tmp/scripts/test.js',
+            concatenated: './public/scripts/test.js'
          }
       },
       jshint: {
          options: {
             jshintrc: '.jshintrc',
          },
-         files: ['<%= config.src.source %>']
+         files: ['<%= config.source.source %>']
       },
       browserify: {
          dist: {
             files: {
-               '<%= config.src.cache %>': '<%= config.src.source %>'
+               '<%= config.source.cache %>': '<%= config.source.source %>'
+            }
+         },
+         test: {
+            files: {
+               '<%= config.test.cache %>': '<%= config.test.source %>'
             }
          }
       },
@@ -33,7 +41,12 @@ module.exports = function(grunt)
          },
          dist: {
             files: {
-               '<%= config.public.concatenated %>': '<%= config.src.cache %>'
+               '<%= config.source.concatenated %>': '<%= config.source.cache %>'
+            }
+         },
+         test: {
+            files: {
+               '<%= config.test.concatenated %>': '<%= config.test.cache %>'
             }
          }
       },
@@ -44,22 +57,28 @@ module.exports = function(grunt)
          },
          dist: {
             files: {
-               '<%= config.public.minified %>': '<%= config.public.concatenated %>'
+               '<%= config.source.minified %>': '<%= config.source.concatenated %>'
             }
          }
       },
       jsdoc: {
          dist: {
-            src: '<%= config.public.concatenated %>',
+            src: '<%= config.source.concatenated %>',
             options: {
-               destination: '<%= config.public.docs %>',
+               destination: '<%= config.source.docs %>',
                ignoreWarnings: true
             }
          }
       },
       watch: {
-         files: ['<%= jshint.files %>'],
-         tasks: ['default']
+         source: {
+            files: ['<%= config.source.source %>'],
+            tasks: ['default']
+         },
+         test: {
+            files: ['<%= config.test.source %>'],
+            tasks: ['test']
+         }
       }
    });
 
@@ -70,5 +89,6 @@ module.exports = function(grunt)
    grunt.loadNpmTasks('grunt-jsdoc');
    grunt.loadNpmTasks('grunt-contrib-watch');
 
-   grunt.registerTask('default', ['browserify', 'babel', 'uglify', 'jsdoc']);
+   grunt.registerTask('default', ['browserify:dist', 'babel:dist', 'uglify', 'jsdoc']);
+   grunt.registerTask('test', ['browserify:test', 'babel:test']);
 };
