@@ -2,8 +2,6 @@
 
 let Entity = require('./Entity');
 let gl = require('./gl');
-
-
 /**
  * VertexArrayObject retains the attributes associated with
  * the rendering for an associated mesh, therefore providing a handler
@@ -13,11 +11,12 @@ let gl = require('./gl');
  * @extends Entity
  * @param {string} [name=vertex.array.object] - Instance name
  * @param {boolean} [indexed=false] - Flag element array usage
- * @param {Array} [attributes=[]] - Mesh vertex attributs
+ * @param {ArrayBufferView} [view=Float32Array] - Mesh array buffer data view
+ * @param {Array} [attributes=[]] - Mesh vertex attributes
  */
 class VertexArrayObject extends Entity
 {
-	constructor({ name = 'vertex.array.object', indexed = false, attributes = [] } = {})
+	constructor({ name = 'vertex.array.object', indexed = false, view = Float32Array, attributes = [] } = {})
 	{
 		super({ name });
 
@@ -35,20 +34,28 @@ class VertexArrayObject extends Entity
        */
 		this.eBuffer = gl.createBuffer();
 
+      /**
+       * Mesh vertex attributes byte count
+       * @var {number} Entity.VertexArrayObject.stride
+       * @private
+       * @default 0
+       */
+      this.stride = 0;
+
+      /**
+       * Mesh array buffer data precision
+       * @var {ArrayBufferView} Entity.VertexArrayObject.view
+       * @private
+       * @default Float32Array
+       */
+      this.view = view;
+
 		/**
        * Mesh vertex attributes
        * @var {Array} Entity.VertexArrayObject.attributes
        * @private
        */
-		this.attributes = attributes.map(this.generate);
-
-		/**
-       * Mesh vertex attributes byte count
-       * @var {number} Entity.VertexArrayObject.stride
-       * @private
-		 * @default 0
-       */
-		this.stride = 0;
+		this.attributes = attributes.map(this.generate.bind(this));
 	}
 
 	/**
@@ -61,14 +68,16 @@ class VertexArrayObject extends Entity
     */
 	generate(attribute)
 	{
-		let bytes = attribute.getByteCount();
-		
+		let offset = this.stride;
+
+      this.stride += attribute.getByteCount(this.view.BYTES_PER_ELEMENT);
+
 		return {
 			object: attribute,
-			offset: this.stride += bytes
+			offset: offset
 		};
 	}
-	
+
 	/**
     * Enable the given vertex attribute
     * @callback Entity.VertexArrayObject.enable

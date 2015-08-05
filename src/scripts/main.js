@@ -11,6 +11,8 @@ function main()
 {
 	let prog1 = new FOUR.Program({ vertexShader: vertShader1, fragmentShader: fragShader1 });
 	let attr1 = new FOUR.Attribute({ program: prog1, attribute: 'position', length: 3 });
+	let attr2 = new FOUR.Attribute({ program: prog1, attribute: 'color', length: 3 });
+	let vao1 = new FOUR.VertexArrayObject({ attributes: [attr1, attr2] });
 	let uni1 = new FOUR.Uniform({ program: prog1, uniform: 'projection', format: 'mat4' });
 	let uni2 = new FOUR.Uniform({ program: prog1, uniform: 'modelView', format: 'mat4' });
 	let dtex1 = new FOUR.DataTexture({ image: [3, 4, 5, 1, 6, 3, 6, 8, 4], width: 50, height: 50 });
@@ -22,12 +24,16 @@ function main()
 	let itex1 = new FOUR.ImageTexture({ image: document.querySelector('.fourjs__image'), anisotropy: 4 });
 	let matrl1 = new FOUR.Material({ ambient: [0.1, 0.4, 0.4], diffuse: [0, 0, 0] });
 	let pmatrl1 = new FOUR.PhongMaterial({ ambient: [0.1, 0.4, 0.4], diffuse: [0, 0, 0], specular: [0.3, 0.1, 0.1], shininess: 90 });
-
+	let light1 = new FOUR.Light({ ambient: [0.1, 0.4, 0.4], diffuse: [0, 0, 0], specular: [0.3, 0.1, 0.1], intensity: 10 });
+	let spotlt1 = new FOUR.SpotLight({ ambient: [0.1, 0.4, 0.4], diffuse: [0, 0, 0], specular: [0.3, 0.1, 0.1], exponent: 1.34, cutoff: 45, intensity: 10 });
+	let ptlt1 = new FOUR.PointLight({ ambient: [0.1, 0.4, 0.4], diffuse: [0, 0, 0], specular: [0.3, 0.1, 0.1], coefficient: [3, 1, 1], linear: [0.4, 3, 6], quadratic: [9, 0.384, 93.3], intensity: 10, location: [10, 100, 10] });
 
 	console.log(vertShader1);
 	console.log(fragShader1);
 	console.log(prog1);
 	console.log(attr1);
+	console.log(attr2);
+	console.log(vao1);
 	console.log(uni1);
 	console.log(uni2);
 	console.log(dtex1);
@@ -39,6 +45,9 @@ function main()
 	console.log(itex1);
 	console.log(matrl1);
 	console.log(pmatrl1);
+	console.log(light1);
+	console.log(spotlt1);
+	console.log(ptlt1);
 }
 
 setTimeout(main, 3000);
