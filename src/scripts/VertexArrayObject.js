@@ -86,7 +86,7 @@ class VertexArrayObject extends Entity
     */
 	enable(attribute)
 	{
-		attribute.object.enable(this.stride, attribute.offset);
+      attribute.object.enable(this.stride, attribute.offset);
 	}
 
 	/**
@@ -97,7 +97,7 @@ class VertexArrayObject extends Entity
     */
 	disable(attribute)
 	{
-		attribute.object.disable();
+      attribute.object.disable();
 	}
 
 	/**
@@ -115,7 +115,7 @@ class VertexArrayObject extends Entity
 			gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.eBuffer);
 		}
 
-		this.attributes.map(this.enable);
+		this.attributes.map(this.enable.bind(this));
 	}
 
 	/**
