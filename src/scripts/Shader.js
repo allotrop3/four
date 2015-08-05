@@ -53,7 +53,7 @@ class Shader extends Entity
 
       gl.shaderSource(buffer, source);
       gl.compileShader(buffer);
-      
+
       this.check();
    }
 

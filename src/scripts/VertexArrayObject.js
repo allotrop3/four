@@ -5,7 +5,7 @@ let gl = require('./gl');
 
 
 /**
- * VertexArrayObject retains the attributes associated with 
+ * VertexArrayObject retains the attributes associated with
  * the rendering for an associated mesh, therefore providing a handler
  * to manage their referencing in the vertex shader at render time
  * @class VertexArrayObject
@@ -20,28 +20,28 @@ class VertexArrayObject extends Entity
 	constructor({ name = 'vertex.array.object', indexed = false, attributes = [] } = {})
 	{
 		super({ name });
-		
+
 		/**
        * Mesh vertex array buffer
        * @var {WebGLBuffer} Entity.VertexArrayObject.buffer
        * @private
        */
 		this.buffer = gl.createBuffer();
-		
+
 		/**
        * Mesh element array buffer
        * @var {WebGLBuffer} Entity.VertexArrayObject.eBuffer
        * @private
        */
 		this.eBuffer = gl.createBuffer();
-		
+
 		/**
        * Mesh vertex attributes
        * @var {Array} Entity.VertexArrayObject.attributes
        * @private
        */
 		this.attributes = attributes.map(this.generate);
-		
+
 		/**
        * Mesh vertex attributes byte count
        * @var {number} Entity.VertexArrayObject.stride
@@ -50,9 +50,9 @@ class VertexArrayObject extends Entity
        */
 		this.stride = 0;
 	}
-	
+
 	/**
-    * Compute the byte offset for a given 
+    * Compute the byte offset for a given
 	 * vertex attribute attribute within the
 	 * vertex array buffer object
     * @function Entity.VertexArrayObject.generate
@@ -79,7 +79,7 @@ class VertexArrayObject extends Entity
 	{
 		attribute.object.enable(this.stride, attribute.offset);
 	}
-	
+
 	/**
     * Disable the given vertex attribute
     * @callback Entity.VertexArrayObject.disable
@@ -90,7 +90,7 @@ class VertexArrayObject extends Entity
 	{
 		attribute.object.disable();
 	}
-	
+
 	/**
     * Bind and enable the vertex buffer object
 	 * and attributes respectively
@@ -98,17 +98,17 @@ class VertexArrayObject extends Entity
     * @returns {undefined}
     */
 	bind()
-	{	
+	{
 		gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
-		
+
 		if (this.indexed)
 		{
 			gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.eBuffer);
 		}
-		
+
 		this.attributes.map(this.enable);
 	}
-	
+
 	/**
     * Unbind and disable the vertex buffer object
 	 * and attributes respectively
@@ -116,14 +116,14 @@ class VertexArrayObject extends Entity
     * @returns {undefined}
     */
 	unbind()
-	{		
+	{
 		gl.bindBuffer(gl.ARRAY_BUFFER, null);
-		
+
 		if (this.indexed)
 		{
 			gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
 		}
-		
+
 		this.attributes.map(this.disable);
 	}
 }
