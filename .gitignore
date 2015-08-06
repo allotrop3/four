@@ -1,7 +1,5 @@
-node_modules
 .tmp
+.settings
+node_modules
 public/docs
 public/scripts
-*.log
-jsconfig.json
-.idea
