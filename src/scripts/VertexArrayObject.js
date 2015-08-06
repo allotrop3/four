@@ -11,7 +11,7 @@ let gl = require('./gl');
  * @extends Entity
  * @param {string} [name=vertex.array.object] - Instance name
  * @param {boolean} [indexed=false] - Flag element array usage
- * @param {ArrayBufferView} [view=Float32Array] - Mesh array buffer data view
+ * @param {ArrayBuffer} [view=Float32Array] - Mesh array buffer data view
  * @param {Array} [attributes=[]] - Mesh vertex attributes
  */
 class VertexArrayObject extends Entity
@@ -44,7 +44,7 @@ class VertexArrayObject extends Entity
 
       /**
        * Mesh array buffer data precision
-       * @var {ArrayBufferView} Entity.VertexArrayObject.view
+       * @var {ArrayBuffer} Entity.VertexArrayObject.view
        * @private
        * @default Float32Array
        */
