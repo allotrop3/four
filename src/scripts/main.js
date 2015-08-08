@@ -26,9 +26,9 @@ function main()
 {
 	program1 = new FOUR.Program({ vertexShader: vertShader1, fragmentShader: fragShader1 });
 	position1 = new FOUR.Attribute({ program: program1, attribute: 'position', length: 3 });
-	// uv1 = new FOUR.Attribute({ program: program1, attribute: 'uv', length: 3 });
-	normal1 = new FOUR.Attribute({ program: program1, attribute: 'normal', length: 3 });
-	vao1 = new FOUR.VertexArrayObject({ attributes: [position1], indexed: true });
+	uv1 = new FOUR.Attribute({ program: program1, attribute: 'uv', length: 3 });
+	normal1 = new FOUR.Attribute({ program: program1, attribute: 'normal', length: 2 });
+	vao1 = new FOUR.VertexArrayObject({ attributes: [position1, uv1, normal1], indexed: true });
 	projection1 = new FOUR.Uniform({ program: program1, uniform: 'projection', format: 'mat4' });
 	modview1 = new FOUR.Uniform({ program: program1, uniform: 'modelView', format: 'mat4' });
 	color1 = new FOUR.Uniform({ program: program1, uniform: 'color', format: 'vec3f' });
@@ -37,7 +37,8 @@ function main()
 	mesh1 = new FOUR.Mesh({
 		vao: vao1,
 		vertices: objMesh1.vertices,
-		// normals: objMesh1.normals,
+		uvs: objMesh1.uvs,
+		normals: objMesh1.normals,
 		indices: objMesh1.indices
 	});
 
@@ -57,7 +58,7 @@ function render()
 
 	perspective1.save();
 
-	// perspective1.rotateY(rotationY += 0.01);
+	perspective1.rotateY(rotationY += 0.01);
 	perspective1.scaleX(scale);
 	perspective1.scaleY(scale);
 	perspective1.scaleZ(scale);
@@ -77,4 +78,4 @@ function render()
 	requestAnimationFrame(render);
 }
 
-setTimeout(main, 7000);
+setTimeout(main, 5000);
