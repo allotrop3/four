@@ -13,8 +13,8 @@ let mat4 = glm.mat4;
  * @extends Entity.Scene
  * @param {string} [name=perspective.scene] - Instance name
  * @param {vec4} [background=[0, 0, 0, 1]] - Scene background color
- * @param {number} width - View width
- * @param {number} height - View height
+ * @param {number} [width=gl.canvas.width] - View width
+ * @param {number} [height=gl.canvas.height] - View height
  * @param {number} [fov=45] - Field of view
  * @param {number} [near=0.1] - Observable start
  * @param {number} [far=1000] - Observable end
@@ -24,7 +24,7 @@ let mat4 = glm.mat4;
  */
 class PerspectiveScene extends Scene
 {
-   constructor({ name = 'perspective.scene', background, width, height, fov = 45, near = 0.1, far = 1000, direction, location, up = [0, 1, 0] } = {})
+   constructor({ name = 'perspective.scene', background, width = gl.canvas.width, height = gl.canvas.height, fov = 45, near = 0.1, far = 1000, direction, location, up = [0, 1, 0] } = {})
    {
       super({ name, background });
 

@@ -1,11 +1,27 @@
 'use strict';
 
-let canvas = document.querySelector('canvas');
-let gl = canvas.getContext('webgl');
+let view = canvas();
+let gl = context('webgl') || context('experimental-webgl');
 
-if (!gl)
+function canvas()
 {
-    gl = canvas.getContext('experimental-webgl');
+   let canvas = document.querySelector('canvas');
+   let dpi = window.devicePixelRatio;
+   let width = parseFloat(canvas.getAttribute('width'));
+   let height = parseFloat(canvas.getAttribute('height'));
+
+   canvas.setAttribute('width', width * dpi);
+   canvas.setAttribute('height', height * dpi);
+
+   canvas.style.width = width;
+   canvas.style.height = height;
+
+   return canvas;
+}
+
+function context(name)
+{
+   return view.getContext(name);
 }
 
 module.exports = gl;

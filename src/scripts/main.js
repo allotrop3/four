@@ -25,7 +25,7 @@ function main()
 	vao1 = new FOUR.VertexArrayObject({ attributes: [position1], indexed: true });
 	projection1 = new FOUR.Uniform({ program: program1, uniform: 'projection', format: 'mat4' });
 	modview1 = new FOUR.Uniform({ program: program1, uniform: 'modelView', format: 'mat4' });
-	perspective1 = new FOUR.PerspectiveScene({ background: [0.133, 0.133, 0.133, 1], width: 950, height: 468, direction: [0, 0, 0], location: [10, 10, 10] });
+	perspective1 = new FOUR.PerspectiveScene({ background: [0.133, 0.133, 0.133, 1], direction: [0, 0, 0], location: [10, 10, 10] });
 	view = new FOUR.Framebuffer({ scene: perspective1 });
 	mesh1 = new FOUR.Mesh({
 		vao: vao1,
