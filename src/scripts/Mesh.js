@@ -35,7 +35,7 @@ class Mesh extends Entity
        * @default []
        * @private
        */
-      this.vertices = new vao.view(vertices);
+      this.vertices = vertices;
 
       /**
        * Mesh vertex colors
@@ -62,14 +62,6 @@ class Mesh extends Entity
       this.normals = normals;
 
       /**
-       * Mesh vertex array buffer data
-       * @var {Array} Entity.Mesh.data
-       * @default ArrayBuffer[]
-       * @private
-       */
-      this.data = []; // todo
-
-      /**
        * Mesh vertex array buffer primitive indices
        * @var {Array} Entity.Mesh.indices
        * @default Uint16Array[]
@@ -88,6 +80,16 @@ class Mesh extends Entity
       this.configure();
    }
 
+   interleave(interleaved, vertex, index)
+   {
+      let color = this.colors[index];
+      let uv = this.uvs[index];
+      let normal = this.normals[index];
+      let contatenation = [].concat(vertex, color, uv, normal).filter(parseFloat);
+
+      [].push.apply(interleaved, contatenation);
+   }
+
    /**
     * Configure the vao contents for rendering
     * @function Entity.Mesh.configure
@@ -97,10 +99,13 @@ class Mesh extends Entity
    {
       let vao = this.vao;
       let usage = this.usage;
+      let interleaved = [];
+
+      this.vertices.map(this.interleave.bind(this, interleaved));
 
       vao.bind();
 
-      gl.bufferData(gl.ARRAY_BUFFER, this.vertices, usage);
+      gl.bufferData(gl.ARRAY_BUFFER, new this.vao.view(interleaved), usage);
 
       if (vao.indexed)
       {

@@ -5,18 +5,18 @@ let gl = context('webgl') || context('experimental-webgl');
 
 function canvas()
 {
-   let canvas = document.querySelector('canvas');
+   let $canvas = document.querySelector('canvas');
    let dpi = window.devicePixelRatio;
-   let width = parseFloat(canvas.getAttribute('width'));
-   let height = parseFloat(canvas.getAttribute('height'));
+   let width = $canvas.width;
+   let height = $canvas.height;
 
-   canvas.setAttribute('width', width * dpi);
-   canvas.setAttribute('height', height * dpi);
+   $canvas.setAttribute('width', width * dpi);
+   $canvas.setAttribute('height', height * dpi);
 
-   canvas.style.width = width;
-   canvas.style.height = height;
+   $canvas.style.width = width;
+   $canvas.style.height = height;
 
-   return canvas;
+   return $canvas;
 }
 
 function context(name)

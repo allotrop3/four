@@ -11,6 +11,7 @@ let projection1 = undefined;
 let modview1 = undefined;
 let vao1 = undefined;
 let position1 = undefined;
+let color1 = undefined;
 let perspective1 = undefined;
 let view = undefined;
 let mesh1 = undefined;
@@ -22,7 +23,8 @@ function main()
 {
 	program1 = new FOUR.Program({ vertexShader: vertShader1, fragmentShader: fragShader1 });
 	position1 = new FOUR.Attribute({ program: program1, attribute: 'position', length: 3 });
-	vao1 = new FOUR.VertexArrayObject({ attributes: [position1], indexed: true });
+	color1 = new FOUR.Attribute({ program: program1, attribute: 'color', length: 3 });
+	vao1 = new FOUR.VertexArrayObject({ attributes: [position1, color1], indexed: true });
 	projection1 = new FOUR.Uniform({ program: program1, uniform: 'projection', format: 'mat4' });
 	modview1 = new FOUR.Uniform({ program: program1, uniform: 'modelView', format: 'mat4' });
 	perspective1 = new FOUR.PerspectiveScene({ background: [0.133, 0.133, 0.133, 1], direction: [0, 0, 0], location: [10, 10, 10] });
@@ -30,14 +32,24 @@ function main()
 	mesh1 = new FOUR.Mesh({
 		vao: vao1,
 		vertices: [
-			1, -1, -1,
-			1, -1, 1,
-			-1, -1, 1,
-			-1, -1, -1,
-			1, 1, -1,
-			1, 1, 1,
-			-1, 1, 1,
-			-1, 1, -1
+			[1, -1, -1],
+			[1, -1, 1],
+			[-1, -1, 1],
+			[-1, -1, -1],
+			[1, 1, -1],
+			[1, 1, 1],
+			[-1, 1, 1],
+			[-1, 1, -1]
+		],
+		colors: [
+			[0.2, 0.6, 0.4],
+			[0.4, 0.6, 0.8],
+			[0.8, 0.4, 0.4],
+			[0.2, 0.6, 0.4],
+			[0.4, 0.6, 0.8],
+			[0.8, 0.4, 0.4],
+			[0.2, 0.6, 0.4],
+			[0.4, 0.6, 0.8]
 		],
 		indices: [
 			1, 2, 3,
