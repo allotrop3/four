@@ -115,12 +115,12 @@ class Mesh extends Entity
     */
    interleave(interleaved, vertex, index)
    {
-      let color = this.colors[index] || [1, 1, 1];
+      let color = this.colors[index] || [];
       let uv = this.uvs[index] || [];
       let normal = this.normals[index] || [];
-      let contatenation = [].concat(vertex, color, uv, normal).map(parseFloat);
+      let contatenation = [].concat(vertex, color, uv, normal);
 
-      [].push.apply(interleaved, contatenation);
+      [].push.apply(interleaved, contatenation.map(parseFloat));
    }
 
    /**
