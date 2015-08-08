@@ -51,7 +51,7 @@ function main()
 	uniformlightLocation = new FOUR.Uniform({ program: program1, uniform: 'lightLocation', format: 'vec3f' });
 	uniformlightDirection = new FOUR.Uniform({ program: program1, uniform: 'lightDirection', format: 'vec3f' });
 	uniformcolor1 = new FOUR.Uniform({ program: program1, uniform: 'color', format: 'vec3f' });
-	perspective1 = new FOUR.PerspectiveScene({ background: [0.133, 0.133, 0.133, 1], direction: [0, 0, 0], location: [10, 10, 10] });
+	perspective1 = new FOUR.PerspectiveScene({ background: [0.1, 0.1, 0.1, 1], direction: [0, 0, 0], location: [10, 10, 10] });
 	view = new FOUR.Framebuffer({ scene: perspective1 });
 	mesh1 = new FOUR.Mesh({
 		vao: vao1,
