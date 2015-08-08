@@ -26,28 +26,39 @@ li
 
 canvas
 {
-   border: 1px dotted #ccc;
+   background: #222 url(/images/fourjs-loader.gif) no-repeat;
+   background-position: center;
+   background-size: 70px;
 }
 
 a
 {
-   display: inline-block;
+   text-decoration: none;
 }
 
-.fourjs
+.hidden
 {
-   font:; 300 30px/2 'helvetica neue';
+   left: -9999em;
+   position: absolute;
+}
+
+.fourjs__head
+{
+   font: 300 30px/2 'helvetica neue';
    padding: 15px 0;
 }
 
-.fourjs__image
+.fourjs__head,
+.fourjs__body
 {
-   height: 70px;
    display: inline-block;
    vertical-align: middle;
 }
 
-.fourjs__docs
+.fourjs__image
 {
-   margin-bottom: 25px;
+   height: 50px;
+   display: inline-block;
+   margin-right: 10px;
+   vertical-align: middle;
 }

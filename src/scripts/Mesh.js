@@ -43,7 +43,7 @@ class Mesh extends Entity
        * @default []
        * @private
        */
-      // this.colors = colors;
+      this.colors = colors;
 
       /**
        * Mesh vertex texture coordinates
@@ -51,7 +51,7 @@ class Mesh extends Entity
        * @default []
        * @private
        */
-      // this.uvs = uvs;
+      this.uvs = uvs;
 
       /**
        * Mesh vertex normals
@@ -59,7 +59,7 @@ class Mesh extends Entity
        * @default []
        * @private
        */
-      // this.normals = normals;
+      this.normals = normals;
 
       /**
        * Mesh vertex array buffer data
@@ -67,7 +67,7 @@ class Mesh extends Entity
        * @default ArrayBuffer[]
        * @private
        */
-      // this.data = this.combine();
+      this.data = []; // todo
 
       /**
        * Mesh vertex array buffer primitive indices
@@ -89,37 +89,6 @@ class Mesh extends Entity
    }
 
    /**
-    * Fetch vertex attributes' values at the
-    * given index
-    * @callback Entity.Mesh.weave
-    * @param {array} [vertex=[*]] - Mesh vertex coordinate
-    * @param {number} index - Mesh vertex rray index
-    * @returns {Array}
-    */
-   // weave(vertex, index)
-   // {
-   //    let color = this.colors[index];
-   //    let uv = this.uvs[index];
-   //    let normal = this.normals[index];
-
-   //    return vertex.concat(color, uv, normal);
-   // }
-
-   /**
-    * Interleave mesh attributes for optimal perforance
-    * @function Entity.Mesh.combine
-    * @returns {Float32Array}
-    */
-   // combine()
-   // {
-   //    let data = this.vertices;///*.map(this.weave.bind(this))*/.join(',').split(',').map(parseFloat);
-   //    console.log(data);
-   //    let view = this.vao.view;
-
-   //    return new view(data);
-   // }
-
-   /**
     * Configure the vao contents for rendering
     * @function Entity.Mesh.configure
     * @returns {undefined}
@@ -128,7 +97,6 @@ class Mesh extends Entity
    {
       let vao = this.vao;
       let usage = this.usage;
-      // let data = new this.vao.view(this.vertices);
 
       vao.bind();
 

@@ -130,8 +130,44 @@ class Scene extends Entity
    }
 
    /**
-    * Rotate the scene by a given magnitude and axis
-    * @function Entity.Scene.rotate
+    * Scale the scene by a given magnitude
+    * along the x axis
+    * @function Entity.Scene.scaleX
+    * @param {number} scale - Scale multiplier
+    * @returns {undefined}
+    */
+   scaleX(scale)
+   {
+      this.scale([scale, 1, 1]);
+   }
+
+   /**
+    * Scale the scene by a given magnitude
+    * along the y axis
+    * @function Entity.Scene.scaleX
+    * @param {number} scale - Scale multiplier
+    * @returns {undefined}
+    */
+   scaleY(scale)
+   {
+      this.scale([1, scale, 1]);
+   }
+
+   /**
+    * Scale the scene by a given magnitude
+    * along the z axis
+    * @function Entity.Scene.scaleZ
+    * @param {number} scale - Scale multiplier
+    * @returns {undefined}
+    */
+   scaleZ(scale)
+   {
+      this.scale([1, 1, scale]);
+   }
+
+   /**
+    * Scale the scene by a given magnitude and axis
+    * @function Entity.Scene.scale
     * @param {number} rotation - Rotation in radians
     * @param {string} pivot - Axis to rotate around
     * @returns {undefined}

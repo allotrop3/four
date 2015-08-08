@@ -15,6 +15,8 @@ let perspective1 = undefined;
 let view = undefined;
 let mesh1 = undefined;
 let rotationY = 0;
+let scale = 1;
+let scaler = 0.01;
 
 function main()
 {
@@ -23,7 +25,7 @@ function main()
 	vao1 = new FOUR.VertexArrayObject({ attributes: [position1], indexed: true });
 	projection1 = new FOUR.Uniform({ program: program1, uniform: 'projection', format: 'mat4' });
 	modview1 = new FOUR.Uniform({ program: program1, uniform: 'modelView', format: 'mat4' });
-	perspective1 = new FOUR.PerspectiveScene({ width: 950, height: 468, direction: [0, 0, 0], location: [10, 10, 10] });
+	perspective1 = new FOUR.PerspectiveScene({ background: [0.133, 0.133, 0.133, 1], width: 950, height: 468, direction: [0, 0, 0], location: [10, 10, 10] });
 	view = new FOUR.Framebuffer({ scene: perspective1 });
 	mesh1 = new FOUR.Mesh({
 		vao: vao1,
@@ -58,6 +60,13 @@ function main()
 
 function render()
 {
+	if (scale > 2 || scale < 1)
+	{
+		scaler = -scaler;
+	}
+
+	scale += scaler;
+
 	view.flush();
 	view.enable();
 
@@ -66,7 +75,9 @@ function render()
 	perspective1.save();
 
 	perspective1.rotateY(rotationY += 0.01);
-	perspective1.scale([2, 2, 2]);
+	perspective1.scaleX(scale);
+	perspective1.scaleY(scale);
+	perspective1.scaleZ(scale);
 
 	projection1.set(perspective1.projectionMatrix);
 	modview1.set(perspective1.modelViewMatrix);
@@ -78,4 +89,4 @@ function render()
 	requestAnimationFrame(render);
 }
 
-setTimeout(main, 3000);
+setTimeout(main, 5000);
