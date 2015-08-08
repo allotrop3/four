@@ -126,12 +126,12 @@ class Mesh extends Entity
    /**
     * Render mesh
     * @function Entity.Mesh.draw
-    * @param {number} [primitive=gl.TRIANGLE_STRIP] - Mesh vertex construction method
+    * @param {number} [primitive=gl.TRIANGLES] - Mesh vertex construction method
     * @param {number} [offset=0] - Index to start drawing from
     * @param {boolean|number} [count=false] - Number of vertices to draw
     * @returns {undefined}
     */
-   draw({ primitive = gl.TRIANGLE_STRIP, offset = 0, count = false } = {})
+   draw({ primitive = gl.TRIANGLES, offset = 0, count = false } = {})
    {
       let vao = this.vao;
 

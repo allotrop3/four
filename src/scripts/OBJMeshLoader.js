@@ -45,7 +45,7 @@ class OBJMeshLoader extends MeshLoader
       switch (type)
       {
          case 'v':
-            this.vertices.push(words);
+            this.tmp.vertices.push(words);
             break;
 
          case 'vt':
@@ -72,13 +72,11 @@ class OBJMeshLoader extends MeshLoader
    recategorise(word)
    {
       let indices = word.split('/').map(this.decrement);
-      let indice = indices[0];
       let tmp = this.tmp;
 
-      this.uvs[indice] = tmp.uvs[indices[1]];
-      this.normals[indice] = tmp.normals[indices[2]];
-
-      this.indices.push(indice);
+      this.vertices.push(tmp.vertices[indices[0]]);
+      this.uvs.push(tmp.uvs[indices[1]]);
+      this.normals.push(tmp.normals[indices[2]]);
    }
 
    /**

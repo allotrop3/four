@@ -48,14 +48,6 @@ class Scene extends Entity
       this.projectionMatrix = mat4.create();
 
       /**
-       * Normal matrix
-       * @var {number} Entity.Scene.normalMatrix
-       * @default [0, 0, 0, 0, 0, 0, 0, 0, 0]
-       * @private
-       */
-      this.normalMatrix = mat3.create();
-
-      /**
        * View transformation stack
        * @var {number} Entity.Scene.stack
        * @default []
@@ -226,6 +218,16 @@ class Scene extends Entity
       let modelViewMatrix = this.modelViewMatrix;
 
       mat4.translate(modelViewMatrix, modelViewMatrix, translation);
+   }
+
+   /**
+    * Compute a mat3 normal matrix from based on the modelview matrix
+    * @function Entity.Scene.normalMatrix
+    * @returns {undefined}
+    */
+   normalMatrix()
+   {
+      return mat3.normalFromMat4([], this.modelViewMatrix);
    }
 }
 

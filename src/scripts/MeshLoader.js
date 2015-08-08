@@ -18,18 +18,51 @@ class MeshLoader extends Entity
    {
       super({ name });
 
+      /**
+       * Mesh vertices
+       * @var {Array} Entity.MeshLoader.vertices
+       * @default []
+       * @private
+       */
       this.vertices = [];
 
+      /**
+       * Mesh vertex texture coordinates
+       * @var {Array} Entity.MeshLoader.uvs
+       * @default []
+       * @private
+       */
       this.uvs = [];
 
+      /**
+       * Mesh vertex normals
+       * @var {Array} Entity.MeshLoader.normals
+       * @default []
+       * @private
+       */
       this.normals = [];
 
+      /**
+       * Temporary storage for vertex data
+       * to assist parsing the contents of the
+       * mesh file
+       * @var {Array} Entity.MeshLoader.tmp
+       * @default { colors: [], uvs: [], normals: [] }
+       * @private
+       */
       this.tmp = {
+        vertices: [],
          colors: [],
          uvs: [],
          normals: []
       };
 
+      /**
+       * Mesh vertex array buffer primitive indices
+       * @var {Array} Entity.MeshLoader.indices
+       * @default []
+       * @private
+       */
       this.indices = [];
 
       this.fetch(path);
