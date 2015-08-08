@@ -28,8 +28,7 @@ let normal1 = undefined;
 let perspective1 = undefined;
 let view = undefined;
 let mesh1 = undefined;
-let rotationY = 0;
-let scale = 2;
+let scale = 1;
 let count = 0;
 
 function main()
@@ -65,23 +64,30 @@ function main()
 	requestAnimationFrame(render);
 }
 
+function drawMesh(translate = [0, 0, 0])
+{
+	perspective1.save();
+
+	perspective1.scaleX(scale);
+	perspective1.scaleY(scale);
+	perspective1.scaleZ(scale);
+	perspective1.translate(translate);
+
+	uniformprojection1.set(perspective1.projectionMatrix);
+	uniformmodview1.set(perspective1.modelViewMatrix);
+	uniformnormal1.set(perspective1.normalMatrix());
+
+	mesh1.draw({ count: count });
+
+	perspective1.restore();
+}
+
 function render()
 {
 	view.flush();
 	view.enable();
 
 	program1.bind();
-
-	perspective1.save();
-
-	perspective1.rotateY(rotationY += 0.01);
-	perspective1.scaleX(scale);
-	perspective1.scaleY(scale);
-	perspective1.scaleZ(scale);
-
-	uniformprojection1.set(perspective1.projectionMatrix);
-	uniformmodview1.set(perspective1.modelViewMatrix);
-	uniformnormal1.set(perspective1.normalMatrix());
 
 	uniformmaterialAmbient.set([0.5, 0.5, 0.5]);
 	uniformmaterialDiffuse.set([0.39, 0.36, 0.29]);
@@ -91,11 +97,25 @@ function render()
 	uniformlightAmbient.set([0, 0, 0]);
 	uniformlightDiffuse.set([1, 1, 1]);
 	uniformlightSpecular.set([1, 1, 1]);
-	uniformlightLocation.set([0, 5, 5]);
+	uniformlightLocation.set([10, 5, 5]);
 
-	mesh1.draw({ count: count });
-
-	perspective1.restore();
+	drawMesh([-20, 0, -12.5]);
+	drawMesh([-10, 0, -12.5]);
+	drawMesh([0, 0, -12.5]);
+	drawMesh([-20, 0, 12.5]);
+	drawMesh([-10, 0, 12.5]);
+	drawMesh([0, 0, 12.5]);
+	drawMesh([-20, 0, 0]);
+	drawMesh([-10, 0, 0]);
+	drawMesh();
+	drawMesh([10, 0, 0]);
+	drawMesh([20, 0, 0]);
+	drawMesh([0, 0, 12.5]);
+	drawMesh([10, 0, 12.5]);
+	drawMesh([20, 0, 12.5]);
+	drawMesh([0, 0, -12.5]);
+	drawMesh([10, 0, -12.5]);
+	drawMesh([20, 0, -12.5]);
 
 	requestAnimationFrame(render);
 }

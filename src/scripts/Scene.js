@@ -221,6 +221,42 @@ class Scene extends Entity
    }
 
    /**
+    * Translate the scene by a given amount
+    * along the x axis
+    * @function Entity.Scene.translateX
+    * @param {number} translation - Translation amount
+    * @returns {undefined}
+    */
+   translateX(translation)
+   {
+      this.translate([translation, 0 , 0]);
+   }
+
+   /**
+    * Translate the scene by a given amount
+    * along the y axis
+    * @function Entity.Scene.translateY
+    * @param {number} translation - Translation amount
+    * @returns {undefined}
+    */
+   translateY(translation)
+   {
+      this.translate([0, translation, 0]);
+   }
+
+   /**
+    * Translate the scene by a given amount
+    * along the z axis
+    * @function Entity.Scene.translateZ
+    * @param {number} translation - Translation amount
+    * @returns {undefined}
+    */
+   translateZ(translation)
+   {
+      this.translate([0, 0, translation]);
+   }
+
+   /**
     * Compute a mat3 normal matrix from based on the modelview matrix
     * @function Entity.Scene.normalMatrix
     * @returns {undefined}
