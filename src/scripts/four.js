@@ -35,7 +35,9 @@ var FOUR = {
    DataTexture: require('./DataTexture'),
    ImageTexture: require('./ImageTexture'),
    Uniform: require('./Uniform'),
-   VertexArrayObject: require('./VertexArrayObject')
+   VertexArrayObject: require('./VertexArrayObject'),
+   MeshLoader: require('./MeshLoader'),
+   OBJMeshLoader: require('./OBJMeshLoader')
 };
 
 module.exports = window.FOUR = FOUR;

@@ -80,18 +80,8 @@ class Mesh extends Entity
       this.configure();
    }
 
-   interleave(interleaved, vertex, index)
-   {
-      let color = this.colors[index];
-      let uv = this.uvs[index];
-      let normal = this.normals[index];
-      let contatenation = [].concat(vertex, color, uv, normal).filter(parseFloat);
-
-      [].push.apply(interleaved, contatenation);
-   }
-
    /**
-    * Configure the vao contents for rendering
+    * Configure the vbo contents for rendering
     * @function Entity.Mesh.configure
     * @returns {undefined}
     */
@@ -117,13 +107,31 @@ class Mesh extends Entity
 
    /**
     * Render mesh
+    * @callback Entity.Mesh.interleave
+    * @param {Array} interleaved - Interleaved vertex data
+    * @param {vec3} vertex - Current vertex coordinate
+    * @param {numebr} index - Vertex coordinate array index
+    * @returns {undefined}
+    */
+   interleave(interleaved, vertex, index)
+   {
+      let color = this.colors[index] || [1, 1, 1];
+      let uv = this.uvs[index] || [];
+      let normal = this.normals[index] || [];
+      let contatenation = [].concat(vertex, color, uv, normal).map(parseFloat);
+
+      [].push.apply(interleaved, contatenation);
+   }
+
+   /**
+    * Render mesh
     * @function Entity.Mesh.draw
-    * @param {number} [primitive=gl.TRIANGLES] - Mesh vertex construction method
+    * @param {number} [primitive=gl.TRIANGLE_STRIP] - Mesh vertex construction method
     * @param {number} [offset=0] - Index to start drawing from
     * @param {boolean|number} [count=false] - Number of vertices to draw
     * @returns {undefined}
     */
-   draw({ primitive = gl.TRIANGLES, offset = 0, count = false } = {})
+   draw({ primitive = gl.TRIANGLE_STRIP, offset = 0, count = false } = {})
    {
       let vao = this.vao;
 
