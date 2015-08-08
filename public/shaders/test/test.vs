@@ -1,6 +1,6 @@
 #version 100
 
-precision highp float;
+precision lowp float;
 
 attribute vec3 a_position;
 attribute vec3 a_color;

@@ -1,7 +1,7 @@
 'use strict';
 
-var Texture = require('./Texture');
-var gl = require('./gl');
+let Texture = require('./Texture');
+let gl = require('./gl');
 
 /**
  * DataTexture is a wrapper on WebGLTexture buffers

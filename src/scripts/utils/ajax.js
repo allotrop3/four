@@ -2,13 +2,13 @@
 
 let promise = require('./promise');
 
-function ajax(url, async = false)
+function ajax(url, contentType = 'text/plain')
 {
    return promise(function(resolve, reject)
    {
       let request = new XMLHttpRequest();
 
-      request.open('get', url, async);
+      request.open('get', url);
 
       request.onload = function()
       {
@@ -26,6 +26,8 @@ function ajax(url, async = false)
             reject(error);
          }
       };
+
+      request.setRequestHeader('contentType', contentType);
 
       request.send();
    });

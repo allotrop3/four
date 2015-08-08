@@ -90,7 +90,7 @@ class Attribute extends Entity
     */
    disable()
    {
-      gl.disableVertAttribArray(this.location);
+      gl.disableVertexAttribArray(this.location);
    }
 }
 

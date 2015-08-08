@@ -1,7 +1,7 @@
 'use strict';
 
-var Texture = require('./Texture');
-var gl = require('./gl');
+let Texture = require('./Texture');
+let gl = require('./gl');
 
 /**
  * ImageTexture is a wrapper on WebGLTexture buffers
@@ -61,7 +61,7 @@ class ImageTexture extends Texture
 
       if (anisotropy)
       {
-         gl.texParameterf(gl.TEXTURE_2D, this.anisotropicFilter.TEXTURE_MAX_ANISOTROPY, anisotropy);
+         gl.texParameterf(gl.TEXTURE_2D, this.anisotropicFilter.TEXTURE_MAX_ANISOTROPY_EXT, anisotropy);
       }
 
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);

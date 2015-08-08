@@ -35,7 +35,7 @@ class Mesh extends Entity
        * @default []
        * @private
        */
-      this.vertices = vertices;
+      this.vertices = new vao.view(vertices);
 
       /**
        * Mesh vertex colors
@@ -43,7 +43,7 @@ class Mesh extends Entity
        * @default []
        * @private
        */
-      this.colors = colors;
+      // this.colors = colors;
 
       /**
        * Mesh vertex texture coordinates
@@ -51,7 +51,7 @@ class Mesh extends Entity
        * @default []
        * @private
        */
-      this.uvs = uvs;
+      // this.uvs = uvs;
 
       /**
        * Mesh vertex normals
@@ -59,7 +59,7 @@ class Mesh extends Entity
        * @default []
        * @private
        */
-      this.normals = normals;
+      // this.normals = normals;
 
       /**
        * Mesh vertex array buffer data
@@ -67,7 +67,7 @@ class Mesh extends Entity
        * @default ArrayBuffer[]
        * @private
        */
-      this.data = this.combine();
+      // this.data = this.combine();
 
       /**
        * Mesh vertex array buffer primitive indices
@@ -84,38 +84,40 @@ class Mesh extends Entity
        * @private
        */
       this.usage = usage;
+
+      this.configure();
    }
 
    /**
     * Fetch vertex attributes' values at the
     * given index
     * @callback Entity.Mesh.weave
-    * @param {string} [empty=undefined] - Filler value
-    * @param {number} index - Filler array index
+    * @param {array} [vertex=[*]] - Mesh vertex coordinate
+    * @param {number} index - Mesh vertex rray index
     * @returns {Array}
     */
-   weave(empty, index)
-   {
-      let vertex = this.vertices[index];
-      let color = this.colors[index];
-      let uv = this.uvs[index];
-      let normal = this.normals[index];
+   // weave(vertex, index)
+   // {
+   //    let color = this.colors[index];
+   //    let uv = this.uvs[index];
+   //    let normal = this.normals[index];
 
-      return [].concat(vertex, color, uv, normal);
-   }
+   //    return vertex.concat(color, uv, normal);
+   // }
 
    /**
     * Interleave mesh attributes for optimal perforance
     * @function Entity.Mesh.combine
     * @returns {Float32Array}
     */
-   combine()
-   {
-      let data = 'undefined'.repeat(this.vertices.length).substring(1).split(',').map(this.weave);
-      let view = this.view;
+   // combine()
+   // {
+   //    let data = this.vertices;///*.map(this.weave.bind(this))*/.join(',').split(',').map(parseFloat);
+   //    console.log(data);
+   //    let view = this.vao.view;
 
-      return new view(data);
-   }
+   //    return new view(data);
+   // }
 
    /**
     * Configure the vao contents for rendering
@@ -126,10 +128,11 @@ class Mesh extends Entity
    {
       let vao = this.vao;
       let usage = this.usage;
+      // let data = new this.vao.view(this.vertices);
 
       vao.bind();
 
-      gl.bufferData(gl.ARRAY_BUFFER, this.data, usage);
+      gl.bufferData(gl.ARRAY_BUFFER, this.vertices, usage);
 
       if (vao.indexed)
       {
@@ -147,7 +150,7 @@ class Mesh extends Entity
     * @param {boolean|number} [count=false] - Number of vertices to draw
     * @returns {undefined}
     */
-   draw(primitive = gl.TRIANGLES, offset = 0, count = false)
+   draw({ primitive = gl.TRIANGLES, offset = 0, count = false } = {})
    {
       let vao = this.vao;
 

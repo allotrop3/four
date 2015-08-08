@@ -119,7 +119,7 @@ class Scene extends Entity
    /**
     * Scale the scene by a given magnitude
     * @function Entity.Scene.scale
-    * @param {number} scale - Scale multiplier
+    * @param {vec3} scale - Scale vector multiplier
     * @returns {undefined}
     */
    scale(scale)

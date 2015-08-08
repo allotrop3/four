@@ -6,48 +6,76 @@ let gl = require('./gl');
 
 let vertShader1 = new FOUR.VertexShader({ path: '../shaders/test/test.vs' });
 let fragShader1 = new FOUR.FragmentShader({ path: '../shaders/test/test.fs' });
+let program1 = undefined;
+let projection1 = undefined;
+let modview1 = undefined;
+let vao1 = undefined;
+let position1 = undefined;
+let perspective1 = undefined;
+let view = undefined;
+let mesh1 = undefined;
+let rotationY = 0;
 
 function main()
 {
-	let prog1 = new FOUR.Program({ vertexShader: vertShader1, fragmentShader: fragShader1 });
-	let attr1 = new FOUR.Attribute({ program: prog1, attribute: 'position', length: 3 });
-	let attr2 = new FOUR.Attribute({ program: prog1, attribute: 'color', length: 3 });
-	let vao1 = new FOUR.VertexArrayObject({ attributes: [attr1, attr2] });
-	let uni1 = new FOUR.Uniform({ program: prog1, uniform: 'projection', format: 'mat4' });
-	let uni2 = new FOUR.Uniform({ program: prog1, uniform: 'modelView', format: 'mat4' });
-	let dtex1 = new FOUR.DataTexture({ image: [3, 4, 5, 1, 6, 3, 6, 8, 4], width: 50, height: 50 });
-	let rend1 = new FOUR.Renderbuffer({ width: 50, height: 50 });
-	let orth1 = new FOUR.OrthographicScene({ right: 50, bottom: 50 });
-	let frame1 = new FOUR.DeferredFramebuffer({ colorAttachment: dtex1, depthAttachment: rend1, scene: orth1 });
-	let persp1 = new FOUR.PerspectiveScene({ width: 50, height: 50, direction: [0, 1, 1], location: [10, 10, 10] });
-	let view = new FOUR.Framebuffer({ scene: persp1 });
-	let itex1 = new FOUR.ImageTexture({ image: document.querySelector('.fourjs__image'), anisotropy: 4 });
-	let matrl1 = new FOUR.Material({ ambient: [0.1, 0.4, 0.4], diffuse: [0, 0, 0] });
-	let pmatrl1 = new FOUR.PhongMaterial({ ambient: [0.1, 0.4, 0.4], diffuse: [0, 0, 0], specular: [0.3, 0.1, 0.1], shininess: 90 });
-	let light1 = new FOUR.Light({ ambient: [0.1, 0.4, 0.4], diffuse: [0, 0, 0], specular: [0.3, 0.1, 0.1], intensity: 10 });
-	let spotlt1 = new FOUR.SpotLight({ ambient: [0.1, 0.4, 0.4], diffuse: [0, 0, 0], specular: [0.3, 0.1, 0.1], exponent: 1.34, cutoff: 45, intensity: 10 });
-	let ptlt1 = new FOUR.PointLight({ ambient: [0.1, 0.4, 0.4], diffuse: [0, 0, 0], specular: [0.3, 0.1, 0.1], coefficient: [3, 1, 1], linear: [0.4, 3, 6], quadratic: [9, 0.384, 93.3], intensity: 10, location: [10, 100, 10] });
+	program1 = new FOUR.Program({ vertexShader: vertShader1, fragmentShader: fragShader1 });
+	position1 = new FOUR.Attribute({ program: program1, attribute: 'position', length: 3 });
+	vao1 = new FOUR.VertexArrayObject({ attributes: [position1], indexed: true });
+	projection1 = new FOUR.Uniform({ program: program1, uniform: 'projection', format: 'mat4' });
+	modview1 = new FOUR.Uniform({ program: program1, uniform: 'modelView', format: 'mat4' });
+	perspective1 = new FOUR.PerspectiveScene({ width: 950, height: 468, direction: [0, 0, 0], location: [10, 10, 10] });
+	view = new FOUR.Framebuffer({ scene: perspective1 });
+	mesh1 = new FOUR.Mesh({
+		vao: vao1,
+		vertices: [
+			1, -1, -1,
+			1, -1, 1,
+			-1, -1, 1,
+			-1, -1, -1,
+			1, 1, -1,
+			1, 1, 1,
+			-1, 1, 1,
+			-1, 1, -1
+		],
+		indices: [
+			1, 2, 3,
+			7, 6, 5,
+			0, 4, 5,
+			1, 5, 6,
+			6, 7, 3,
+			0, 3, 7,
+			0, 1, 3,
+			4, 7, 5,
+			1, 0, 5,
+			2, 1, 6,
+			2, 6, 3,
+			4, 0, 7
+		]
+	});
 
-	console.log(vertShader1);
-	console.log(fragShader1);
-	console.log(prog1);
-	console.log(attr1);
-	console.log(attr2);
-	console.log(vao1);
-	console.log(uni1);
-	console.log(uni2);
-	console.log(dtex1);
-	console.log(rend1);
-	console.log(orth1);
-	console.log(frame1);
-	console.log(persp1);
-	console.log(view);
-	console.log(itex1);
-	console.log(matrl1);
-	console.log(pmatrl1);
-	console.log(light1);
-	console.log(spotlt1);
-	console.log(ptlt1);
+	requestAnimationFrame(render);
+}
+
+function render()
+{
+	view.flush();
+	view.enable();
+
+	program1.bind();
+
+	perspective1.save();
+
+	perspective1.rotateY(rotationY += 0.01);
+	perspective1.scale([2, 2, 2]);
+
+	projection1.set(perspective1.projectionMatrix);
+	modview1.set(perspective1.modelViewMatrix);
+
+	mesh1.draw({ primitive: gl.LINE_STRIP, count: mesh1.indices.length });
+
+	perspective1.restore();
+
+	requestAnimationFrame(render);
 }
 
 setTimeout(main, 3000);
