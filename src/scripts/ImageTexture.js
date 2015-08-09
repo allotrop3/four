@@ -3,6 +3,9 @@
 let Texture = require('./Texture');
 let gl = require('./gl');
 
+const _name = 'image.texture';
+const _anisotropy = false;
+
 /**
  * ImageTexture is a wrapper on WebGLTexture buffers
  * to support detailing mesh surfaces
@@ -22,7 +25,7 @@ let gl = require('./gl');
  */
 class ImageTexture extends Texture
 {
-   constructor({ name = 'image.texture', image, lod, components, format, magnification, minification, S, T, anisotropy = false } = {})
+   constructor({ name = _name, image, lod, components, format, magnification, minification, S, T, anisotropy = _anisotropy } = {})
    {
       super({ name, image, lod, components, format, magnification, minification, S, T });
 

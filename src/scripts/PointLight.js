@@ -2,12 +2,16 @@
 
 let Light = require('./Light');
 
+const _name = 'point.light';
+const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f coefficient', 'f linear', 'f quadratic', 'f intensity', 'vec3 location'];
+
 /**
  * PointLight is a local light source to illuminate an area of the scene
  * @class PointLight
- * @name Entity.Light.PointLight
- * @extends Entity.Light
+ * @name Entity.Structure.Light.PointLight
+ * @extends Entity.Structure.Light
  * @param {string} [name=point.light] - Instance name
+ * @param {Entity.Program} program - Uniforms' program
  * @param {vec3} ambient - Ambient component
  * @param {vec3} diffuse - Diffuse component
  * @param {vec3} specular - Specular component
@@ -19,46 +23,30 @@ let Light = require('./Light');
  */
 class PointLight extends Light
 {
-   constructor({ name = 'point.light', ambient, diffuse, specular, coefficient, linear, quadratic, intensity, location } = {})
+   constructor({ name = _name, program, uniforms = _uniforms, ambient, diffuse, specular, coefficient, linear, quadratic, intensity, location } = {})
    {
-      super({ name, ambient, diffuse, specular, intensity, location });
+      super({ name, program, uniforms, ambient, diffuse, specular, intensity, location });
 
       /**
        * Coefficient component
-       * @var {vec3} Entity.Light.PointLight.coefficient
+       * @var {vec3} Entity.Structure.Light.PointLight.coefficient
        * @private
        */
       this.coefficient = coefficient;
 
       /**
        * Linear component
-       * @var {vec3} Entity.Light.PointLight.linear
+       * @var {vec3} Entity.Structure.Light.PointLight.linear
        * @private
        */
       this.linear = linear;
 
       /**
        * Quadratic component
-       * @var {vec3} Entity.Light.PointLight.quadratic
+       * @var {vec3} Entity.Structure.Light.PointLight.quadratic
        * @private
        */
       this.quadratic = quadratic;
-   }
-
-   /**
-    * Set point light shader uniform values
-    * @function Entity.Light.PointLight.bind
-    * @param {Entity.Structure} structure - Light shader structure
-    * @returns {undefined}
-    */
-   bind(structure)
-   {
-      super.bind(structure);
-
-      structure.coefficient.set(this.coefficient);
-      structure.linear.set(this.linear);
-      structure.quadratic.set(this.quadratic);
-      structure.location.set(this.location);
    }
 }
 

@@ -24,9 +24,9 @@ let mat4 = glm.mat4;
  */
 class PerspectiveCamera extends Camera
 {
-   constructor({ name = 'perspective.camera', background, width = gl.canvas.width, height = gl.canvas.height, fov = 45, near = 0.1, far = 1000, direction, location, up = [0, 1, 0] } = {})
+   constructor({ name = 'perspective.camera', program, background, width = gl.canvas.width, height = gl.canvas.height, fov = 45, near = 0.1, far = 1000, direction, location, up = [0, 1, 0] } = {})
    {
-      super({ name, background });
+      super({ name, program, background });
 
       /**
        * View width

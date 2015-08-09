@@ -2,6 +2,7 @@
 
 let Entity = require('./Entity');
 let gl = require('./gl');
+
 const formats = {
    i: '1i',
    ivec2: '2iv',
@@ -16,6 +17,8 @@ const formats = {
    mat4: 'Matrix4fv'
 };
 
+const _name = 'uniform';
+
 /**
  * Uniform is a wrapper on shader WebGLUniformLocation uniforms.
  * Supported types include i, vec2i, vec3i, vec4i, f, vec2f, vec3f
@@ -24,22 +27,30 @@ const formats = {
  * @name Entity.Uniform
  * @extends Entity
  * @param {string} [name=program] - Instance name
+ * @param {string} [path] - Struct path to uniform
  * @param {Entity.Program} program - Program in which the shader uniform is used
  * @param {string} uniform - Shader variable name
  * @param {number} format - Component data format
  */
 class Uniform extends Entity
 {
-   constructor({ name = 'uniform', program, uniform, format } = {})
+   constructor({ name = _name, program, path, uniform, format } = {})
    {
       super({ name });
 
       /**
        * Shader variable name
-       * @var {object} [Entity.Uniform.uniform=u_${uniform}]
+       * @var {string} [uniform] - Shader uniform
        * @private
        */
-      this.uniform = `u_${uniform}`;
+      this.path = path;
+
+      /**
+       * Shader variable name
+       * @var {string} uniform - Shader uniform
+       * @private
+       */
+      this.uniform = uniform;
 
       /**
        * Shader uniform location
@@ -86,7 +97,9 @@ class Uniform extends Entity
     */
     from(program)
     {
-       return gl.getUniformLocation(program.buffer, this.uniform);
+       let uniform = [this.path, this.uniform].join('.');
+
+       return gl.getUniformLocation(program.buffer, `u_${uniform}`);
     }
 }
 

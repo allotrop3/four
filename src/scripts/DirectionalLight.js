@@ -2,12 +2,17 @@
 
 let Light = require('./Light');
 
+const _name = 'directional.light';
+const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f intensity', 'vec3 location', 'vec3 direction'];
+const _direction = [0, 0, 0];
+
 /**
  * DirectionalLight is a directional light source to illuminate the scene
  * @class DirectionalLight
- * @name Entity.Light.DirectionalLight
- * @extends Entity.Light
+ * @name Entity.Structure.Light.DirectionalLight
+ * @extends Entity.Structure.Light
  * @param {string} [name=directional.light] - Instance name
+ * @param {Entity.Program} program - Uniforms' program
  * @param {vec3} ambient - Ambient component
  * @param {vec3} diffuse - Diffuse component
  * @param {vec3} specular - Specular component
@@ -17,30 +22,17 @@ let Light = require('./Light');
  */
 class DirectionalLight extends Light
 {
-   constructor({ name = 'directional.light', ambient, diffuse, specular, intensity, location, direction = [0, 0, 0] } = {})
+   constructor({ name = _name, program, uniforms = _uniforms, ambient, diffuse, specular, intensity, location, direction = _direction } = {})
    {
-      super({ name, ambient, diffuse, specular, intensity, location });
+      super({ name, program, uniforms, ambient, diffuse, specular, intensity, location });
 
       /**
        * Light direction
-       * @var {vec3} Entity.Light.DirectionalLight.direction
+       * @var {vec3} Entity.Structure.Light.DirectionalLight.direction
        * @default [0, 0, 0]
        * @private
        */
       this.direction = direction;
-   }
-
-   /**
-    * Set directional light shader uniform values
-    * @function Entity.Light.DirectionalLight.bind
-    * @param {Entity.Structure} structure - Light shader structure
-    * @returns {undefined}
-    */
-   bind(structure)
-   {
-      super.bind(structure);
-
-      structure.direction.set(this.direction);
    }
 }
 

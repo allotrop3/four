@@ -3,6 +3,9 @@
 let Entity = require('./Entity');
 let Uniform = require('./Uniform');
 
+const _name = 'structure';
+const _uniforms = [];
+
 /**
  * Structure automates and simplifies the instantiation of struct
  * typed uniforms
@@ -10,35 +13,28 @@ let Uniform = require('./Uniform');
  * @name Entity.Structure
  * @extends Entity
  * @param {Entity.Program} program - Program in which the shader uniform is used
- * @param {string} uniform - Shader structure name
- * @param {Array} [uniforms=[]] - Uniforms within structure
+ * @param {string} path - Struct path to uniforms
+ * @param {Array} [unpathiforms=[]] - Uniforms within structure
  */
 class Structure extends Entity
 {
-   constructor({ name = 'structure', program, uniform, uniforms = [] })
+   constructor({ name = _name, program, path, uniforms = _uniforms })
    {
       super({ name });
 
       /**
-       * Shader structure name
-       * @var {string} Entity.Structure.uniform
+       * Struct path to uniforms
+       * @var {string} Entity.Structure.path
        * @private
        */
-      this.uniform = uniform;
+      this.path = path;
 
-      this.generate(program, uniforms);
-   }
-
-   /**
-    * Locate the shader uniforms from within the given program
-    * @function Entity.Structure.generate
-    * @param {Entity.Program} program - Program in which the shader uniform is used
-    * @param {Array} [uniforms=[]] - Uniforms within structure
-    * @returns {undefind}
-    */
-   generate(program, uniforms)
-   {
-      uniforms.map(this.instantiate.bind(this, program));
+      /**
+       * Shader uniforms
+       * @var {Entity.Uniform[]} Entity.Structure.uniforms
+       * @private
+       */
+      this.uniforms = uniforms.map(this.instantiate.bind(this, program));
    }
 
    /**
@@ -52,9 +48,30 @@ class Structure extends Entity
    {
       let vars = qualifying.split(' ');
       let format = vars[0];
-      let name = vars[1];
+      let uniform = vars[1];
 
-      this[name] = new Uniform({ program: program, uniform: `${this.uniform}.${name}`, format: format });
+      return new Uniform({ program: program, path: this.path, uniform: uniform, format: format });
+   }
+
+   /**
+    * Bind uniform values to the current progam
+    * @function Entity.Structure.bind
+    * @returns {undefind}
+    */
+   bind()
+   {
+      this.uniforms.map(this.set.bind(this));
+   }
+
+   /**
+    * Set uniform values
+    * @callback Entity.Structure.set
+    * @param {Entity.Uniform} uniform - Uniform to set
+    * @returns {undefind}
+    */
+   set(uniform)
+   {
+      uniform.set(this[uniform.uniform]);
    }
 }
 

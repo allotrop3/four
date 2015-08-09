@@ -1,14 +1,18 @@
 'use strict';
 
-var Light = require('./Light');
+let Light = require('./Light');
+
+const _name = 'spot.light';
+const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f exponent', 'f cutoff', 'f intensity', 'vec3 location', 'vec3 direction'];
 
 /**
  * SpotLight is a local light source pointing in a particular
  * direction to illuminate an area of the scene
  * @class SpotLight
- * @name Entity.Light.SpotLight
- * @extends Entity.Light
- * @param {string} [name=point.light] - Instance name
+ * @name Entity.Structure.Light.SpotLight
+ * @extends Entity.Structure.Light
+ * @param {string} [name=spot.light] - Instance name
+ * @param {Entity.Program} program - Uniforms' program
  * @param {vec3} ambient - Ambient component
  * @param {vec3} diffuse - Diffuse component
  * @param {vec3} specular - Specular component
@@ -20,46 +24,31 @@ var Light = require('./Light');
  */
 class SpotLight extends Light
 {
-   constructor({ name = 'spot.light', ambient, diffuse, specular, exponent, cutoff, intensity, location, direction } = {})
+   constructor({ name = _name, program, uniforms = _uniforms, ambient, diffuse, specular, exponent, cutoff, intensity, location, direction } = {})
    {
-      super({ name, ambient, diffuse, specular, intensity, location });
+      super({ name, program, uniforms, ambient, diffuse, specular, intensity, location });
 
       /**
        * Light fade intensity
-       * @var {number} Entity.Light.SpotLight.exponent
+       * @var {number} Entity.Structure.Light.SpotLight.exponent
        * @private
        */
       this.exponent = exponent;
 
       /**
        * Light cutoff
-       * @var {number} Entity.Light.SpotLight.cutoff
+       * @var {number} Entity.Structure.Light.SpotLight.cutoff
        * @private
        */
       this.cutoff = cutoff;
 
       /**
        * Light direction
-       * @var {vec3} Entity.Light.SpotLight.direction
+       * @var {vec3} Entity.Structure.Light.SpotLight.direction
        * @default [0, 0, 0]
        * @private
        */
       this.direction = direction;
-   }
-
-   /**
-    * Set spotlight shader uniform values
-    * @function Entity.Light.SpotLight.bind
-    * @param {Entity.Structure} structure - Light shader structure
-    * @returns {undefined}
-    */
-   bind(structure)
-   {
-      super.bind(structure);
-
-      structure.exponent.set(this.exponent);
-      structure.cutoff.set(this.cutoff);
-      structure.direction.set(this.direction);
    }
 }
 

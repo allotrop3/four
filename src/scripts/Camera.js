@@ -1,12 +1,17 @@
 'use strict';
 
-let Entity = require('./Entity');
+let Structure = require('./Structure');
 let gl = require('./gl');
 let glm = require('gl-matrix');
 let mat4 = glm.mat4;
 let mat3 = glm.mat3;
+
 const axis = { x: [1, 0, 0], y: [0, 1, 0], z: [0, 0, 1] };
 const radians = 0.0174532925;
+
+const _name = 'camera';
+const _uniforms = ['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix'];
+const _background = [0, 0, 0, 1];
 
 /**
  * Camera encapsulates functionality to transform the view,
@@ -18,11 +23,11 @@ const radians = 0.0174532925;
  * @param {string} [name=Camera] - Instance name
  * @param {vec4} [background=[0, 0, 0, 1]] - Camera background color
  */
-class Camera extends Entity
+class Camera extends Structure
 {
-   constructor({ name = 'Camera', background = [0, 0, 0, 1] } = {})
+   constructor({ name = _name, program, uniforms = _uniforms, background = _background } = {})
    {
-      super({ name });
+      super({ name, program, path: 'camera', uniforms });
 
       /**
        * Camera background color
@@ -47,6 +52,14 @@ class Camera extends Entity
        * @private
        */
       this.projectionMatrix = mat4.create();
+
+      /**
+       * Normal matrix
+       * @var {number} Entity.Camera.normalMatrix
+       * @default [0, 0, 0, 0, 0, 0, 0, 0, 0]
+       * @private
+       */
+      this.normalMatrix = mat3.create();
 
       /**
        * View transformation stack
@@ -76,11 +89,11 @@ class Camera extends Entity
     */
    bind(structure)
    {
-      gl.clearColor.apply(gl, this.background);
+      mat3.normalFromMat4(this.normalMatrix, this.modelViewMatrix);
 
-      structure.modelViewMatrix.set(this.modelViewMatrix);
-      structure.projectionMatrix.set(this.projectionMatrix);
-      structure.normalMatrix.set(this.normalMatrix());
+      super.bind();
+
+      gl.clearColor.apply(gl, this.background);
    }
 
    /**
@@ -265,16 +278,6 @@ class Camera extends Entity
    translateZ(translation)
    {
       this.translate(0, 0, translation);
-   }
-
-   /**
-    * Compute a mat3 normal matrix from based on the modelview matrix
-    * @function Entity.Camera.normalMatrix
-    * @returns {undefined}
-    */
-   normalMatrix()
-   {
-      return mat3.normalFromMat4([], this.modelViewMatrix);
    }
 }
 

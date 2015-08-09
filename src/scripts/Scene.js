@@ -2,9 +2,12 @@
 
 var Entity = require('./Entity');
 
+const _name = 'scene';
+const _meshes = [];
+
 class Scene extends Entity
 {
-   constructor({ name = 'scene', program, camera, meshes = [] })
+   constructor({ name = _name, program, camera, meshes = _meshes })
    {
       super({ name });
 
@@ -43,7 +46,7 @@ class Scene extends Entity
       camera.rotate(this.rotation);
       camera.translate.apply(camera, this.translation);
 
-      camera.bind(cameraStructure);
+      camera.bind();
 
       this.meshes.map(this.draw.bind(this, cameraStructure));
 
@@ -60,11 +63,9 @@ class Scene extends Entity
       camera.rotate(mesh.rotation);
       camera.translate.apply(camera, mesh.translation);
 
-      camera.bind(cameraStructure);
+      camera.bind();
 
       mesh.draw();
-
-      camera.bind(structcamera1);
 
       camera.restore();
    }

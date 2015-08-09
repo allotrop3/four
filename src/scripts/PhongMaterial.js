@@ -2,11 +2,15 @@
 
 let Material = require('./Material');
 
+const _name = 'phong.material';
+const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f shininess', 'i shading'];
+const _shininess = 75;
+
 /**
  * Phong shading using the Blinn-Phong shading model
  * @class PhongMaterial
- * @name Entity.Material.PhongMaterial
- * @extends Entity.Material
+ * @name Entity.Structure.Material.PhongMaterial
+ * @extends Entity.Structure.Material
  * @param {string} [name=phong.material] - Instance name
  * @param {vec3} ambient - Ambient component
  * @param {vec3} diffuse - Diffuse component
@@ -16,37 +20,24 @@ let Material = require('./Material');
  */
 class PhongMaterial extends Material
 {
-   constructor({ name = 'phong.material', ambient, diffuse, specular, shading, shininess = 75 } = {})
+   constructor({ name = _name, uniforms = _uniforms, ambient, diffuse, specular, shading, shininess = _shininess } = {})
    {
-      super({ name, ambient, diffuse, shading });
+      super({ name, program, uniforms, ambient, diffuse, shading });
 
       /**
        * Specular component
-       * @var {vec3} Entity.Material.PhongMaterial.specular
+       * @var {vec3} Entity.Structure.Material.PhongMaterial.specular
        * @private
        */
       this.specular = specular;
 
       /**
        * Surface light reflectivity
-       * @var {number} Entity.Material.PhongMaterial.shininess
+       * @var {number} Entity.Structure.Material.PhongMaterial.shininess
        * @default 75
        * @private
        */
       this.shininess = shininess;
-   }
-
-   /**
-    * Set phong material shader uniform values
-    * @function Entity.Material.PhongMaterial.bind
-    * @param {Entity.Structure} structure - Material shader structure
-    * @returns {undefined}
-    */
-   bind(structure)
-   {
-      super.bind(structure);
-
-      structure.shininess.set(this.shininess);
    }
 }
 

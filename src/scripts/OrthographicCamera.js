@@ -22,9 +22,9 @@ let mat4 = glm.mat4;
  */
 class OrthographicCamera extends Camera
 {
-   constructor({ name = 'orthographic.Camera', background, left = -1, right, bottom, top = -1, near = 0.1, far = 1 } = {})
+   constructor({ name = 'orthographic.Camera', program, background, left = -1, right, bottom, top = -1, near = 0.1, far = 1 } = {})
    {
-      super({ name, background });
+      super({ name, program, background });
 
       /**
        * View left start

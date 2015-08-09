@@ -2,6 +2,8 @@
 
 let Entity = require('./Entity');
 
+const _name = 'renderer';
+
 /**
  * Renderer
  * @class Renderer
@@ -11,7 +13,7 @@ let Entity = require('./Entity');
  */
 class Renderer extends Entity
 {
-   constructor({ name = 'renderer' } = {})
+   constructor({ name = _name } = {})
    {
       super({ name });
    }
