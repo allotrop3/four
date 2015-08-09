@@ -6,6 +6,7 @@ let glm = require('gl-matrix');
 let mat4 = glm.mat4;
 let mat3 = glm.mat3;
 const axis = { x: [1, 0, 0], y: [0, 1, 0], z: [0, 0, 1] };
+const radians = 0.0174532925;
 
 /**
  * Scene encapsulates functionality to transform the view,
@@ -167,22 +168,23 @@ class Scene extends Entity
    /**
     * Scale the scene by a given magnitude and axis
     * @function Entity.Scene.scale
-    * @param {number} rotation - Rotation in radians
+    * @param {number} rotation - Rotation in degrees
     * @param {string} pivot - Axis to rotate around
     * @returns {undefined}
     */
    rotate(rotation, pivot)
    {
       let modelViewMatrix = this.modelViewMatrix;
+      let radian = rotation * radians;
 
-      mat4.rotate(modelViewMatrix, modelViewMatrix, rotation, axis[pivot]);
+      mat4.rotate(modelViewMatrix, modelViewMatrix, radian, axis[pivot]);
    }
 
    /**
     * Rotate the scene by a given magnitude
     * around the x axis
     * @function Entity.Scene.rotateX
-    * @param {number} rotation - Rotation in radians
+    * @param {number} rotation - Rotation in degrees
     * @returns {undefined}
     */
    rotateX(rotation)
@@ -194,7 +196,7 @@ class Scene extends Entity
     * Rotate the scene by a given magnitude
     * around the y axis
     * @function Entity.Scene.rotateX
-    * @param {number} rotation - Rotation in radians
+    * @param {number} rotation - Rotation in degrees
     * @returns {undefined}
     */
    rotateY(rotation)
@@ -206,7 +208,7 @@ class Scene extends Entity
     * Rotate the scene by a given magnitude
     * around the z axis
     * @function Entity.Scene.rotateZ
-    * @param {number} rotation - Rotation in radians
+    * @param {number} rotation - Rotation in degrees
     * @returns {undefined}
     */
    rotateZ(rotation)

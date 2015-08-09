@@ -26,7 +26,7 @@ li
 
 canvas
 {
-   background: #222 url(/images/fourjs-loader.gif) no-repeat;
+   background: #222 url(/images/four-loader.gif) no-repeat;
    background-position: center;
    background-size: 70px;
 }
@@ -42,20 +42,20 @@ a
    position: absolute;
 }
 
-.fourjs__head
+.four__head
 {
    font: 300 30px/2 'helvetica neue';
    padding: 15px 0;
 }
 
-.fourjs__head,
-.fourjs__body
+.four__head,
+.four__body
 {
    display: inline-block;
    vertical-align: middle;
 }
 
-.fourjs__image
+.four__image
 {
    height: 50px;
    display: inline-block;
