@@ -77,6 +77,10 @@ class Mesh extends Entity
        */
       this.usage = usage;
 
+      this.scale = [1, 1, 1];
+      this.rotation = 0;
+      this.translation = [0, 0, 0];
+
       this.configure();
    }
 
@@ -90,8 +94,9 @@ class Mesh extends Entity
       let vao = this.vao;
       let usage = this.usage;
       let interleaved = [];
+      let vertices = this.vertices;
 
-      this.vertices.map(this.interleave.bind(this, interleaved));
+      vertices.map(this.interleave.bind(this, interleaved));
 
       vao.bind();
 
@@ -99,7 +104,15 @@ class Mesh extends Entity
 
       if (vao.indexed)
       {
-         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, this.indices, usage);
+         let indices = this.indices;
+
+         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, usage);
+
+         this.count = indices;
+      }
+      else
+      {
+         this.count = vertices.length;
       }
 
       vao.unbind();
@@ -128,10 +141,10 @@ class Mesh extends Entity
     * @function Entity.Mesh.draw
     * @param {number} [primitive=gl.TRIANGLES] - Mesh vertex construction method
     * @param {number} [offset=0] - Index to start drawing from
-    * @param {boolean|number} [count=false] - Number of vertices to draw
+    * @param {boolean|number} [count=this.count] - Number of vertices to draw
     * @returns {undefined}
     */
-   draw({ primitive = gl.TRIANGLES, offset = 0, count = false } = {})
+   draw({ primitive = gl.TRIANGLES, offset = 0, count = this.count } = {})
    {
       let vao = this.vao;
 

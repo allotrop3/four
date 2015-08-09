@@ -51,7 +51,7 @@ class MeshLoader extends Entity
        * @private
        */
       this.tmp = {
-        vertices: [],
+         vertices: [],
          colors: [],
          uvs: [],
          normals: []

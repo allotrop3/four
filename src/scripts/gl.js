@@ -1,6 +1,6 @@
 'use strict';
 
-let view = canvas();
+let $view = canvas();
 let gl = context('webgl') || context('experimental-webgl');
 
 function canvas()
@@ -21,7 +21,7 @@ function canvas()
 
 function context(name)
 {
-   return view.getContext(name);
+   return $view.getContext(name);
 }
 
 module.exports = gl;

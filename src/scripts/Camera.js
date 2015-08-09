@@ -169,10 +169,10 @@ class Camera extends Entity
     * Scale the camera by a given magnitude and axis
     * @function Entity.Camera.scale
     * @param {number} rotation - Rotation in degrees
-    * @param {string} pivot - Axis to rotate around
+    * @param {string} [pivot=y] - Axis to rotate around
     * @returns {undefined}
     */
-   rotate(rotation, pivot)
+   rotate(rotation, pivot = 'y')
    {
       let modelViewMatrix = this.modelViewMatrix;
       let radian = rotation * radians;
