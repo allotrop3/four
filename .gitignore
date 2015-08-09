@@ -2,5 +2,3 @@
 .settings
 .idea
 node_modules
-public/docs
-public/scripts
