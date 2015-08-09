@@ -48,17 +48,17 @@ class PointLight extends Light
    /**
     * Set point light shader uniform values
     * @function Entity.Light.PointLight.bind
-    * @param {object} uniform - Light shader uniforms
+    * @param {Entity.Structure} structure - Light shader structure
     * @returns {undefined}
     */
-   bind(uniform)
+   bind(structure)
    {
-      super.bind(uniform);
+      super.bind(structure);
 
-      uniform.coefficient.set(this.coefficient);
-      uniform.linear.set(this.linear);
-      uniform.quadratic.set(this.quadratic);
-      uniform.location.set(this.location);
+      structure.coefficient.set(this.coefficient);
+      structure.linear.set(this.linear);
+      structure.quadratic.set(this.quadratic);
+      structure.location.set(this.location);
    }
 }
 

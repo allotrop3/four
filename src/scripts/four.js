@@ -23,6 +23,8 @@ var FOUR = {
    Material: require('./Material'),
    PhongMaterial: require('./PhongMaterial'),
    Mesh: require('./Mesh'),
+   MeshLoader: require('./MeshLoader'),
+   OBJMeshLoader: require('./OBJMeshLoader'),
    Program: require('./Program'),
    Renderbuffer: require('./Renderbuffer'),
    Scene: require('./Scene'),
@@ -31,13 +33,12 @@ var FOUR = {
    Shader: require('./Shader'),
    FragmentShader: require('./FragmentShader'),
    VertexShader: require('./VertexShader'),
+   Structure: require('./Structure'),
    Texture: require('./Texture'),
    DataTexture: require('./DataTexture'),
    ImageTexture: require('./ImageTexture'),
    Uniform: require('./Uniform'),
-   VertexArrayObject: require('./VertexArrayObject'),
-   MeshLoader: require('./MeshLoader'),
-   OBJMeshLoader: require('./OBJMeshLoader')
+   VertexArrayObject: require('./VertexArrayObject')
 };
 
 module.exports = window.FOUR = FOUR;

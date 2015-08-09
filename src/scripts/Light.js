@@ -61,16 +61,16 @@ class Light extends Entity
    /**
     * Set global light shader uniform values
     * @function Entity.Light.bind
-    * @param {object} uniform - Light shader uniforms
+    * @param {Entity.Structure} structure - Light shader structure
     * @returns {undefined}
     */
-   bind(uniform)
+   bind(structure)
    {
-      uniform.ambient.set(this.ambient);
-      uniform.diffuse.set(this.diffuse);
-      uniform.specular.set(this.specular);
-      uniform.intensity.set(this.intensity);
-      uniform.location.set(this.location);
+      structure.ambient.set(this.ambient);
+      structure.diffuse.set(this.diffuse);
+      structure.specular.set(this.specular);
+      structure.intensity.set(this.intensity);
+      structure.location.set(this.location);
    }
 }
 

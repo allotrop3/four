@@ -11,15 +11,10 @@ let program1 = undefined;
 let uniformprojection1 = undefined;
 let uniformmodview1 = undefined;
 let uniformnormal1 = undefined;
-let uniformmaterialAmbient = undefined;
-let uniformmaterialDiffuse = undefined;
-let uniformmaterialSpecular = undefined;
-let uniformmaterialShininess = undefined;
-let uniformlightAmbient = undefined;
-let uniformlightDiffuse = undefined;
-let uniformlightSpecular = undefined;
-let uniformlightLocation = undefined;
-let uniformlightDirection = undefined;
+let structmaterial1 = undefined;
+let structlight1 = undefined;
+let material1 = undefined;
+let light1 = undefined;
 let vao1 = undefined;
 let position1 = undefined;
 let uniformcolor1 = undefined;
@@ -41,37 +36,33 @@ function main()
 	uniformprojection1 = new FOUR.Uniform({ program: program1, uniform: 'projection', format: 'mat4' });
 	uniformmodview1 = new FOUR.Uniform({ program: program1, uniform: 'modelView', format: 'mat4' });
 	uniformnormal1 = new FOUR.Uniform({ program: program1, uniform: 'normal', format: 'mat3' });
-	uniformmaterialAmbient = new FOUR.Uniform({ program: program1, uniform: 'materialAmbient', format: 'vec3f' });
-	uniformmaterialDiffuse = new FOUR.Uniform({ program: program1, uniform: 'materialDiffuse', format: 'vec3f' });
-	uniformmaterialSpecular = new FOUR.Uniform({ program: program1, uniform: 'materialSpecular', format: 'vec3f' });
-	uniformmaterialShininess = new FOUR.Uniform({ program: program1, uniform: 'materialShininess', format: 'f' });
-	uniformlightAmbient = new FOUR.Uniform({ program: program1, uniform: 'lightAmbient', format: 'vec3f' });
-	uniformlightDiffuse = new FOUR.Uniform({ program: program1, uniform: 'lightDiffuse', format: 'vec3f' });
-	uniformlightSpecular = new FOUR.Uniform({ program: program1, uniform: 'lightSpecular', format: 'vec3f' });
-	uniformlightLocation = new FOUR.Uniform({ program: program1, uniform: 'lightLocation', format: 'vec3f' });
-	uniformlightDirection = new FOUR.Uniform({ program: program1, uniform: 'lightDirection', format: 'vec3f' });
+	structmaterial1 = new FOUR.Structure({
+		program: program1,
+		uniform: 'material',
+		uniforms: ['vec3f ambient', 'vec3f diffuse', 'vec3f specular', 'f shininess', 'i shading']
+	});
+	structlight1 = new FOUR.Structure({
+		program: program1,
+		uniform: 'light',
+		uniforms: ['vec3f ambient', 'vec3f diffuse', 'vec3f specular', 'f intensity', 'vec3f location', 'vec3f direction']
+	});
+	material1 = new FOUR.PhongMaterial({ ambient: [0.5, 0.5, 0.5], diffuse: [0.39, 0.36, 0.29], specular: [0.39, 0.36, 0.29], shininess: 1 });
+	light1 = new FOUR.Light({ ambient: [0, 0, 0], diffuse: [1, 1, 1], specular: [1, 1, 1], location: [10, 5, 5] });
 	uniformcolor1 = new FOUR.Uniform({ program: program1, uniform: 'color', format: 'vec3f' });
 	perspective1 = new FOUR.PerspectiveScene({ background: [0.1, 0.1, 0.1, 1], direction: [0, 0, 0], location: [10, 10, 10] });
 	view = new FOUR.Framebuffer({ scene: perspective1 });
-	mesh1 = new FOUR.Mesh({
-		vao: vao1,
-		vertices: objMesh1.vertices,
-		uvs: objMesh1.uvs,
-		normals: objMesh1.normals
-	});
+	mesh1 = new FOUR.Mesh({ vao: vao1, vertices: objMesh1.vertices, uvs: objMesh1.uvs, normals: objMesh1.normals });
 	count = objMesh1.vertices.length;
 
 	requestAnimationFrame(render);
 }
 
-function drawMesh(translate = [0, 0, 0])
+function drawMesh(translation)
 {
 	perspective1.save();
 
-	perspective1.scaleX(scale);
-	perspective1.scaleY(scale);
-	perspective1.scaleZ(scale);
-	perspective1.translate(translate);
+	perspective1.scale([scale, scale, scale]);
+	perspective1.translate(translation);
 
 	uniformprojection1.set(perspective1.projectionMatrix);
 	uniformmodview1.set(perspective1.modelViewMatrix);
@@ -89,33 +80,10 @@ function render()
 
 	program1.bind();
 
-	uniformmaterialAmbient.set([0.5, 0.5, 0.5]);
-	uniformmaterialDiffuse.set([0.39, 0.36, 0.29]);
-	uniformmaterialSpecular.set([0.39, 0.36, 0.29]);
-	uniformmaterialShininess.set(1);
+	material1.bind(structmaterial1);
+	light1.bind(structlight1);
 
-	uniformlightAmbient.set([0, 0, 0]);
-	uniformlightDiffuse.set([1, 1, 1]);
-	uniformlightSpecular.set([1, 1, 1]);
-	uniformlightLocation.set([10, 5, 5]);
-
-	drawMesh([-20, 0, -12.5]);
-	drawMesh([-10, 0, -12.5]);
-	drawMesh([0, 0, -12.5]);
-	drawMesh([-20, 0, 12.5]);
-	drawMesh([-10, 0, 12.5]);
-	drawMesh([0, 0, 12.5]);
-	drawMesh([-20, 0, 0]);
-	drawMesh([-10, 0, 0]);
-	drawMesh();
-	drawMesh([10, 0, 0]);
-	drawMesh([20, 0, 0]);
-	drawMesh([0, 0, 12.5]);
-	drawMesh([10, 0, 12.5]);
-	drawMesh([20, 0, 12.5]);
-	drawMesh([0, 0, -12.5]);
-	drawMesh([10, 0, -12.5]);
-	drawMesh([20, 0, -12.5]);
+	[[-20, 0, -12.5], [-10, 0, -12.5], [0, 0, -12.5], [-20, 0, 12.5], [-10, 0, 12.5], [0, 0, 12.5], [-20, 0, 0], [-10, 0, 0], [0, 0, 0], [10, 0, 0], [20, 0, 0], [0, 0, 12.5], [10, 0, 12.5], [20, 0, 12.5], [0, 0, -12.5], [10, 0, -12.5], [20, 0, -12.5]].map(drawMesh);
 
 	requestAnimationFrame(render);
 }

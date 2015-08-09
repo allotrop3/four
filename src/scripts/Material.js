@@ -45,14 +45,14 @@ class Material extends Entity
    /**
     * Set material shader uniform values
     * @function Entity.Material.bind
-    * @param {object} uniform - Material shader uniforms
-    * @returns {undefined}
+    * @param {Entity.Structure} structure - Material shader structure
+    * @returns {structure}
     */
-   bind(uniform)
+   bind(structure)
    {
-      uniform.ambient.set(this.ambient);
-      uniform.diffuse.set(this.diffuse);
-      uniform.shading.set(this.shading);
+      structure.ambient.set(this.ambient);
+      structure.diffuse.set(this.diffuse);
+      structure.shading.set(this.shading);
    }
 }
 

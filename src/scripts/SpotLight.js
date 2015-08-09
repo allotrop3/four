@@ -50,16 +50,16 @@ class SpotLight extends Light
    /**
     * Set spotlight shader uniform values
     * @function Entity.Light.SpotLight.bind
-    * @param {object} uniform - Light shader uniforms
+    * @param {Entity.Structure} structure - Light shader structure
     * @returns {undefined}
     */
-   bind(uniform)
+   bind(structure)
    {
-      super.bind(uniform);
+      super.bind(structure);
 
-      uniform.exponent.set(this.exponent);
-      uniform.cutoff.set(this.cutoff);
-      uniform.direction.set(this.direction);
+      structure.exponent.set(this.exponent);
+      structure.cutoff.set(this.cutoff);
+      structure.direction.set(this.direction);
    }
 }
 

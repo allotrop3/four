@@ -39,14 +39,14 @@ class PhongMaterial extends Material
    /**
     * Set phong material shader uniform values
     * @function Entity.Material.PhongMaterial.bind
-    * @param {object} uniform - Material shader uniforms
+    * @param {Entity.Structure} structure - Material shader structure
     * @returns {undefined}
     */
-   bind(uniform)
+   bind(structure)
    {
-      super.bind(uniform);
+      super.bind(structure);
 
-      uniform.shininess.set(this.shininess);
+      structure.shininess.set(this.shininess);
    }
 }
 

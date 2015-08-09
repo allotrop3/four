@@ -33,14 +33,14 @@ class DirectionalLight extends Light
    /**
     * Set directional light shader uniform values
     * @function Entity.Light.DirectionalLight.bind
-    * @param {object} uniform - Light shader uniforms
+    * @param {Entity.Structure} structure - Light shader structure
     * @returns {undefined}
     */
-   bind(uniform)
+   bind(structure)
    {
-      super.bind(uniform);
+      super.bind(structure);
 
-      uniform.direction.set(this.direction);
+      structure.direction.set(this.direction);
    }
 }
 
