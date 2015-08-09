@@ -219,9 +219,9 @@ class Camera extends Entity
    /**
     * Translate the camera by a given vector
     * @function Entity.Camera.translate
-    * @param {number} translateX - Translation amount along the x axis
-    * @param {number} translateY - Translation amount along the y axis
-    * @param {number} translateZ - Translation amount along the z axis
+    * @param {number} translateX - Translation along the x axis
+    * @param {number} translateY - Translation along the y axis
+    * @param {number} translateZ - Translation along the z axis
     * @returns {undefined}
     */
    translate(translateX, translateY, translateZ)
@@ -235,7 +235,7 @@ class Camera extends Entity
     * Translate the camera by a given amount
     * along the x axis
     * @function Entity.Camera.translateX
-    * @param {number} translation - Translation amount
+    * @param {number} translation - Translation along the x axis
     * @returns {undefined}
     */
    translateX(translation)
@@ -247,7 +247,7 @@ class Camera extends Entity
     * Translate the camera by a given amount
     * along the y axis
     * @function Entity.Camera.translateY
-    * @param {number} translation - Translation amount
+    * @param {number} translation - Translation along the y axis
     * @returns {undefined}
     */
    translateY(translation)
@@ -259,7 +259,7 @@ class Camera extends Entity
     * Translate the camera by a given amount
     * along the z axis
     * @function Entity.Camera.translateZ
-    * @param {number} translation - Translation amount
+    * @param {number} translation - Translation along the z axis
     * @returns {undefined}
     */
    translateZ(translation)

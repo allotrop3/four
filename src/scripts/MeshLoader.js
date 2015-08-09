@@ -19,6 +19,13 @@ class MeshLoader extends Entity
       super({ name });
 
       /**
+       * Mesh loader xhr promise handler
+       * @var {Promise} Entity.MeshLoader.request
+       * @private
+       */
+      this.request = undefined;
+
+      /**
        * Mesh vertices
        * @var {Array} Entity.MeshLoader.vertices
        * @default []
@@ -76,7 +83,7 @@ class MeshLoader extends Entity
     */
    fetch(path)
    {
-      ajax(path).then(this.parse.bind(this));
+      this.request = ajax(path).then(this.parse.bind(this));
    }
 }
 

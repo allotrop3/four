@@ -4,9 +4,11 @@ var Entity = require('./Entity');
 
 class Scene extends Entity
 {
-   constructor({ name = 'scene', camera, meshes = [] })
+   constructor({ name = 'scene', program, camera, meshes = [] })
    {
       super({ name });
+
+      this.program = program;
 
       this.camera = camera;
 
@@ -17,6 +19,11 @@ class Scene extends Entity
       this.rotation = 0;
 
       this.translation = [0, 0, 0];
+   }
+
+   use(program)
+   {
+      this.program = program;
    }
 
    put(mesh)

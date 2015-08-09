@@ -27,6 +27,7 @@ var FOUR = {
    PhongMaterial: require('./PhongMaterial'),
    Mesh: require('./Mesh'),
    MeshLoader: require('./MeshLoader'),
+   OBJMesh: require('./OBJMesh'),
    OBJMeshLoader: require('./OBJMeshLoader'),
    Program: require('./Program'),
    Renderbuffer: require('./Renderbuffer'),

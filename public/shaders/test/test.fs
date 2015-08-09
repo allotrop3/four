@@ -11,15 +11,6 @@ struct material
    float shininess;
 };
 
-// struct light
-// {
-//    vec3 ambient;
-//    vec3 diffuse;
-//    vec3 specular;
-//    float intensity;
-//    vec3 location;
-// };
-
 struct light
 {
    vec3 ambient;
@@ -31,7 +22,6 @@ struct light
    float intensity;
    vec3 location;
 };
-
 
 uniform material u_material;
 uniform light u_light;

@@ -31,23 +31,21 @@ class Mesh extends Entity
 
       /**
        * Mesh vertices
-       * @var {Array} Entity.Mesh.vertices
-       * @default []
+       * @var {Array} [Entity.Mesh.vertices=[]]
        * @private
        */
       this.vertices = vertices;
 
       /**
        * Mesh vertex colors
-       * @var {Array} Entity.Mesh.colors
-       * @default []
+       * @var {Array} [Entity.Mesh.colors=[]]
        * @private
        */
       this.colors = colors;
 
       /**
        * Mesh vertex texture coordinates
-       * @var {Array} Entity.Mesh.uvs
+       * @var {Array} [Entity.Mesh.uvs=[]]
        * @default []
        * @private
        */
@@ -55,30 +53,44 @@ class Mesh extends Entity
 
       /**
        * Mesh vertex normals
-       * @var {Array} Entity.Mesh.normals
-       * @default []
+       * @var {Array} [Entity.Mesh.normals=[]]
        * @private
        */
       this.normals = normals;
 
       /**
        * Mesh vertex array buffer primitive indices
-       * @var {Array} Entity.Mesh.indices
-       * @default Uint16Array[]
+       * @var {Array} [Entity.Mesh.indices=Uint16Array[]]
        * @private
        */
       this.indices = new Uint16Array(indices);
 
       /**
        * Flag to update the array buffer contents between draw calls
-       * @var {number} Entity.Mesh.usage
-       * @default gl.STATIC_DRAW
+       * @var {number} [Entity.Mesh.usage=gl.STATIC_DRAW]
        * @private
        */
       this.usage = usage;
 
+      /**
+       * Mesh scale
+       * @var {vec3} [Entity.Mesh.scale=[1, 1, 1]]
+       * @private
+       */
       this.scale = [1, 1, 1];
+
+      /**
+       * Mesh rotation in degrees
+       * @var {number} [Entity.Mesh.rotation=0]
+       * @private
+       */
       this.rotation = 0;
+
+      /**
+       * Mesh translation
+       * @var {vec3} [Entity.Mesh.translation=[0, 0, 0]]
+       * @private
+       */
       this.translation = [0, 0, 0];
 
       this.configure();
