@@ -1,18 +1,18 @@
 'use strict';
 
-let Scene = require('./Scene');
+let Camera = require('./Camera');
 let gl = require('./gl');
 let glm = require('gl-matrix');
 let mat4 = glm.mat4;
 
 /**
- * PerspectiveScene configures a perspective projection into
+ * PerspectiveCamera configures a perspective projection into
  * the associated framebuffer
- * @class PerspectiveScene
- * @name Entity.Scene.PerspectiveScene
- * @extends Entity.Scene
- * @param {string} [name=perspective.scene] - Instance name
- * @param {vec4} [background=[0, 0, 0, 1]] - Scene background color
+ * @class PerspectiveCamera
+ * @name Entity.Camera.PerspectiveCamera
+ * @extends Entity.Camera
+ * @param {string} [name=perspective.camera] - Instance name
+ * @param {vec4} [background=[0, 0, 0, 1]] - Camera background color
  * @param {number} [width=gl.canvas.width] - View width
  * @param {number} [height=gl.canvas.height] - View height
  * @param {number} [fov=45] - Field of view
@@ -20,31 +20,31 @@ let mat4 = glm.mat4;
  * @param {number} [far=1000] - Observable end
  * @param {vec3} direction - View direction
  * @param {vec3} location - Vantage position
- * @param {vec3} [up=[0, 1, 0]] - Scene orientation
+ * @param {vec3} [up=[0, 1, 0]] - Camera orientation
  */
-class PerspectiveScene extends Scene
+class PerspectiveCamera extends Camera
 {
-   constructor({ name = 'perspective.scene', background, width = gl.canvas.width, height = gl.canvas.height, fov = 45, near = 0.1, far = 1000, direction, location, up = [0, 1, 0] } = {})
+   constructor({ name = 'perspective.camera', background, width = gl.canvas.width, height = gl.canvas.height, fov = 45, near = 0.1, far = 1000, direction, location, up = [0, 1, 0] } = {})
    {
       super({ name, background });
 
       /**
        * View width
-       * @var {number} Entity.Scene.PerspectiveScene.width
+       * @var {number} Entity.Camera.PerspectiveCamera.width
        * @private
        */
       this.width = width;
 
        /**
        * View height
-       * @var {number} Entity.Scene.PerspectiveScene.height
+       * @var {number} Entity.Camera.PerspectiveCamera.height
        * @private
        */
       this.height = height;
 
       /**
        * Field of view
-       * @var {number} Entity.Scene.PerspectiveScene.fov
+       * @var {number} Entity.Camera.PerspectiveCamera.fov
        * @default 45
        * @private
        */
@@ -52,14 +52,14 @@ class PerspectiveScene extends Scene
 
       /**
        * View aspect ratio
-       * @var {number} Entity.Scene.PerspectiveScene.ratio
+       * @var {number} Entity.Camera.PerspectiveCamera.ratio
        * @private
        */
       this.ratio = width / height;
 
       /**
        * Observable start
-       * @var {number} Entity.Scene.PerspectiveScene.near
+       * @var {number} Entity.Camera.PerspectiveCamera.near
        * @default 0.1
        * @private
        */
@@ -67,7 +67,7 @@ class PerspectiveScene extends Scene
 
       /**
        * Observable end
-       * @var {number} Entity.Scene.PerspectiveScene.far
+       * @var {number} Entity.Camera.PerspectiveCamera.far
        * @default 1000
        * @private
        */
@@ -75,21 +75,21 @@ class PerspectiveScene extends Scene
 
       /**
        * View direction
-       * @var {vec3} Entity.Scene.PerspectiveScene.direction
+       * @var {vec3} Entity.Camera.PerspectiveCamera.direction
        * @private
        */
       this.direction = direction;
 
       /**
        * Vantage position
-       * @var {vec3} Entity.Scene.PerspectiveScene.location
+       * @var {vec3} Entity.Camera.PerspectiveCamera.location
        * @private
        */
       this.location = location;
 
       /**
-       * Scene orientation
-       * @var {vec3} Entity.Scene.PerspectiveScene.up
+       * Camera orientation
+       * @var {vec3} Entity.Camera.PerspectiveCamera.up
        * @default [0, 1, 0]
        * @private
        */
@@ -100,7 +100,7 @@ class PerspectiveScene extends Scene
 
    /**
     * Configure a mat4 perspective projection
-    * @function Entity.Scene.PerspectiveScene.configure
+    * @function Entity.Camera.PerspectiveCamera.configure
     * @returns {undefined}
     */
    configure()
@@ -119,8 +119,8 @@ class PerspectiveScene extends Scene
 
    /**
     * Apply perspective projection to active framebuffer
-    * @function Entity.Scene.PerspectiveScene.bind
-    * @param {Entity.Structure} structure - Scene shader uniforms
+    * @function Entity.Camera.PerspectiveCamera.bind
+    * @param {Entity.Structure} structure - Camera shader uniforms
     * @returns {undefined}
     */
    bind(structure)
@@ -132,4 +132,4 @@ class PerspectiveScene extends Scene
    }
 }
 
-module.exports = PerspectiveScene;
+module.exports = PerspectiveCamera;

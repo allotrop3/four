@@ -9,24 +9,24 @@ const axis = { x: [1, 0, 0], y: [0, 1, 0], z: [0, 0, 1] };
 const radians = 0.0174532925;
 
 /**
- * Scene encapsulates functionality to transform the view,
+ * Camera encapsulates functionality to transform the view,
  * including scaling, rotating and translating, and configure
  * projections into framebuffers
- * @class Scene
- * @name Entity.Scene
+ * @class Camera
+ * @name Entity.Camera
  * @extends Entity
- * @param {string} [name=scene] - Instance name
- * @param {vec4} [background=[0, 0, 0, 1]] - Scene background color
+ * @param {string} [name=Camera] - Instance name
+ * @param {vec4} [background=[0, 0, 0, 1]] - Camera background color
  */
-class Scene extends Entity
+class Camera extends Entity
 {
-   constructor({ name = 'scene', background = [0, 0, 0, 1] } = {})
+   constructor({ name = 'Camera', background = [0, 0, 0, 1] } = {})
    {
       super({ name });
 
       /**
-       * Scene background color
-       * @var {number} Entity.Scene.background
+       * Camera background color
+       * @var {number} Entity.Camera.background
        * @default [0, 0, 0, 1]
        * @private
        */
@@ -34,7 +34,7 @@ class Scene extends Entity
 
       /**
        * Modelview matrix
-       * @var {number} Entity.Scene.modelViewMatrix
+       * @var {number} Entity.Camera.modelViewMatrix
        * @default [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
        * @private
        */
@@ -42,7 +42,7 @@ class Scene extends Entity
 
       /**
        * Projection matrix
-       * @var {number} Entity.Scene.projectionMatrix
+       * @var {number} Entity.Camera.projectionMatrix
        * @default [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
        * @private
        */
@@ -50,7 +50,7 @@ class Scene extends Entity
 
       /**
        * View transformation stack
-       * @var {number} Entity.Scene.stack
+       * @var {number} Entity.Camera.stack
        * @default []
        * @private
        */
@@ -58,8 +58,8 @@ class Scene extends Entity
    }
 
    /**
-    * Configure the scene
-    * @function Entity.Scene.configure
+    * Configure the camera
+    * @function Entity.Camera.configure
     * @returns {undefined}
     */
    configure()
@@ -69,9 +69,9 @@ class Scene extends Entity
    }
 
    /**
-    * Bind the scene
-    * @function Entity.Scene.configure
-    * @param {Entity.Structure} structure - Scene shader uniforms
+    * Bind the camera
+    * @function Entity.Camera.configure
+    * @param {Entity.Structure} structure - Camera shader uniforms
     * @returns {undefined}
     */
    bind(structure)
@@ -84,22 +84,22 @@ class Scene extends Entity
    }
 
    /**
-    * Push the current state of the scene into
+    * Push the current state of the camera into
     * the view transformation stack
-    * @function Entity.Scene.save
+    * @function Entity.Camera.save
     * @returns {undefined}
     */
    save()
    {
-      let currentScene = mat4.clone(this.modelViewMatrix);
+      let currentCamera = mat4.clone(this.modelViewMatrix);
 
-      this.stack.push(currentScene);
+      this.stack.push(currentCamera);
    }
 
    /**
-    * Revert the current scene to last
+    * Revert the current camera to last
     * state in view transformation stack
-    * @function Entity.Scene.restore
+    * @function Entity.Camera.restore
     * @returns {undefined}
     */
    restore()
@@ -108,15 +108,15 @@ class Scene extends Entity
 
       if (stack.length)
       {
-         let previousScene = stack.pop();
+         let previousCamera = stack.pop();
 
-         mat4.copy(this.modelViewMatrix, previousScene);
+         mat4.copy(this.modelViewMatrix, previousCamera);
       }
    }
 
    /**
-    * Scale the scene by a given magnitude
-    * @function Entity.Scene.scale
+    * Scale the camera by a given magnitude
+    * @function Entity.Camera.scale
     * @param {number} scaleX - Scale multiplier along the x axis
     * @param {number} scaleY - Scale multiplier along the y axis
     * @param {number} scaleZ - Scale multiplier along the z axis
@@ -130,9 +130,9 @@ class Scene extends Entity
    }
 
    /**
-    * Scale the scene by a given magnitude
+    * Scale the camera by a given magnitude
     * along the x axis
-    * @function Entity.Scene.scaleX
+    * @function Entity.Camera.scaleX
     * @param {number} scale - Scale multiplier
     * @returns {undefined}
     */
@@ -142,9 +142,9 @@ class Scene extends Entity
    }
 
    /**
-    * Scale the scene by a given magnitude
+    * Scale the camera by a given magnitude
     * along the y axis
-    * @function Entity.Scene.scaleX
+    * @function Entity.Camera.scaleX
     * @param {number} scale - Scale multiplier
     * @returns {undefined}
     */
@@ -154,9 +154,9 @@ class Scene extends Entity
    }
 
    /**
-    * Scale the scene by a given magnitude
+    * Scale the camera by a given magnitude
     * along the z axis
-    * @function Entity.Scene.scaleZ
+    * @function Entity.Camera.scaleZ
     * @param {number} scale - Scale multiplier
     * @returns {undefined}
     */
@@ -166,8 +166,8 @@ class Scene extends Entity
    }
 
    /**
-    * Scale the scene by a given magnitude and axis
-    * @function Entity.Scene.scale
+    * Scale the camera by a given magnitude and axis
+    * @function Entity.Camera.scale
     * @param {number} rotation - Rotation in degrees
     * @param {string} pivot - Axis to rotate around
     * @returns {undefined}
@@ -181,9 +181,9 @@ class Scene extends Entity
    }
 
    /**
-    * Rotate the scene by a given magnitude
+    * Rotate the camera by a given magnitude
     * around the x axis
-    * @function Entity.Scene.rotateX
+    * @function Entity.Camera.rotateX
     * @param {number} rotation - Rotation in degrees
     * @returns {undefined}
     */
@@ -193,9 +193,9 @@ class Scene extends Entity
    }
 
    /**
-    * Rotate the scene by a given magnitude
+    * Rotate the camera by a given magnitude
     * around the y axis
-    * @function Entity.Scene.rotateX
+    * @function Entity.Camera.rotateX
     * @param {number} rotation - Rotation in degrees
     * @returns {undefined}
     */
@@ -205,9 +205,9 @@ class Scene extends Entity
    }
 
    /**
-    * Rotate the scene by a given magnitude
+    * Rotate the camera by a given magnitude
     * around the z axis
-    * @function Entity.Scene.rotateZ
+    * @function Entity.Camera.rotateZ
     * @param {number} rotation - Rotation in degrees
     * @returns {undefined}
     */
@@ -217,8 +217,8 @@ class Scene extends Entity
    }
 
    /**
-    * Translate the scene by a given vector
-    * @function Entity.Scene.translate
+    * Translate the camera by a given vector
+    * @function Entity.Camera.translate
     * @param {number} translateX - Translation amount along the x axis
     * @param {number} translateY - Translation amount along the y axis
     * @param {number} translateZ - Translation amount along the z axis
@@ -232,9 +232,9 @@ class Scene extends Entity
    }
 
    /**
-    * Translate the scene by a given amount
+    * Translate the camera by a given amount
     * along the x axis
-    * @function Entity.Scene.translateX
+    * @function Entity.Camera.translateX
     * @param {number} translation - Translation amount
     * @returns {undefined}
     */
@@ -244,9 +244,9 @@ class Scene extends Entity
    }
 
    /**
-    * Translate the scene by a given amount
+    * Translate the camera by a given amount
     * along the y axis
-    * @function Entity.Scene.translateY
+    * @function Entity.Camera.translateY
     * @param {number} translation - Translation amount
     * @returns {undefined}
     */
@@ -256,9 +256,9 @@ class Scene extends Entity
    }
 
    /**
-    * Translate the scene by a given amount
+    * Translate the camera by a given amount
     * along the z axis
-    * @function Entity.Scene.translateZ
+    * @function Entity.Camera.translateZ
     * @param {number} translation - Translation amount
     * @returns {undefined}
     */
@@ -269,7 +269,7 @@ class Scene extends Entity
 
    /**
     * Compute a mat3 normal matrix from based on the modelview matrix
-    * @function Entity.Scene.normalMatrix
+    * @function Entity.Camera.normalMatrix
     * @returns {undefined}
     */
    normalMatrix()
@@ -278,4 +278,4 @@ class Scene extends Entity
    }
 }
 
-module.exports = Scene;
+module.exports = Camera;

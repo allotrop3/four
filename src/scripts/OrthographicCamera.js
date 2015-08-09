@@ -1,18 +1,18 @@
 'use strict';
 
-let Scene = require('./Scene');
+let Camera = require('./Camera');
 let gl = require('./gl');
 let glm = require('gl-matrix');
 let mat4 = glm.mat4;
 
 /**
- * OrthographicScene configures an othographic projection into
+ * OrthographicCamera configures an othographic projection into
  * the associated framebuffer
- * @class OrthographicScene
- * @name Entity.Scene.OrthographicScene
- * @extends Entity.Scene
- * @param {string} [name=orthographic.scene] - Instance name
- * @param {vec4} [background=[0, 0, 0, 1]] - Scene background color
+ * @class OrthographicCamera
+ * @name Entity.Camera.OrthographicCamera
+ * @extends Entity.Camera
+ * @param {string} [name=orthographic.camera] - Instance name
+ * @param {vec4} [background=[0, 0, 0, 1]] - Camera background color
  * @param {number} [left=-1] - View left start
  * @param {number} right - View right end
  * @param {number} [top=-1] - View top start
@@ -20,15 +20,15 @@ let mat4 = glm.mat4;
  * @param {number} [near=0.1] - Observable start
  * @param {number} [far=1] - Observable end
  */
-class OrthographicScene extends Scene
+class OrthographicCamera extends Camera
 {
-   constructor({ name = 'orthographic.scene', background, left = -1, right, bottom, top = -1, near = 0.1, far = 1 } = {})
+   constructor({ name = 'orthographic.Camera', background, left = -1, right, bottom, top = -1, near = 0.1, far = 1 } = {})
    {
       super({ name, background });
 
       /**
        * View left start
-       * @var {number} Entity.Scene.OrthographicScene.left
+       * @var {number} Entity.Camera.OrthographicCamera.left
        * @default -1
        * @private
        */
@@ -36,21 +36,21 @@ class OrthographicScene extends Scene
 
       /**
        * View right end
-       * @var {number} Entity.Scene.OrthographicScene.right
+       * @var {number} Entity.Camera.OrthographicCamera.right
        * @private
        */
       this.right = right;
 
       /**
        * View bottom end
-       * @var {number} Entity.Scene.OrthographicScene.bottom
+       * @var {number} Entity.Camera.OrthographicCamera.bottom
        * @private
        */
       this.bottom = bottom;
 
       /**
        * View top start
-       * @var {number} Entity.Scene.OrthographicScene.top
+       * @var {number} Entity.Camera.OrthographicCamera.top
        * @default -1
        * @private
        */
@@ -58,7 +58,7 @@ class OrthographicScene extends Scene
 
       /**
        * Observable start
-       * @var {number} Entity.Scene.OrthographicScene.near
+       * @var {number} Entity.Camera.OrthographicCamera.near
        * @default 0.1
        * @private
        */
@@ -66,7 +66,7 @@ class OrthographicScene extends Scene
 
       /**
        * Observable end
-       * @var {number} Entity.Scene.OrthographicScene.far
+       * @var {number} Entity.Camera.OrthographicCamera.far
        * @default 1
        * @private
        */
@@ -77,7 +77,7 @@ class OrthographicScene extends Scene
 
    /**
     * Configure a mat4 orthographic projection
-    * @function Entity.Scene.OrthographicScene.configure
+    * @function Entity.Camera.OrthographicCamera.configure
     * @returns {undefined}
     */
    configure()
@@ -90,8 +90,8 @@ class OrthographicScene extends Scene
 
    /**
     * Apply orthographic projection to active framebuffer
-    * @function Entity.Scene.OrthographicScene.bind
-    * @param {Entity.Structure} structure - Scene shader uniforms
+    * @function Entity.Camera.OrthographicCamera.bind
+    * @param {Entity.Structure} structure - Camera shader uniforms
     * @returns {undefined}
     */
    bind(structure)
@@ -103,4 +103,4 @@ class OrthographicScene extends Scene
    }
 }
 
-module.exports = OrthographicScene;
+module.exports = OrthographicCamera;
