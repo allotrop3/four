@@ -15,10 +15,11 @@ let gl = require('./gl');
  * @param {Array} [uvs=[]] - Mesh vertex uv mapping
  * @param {boolean|Array} [indices=false] - Mesh draw indices
  * @param {number} [usage=gl.STATIC_DRAW] - Mesh vertex draw usage
+ * @param {Entity.Structure.Material|Entity.Structure.PhongMaterial} material - Mesh material
  */
 class Mesh extends Entity
 {
-   constructor({ name = 'mesh', vao, vertices = [], colors = [], uvs = [], normals = [], indices = [], usage = gl.STATIC_DRAW } = {})
+   constructor({ name = 'mesh', vao, vertices = [], colors = [], uvs = [], normals = [], indices = [], usage = gl.STATIC_DRAW, material } = {})
    {
       super({ name });
 
@@ -71,6 +72,13 @@ class Mesh extends Entity
        * @private
        */
       this.usage = usage;
+
+      /**
+       * Mesh material
+       * @var {Entity.Structure.Material*} Entity.Mesh.material
+       * @private
+       */
+      this.material = material;
 
       /**
        * Mesh scale
@@ -159,6 +167,8 @@ class Mesh extends Entity
    draw({ primitive = gl.TRIANGLES, offset = 0, count = this.count } = {})
    {
       let vao = this.vao;
+
+      this.material.bind();
 
       vao.bind();
 
