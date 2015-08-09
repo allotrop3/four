@@ -67,5 +67,7 @@ module.exports = function(grunt)
    grunt.loadNpmTasks('grunt-jsdoc');
    grunt.loadNpmTasks('grunt-contrib-watch');
 
-   grunt.registerTask('default', ['browserify:dist', 'babel:dist', 'uglify:dist', 'jsdoc:dist']);
+   grunt.registerTask('default', ['browserify:dist', 'babel:dist']);
+   grunt.registerTask('docs', ['browserify:dist', 'babel:dist', 'jsdoc:dist']);
+   grunt.registerTask('build', ['browserify:dist', 'babel:dist', 'uglify:dist', 'jsdoc:dist']);
 };

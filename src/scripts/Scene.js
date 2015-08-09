@@ -70,11 +70,16 @@ class Scene extends Entity
    /**
     * Bind the scene
     * @function Entity.Scene.configure
+    * @param {Entity.Structure} structure - Scene shader uniforms
     * @returns {undefined}
     */
-   bind()
+   bind(structure)
    {
       gl.clearColor.apply(gl, this.background);
+
+      structure.modelViewMatrix.set(this.modelViewMatrix);
+      structure.projectionMatrix.set(this.projectionMatrix);
+      structure.normalMatrix.set(this.normalMatrix());
    }
 
    /**
@@ -111,14 +116,16 @@ class Scene extends Entity
    /**
     * Scale the scene by a given magnitude
     * @function Entity.Scene.scale
-    * @param {vec3} scale - Scale vector multiplier
+    * @param {number} scaleX - Scale multiplier along the x axis
+    * @param {number} scaleY - Scale multiplier along the y axis
+    * @param {number} scaleZ - Scale multiplier along the z axis
     * @returns {undefined}
     */
-   scale(scale)
+   scale(scaleX, scaleY, scaleZ)
    {
       let modelViewMatrix = this.modelViewMatrix;
 
-      mat4.scale(modelViewMatrix, modelViewMatrix, scale);
+      mat4.scale(modelViewMatrix, modelViewMatrix, arguments);
    }
 
    /**
@@ -130,7 +137,7 @@ class Scene extends Entity
     */
    scaleX(scale)
    {
-      this.scale([scale, 1, 1]);
+      this.scale(scale, 1, 1);
    }
 
    /**
@@ -142,7 +149,7 @@ class Scene extends Entity
     */
    scaleY(scale)
    {
-      this.scale([1, scale, 1]);
+      this.scale(1, scale, 1);
    }
 
    /**
@@ -154,7 +161,7 @@ class Scene extends Entity
     */
    scaleZ(scale)
    {
-      this.scale([1, 1, scale]);
+      this.scale(1, 1, scale);
    }
 
    /**
@@ -210,14 +217,16 @@ class Scene extends Entity
    /**
     * Translate the scene by a given vector
     * @function Entity.Scene.translate
-    * @param {vec3} translation - Translation vector
+    * @param {number} translateX - Translation amount along the x axis
+    * @param {number} translateY - Translation amount along the y axis
+    * @param {number} translateZ - Translation amount along the z axis
     * @returns {undefined}
     */
-   translate(translation)
+   translate(translateX, translateY, translateZ)
    {
       let modelViewMatrix = this.modelViewMatrix;
 
-      mat4.translate(modelViewMatrix, modelViewMatrix, translation);
+      mat4.translate(modelViewMatrix, modelViewMatrix, arguments);
    }
 
    /**
@@ -229,7 +238,7 @@ class Scene extends Entity
     */
    translateX(translation)
    {
-      this.translate([translation, 0 , 0]);
+      this.translate(translation, 0 , 0);
    }
 
    /**
@@ -241,7 +250,7 @@ class Scene extends Entity
     */
    translateY(translation)
    {
-      this.translate([0, translation, 0]);
+      this.translate(0, translation, 0);
    }
 
    /**
@@ -253,7 +262,7 @@ class Scene extends Entity
     */
    translateZ(translation)
    {
-      this.translate([0, 0, translation]);
+      this.translate(0, 0, translation);
    }
 
    /**

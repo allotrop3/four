@@ -1,7 +1,15 @@
 'use strict';
 
 let Entity = require('./Entity');
+let Attribute = require('./Attribute');
 let gl = require('./gl');
+const lengths = {
+   i: 1,
+   f: 1,
+   vec2: 2,
+   vec3: 3,
+   vec4: 4
+};
 
 /**
  * VertexArrayObject retains the attributes associated with
@@ -17,7 +25,7 @@ let gl = require('./gl');
  */
 class VertexArrayObject extends Entity
 {
-   constructor({ name = 'vertex.array.object', indexed = false, view = Float32Array, attributes = [] } = {})
+   constructor({ name = 'vertex.array.object', program, indexed = false, view = Float32Array, attributes = [] } = {})
    {
      super({ name });
 
@@ -65,7 +73,7 @@ class VertexArrayObject extends Entity
       * @var {Array} Entity.VertexArrayObject.attributes
       * @private
       */
-     this.attributes = attributes.map(this.generate.bind(this));
+     this.attributes = attributes.map(this.generate.bind(this, program));
   }
 
    /**
@@ -76,16 +84,17 @@ class VertexArrayObject extends Entity
     * @param {Entity.Attribute} attribute - Vertex attribute to evaluate
     * @returns {object}
     */
-   generate(attribute)
+   generate(program, qualifying)
    {
       let offset = this.stride;
+      let vars = qualifying.split(' ');
+      let length = lengths[vars[0]];
+      let name = vars[1];
+      let attribute = new Attribute({ program: program, attribute: name, length: length, offset: offset });
 
       this.stride += attribute.getByteCount(this.view.BYTES_PER_ELEMENT);
 
-      return {
-         object: attribute,
-         offset: offset
-      };
+      return attribute;
    }
 
    /**
@@ -96,7 +105,7 @@ class VertexArrayObject extends Entity
     */
    enable(attribute)
    {
-      attribute.object.enable(this.stride, attribute.offset);
+      attribute.enable(this.stride, attribute.offset);
    }
 
    /**
@@ -107,7 +116,7 @@ class VertexArrayObject extends Entity
     */
    disable(attribute)
    {
-      attribute.object.disable();
+      attribute.disable();
    }
 
    /**

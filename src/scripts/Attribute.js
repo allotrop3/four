@@ -14,10 +14,11 @@ let gl = require('./gl');
  * @param {number} length - Number of components
  * @param {number} [format=gl.FLOAT] - Component data format
  * @param {boolean} [normalized=false] - Force normalized components
+ * @param {number} Entity.Attribute.offset - Start bit index
  */
 class Attribute extends Entity
 {
-   constructor({ name = 'attribute', program, attribute, length, format = gl.FLOAT, normalized = false } = {})
+   constructor({ name = 'attribute', program, attribute, length, format = gl.FLOAT, normalized = false, offset } = {})
    {
       super({ name });
 
@@ -55,6 +56,13 @@ class Attribute extends Entity
        * @private
        */
       this.normalized = normalized;
+
+      /**
+       * Start bit index
+       * @var {number} Entity.Attribute.offset
+       * @private
+       */
+      this.offset = offset;
    }
 
    /**

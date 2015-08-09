@@ -31,7 +31,7 @@ class Structure extends Entity
 
    /**
     * Locate the shader uniforms from within the given program
-    * @function Entity.Uniform.generate
+    * @function Entity.Structure.generate
     * @param {Entity.Program} program - Program in which the shader uniform is used
     * @param {Array} [uniforms=[]] - Uniforms within structure
     * @returns {undefind}
@@ -43,7 +43,7 @@ class Structure extends Entity
 
    /**
     * Instantiate the uniforms
-    * @callback Entity.Uniform.instantiate
+    * @callback Entity.Structure.instantiate
     * @param {Entity.Program} program - Program in which the shader uniform is used
     * @param {string} qualifying - Shader uniform format and property name
     * @returns {undefind}
@@ -52,9 +52,9 @@ class Structure extends Entity
    {
       let vars = qualifying.split(' ');
       let format = vars[0];
-      let uniform = vars[1];
+      let name = vars[1];
 
-      this[uniform] = new Uniform({ program: program, uniform: `${this.uniform}.${uniform}`, format: format });
+      this[name] = new Uniform({ program: program, uniform: `${this.uniform}.${name}`, format: format });
    }
 }
 

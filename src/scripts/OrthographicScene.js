@@ -91,11 +91,12 @@ class OrthographicScene extends Scene
    /**
     * Apply orthographic projection to active framebuffer
     * @function Entity.Scene.OrthographicScene.bind
+    * @param {Entity.Structure} structure - Scene shader uniforms
     * @returns {undefined}
     */
-   bind()
+   bind(structure)
    {
-      super.bind();
+      super.bind(structure);
 
       gl.disable(gl.DEPTH_TEST);
       gl.viewport(0, 0, this.right, this.top);

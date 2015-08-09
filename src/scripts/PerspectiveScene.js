@@ -120,11 +120,12 @@ class PerspectiveScene extends Scene
    /**
     * Apply perspective projection to active framebuffer
     * @function Entity.Scene.PerspectiveScene.bind
+    * @param {Entity.Structure} structure - Scene shader uniforms
     * @returns {undefined}
     */
-   bind()
+   bind(structure)
    {
-      super.bind();
+      super.bind(structure);
 
       gl.enable(gl.DEPTH_TEST);
       gl.viewport(0, 0, this.width, this.height);

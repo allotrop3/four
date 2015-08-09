@@ -9,11 +9,10 @@ let gl = require('./gl');
  * @name Entity.Framebuffer
  * @extends Entity
  * @param {string} [name=framebuffer] - Instance name
- * @param {Entity.Scene.OrthographicScene|Entity.Scene.PerspectiveScene} scene - View configuration
  */
 class Framebuffer extends Entity
 {
-   constructor({ name = 'framebuffer', scene } = {})
+   constructor({ name = 'framebuffer' } = {})
    {
       super({ name });
 
@@ -24,37 +23,23 @@ class Framebuffer extends Entity
        * @private
        */
       this.buffer = null;
-
-      /**
-       * Framebuffer scene
-       * @var {OrthographicScene|PerspectiveScene} Entity.Framebuffer.scene
-       * @default undefined
-       * @private
-       */
-      this.scene = scene;
-   }
-
-   /**
-    * Enable the framebuffer and associated
-    * scene as the current render target
-    * @function Entity.Framebuffer.enable
-    * @returns {undefined}
-    */
-   enable()
-   {
-      this.scene.bind();
-      this.bind();
    }
 
    /**
     * Bind the framebuffer as the current
     * render target
     * @function Entity.Framebuffer.bind
+    * @param {boolean} [flush=true] - Clear framebuffer contents
     * @returns {undefined}
     */
-   bind()
+   bind(flush = true)
    {
       gl.bindFramebuffer(gl.FRAMEBUFFER, this.buffer);
+
+      if (flush)
+      {
+         this.flush();
+      }
    }
 
    /**

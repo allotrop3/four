@@ -20,7 +20,6 @@ struct light
    vec3 location;
 };
 
-uniform vec3 u_color;
 uniform material u_material;
 uniform light u_light;
 
