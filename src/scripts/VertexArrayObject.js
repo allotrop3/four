@@ -105,7 +105,7 @@ class VertexArrayObject extends Entity
     */
    enable(attribute)
    {
-      attribute.enable(this.stride, attribute.offset);
+      attribute.enable(this.stride);
    }
 
    /**

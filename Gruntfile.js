@@ -9,12 +9,6 @@ module.exports = function(grunt)
          minified: './public/scripts/four.min.js',
          docs: './public/docs'
       },
-      jshint: {
-         options: {
-            jshintrc: '.jshintrc',
-         },
-         files: ['<%= config.source %>']
-      },
       browserify: {
          dist: {
             files: {
@@ -43,6 +37,11 @@ module.exports = function(grunt)
             }
          }
       },
+      "jsbeautifier" : {
+         dist: {
+            src: ["<%= config.concatenated %>"]
+         }
+      },
       jsdoc: {
          dist: {
             src: '<%= config.concatenated %>',
@@ -60,14 +59,14 @@ module.exports = function(grunt)
       }
    });
 
-   grunt.loadNpmTasks('grunt-contrib-jshint');
    grunt.loadNpmTasks('grunt-browserify');
    grunt.loadNpmTasks('grunt-babel');
    grunt.loadNpmTasks('grunt-contrib-uglify');
+   grunt.loadNpmTasks("grunt-jsbeautifier");
    grunt.loadNpmTasks('grunt-jsdoc');
    grunt.loadNpmTasks('grunt-contrib-watch');
 
    grunt.registerTask('default', ['browserify:dist', 'babel:dist']);
-   grunt.registerTask('docs', ['browserify:dist', 'babel:dist', 'jsdoc:dist']);
+   grunt.registerTask('docs', ['browserify:dist', 'babel:dist', 'jsbeautifier:dist', 'jsdoc:dist']);
    grunt.registerTask('build', ['browserify:dist', 'babel:dist', 'uglify:dist', 'jsdoc:dist']);
 };

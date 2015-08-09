@@ -47,7 +47,7 @@ class Uniform extends Entity
 
       /**
        * Shader variable name
-       * @var {string} uniform - Shader uniform
+       * @var {string} Entity.uniform - Shader uniform
        * @private
        */
       this.uniform = uniform;

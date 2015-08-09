@@ -2,44 +2,35 @@
 
 let indices = {};
 
+const _name = 'entity';
+
 /**
- * Entity is the base class
+ * Entity is the base class.
  * @class Entity
- * @param {string} [name=entity] - Instance name
+ * @param {string} [name=entity] - Specifies the entities friendly name.
  */
 class Entity
 {
-   constructor({ name = 'entity' } = {})
+   constructor({ name = _name } = {})
    {
       /**
-       * Entity name
+       * Entities friendly name.
        * @var {string} Entity.name
-       * @default '${name}.0${indices[name]}'
-       * @private
        */
       this.name = this.index(name);
 
       /**
-       * Entity base name
+       * Entities friendly name without the auto-generated index.
        * @var {string} Entity.basename
-       * @private
        */
       this.basename = name;
-
-      /**
-       * Entity delete flag
-       * @var {boolean} Entity.destroyed
-       * @default false
-       * @private
-       */
-      this.destroyed = false;
    }
 
    /**
-    * Autogenerate a name with an index based on
-    * its number of instantiations
+    * Auto-generate the entities index based on the number of instantiations
+    * of its basename.
     * @function Entity.index
-    * @param {string} [name=entity] - Entity name
+    * @param {string} name - Entities friendly name.
     * @returns {string}
     */
    index(name)
@@ -55,24 +46,14 @@ class Entity
    }
 
    /**
-    * Validate the identity of an entity
+    * Validate the identity of an entity against the given identity.
     * @function Entity.is
-    * @param {string} identity - Entity name to check for
+    * @param {string} identity - Entity name to check against.
     * @returns {boolean}
     */
    is(identity)
    {
       return this.name.match(identity, 'i') !== null;
-   }
-
-   /**
-    * Flag entity for deletion
-    * @function Entity.destroy
-    * @returns {undefined}
-    */
-   destroy()
-   {
-      this.destroyed = true;
    }
 }
 
