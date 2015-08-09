@@ -9,7 +9,7 @@ const _normalized = false;
 const _offset = 0;
 
 /**
- * This provides a wrapper to simplify locating, enabling and disabling generic vertex attributes.,
+ * This provides a wrapper to simplify locating, enabling and disabling generic vertex attributes.
  * Vertex attributes are used to communicate from "outside" to the vertex shader. Unlike uniform variables,
  * values are provided per vertex (and not globally for all vertices). Each generic vertex attribute array
  * is initially disabled and isn't accessed when gl.drawElements or gl.drawArrays called.
