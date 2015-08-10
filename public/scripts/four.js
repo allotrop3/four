@@ -4808,7 +4808,7 @@ THE SOFTWARE. */
          * This provides a wrapper to simplify locating, enabling and disabling generic vertex attributes.
          * Vertex attributes are used to communicate from "outside" to the vertex shader. Unlike uniform variables,
          * values are provided per vertex (and not globally for all vertices). Each generic vertex attribute array
-         * is initially disabled and isn't accessed when gl.drawElements or gl.drawArrays called.
+         * is initially disabled and isn't accessed when <code>gl[drawElements|drawArrays]</code> is called.
          * @class Attribute
          * @name Entity.Attribute
          * @extends Entity
@@ -4820,7 +4820,7 @@ THE SOFTWARE. */
          * @param {boolean} [normalized=false] - Specifies whether fixed-point data values should be normalized
          * (true) or converted directly as fixed-point values (false) when they are accessed.
          * @param {number} [offset=0] - Specifies the offset of the first component of the first generic vertex
-         * attribute in the array in the data store of the buffer currently bound to the gl.ARRAY_BUFFER.
+         * attribute in the array in the data store of the buffer currently bound to the <code>gl.ARRAY_BUFFER</code>.
          * The initial value is 0.
          */
         var Attribute = (function(_Entity) {
@@ -4864,15 +4864,15 @@ THE SOFTWARE. */
                  */
                 this.format = format;
                 /**
-                 * Specifies whether fixed-point data values should be normalized (true)
-                 * or converted directly as fixed-point values (false) when they are accessed.
+                 * Specifies whether fixed-point data values should be normalized (<code>true</code>)
+                 * or converted directly as fixed-point values (<code>false</code>) when they are accessed.
                  * @var {number} [Entity.Attribute.normalized=false]
                  */
                 this.normalized = normalized;
                 /**
                  * The offset of the first component of the first generic
                  * vertex attribute in the array in the data store of the
-                 * buffer currently bound to the gl.ARRAY_BUFFER. The
+                 * buffer currently bound to the <code>gl.ARRAY_BUFFER</code>. The
                  * initial value is 0.
                  * @var {number} [Entity.Attribute.offset=0]
                  */
@@ -5333,17 +5333,20 @@ THE SOFTWARE. */
     }],
     14: [function(require, module, exports) {
         'use strict';
-        var Framebuffer = require('./Framebuffer');
         var gl = require('./gl');
+        var Framebuffer = require('./Framebuffer');
+        var _name = 'deferred.framebuffer';
         /**
-         * DeferredFramebuffer is a wrapper on WebGLFramebuffer buffers
-         * to support off-screen rendering
+         * A deferred framebuffer encapsulates user-created framebuffer objects that
+         * can be used as the destination for rendering. Framebuffer objects require
+         * a color and, optionally, depth attachment to retain the rendered content.
          * @class DeferredFramebuffer
          * @name Entity.Framebuffer.DeferredFramebuffer
          * @extends Entity.Framebuffer
-         * @param {string} [name=deferred.framebuffer] - Instance name
-         * @param {Entity.Texture.ImageTexture|Entity.Texture.DataTexture} colorAttachment - Framebuffer color attachment
-         * @param {Entity.Renderbuffer} depthAttachment - Framebuffer depth attachment
+         * @param {string} [name=deferred.framebuffer] - Specifies the entities friendly name.
+         * @param {Entity.Texture.ImageTexture|Entity.Texture.DataTexture} colorAttachment - Specifies
+         * the framebuffer object color attachment.
+         * @param {Entity.Renderbuffer} depthAttachment - Specifies the framebuffer object depth attachment.
          */
         var DeferredFramebuffer = (function(_Framebuffer) {
             _inherits(DeferredFramebuffer, _Framebuffer);
@@ -5351,7 +5354,7 @@ THE SOFTWARE. */
             function DeferredFramebuffer() {
                 var _ref4 = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
                 var _ref4$name = _ref4.name;
-                var name = _ref4$name === undefined ? 'deferred.framebuffer' : _ref4$name;
+                var name = _ref4$name === undefined ? _name : _ref4$name;
                 var colorAttachment = _ref4.colorAttachment;
                 var depthAttachment = _ref4.depthAttachment;
                 _classCallCheck(this, DeferredFramebuffer);
@@ -5359,28 +5362,25 @@ THE SOFTWARE. */
                     name: name
                 });
                 /**
-                 * WebGL framebuffer
-                 * @var {WebGLFramebuffer} Entity.Framebuffer.DeferredFramebuffer.buffer
-                 * @default WebGLFramebuffer
-                 * @private
+                 * The framebuffer object used as the destination for rendering.
+                 * @var {WebGLFramebuffer} [Entity.Framebuffer.DeferredFramebuffer.buffer=WebGLFramebuffer]
                  */
                 this.buffer = gl.createFramebuffer();
                 /**
-                 * Framebuffer color attachment
+                 * The framebuffer object color attachment.
                  * @var {Entity.Texture.ImageTexture|Entity.Texture.DataTexture} Entity.Framebuffer.DeferredFramebuffer.colorAttachment
-                 * @private
                  */
                 this.colorAttachment = colorAttachment;
                 /**
-                 * Framebuffer depth attachment
+                 * The framebuffer object depth attachment.
                  * @var {Renderbuffer} Entity.Framebuffer.DeferredFramebuffer.depthAttachment
-                 * @private
                  */
                 this.depthAttachment = depthAttachment;
                 this.configure();
             }
             /**
-             * Attach color and depth buffers
+             * Attach a texture object as a color buffer and a renderbuffer object
+             * as a depth buffer of the framebuffer object.
              * @function Entity.Framebuffer.DeferredFramebuffer.configure
              * @returns {undefined}
              */
@@ -5590,7 +5590,7 @@ THE SOFTWARE. */
         var Entity = require('./Entity');
         var _name = 'framebuffer';
         /**
-         * A Framebuffer is a collection of buffers that can be used as the destination for rendering. There are
+         * A framebuffer is a collection of buffers that can be used as the destination for rendering. There are
          * two kinds of framebuffers: the default framebuffer, which is wrapped in this class for ease of binding
          * and unbinding and renders to the screen of the device; and user-created framebuffers called framebuffer
          * objects - see <a href="Entity.Framebuffer.DeferredFramebuffer.html">Entity.Framebuffer.DeferredFramebuffer</a>.
@@ -5611,7 +5611,7 @@ THE SOFTWARE. */
                     name: name
                 });
                 /**
-                 * The framebuffer is set to null and thus references the default framebuffer.
+                 * The framebuffer is set to <code>null</code> and thus references the default framebuffer.
                  * @var {object} [Entity.Framebuffer.buffer=null]
                  */
                 this.buffer = null;
@@ -5620,7 +5620,7 @@ THE SOFTWARE. */
              * Bind the framebuffer as the destination for rendering.
              * @function Entity.Framebuffer.bind
              * @param {boolean} [flush=true] - Flag to flush the contents of the active framebuffer.
-             * The initial value is set to true.
+             * The initial value is set to <code>true</code>.
              * @returns {undefined}
              */
             _createClass(Framebuffer, [{
@@ -5956,21 +5956,35 @@ THE SOFTWARE. */
     }],
     23: [function(require, module, exports) {
         'use strict';
-        var Entity = require('./Entity');
         var gl = require('./gl');
+        var Entity = require('./Entity');
+        var _name = 'mesh';
+        var _vertices = [];
+        var _colors = [];
+        var _uvs = [];
+        var _normals = [];
+        var _indices = [];
+        var _usage = gl.STATIC_DRAW;
         /**
-         * Mesh
+         * A mesh is a collection of vertices and faces that define the construction of a shape.
+         * It further includes information to shade the mesh, such as vertex colors, texture mapping
+         * coordinates and face normals.
          * @class Mesh
          * @name Entity.Mesh
          * @extends Entity
-         * @param {string} [name=mesh] - Instance name
-         * @param {Entity.VertexArrayObject} vao - Vertex array object handler
-         * @param {Array} [vertices=[]] - Mesh vertex positions
-         * @param {Array} [colors=[]] - Mesh vertex colors
-         * @param {Array} [uvs=[]] - Mesh vertex uv mapping
-         * @param {boolean|Array} [indices=false] - Mesh draw indices
-         * @param {number} [usage=gl.STATIC_DRAW] - Mesh vertex draw usage
-         * @param {Entity.Structure.Material|Entity.Structure.PhongMaterial} material - Mesh material
+         * @param {string} [name=mesh] - Specifies the entities friendly name.
+         * @param {Entity.VertexArrayObject} vao - Specifies the vertex array object via which the
+         * mesh data is stored and sent to the shader.
+         * @param {Array} [vertices=[]] - Specifies the mesh vertex positions.
+         * @param {Array} [colors=[]] - Specifies the mesh vertex colors.
+         * @param {Array} [uvs=[]] - Specifies the mesh vertex texture mapping coordinates.
+         * @param {Array} [normals=[]] - Specifies the mesh vertex normals.
+         * @param {boolean|Array} [indices=false] - Specifies the indices used to construct
+         * the primitives if it uses an element array buffer object. If it does not,
+         * this value is set to false. The initial value is false.
+         * @param {number} [usage=gl.STATIC_DRAW] - Specifies the expected usage pattern of the data store.
+         * @param {Entity.Structure.Material|Entity.Structure.Material.PhongMaterial} material - Specifies the
+         * visual make-up of the mesh.
          */
         var Mesh = (function(_Entity4) {
             _inherits(Mesh, _Entity4);
@@ -5978,96 +5992,88 @@ THE SOFTWARE. */
             function Mesh() {
                 var _ref13 = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
                 var _ref13$name = _ref13.name;
-                var name = _ref13$name === undefined ? 'mesh' : _ref13$name;
+                var name = _ref13$name === undefined ? _name : _ref13$name;
                 var vao = _ref13.vao;
                 var _ref13$vertices = _ref13.vertices;
-                var vertices = _ref13$vertices === undefined ? [] : _ref13$vertices;
+                var vertices = _ref13$vertices === undefined ? _vertices : _ref13$vertices;
                 var _ref13$colors = _ref13.colors;
-                var colors = _ref13$colors === undefined ? [] : _ref13$colors;
+                var colors = _ref13$colors === undefined ? _colors : _ref13$colors;
                 var _ref13$uvs = _ref13.uvs;
-                var uvs = _ref13$uvs === undefined ? [] : _ref13$uvs;
+                var uvs = _ref13$uvs === undefined ? _uvs : _ref13$uvs;
                 var _ref13$normals = _ref13.normals;
-                var normals = _ref13$normals === undefined ? [] : _ref13$normals;
+                var normals = _ref13$normals === undefined ? _normals : _ref13$normals;
                 var _ref13$indices = _ref13.indices;
-                var indices = _ref13$indices === undefined ? [] : _ref13$indices;
+                var indices = _ref13$indices === undefined ? _indices : _ref13$indices;
                 var _ref13$usage = _ref13.usage;
-                var usage = _ref13$usage === undefined ? gl.STATIC_DRAW : _ref13$usage;
+                var usage = _ref13$usage === undefined ? _usage : _ref13$usage;
                 var material = _ref13.material;
                 _classCallCheck(this, Mesh);
                 _get(Object.getPrototypeOf(Mesh.prototype), "constructor", this).call(this, {
                     name: name
                 });
                 /**
-                 * Mesh vertex array object handler
+                 * The vertex array object via which the mesh data
+                 * is stored and sent to the shader.
                  * @var {Entity.VertexArrayObject} Entity.Mesh.vao
-                 * @private
                  */
                 this.vao = vao;
                 /**
-                 * Mesh vertices
+                 * The mesh vertex positions
                  * @var {Array} [Entity.Mesh.vertices=[]]
-                 * @private
                  */
                 this.vertices = vertices;
                 /**
-                 * Mesh vertex colors
+                 * The mesh vertex colors.
                  * @var {Array} [Entity.Mesh.colors=[]]
-                 * @private
                  */
                 this.colors = colors;
                 /**
-                 * Mesh vertex texture coordinates
+                 * The mesh vertex texture mapping coordinates.
                  * @var {Array} [Entity.Mesh.uvs=[]]
-                 * @default []
-                 * @private
                  */
                 this.uvs = uvs;
                 /**
-                 * Mesh vertex normals
+                 * The mesh vertex normals.
                  * @var {Array} [Entity.Mesh.normals=[]]
-                 * @private
                  */
                 this.normals = normals;
                 /**
-                 * Mesh vertex array buffer primitive indices
-                 * @var {Array} [Entity.Mesh.indices=Uint16Array[]]
-                 * @private
+                 * The indices used to constructthe primitives if it
+                 * uses an element array buffer object. If it does not,
+                 * this value is set to false. The initial value is false.
+                 * @var {Array} [Entity.Mesh.indices=Uint16Array]
                  */
                 this.indices = new Uint16Array(indices);
                 /**
-                 * Flag to update the array buffer contents between draw calls
+                 * The expected usage pattern of the data store.
                  * @var {number} [Entity.Mesh.usage=gl.STATIC_DRAW]
-                 * @private
                  */
                 this.usage = usage;
                 /**
-                 * Mesh material
-                 * @var {Entity.Structure.Material*} Entity.Mesh.material
-                 * @private
+                 * The visual make-up of the mesh.
+                 * @var {Entity.Structure.Material|Entity.Structure.Material.PhongMaterial} Entity.Mesh.material
                  */
                 this.material = material;
                 /**
-                 * Mesh scale
+                 * The scale of the mesh.
                  * @var {vec3} [Entity.Mesh.scale=[1, 1, 1]]
-                 * @private
                  */
                 this.scale = [1, 1, 1];
                 /**
-                 * Mesh rotation in degrees
+                 * The rotation of the mesh in degrees.
                  * @var {number} [Entity.Mesh.rotation=0]
-                 * @private
                  */
                 this.rotation = 0;
                 /**
-                 * Mesh translation
+                 * The translation of the mesh.
                  * @var {vec3} [Entity.Mesh.translation=[0, 0, 0]]
-                 * @private
                  */
                 this.translation = [0, 0, 0];
                 this.configure();
             }
             /**
-             * Configure the vbo contents for rendering
+             * Interleave the mesh data and attach it to the appropriate
+             * vertex buffer objects.
              * @function Entity.Mesh.configure
              * @returns {undefined}
              */
@@ -6091,11 +6097,14 @@ THE SOFTWARE. */
                         vao.unbind();
                     }
                     /**
-                     * Render mesh
+                     * Interleave the vertices (V), colors (C), texture mapping coordinates (U),
+                     * and normals (N) using VVVCCCUUNNN format.
                      * @callback Entity.Mesh.interleave
-                     * @param {Array} interleaved - Interleaved vertex data
-                     * @param {vec3} vertex - Current vertex coordinate
-                     * @param {numebr} index - Vertex coordinate array index
+                     * @param {Array} interleaved - Specifies the resultant
+                     * interleaved mesh data.
+                     * @param {vec3} vertex - Specifies the current vertex position.
+                     * @param {numebr} index - Specifies the array index of the
+                     * current vertex position.
                      * @returns {undefined}
                      */
             }, {
@@ -6108,11 +6117,15 @@ THE SOFTWARE. */
                         [].push.apply(interleaved, contatenation.map(parseFloat));
                     }
                     /**
-                     * Render mesh
+                     * Render the mesh to the active framebuffer object.
                      * @function Entity.Mesh.draw
-                     * @param {number} [primitive=gl.TRIANGLES] - Mesh vertex construction method
-                     * @param {number} [offset=0] - Index to start drawing from
-                     * @param {boolean|number} [count=this.count] - Number of vertices to draw
+                     * @param {number} [primitive=gl.TRIANGLES] - Specifies what
+                     * kind of primitives to render;
+                     * <code>gl[LINES|LINE_STRIP|LINE_LOOP|TRIANGLES|TRIANGLE_STRIP|TRIANGLE_FAN|POINTS]</code>
+                     * @param {number} [offset=0] - Specifies the starting index
+                     * in the enabled arrays.
+                     * @param {boolean|number} [count=this.count] - Specifies the
+                     * number of vertices/indices to be rendered.
                      * @returns {undefined}
                      */
             }, {

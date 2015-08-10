@@ -1,103 +1,109 @@
 'use strict';
 
-let Entity = require('./Entity');
 let gl = require('./gl');
+let Entity = require('./Entity');
+
+const _name = 'mesh';
+const _vertices = [];
+const _colors = [];
+const _uvs = [];
+const _normals = [];
+const _indices = [];
+const _usage = gl.STATIC_DRAW;
 
 /**
- * Mesh
+ * A mesh is a collection of vertices and faces that define the construction of a shape.
+ * It further includes information to shade the mesh, such as vertex colors, texture mapping
+ * coordinates and face normals.
  * @class Mesh
  * @name Entity.Mesh
  * @extends Entity
- * @param {string} [name=mesh] - Instance name
- * @param {Entity.VertexArrayObject} vao - Vertex array object handler
- * @param {Array} [vertices=[]] - Mesh vertex positions
- * @param {Array} [colors=[]] - Mesh vertex colors
- * @param {Array} [uvs=[]] - Mesh vertex uv mapping
- * @param {boolean|Array} [indices=false] - Mesh draw indices
- * @param {number} [usage=gl.STATIC_DRAW] - Mesh vertex draw usage
- * @param {Entity.Structure.Material|Entity.Structure.PhongMaterial} material - Mesh material
+ * @param {string} [name=mesh] - Specifies the entities friendly name.
+ * @param {Entity.VertexArrayObject} vao - Specifies the vertex array object via which the
+ * mesh data is stored and sent to the shader.
+ * @param {Array} [vertices=[]] - Specifies the mesh vertex positions.
+ * @param {Array} [colors=[]] - Specifies the mesh vertex colors.
+ * @param {Array} [uvs=[]] - Specifies the mesh vertex texture mapping coordinates.
+ * @param {Array} [normals=[]] - Specifies the mesh vertex normals.
+ * @param {boolean|Array} [indices=false] - Specifies the indices used to construct
+ * the primitives if it uses an element array buffer object. If it does not,
+ * this value is set to false. The initial value is false.
+ * @param {number} [usage=gl.STATIC_DRAW] - Specifies the expected usage pattern of the data store.
+ * @param {Entity.Structure.Material|Entity.Structure.Material.PhongMaterial} material - Specifies the
+ * visual make-up of the mesh.
  */
 class Mesh extends Entity
 {
-   constructor({ name = 'mesh', vao, vertices = [], colors = [], uvs = [], normals = [], indices = [], usage = gl.STATIC_DRAW, material } = {})
+   constructor({ name = _name, vao, vertices = _vertices, colors = _colors, uvs = _uvs, normals = _normals, indices = _indices, usage = _usage, material } = {})
    {
       super({ name });
 
       /**
-       * Mesh vertex array object handler
+       * The vertex array object via which the mesh data
+       * is stored and sent to the shader.
        * @var {Entity.VertexArrayObject} Entity.Mesh.vao
-       * @private
        */
       this.vao = vao;
 
       /**
-       * Mesh vertices
+       * The mesh vertex positions
        * @var {Array} [Entity.Mesh.vertices=[]]
-       * @private
        */
       this.vertices = vertices;
 
       /**
-       * Mesh vertex colors
+       * The mesh vertex colors.
        * @var {Array} [Entity.Mesh.colors=[]]
-       * @private
        */
       this.colors = colors;
 
       /**
-       * Mesh vertex texture coordinates
+       * The mesh vertex texture mapping coordinates.
        * @var {Array} [Entity.Mesh.uvs=[]]
-       * @default []
-       * @private
        */
       this.uvs = uvs;
 
       /**
-       * Mesh vertex normals
+       * The mesh vertex normals.
        * @var {Array} [Entity.Mesh.normals=[]]
-       * @private
        */
       this.normals = normals;
 
       /**
-       * Mesh vertex array buffer primitive indices
-       * @var {Array} [Entity.Mesh.indices=Uint16Array[]]
-       * @private
+       * The indices used to constructthe primitives if it
+       * uses an element array buffer object. If it does not,
+       * this value is set to false. The initial value is false.
+       * @var {Array} [Entity.Mesh.indices=Uint16Array]
        */
       this.indices = new Uint16Array(indices);
 
       /**
-       * Flag to update the array buffer contents between draw calls
+       * The expected usage pattern of the data store.
        * @var {number} [Entity.Mesh.usage=gl.STATIC_DRAW]
-       * @private
        */
       this.usage = usage;
 
       /**
-       * Mesh material
-       * @var {Entity.Structure.Material*} Entity.Mesh.material
-       * @private
+       * The visual make-up of the mesh.
+       * @var {Entity.Structure.Material|Entity.Structure.Material.PhongMaterial} Entity.Mesh.material
        */
       this.material = material;
 
       /**
-       * Mesh scale
+       * The scale of the mesh.
        * @var {vec3} [Entity.Mesh.scale=[1, 1, 1]]
-       * @private
        */
       this.scale = [1, 1, 1];
 
       /**
-       * Mesh rotation in degrees
+       * The rotation of the mesh in degrees.
        * @var {number} [Entity.Mesh.rotation=0]
-       * @private
        */
       this.rotation = 0;
 
       /**
-       * Mesh translation
+       * The translation of the mesh.
        * @var {vec3} [Entity.Mesh.translation=[0, 0, 0]]
-       * @private
        */
       this.translation = [0, 0, 0];
 
@@ -105,7 +111,8 @@ class Mesh extends Entity
    }
 
    /**
-    * Configure the vbo contents for rendering
+    * Interleave the mesh data and attach it to the appropriate
+    * vertex buffer objects.
     * @function Entity.Mesh.configure
     * @returns {undefined}
     */
@@ -139,11 +146,14 @@ class Mesh extends Entity
    }
 
    /**
-    * Render mesh
+    * Interleave the vertices (V), colors (C), texture mapping coordinates (U),
+    * and normals (N) using VVVCCCUUNNN format.
     * @callback Entity.Mesh.interleave
-    * @param {Array} interleaved - Interleaved vertex data
-    * @param {vec3} vertex - Current vertex coordinate
-    * @param {numebr} index - Vertex coordinate array index
+    * @param {Array} interleaved - Specifies the resultant
+    * interleaved mesh data.
+    * @param {vec3} vertex - Specifies the current vertex position.
+    * @param {numebr} index - Specifies the array index of the
+    * current vertex position.
     * @returns {undefined}
     */
    interleave(interleaved, vertex, index)
@@ -157,11 +167,15 @@ class Mesh extends Entity
    }
 
    /**
-    * Render mesh
+    * Render the mesh to the active framebuffer object.
     * @function Entity.Mesh.draw
-    * @param {number} [primitive=gl.TRIANGLES] - Mesh vertex construction method
-    * @param {number} [offset=0] - Index to start drawing from
-    * @param {boolean|number} [count=this.count] - Number of vertices to draw
+    * @param {number} [primitive=gl.TRIANGLES] - Specifies what
+    * kind of primitives to render;
+    * <code>gl[LINES|LINE_STRIP|LINE_LOOP|TRIANGLES|TRIANGLE_STRIP|TRIANGLE_FAN|POINTS]</code>
+    * @param {number} [offset=0] - Specifies the starting index
+    * in the enabled arrays.
+    * @param {boolean|number} [count=this.count] - Specifies the
+    * number of vertices/indices to be rendered.
     * @returns {undefined}
     */
    draw({ primitive = gl.TRIANGLES, offset = 0, count = this.count } = {})

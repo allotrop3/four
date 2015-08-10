@@ -44,14 +44,16 @@
 
     
 
-    <h4 class="name" id="Mesh"><span class="type-signature"></span>new Mesh<span class="signature">(name<span class="signature-attributes">opt</span>, vao, vertices<span class="signature-attributes">opt</span>, colors<span class="signature-attributes">opt</span>, uvs<span class="signature-attributes">opt</span>, indices<span class="signature-attributes">opt</span>, usage<span class="signature-attributes">opt</span>, material)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Mesh"><span class="type-signature"></span>new Mesh<span class="signature">(name<span class="signature-attributes">opt</span>, vao, vertices<span class="signature-attributes">opt</span>, colors<span class="signature-attributes">opt</span>, uvs<span class="signature-attributes">opt</span>, normals<span class="signature-attributes">opt</span>, indices<span class="signature-attributes">opt</span>, usage<span class="signature-attributes">opt</span>, material)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Mesh
+    A mesh is a collection of vertices and faces that define the construction of a shape.
+It further includes information to shade the mesh, such as vertex colors, texture mapping
+coordinates and face normals.
 </div>
 
 
@@ -123,7 +125,7 @@
                 </td>
             
 
-            <td class="description last">Instance name</td>
+            <td class="description last">Specifies the entities friendly name.</td>
         </tr>
 
     
@@ -158,7 +160,8 @@
                 </td>
             
 
-            <td class="description last">Vertex array object handler</td>
+            <td class="description last">Specifies the vertex array object via which the
+mesh data is stored and sent to the shader.</td>
         </tr>
 
     
@@ -197,7 +200,7 @@
                 </td>
             
 
-            <td class="description last">Mesh vertex positions</td>
+            <td class="description last">Specifies the mesh vertex positions.</td>
         </tr>
 
     
@@ -236,7 +239,7 @@
                 </td>
             
 
-            <td class="description last">Mesh vertex colors</td>
+            <td class="description last">Specifies the mesh vertex colors.</td>
         </tr>
 
     
@@ -275,7 +278,46 @@
                 </td>
             
 
-            <td class="description last">Mesh vertex uv mapping</td>
+            <td class="description last">Specifies the mesh vertex texture mapping coordinates.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>normals</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    []
+                
+                </td>
+            
+
+            <td class="description last">Specifies the mesh vertex normals.</td>
         </tr>
 
     
@@ -317,7 +359,9 @@
                 </td>
             
 
-            <td class="description last">Mesh draw indices</td>
+            <td class="description last">Specifies the indices used to construct
+the primitives if it uses an element array buffer object. If it does not,
+this value is set to false. The initial value is false.</td>
         </tr>
 
     
@@ -356,7 +400,7 @@
                 </td>
             
 
-            <td class="description last">Mesh vertex draw usage</td>
+            <td class="description last">Specifies the expected usage pattern of the data store.</td>
         </tr>
 
     
@@ -372,7 +416,7 @@
 <span class="param-type"><a href="Entity.Structure.Material.html">Entity.Structure.Material</a></span>
 |
 
-<span class="param-type">Entity.Structure.PhongMaterial</span>
+<span class="param-type"><a href="Entity.Structure.Material.PhongMaterial.html">Entity.Structure.Material.PhongMaterial</a></span>
 
 
             
@@ -394,7 +438,8 @@
                 </td>
             
 
-            <td class="description last">Mesh material</td>
+            <td class="description last">Specifies the
+visual make-up of the mesh.</td>
         </tr>
 
     
@@ -435,7 +480,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line5961">line 5961</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line5968">line 5968</a>
     </li></ul></dd>
     
 
@@ -490,167 +535,13 @@
 
         
             
-<h4 class="name" id=".colors"><span class="type-signature">(private, static) </span>colors<span class="type-signature"> :Array</span></h4>
+<h4 class="name" id=".colors"><span class="type-signature">(static) </span>colors<span class="type-signature"> :Array</span></h4>
 
 
 
 
 <div class="description">
-    Mesh vertex colors
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">Array</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy">
-            <li>[]</li>
-        </ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6012">line 6012</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id=".indices"><span class="type-signature">(private, static) </span>indices<span class="type-signature"> :Array</span></h4>
-
-
-
-
-<div class="description">
-    Mesh vertex array buffer primitive indices
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">Array</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy">
-            <li>Uint16Array[]</li>
-        </ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6031">line 6031</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id=".normals"><span class="type-signature">(private, static) </span>normals<span class="type-signature"> :Array</span></h4>
-
-
-
-
-<div class="description">
-    Mesh vertex normals
+    The mesh vertex colors.
 </div>
 
 
@@ -721,13 +612,244 @@
 
         
             
-<h4 class="name" id=".rotation"><span class="type-signature">(private, static) </span>rotation<span class="type-signature"> :number</span></h4>
+<h4 class="name" id=".indices"><span class="type-signature">(static) </span>indices<span class="type-signature"> :Array</span></h4>
 
 
 
 
 <div class="description">
-    Mesh rotation in degrees
+    The indices used to constructthe primitives if it
+uses an element array buffer object. If it does not,
+this value is set to false. The initial value is false.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Array</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>Uint16Array</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6040">line 6040</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".material"><span class="type-signature">(static) </span>material<span class="type-signature"> :<a href="Entity.Structure.Material.html">Entity.Structure.Material</a>|<a href="Entity.Structure.Material.PhongMaterial.html">Entity.Structure.Material.PhongMaterial</a></span></h4>
+
+
+
+
+<div class="description">
+    The visual make-up of the mesh.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="Entity.Structure.Material.html">Entity.Structure.Material</a></span>
+|
+
+<span class="param-type"><a href="Entity.Structure.Material.PhongMaterial.html">Entity.Structure.Material.PhongMaterial</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6052">line 6052</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".normals"><span class="type-signature">(static) </span>normals<span class="type-signature"> :Array</span></h4>
+
+
+
+
+<div class="description">
+    The mesh vertex normals.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Array</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>[]</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6035">line 6035</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".rotation"><span class="type-signature">(static) </span>rotation<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    The rotation of the mesh in degrees.
 </div>
 
 
@@ -775,7 +897,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6055">line 6055</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6062">line 6062</a>
     </li></ul></dd>
     
 
@@ -793,13 +915,13 @@
 
         
             
-<h4 class="name" id=".scale"><span class="type-signature">(private, static) </span>scale<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
+<h4 class="name" id=".scale"><span class="type-signature">(static) </span>scale<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
 
 
 
 
 <div class="description">
-    Mesh scale
+    The scale of the mesh.
 </div>
 
 
@@ -852,7 +974,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6049">line 6049</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6057">line 6057</a>
     </li></ul></dd>
     
 
@@ -870,13 +992,13 @@
 
         
             
-<h4 class="name" id=".translation"><span class="type-signature">(private, static) </span>translation<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
+<h4 class="name" id=".translation"><span class="type-signature">(static) </span>translation<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
 
 
 
 
 <div class="description">
-    Mesh translation
+    The translation of the mesh.
 </div>
 
 
@@ -929,7 +1051,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6061">line 6061</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6067">line 6067</a>
     </li></ul></dd>
     
 
@@ -947,13 +1069,13 @@
 
         
             
-<h4 class="name" id=".usage"><span class="type-signature">(private, static) </span>usage<span class="type-signature"> :number</span></h4>
+<h4 class="name" id=".usage"><span class="type-signature">(static) </span>usage<span class="type-signature"> :number</span></h4>
 
 
 
 
 <div class="description">
-    Flag to update the array buffer contents between draw calls
+    The expected usage pattern of the data store.
 </div>
 
 
@@ -1006,7 +1128,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6037">line 6037</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6047">line 6047</a>
     </li></ul></dd>
     
 
@@ -1024,13 +1146,13 @@
 
         
             
-<h4 class="name" id=".uvs"><span class="type-signature">(private, static) </span>uvs<span class="type-signature"> :Array</span></h4>
+<h4 class="name" id=".uvs"><span class="type-signature">(static) </span>uvs<span class="type-signature"> :Array</span></h4>
 
 
 
 
 <div class="description">
-    Mesh vertex texture coordinates
+    The mesh vertex texture mapping coordinates.
 </div>
 
 
@@ -1083,7 +1205,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6018">line 6018</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6030">line 6030</a>
     </li></ul></dd>
     
 
@@ -1101,13 +1223,14 @@
 
         
             
-<h4 class="name" id=".vao"><span class="type-signature">(private, static) </span>vao<span class="type-signature"> :<a href="Entity.VertexArrayObject.html">Entity.VertexArrayObject</a></span></h4>
+<h4 class="name" id=".vao"><span class="type-signature">(static) </span>vao<span class="type-signature"> :<a href="Entity.VertexArrayObject.html">Entity.VertexArrayObject</a></span></h4>
 
 
 
 
 <div class="description">
-    Mesh vertex array object handler
+    The vertex array object via which the mesh data
+is stored and sent to the shader.
 </div>
 
 
@@ -1155,7 +1278,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6000">line 6000</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6014">line 6014</a>
     </li></ul></dd>
     
 
@@ -1173,13 +1296,13 @@
 
         
             
-<h4 class="name" id=".vertices"><span class="type-signature">(private, static) </span>vertices<span class="type-signature"> :Array</span></h4>
+<h4 class="name" id=".vertices"><span class="type-signature">(static) </span>vertices<span class="type-signature"> :Array</span></h4>
 
 
 
 
 <div class="description">
-    Mesh vertices
+    The mesh vertex positions
 </div>
 
 
@@ -1232,7 +1355,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6006">line 6006</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6020">line 6020</a>
     </li></ul></dd>
     
 
@@ -1266,7 +1389,8 @@
 
 
 <div class="description">
-    Configure the vbo contents for rendering
+    Interleave the mesh data and attach it to the appropriate
+vertex buffer objects.
 </div>
 
 
@@ -1310,7 +1434,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6069">line 6069</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6074">line 6074</a>
     </li></ul></dd>
     
 
@@ -1366,7 +1490,7 @@
 
 
 <div class="description">
-    Render mesh
+    Render the mesh to the active framebuffer object.
 </div>
 
 
@@ -1438,7 +1562,9 @@
                 </td>
             
 
-            <td class="description last">Mesh vertex construction method</td>
+            <td class="description last">Specifies what
+kind of primitives to render;
+<code>gl[LINES|LINE_STRIP|LINE_LOOP|TRIANGLES|TRIANGLE_STRIP|TRIANGLE_FAN|POINTS]</code></td>
         </tr>
 
     
@@ -1477,7 +1603,8 @@
                 </td>
             
 
-            <td class="description last">Index to start drawing from</td>
+            <td class="description last">Specifies the starting index
+in the enabled arrays.</td>
         </tr>
 
     
@@ -1519,7 +1646,8 @@
                 </td>
             
 
-            <td class="description last">Number of vertices to draw</td>
+            <td class="description last">Specifies the
+number of vertices/indices to be rendered.</td>
         </tr>
 
     
@@ -1560,7 +1688,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6110">line 6110</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6119">line 6119</a>
     </li></ul></dd>
     
 
@@ -1622,7 +1750,8 @@
 
 
 <div class="description">
-    Render mesh
+    Interleave the vertices (V), colors (C), texture mapping coordinates (U),
+and normals (N) using VVVCCCUUNNN format.
 </div>
 
 
@@ -1674,7 +1803,8 @@
 
             
 
-            <td class="description last">Interleaved vertex data</td>
+            <td class="description last">Specifies the resultant
+interleaved mesh data.</td>
         </tr>
 
     
@@ -1697,7 +1827,7 @@
 
             
 
-            <td class="description last">Current vertex coordinate</td>
+            <td class="description last">Specifies the current vertex position.</td>
         </tr>
 
     
@@ -1720,7 +1850,8 @@
 
             
 
-            <td class="description last">Vertex coordinate array index</td>
+            <td class="description last">Specifies the array index of the
+current vertex position.</td>
         </tr>
 
     
@@ -1761,7 +1892,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6093">line 6093</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6099">line 6099</a>
     </li></ul></dd>
     
 
@@ -1825,7 +1956,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Mon Aug 10 2015 19:05:35 GMT+0100 (BST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 00:05:05 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>

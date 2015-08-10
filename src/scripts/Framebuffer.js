@@ -6,7 +6,7 @@ let Entity = require('./Entity');
 const _name = 'framebuffer';
 
 /**
- * A Framebuffer is a collection of buffers that can be used as the destination for rendering. There are
+ * A framebuffer is a collection of buffers that can be used as the destination for rendering. There are
  * two kinds of framebuffers: the default framebuffer, which is wrapped in this class for ease of binding
  * and unbinding and renders to the screen of the device; and user-created framebuffers called framebuffer
  * objects - see <a href="Entity.Framebuffer.DeferredFramebuffer.html">Entity.Framebuffer.DeferredFramebuffer</a>.
@@ -22,7 +22,7 @@ class Framebuffer extends Entity
       super({ name });
 
       /**
-       * The framebuffer is set to null and thus references the default framebuffer.
+       * The framebuffer is set to <code>null</code> and thus references the default framebuffer.
        * @var {object} [Entity.Framebuffer.buffer=null]
        */
       this.buffer = null;
@@ -32,7 +32,7 @@ class Framebuffer extends Entity
     * Bind the framebuffer as the destination for rendering.
     * @function Entity.Framebuffer.bind
     * @param {boolean} [flush=true] - Flag to flush the contents of the active framebuffer.
-    * The initial value is set to true.
+    * The initial value is set to <code>true</code>.
     * @returns {undefined}
     */
    bind(flush = true)

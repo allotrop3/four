@@ -85,8 +85,6 @@ section
     display: block;
     background-color: #fff;
     padding: 12px 24px;
-    border-bottom: 1px solid #ccc;
-    margin-right: 30px;
 }
 
 .variation {
@@ -135,11 +133,7 @@ nav li {
 }
 
 footer {
-    display: block;
-    padding: 6px;
-    margin-top: 12px;
-    font-style: italic;
-    font-size: 90%;
+    display: none;
 }
 
 h1, h2, h3, h4 {
