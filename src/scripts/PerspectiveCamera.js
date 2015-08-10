@@ -1,97 +1,96 @@
 'use strict';
 
-let Camera = require('./Camera');
 let gl = require('./gl');
 let glm = require('gl-matrix');
 let mat4 = glm.mat4;
+let Camera = require('./Camera');
+
+const _name = 'perspective.camera';
+const _width = gl.canvas.width;
+const _height = gl.canvas.height;
+const _fov = 45;
+const _near = 0.1;
+const _far = 1000;
+const _direction = [0, 0, 0];
+const _up = [0, 1, 0];
 
 /**
- * PerspectiveCamera configures a perspective projection into
- * the associated framebuffer
+ * An perspective camera produces a three dimensional projection into framebuffers.
  * @class PerspectiveCamera
  * @name Entity.Camera.PerspectiveCamera
  * @extends Entity.Camera
- * @param {string} [name=perspective.camera] - Instance name
- * @param {vec4} [background=[0, 0, 0, 1]] - Camera background color
- * @param {number} [width=gl.canvas.width] - View width
- * @param {number} [height=gl.canvas.height] - View height
- * @param {number} [fov=45] - Field of view
- * @param {number} [near=0.1] - Observable start
- * @param {number} [far=1000] - Observable end
- * @param {vec3} direction - View direction
- * @param {vec3} location - Vantage position
- * @param {vec3} [up=[0, 1, 0]] - Camera orientation
+ * @param {string} [name=perspective.camera] - Specifies the entities friendly name.
+ * @param {Entity.Program} program - Specifies the program in which the camera used.
+ * @param {string} [path=camera] - Specifies the uniform structure path to the generic uniforms.
+ * @param {Array} [uniforms=['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix']] - Specifies the formats and names of the generic uniforms as used in the shader.
+ * @param {vec4} [background=[0, 0, 0, 1]] - Specifies the clear value for the color buffers.
+ * @param {number} [width=gl.canvas.width] - Specifies the projection width. The initial value is set to the width of the canvas.
+ * @param {number} [height=gl.canvas.height] - Specifies the projection height. The initial value is set to the height of the canvas.
+ * @param {number} [fov=45] - Specifies the field of view of the projection.
+ * @param {number} [near=0.1] - Specifies the front most boundary of the projection.
+ * @param {number} [far=1000] - Specifies the back most boundary of the projection.
+ * @param {vec3} [direction=[0, 0, 0]] - Specifies the position at which the projection is aimed.
+ * @param {vec3} location - Specifies the position of the projection.
+ * @param {vec3} [up=[0, 1, 0]] - Specifies the orientation of the projection.
  */
 class PerspectiveCamera extends Camera
 {
-   constructor({ name = 'perspective.camera', program, background, width = gl.canvas.width, height = gl.canvas.height, fov = 45, near = 0.1, far = 1000, direction, location, up = [0, 1, 0] } = {})
+   constructor({ name = _name, program, path, uniforms, background, width = _width, height = _height, fov = _fov, near = _near, far = _far, direction = _direction, location, up = _up } = {})
    {
-      super({ name, program, background });
+      super({ name, program, path, uniforms, background });
 
       /**
-       * View width
-       * @var {number} Entity.Camera.PerspectiveCamera.width
-       * @private
+       * The projection width. The initial value is set to the width of the canvas.
+       * @var {number} [Entity.Camera.PerspectiveCamera.width=gl.canvas.width]
        */
       this.width = width;
 
        /**
-       * View height
-       * @var {number} Entity.Camera.PerspectiveCamera.height
-       * @private
+       * The projection height. The initial value is set to the height of the canvas.
+       * @var {number} [Entity.Camera.PerspectiveCamera.height=gl.canvas.height]
        */
       this.height = height;
 
       /**
-       * Field of view
-       * @var {number} Entity.Camera.PerspectiveCamera.fov
-       * @default 45
-       * @private
+       * The field of view of the projection.
+       * @var {number} [Entity.Camera.PerspectiveCamera.fov=45]
        */
       this.fov = fov;
 
       /**
-       * View aspect ratio
-       * @var {number} Entity.Camera.PerspectiveCamera.ratio
-       * @private
+       * The aspect ratio of the projection. This is calculated by dividing the width
+       * of the projection by its height.
+       * @var {number} [Entity.Camera.PerspectiveCamera.ratio=gl.canvas.width/gl.canvas.height]
        */
       this.ratio = width / height;
 
       /**
-       * Observable start
-       * @var {number} Entity.Camera.PerspectiveCamera.near
-       * @default 0.1
-       * @private
+       * Specifies the front most boundary of the projection.
+       * @var {number} [Entity.Camera.PerspectiveCamera.near=0.1]
        */
       this.near = near;
 
       /**
-       * Observable end
-       * @var {number} Entity.Camera.PerspectiveCamera.far
-       * @default 1000
-       * @private
+       * Specifies the back most boundary of the projection.
+       * @var {number} [Entity.Camera.PerspectiveCamera.far=1000]
        */
       this.far = far;
 
       /**
-       * View direction
-       * @var {vec3} Entity.Camera.PerspectiveCamera.direction
-       * @private
+       * The position at which the projection is aimed.
+       * @var {vec3} [Entity.Camera.PerspectiveCamera.direction=[0, 0, 0]]
        */
       this.direction = direction;
 
       /**
-       * Vantage position
+       * The position of the projection.
        * @var {vec3} Entity.Camera.PerspectiveCamera.location
-       * @private
        */
       this.location = location;
 
       /**
-       * Camera orientation
-       * @var {vec3} Entity.Camera.PerspectiveCamera.up
-       * @default [0, 1, 0]
-       * @private
+       * The orientation of the projection.
+       * @var {vec3} [Entity.Camera.PerspectiveCamera.up=[0, 1, 0]]
        */
       this.up = up;
 
@@ -99,7 +98,9 @@ class PerspectiveCamera extends Camera
    }
 
    /**
-    * Configure a mat4 perspective projection
+    * Generates a perspective projection matrix with the given bounds;
+    * initialises the modelview matrix to an identity matrix and subsequently
+    * computes a look-at matrix with the given eye position, focal point, and up axis.
     * @function Entity.Camera.PerspectiveCamera.configure
     * @returns {undefined}
     */
@@ -118,14 +119,15 @@ class PerspectiveCamera extends Camera
    }
 
    /**
-    * Apply perspective projection to active framebuffer
+    * Specify the value of the uniform variables for the current program object;
+    * enable depth testing and set the viewport boundaries with the given
+    * bounds.
     * @function Entity.Camera.PerspectiveCamera.bind
-    * @param {Entity.Structure} structure - Camera shader uniforms
     * @returns {undefined}
     */
-   bind(structure)
+   bind()
    {
-      super.bind(structure);
+      super.bind();
 
       gl.enable(gl.DEPTH_TEST);
       gl.viewport(0, 0, this.width, this.height);

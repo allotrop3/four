@@ -44,15 +44,14 @@
 
     
 
-    <h4 class="name" id="PerspectiveCamera"><span class="type-signature"></span>new PerspectiveCamera<span class="signature">(name<span class="signature-attributes">opt</span>, background<span class="signature-attributes">opt</span>, width<span class="signature-attributes">opt</span>, height<span class="signature-attributes">opt</span>, fov<span class="signature-attributes">opt</span>, near<span class="signature-attributes">opt</span>, far<span class="signature-attributes">opt</span>, direction, location, up<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="PerspectiveCamera"><span class="type-signature"></span>new PerspectiveCamera<span class="signature">(name<span class="signature-attributes">opt</span>, program, path<span class="signature-attributes">opt</span>, uniforms<span class="signature-attributes">opt</span>, background<span class="signature-attributes">opt</span>, width<span class="signature-attributes">opt</span>, height<span class="signature-attributes">opt</span>, fov<span class="signature-attributes">opt</span>, near<span class="signature-attributes">opt</span>, far<span class="signature-attributes">opt</span>, direction<span class="signature-attributes">opt</span>, location, up<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    PerspectiveCamera configures a perspective projection into
-the associated framebuffer
+    An perspective camera produces a three dimensional projection into framebuffers.
 </div>
 
 
@@ -124,7 +123,120 @@ the associated framebuffer
                 </td>
             
 
-            <td class="description last">Instance name</td>
+            <td class="description last">Specifies the entities friendly name.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>program</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Entity.Program.html">Entity.Program</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Specifies the program in which the camera used.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    camera
+                
+                </td>
+            
+
+            <td class="description last">Specifies the uniform structure path to the generic uniforms.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>uniforms</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    ['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix']
+                
+                </td>
+            
+
+            <td class="description last">Specifies the formats and names of the generic uniforms as used in the shader.</td>
         </tr>
 
     
@@ -163,7 +275,7 @@ the associated framebuffer
                 </td>
             
 
-            <td class="description last">Camera background color</td>
+            <td class="description last">Specifies the clear value for the color buffers.</td>
         </tr>
 
     
@@ -202,7 +314,7 @@ the associated framebuffer
                 </td>
             
 
-            <td class="description last">View width</td>
+            <td class="description last">Specifies the projection width. The initial value is set to the width of the canvas.</td>
         </tr>
 
     
@@ -241,7 +353,7 @@ the associated framebuffer
                 </td>
             
 
-            <td class="description last">View height</td>
+            <td class="description last">Specifies the projection height. The initial value is set to the height of the canvas.</td>
         </tr>
 
     
@@ -280,7 +392,7 @@ the associated framebuffer
                 </td>
             
 
-            <td class="description last">Field of view</td>
+            <td class="description last">Specifies the field of view of the projection.</td>
         </tr>
 
     
@@ -319,7 +431,7 @@ the associated framebuffer
                 </td>
             
 
-            <td class="description last">Observable start</td>
+            <td class="description last">Specifies the front most boundary of the projection.</td>
         </tr>
 
     
@@ -358,7 +470,7 @@ the associated framebuffer
                 </td>
             
 
-            <td class="description last">Observable end</td>
+            <td class="description last">Specifies the back most boundary of the projection.</td>
         </tr>
 
     
@@ -380,6 +492,8 @@ the associated framebuffer
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
 
@@ -390,10 +504,12 @@ the associated framebuffer
             
                 <td class="default">
                 
+                    [0, 0, 0]
+                
                 </td>
             
 
-            <td class="description last">View direction</td>
+            <td class="description last">Specifies the position at which the projection is aimed.</td>
         </tr>
 
     
@@ -428,7 +544,7 @@ the associated framebuffer
                 </td>
             
 
-            <td class="description last">Vantage position</td>
+            <td class="description last">Specifies the position of the projection.</td>
         </tr>
 
     
@@ -467,7 +583,7 @@ the associated framebuffer
                 </td>
             
 
-            <td class="description last">Camera orientation</td>
+            <td class="description last">Specifies the orientation of the projection.</td>
         </tr>
 
     
@@ -508,7 +624,7 @@ the associated framebuffer
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6461">line 6461</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6477">line 6477</a>
     </li></ul></dd>
     
 
@@ -563,13 +679,13 @@ the associated framebuffer
 
         
             
-<h4 class="name" id=".direction"><span class="type-signature">(private, static) </span>direction<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
+<h4 class="name" id=".direction"><span class="type-signature">(static) </span>direction<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
 
 
 
 
 <div class="description">
-    View direction
+    The position at which the projection is aimed.
 </div>
 
 
@@ -613,11 +729,16 @@ the associated framebuffer
     
 
     
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>[0, 0, 0]</li>
+        </ul></dd>
+    
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6546">line 6546</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6561">line 6561</a>
     </li></ul></dd>
     
 
@@ -635,13 +756,13 @@ the associated framebuffer
 
         
             
-<h4 class="name" id=".far"><span class="type-signature">(private, static) </span>far<span class="type-signature"> :number</span></h4>
+<h4 class="name" id=".far"><span class="type-signature">(static) </span>far<span class="type-signature"> :number</span></h4>
 
 
 
 
 <div class="description">
-    Observable end
+    Specifies the back most boundary of the projection.
 </div>
 
 
@@ -694,7 +815,7 @@ the associated framebuffer
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6539">line 6539</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6556">line 6556</a>
     </li></ul></dd>
     
 
@@ -712,13 +833,13 @@ the associated framebuffer
 
         
             
-<h4 class="name" id=".fov"><span class="type-signature">(private, static) </span>fov<span class="type-signature"> :number</span></h4>
+<h4 class="name" id=".fov"><span class="type-signature">(static) </span>fov<span class="type-signature"> :number</span></h4>
 
 
 
 
 <div class="description">
-    Field of view
+    The field of view of the projection.
 </div>
 
 
@@ -771,7 +892,7 @@ the associated framebuffer
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6519">line 6519</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6540">line 6540</a>
     </li></ul></dd>
     
 
@@ -789,13 +910,13 @@ the associated framebuffer
 
         
             
-<h4 class="name" id=".height"><span class="type-signature">(private, static) </span>height<span class="type-signature"> :number</span></h4>
+<h4 class="name" id=".height"><span class="type-signature">(static) </span>height<span class="type-signature"> :number</span></h4>
 
 
 
 
 <div class="description">
-    View height
+    The projection height. The initial value is set to the height of the canvas.
 </div>
 
 
@@ -839,11 +960,16 @@ the associated framebuffer
     
 
     
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>gl.canvas.height</li>
+        </ul></dd>
+    
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6513">line 6513</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6535">line 6535</a>
     </li></ul></dd>
     
 
@@ -861,13 +987,13 @@ the associated framebuffer
 
         
             
-<h4 class="name" id=".location"><span class="type-signature">(private, static) </span>location<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
+<h4 class="name" id=".location"><span class="type-signature">(static) </span>location<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
 
 
 
 
 <div class="description">
-    Vantage position
+    The position of the projection.
 </div>
 
 
@@ -915,7 +1041,7 @@ the associated framebuffer
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6552">line 6552</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6566">line 6566</a>
     </li></ul></dd>
     
 
@@ -933,13 +1059,13 @@ the associated framebuffer
 
         
             
-<h4 class="name" id=".near"><span class="type-signature">(private, static) </span>near<span class="type-signature"> :number</span></h4>
+<h4 class="name" id=".near"><span class="type-signature">(static) </span>near<span class="type-signature"> :number</span></h4>
 
 
 
 
 <div class="description">
-    Observable start
+    Specifies the front most boundary of the projection.
 </div>
 
 
@@ -992,7 +1118,7 @@ the associated framebuffer
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6532">line 6532</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6551">line 6551</a>
     </li></ul></dd>
     
 
@@ -1010,13 +1136,14 @@ the associated framebuffer
 
         
             
-<h4 class="name" id=".ratio"><span class="type-signature">(private, static) </span>ratio<span class="type-signature"> :number</span></h4>
+<h4 class="name" id=".ratio"><span class="type-signature">(static) </span>ratio<span class="type-signature"> :number</span></h4>
 
 
 
 
 <div class="description">
-    View aspect ratio
+    The aspect ratio of the projection. This is calculated by dividing the width
+of the projection by its height.
 </div>
 
 
@@ -1060,11 +1187,16 @@ the associated framebuffer
     
 
     
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>gl.canvas.width/gl.canvas.height</li>
+        </ul></dd>
+    
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6526">line 6526</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6545">line 6545</a>
     </li></ul></dd>
     
 
@@ -1082,13 +1214,13 @@ the associated framebuffer
 
         
             
-<h4 class="name" id=".up"><span class="type-signature">(private, static) </span>up<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
+<h4 class="name" id=".up"><span class="type-signature">(static) </span>up<span class="type-signature"> :<a href="vec3.html">vec3</a></span></h4>
 
 
 
 
 <div class="description">
-    Camera orientation
+    The orientation of the projection.
 </div>
 
 
@@ -1141,7 +1273,7 @@ the associated framebuffer
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6558">line 6558</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6571">line 6571</a>
     </li></ul></dd>
     
 
@@ -1159,13 +1291,13 @@ the associated framebuffer
 
         
             
-<h4 class="name" id=".width"><span class="type-signature">(private, static) </span>width<span class="type-signature"> :number</span></h4>
+<h4 class="name" id=".width"><span class="type-signature">(static) </span>width<span class="type-signature"> :number</span></h4>
 
 
 
 
 <div class="description">
-    View width
+    The projection width. The initial value is set to the width of the canvas.
 </div>
 
 
@@ -1209,11 +1341,16 @@ the associated framebuffer
     
 
     
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>gl.canvas.width</li>
+        </ul></dd>
+    
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6507">line 6507</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6530">line 6530</a>
     </li></ul></dd>
     
 
@@ -1240,14 +1377,16 @@ the associated framebuffer
 
     
 
-    <h4 class="name" id=".bind"><span class="type-signature">(static) </span>bind<span class="signature">(structure)</span><span class="type-signature"> &rarr; {undefined}</span></h4>
+    <h4 class="name" id=".bind"><span class="type-signature">(static) </span>bind<span class="signature">()</span><span class="type-signature"> &rarr; {undefined}</span></h4>
 
     
 
 
 
 <div class="description">
-    Apply perspective projection to active framebuffer
+    Specify the value of the uniform variables for the current program object;
+enable depth testing and set the viewport boundaries with the given
+bounds.
 </div>
 
 
@@ -1256,55 +1395,6 @@ the associated framebuffer
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>structure</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Entity.Structure.html">Entity.Structure</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Camera shader uniforms</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -1340,7 +1430,7 @@ the associated framebuffer
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6583">line 6583</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6596">line 6596</a>
     </li></ul></dd>
     
 
@@ -1396,7 +1486,9 @@ the associated framebuffer
 
 
 <div class="description">
-    Configure a mat4 perspective projection
+    Generates a perspective projection matrix with the given bounds;
+initialises the modelview matrix to an identity matrix and subsequently
+computes a look-at matrix with the given eye position, focal point, and up axis.
 </div>
 
 
@@ -1440,7 +1532,7 @@ the associated framebuffer
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6567">line 6567</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6578">line 6578</a>
     </li></ul></dd>
     
 
@@ -1506,7 +1598,7 @@ the associated framebuffer
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Mon Aug 10 2015 18:15:11 GMT+0100 (BST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Mon Aug 10 2015 19:05:35 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>

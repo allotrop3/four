@@ -4976,8 +4976,8 @@ THE SOFTWARE. */
          * @extends Entity
          * @param {string} [name=camera] - Specifies the entities friendly name.
          * @param {string} program - Specifies the program in which the camera used.
-         * @param {string} path - Specifies the uniform structure path to the generic uniforms.
-         * @param {Array} uniforms - Specifies the formats and names of the generic uniforms as used in the shader.
+         * @param {string} [path=camera] - Specifies the uniform structure path to the generic uniforms.
+         * @param {Array} [uniforms=['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix']] - Specifies the formats and names of the generic uniforms as used in the shader.
          * @param {vec4} [background=[0, 0, 0, 1]] - Specifies the clear value for the color buffers.
          */
         var Camera = (function(_Structure) {
@@ -5551,14 +5551,14 @@ THE SOFTWARE. */
     }, {}],
     17: [function(require, module, exports) {
         'use strict';
-        var Entity = require('./Entity');
         var gl = require('./gl');
+        var Entity = require('./Entity');
         /**
-         * Fluid is a grid-based fluid simulator
+         * Fluid is a grid-based fluid simulator. Coming soon...
          * @class Fluid
          * @name Entity.Fluid
          * @extends Entity
-         * @param {string} [name=fluid] - Instance name
+         * @param {string} [name=fluid] - Specifies the entities friendly name.
          */
         var Fluid = (function(_Entity2) {
             _inherits(Fluid, _Entity2);
@@ -5614,14 +5614,18 @@ THE SOFTWARE. */
     }],
     19: [function(require, module, exports) {
         'use strict';
-        var Entity = require('./Entity');
         var gl = require('./gl');
+        var Entity = require('./Entity');
+        var _name = 'framebuffer';
         /**
-         * Framebuffer is a wrapper on WebGLFramebuffer buffers
+         * A Framebuffer is a collection of buffers that can be used as the destination for rendering. There are
+         * two kinds of framebuffers: the default framebuffer, which is wrapped in this class for ease of binding
+         * and unbinding and renders to the screen of the device; and user-created framebuffers called framebuffer
+         * objects - see &lt;a href="Entity.Framebuffer.DeferredFramebuffer.html">Entity.Framebuffer.DeferredFramebuffer&lt;/a>.
          * @class Framebuffer
          * @name Entity.Framebuffer
          * @extends Entity
-         * @param {string} [name=framebuffer] - Instance name
+         * @param {string} [name=framebuffer] - Specifies the entities friendly name.
          */
         var Framebuffer = (function(_Entity3) {
             _inherits(Framebuffer, _Entity3);
@@ -5629,24 +5633,22 @@ THE SOFTWARE. */
             function Framebuffer() {
                 var _ref9 = arguments.length &lt;= 0 || arguments[0] === undefined ? {} : arguments[0];
                 var _ref9$name = _ref9.name;
-                var name = _ref9$name === undefined ? 'framebuffer' : _ref9$name;
+                var name = _ref9$name === undefined ? _name : _ref9$name;
                 _classCallCheck(this, Framebuffer);
                 _get(Object.getPrototypeOf(Framebuffer.prototype), "constructor", this).call(this, {
                     name: name
                 });
                 /**
-                 * WebGL framebuffer
-                 * @var {object} Entity.Framebuffer.buffer
-                 * @default null
-                 * @private
+                 * The framebuffer is set to null and thus references the default framebuffer.
+                 * @var {object} [Entity.Framebuffer.buffer=null]
                  */
                 this.buffer = null;
             }
             /**
-             * Bind the framebuffer as the current
-             * render target
+             * Bind the framebuffer as the destination for rendering.
              * @function Entity.Framebuffer.bind
-             * @param {boolean} [flush=true] - Clear framebuffer contents
+             * @param {boolean} [flush=true] - Flag to flush the contents of the active framebuffer.
+             * The initial value is set to true.
              * @returns {undefined}
              */
             _createClass(Framebuffer, [{
@@ -5659,7 +5661,7 @@ THE SOFTWARE. */
                         }
                     }
                     /**
-                     * Unbind the framebuffer
+                     * Restore the default framebuffer as the destination for rendering.
                      * @function Entity.Framebuffer.unbind
                      * @returns {undefined}
                      */
@@ -5669,8 +5671,7 @@ THE SOFTWARE. */
                         gl.bindFramebuffer(gl.FRAMEBUFFER, null);
                     }
                     /**
-                     * Flush the contents of the framebuffers'
-                     * color and depth attachments
+                     * Flush the contents of the active framebuffer.
                      * @function Entity.Framebuffer.flush
                      * @returns {undefined}
                      */
@@ -5681,9 +5682,9 @@ THE SOFTWARE. */
                         gl.clear(gl.DEPTH_BUFFER_BIT);
                     }
                     /**
-                     * Check the framebuffer compile status
+                     * Validate the compile status of the active framebuffer.
                      * @function Entity.Framebuffer.check
-                     * @returns {undefined|Error}
+                     * @returns {undefined|object}
                      */
             }, {
                 key: "check",
@@ -6374,12 +6375,15 @@ THE SOFTWARE. */
         var _near = 0.1;
         var _far = 1;
         /**
-         * An orthographic camera produces an orthogonal projection into framebuffers.
+         * An orthographic camera produces a two dimensional projection into framebuffers.
          * @class OrthographicCamera
          * @name Entity.Camera.OrthographicCamera
          * @extends Entity.Camera
          * @param {string} [name=orthographic.camera] - Specifies the entities friendly name.
-         * @param {vec4} [background=[0, 0, 0, 1]] - Camera background color
+         * @param {Entity.Program} program - Specifies the program in which the camera used.
+         * @param {string} [path=camera] - Specifies the uniform structure path to the generic uniforms.
+         * @param {Array} [uniforms=['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix']] - Specifies the formats and names of the generic uniforms as used in the shader.
+         * @param {vec4} [background=[0, 0, 0, 1]] - Specifies the clear value for the color buffers.
          * @param {number} [left=-1] - Specifies the left most boundary of the projection.
          * @param {number} right - Specifies the right most boundary of the projection.
          * @param {number} [top=-1] - Specifies the top most boundary of the projection.
@@ -6395,6 +6399,8 @@ THE SOFTWARE. */
                 var _ref17$name = _ref17.name;
                 var name = _ref17$name === undefined ? _name : _ref17$name;
                 var program = _ref17.program;
+                var path = _ref17.path;
+                var uniforms = _ref17.uniforms;
                 var background = _ref17.background;
                 var _ref17$left = _ref17.left;
                 var left = _ref17$left === undefined ? _left : _ref17$left;
@@ -6410,6 +6416,8 @@ THE SOFTWARE. */
                 _get(Object.getPrototypeOf(OrthographicCamera.prototype), "constructor", this).call(this, {
                     name: name,
                     program: program,
+                    path: path,
+                    uniforms: uniforms,
                     background: background
                 });
                 /**
@@ -6482,26 +6490,36 @@ THE SOFTWARE. */
     }],
     27: [function(require, module, exports) {
         'use strict';
-        var Camera = require('./Camera');
         var gl = require('./gl');
         var glm = require('gl-matrix');
         var mat4 = glm.mat4;
+        var Camera = require('./Camera');
+        var _name = 'perspective.camera';
+        var _width = gl.canvas.width;
+        var _height = gl.canvas.height;
+        var _fov = 45;
+        var _near = 0.1;
+        var _far = 1000;
+        var _direction = [0, 0, 0];
+        var _up = [0, 1, 0];
         /**
-         * PerspectiveCamera configures a perspective projection into
-         * the associated framebuffer
+         * An perspective camera produces a three dimensional projection into framebuffers.
          * @class PerspectiveCamera
          * @name Entity.Camera.PerspectiveCamera
          * @extends Entity.Camera
-         * @param {string} [name=perspective.camera] - Instance name
-         * @param {vec4} [background=[0, 0, 0, 1]] - Camera background color
-         * @param {number} [width=gl.canvas.width] - View width
-         * @param {number} [height=gl.canvas.height] - View height
-         * @param {number} [fov=45] - Field of view
-         * @param {number} [near=0.1] - Observable start
-         * @param {number} [far=1000] - Observable end
-         * @param {vec3} direction - View direction
-         * @param {vec3} location - Vantage position
-         * @param {vec3} [up=[0, 1, 0]] - Camera orientation
+         * @param {string} [name=perspective.camera] - Specifies the entities friendly name.
+         * @param {Entity.Program} program - Specifies the program in which the camera used.
+         * @param {string} [path=camera] - Specifies the uniform structure path to the generic uniforms.
+         * @param {Array} [uniforms=['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix']] - Specifies the formats and names of the generic uniforms as used in the shader.
+         * @param {vec4} [background=[0, 0, 0, 1]] - Specifies the clear value for the color buffers.
+         * @param {number} [width=gl.canvas.width] - Specifies the projection width. The initial value is set to the width of the canvas.
+         * @param {number} [height=gl.canvas.height] - Specifies the projection height. The initial value is set to the height of the canvas.
+         * @param {number} [fov=45] - Specifies the field of view of the projection.
+         * @param {number} [near=0.1] - Specifies the front most boundary of the projection.
+         * @param {number} [far=1000] - Specifies the back most boundary of the projection.
+         * @param {vec3} [direction=[0, 0, 0]] - Specifies the position at which the projection is aimed.
+         * @param {vec3} location - Specifies the position of the projection.
+         * @param {vec3} [up=[0, 1, 0]] - Specifies the orientation of the projection.
          */
         var PerspectiveCamera = (function(_Camera2) {
             _inherits(PerspectiveCamera, _Camera2);
@@ -6509,91 +6527,86 @@ THE SOFTWARE. */
             function PerspectiveCamera() {
                 var _ref18 = arguments.length &lt;= 0 || arguments[0] === undefined ? {} : arguments[0];
                 var _ref18$name = _ref18.name;
-                var name = _ref18$name === undefined ? 'perspective.camera' : _ref18$name;
+                var name = _ref18$name === undefined ? _name : _ref18$name;
                 var program = _ref18.program;
+                var path = _ref18.path;
+                var uniforms = _ref18.uniforms;
                 var background = _ref18.background;
                 var _ref18$width = _ref18.width;
-                var width = _ref18$width === undefined ? gl.canvas.width : _ref18$width;
+                var width = _ref18$width === undefined ? _width : _ref18$width;
                 var _ref18$height = _ref18.height;
-                var height = _ref18$height === undefined ? gl.canvas.height : _ref18$height;
+                var height = _ref18$height === undefined ? _height : _ref18$height;
                 var _ref18$fov = _ref18.fov;
-                var fov = _ref18$fov === undefined ? 45 : _ref18$fov;
+                var fov = _ref18$fov === undefined ? _fov : _ref18$fov;
                 var _ref18$near = _ref18.near;
-                var near = _ref18$near === undefined ? 0.1 : _ref18$near;
+                var near = _ref18$near === undefined ? _near : _ref18$near;
                 var _ref18$far = _ref18.far;
-                var far = _ref18$far === undefined ? 1000 : _ref18$far;
-                var direction = _ref18.direction;
+                var far = _ref18$far === undefined ? _far : _ref18$far;
+                var _ref18$direction = _ref18.direction;
+                var direction = _ref18$direction === undefined ? _direction : _ref18$direction;
                 var location = _ref18.location;
                 var _ref18$up = _ref18.up;
-                var up = _ref18$up === undefined ? [0, 1, 0] : _ref18$up;
+                var up = _ref18$up === undefined ? _up : _ref18$up;
                 _classCallCheck(this, PerspectiveCamera);
                 _get(Object.getPrototypeOf(PerspectiveCamera.prototype), "constructor", this).call(this, {
                     name: name,
                     program: program,
+                    path: path,
+                    uniforms: uniforms,
                     background: background
                 });
                 /**
-                 * View width
-                 * @var {number} Entity.Camera.PerspectiveCamera.width
-                 * @private
+                 * The projection width. The initial value is set to the width of the canvas.
+                 * @var {number} [Entity.Camera.PerspectiveCamera.width=gl.canvas.width]
                  */
                 this.width = width;
                 /**
-                 * View height
-                 * @var {number} Entity.Camera.PerspectiveCamera.height
-                 * @private
+                 * The projection height. The initial value is set to the height of the canvas.
+                 * @var {number} [Entity.Camera.PerspectiveCamera.height=gl.canvas.height]
                  */
                 this.height = height;
                 /**
-                 * Field of view
-                 * @var {number} Entity.Camera.PerspectiveCamera.fov
-                 * @default 45
-                 * @private
+                 * The field of view of the projection.
+                 * @var {number} [Entity.Camera.PerspectiveCamera.fov=45]
                  */
                 this.fov = fov;
                 /**
-                 * View aspect ratio
-                 * @var {number} Entity.Camera.PerspectiveCamera.ratio
-                 * @private
+                 * The aspect ratio of the projection. This is calculated by dividing the width
+                 * of the projection by its height.
+                 * @var {number} [Entity.Camera.PerspectiveCamera.ratio=gl.canvas.width/gl.canvas.height]
                  */
                 this.ratio = width / height;
                 /**
-                 * Observable start
-                 * @var {number} Entity.Camera.PerspectiveCamera.near
-                 * @default 0.1
-                 * @private
+                 * Specifies the front most boundary of the projection.
+                 * @var {number} [Entity.Camera.PerspectiveCamera.near=0.1]
                  */
                 this.near = near;
                 /**
-                 * Observable end
-                 * @var {number} Entity.Camera.PerspectiveCamera.far
-                 * @default 1000
-                 * @private
+                 * Specifies the back most boundary of the projection.
+                 * @var {number} [Entity.Camera.PerspectiveCamera.far=1000]
                  */
                 this.far = far;
                 /**
-                 * View direction
-                 * @var {vec3} Entity.Camera.PerspectiveCamera.direction
-                 * @private
+                 * The position at which the projection is aimed.
+                 * @var {vec3} [Entity.Camera.PerspectiveCamera.direction=[0, 0, 0]]
                  */
                 this.direction = direction;
                 /**
-                 * Vantage position
+                 * The position of the projection.
                  * @var {vec3} Entity.Camera.PerspectiveCamera.location
-                 * @private
                  */
                 this.location = location;
                 /**
-                 * Camera orientation
-                 * @var {vec3} Entity.Camera.PerspectiveCamera.up
-                 * @default [0, 1, 0]
-                 * @private
+                 * The orientation of the projection.
+                 * @var {vec3} [Entity.Camera.PerspectiveCamera.up=[0, 1, 0]]
                  */
                 this.up = up;
                 this.configure();
             }
             /**
-             * Configure a mat4 perspective projection
+             * Generates a perspective projection matrix with the given bounds;
+             * initialises the modelview matrix to an identity matrix and subsequently
+             * computes a look-at matrix with the given eye position, focal point, and up axis.
              * @function Entity.Camera.PerspectiveCamera.configure
              * @returns {undefined}
              */
@@ -6609,15 +6622,16 @@ THE SOFTWARE. */
                         mat4.lookAt(modelViewMatrix, this.location, this.direction, this.up);
                     }
                     /**
-                     * Apply perspective projection to active framebuffer
+                     * Specify the value of the uniform variables for the current program object;
+                     * enable depth testing and set the viewport boundaries with the given
+                     * bounds.
                      * @function Entity.Camera.PerspectiveCamera.bind
-                     * @param {Entity.Structure} structure - Camera shader uniforms
                      * @returns {undefined}
                      */
             }, {
                 key: "bind",
-                value: function bind(structure) {
-                    _get(Object.getPrototypeOf(PerspectiveCamera.prototype), "bind", this).call(this, structure);
+                value: function bind() {
+                    _get(Object.getPrototypeOf(PerspectiveCamera.prototype), "bind", this).call(this);
                     gl.enable(gl.DEPTH_TEST);
                     gl.viewport(0, 0, this.width, this.height);
                 }
@@ -7930,7 +7944,7 @@ THE SOFTWARE. */
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Mon Aug 10 2015 18:15:11 GMT+0100 (BST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Mon Aug 10 2015 19:05:34 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>
