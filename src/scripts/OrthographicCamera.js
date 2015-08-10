@@ -1,74 +1,69 @@
 'use strict';
 
-let Camera = require('./Camera');
 let gl = require('./gl');
 let glm = require('gl-matrix');
 let mat4 = glm.mat4;
+let Camera = require('./Camera');
+
+const _name = 'orthographic.camera';
+const _left = -1;
+const _top = -1;
+const _near = 0.1;
+const _far = 1;
 
 /**
- * OrthographicCamera configures an othographic projection into
- * the associated framebuffer
+ * An orthographic camera produces an orthogonal projection into framebuffers.
  * @class OrthographicCamera
  * @name Entity.Camera.OrthographicCamera
  * @extends Entity.Camera
- * @param {string} [name=orthographic.camera] - Instance name
+ * @param {string} [name=orthographic.camera] - Specifies the entities friendly name.
  * @param {vec4} [background=[0, 0, 0, 1]] - Camera background color
- * @param {number} [left=-1] - View left start
- * @param {number} right - View right end
- * @param {number} [top=-1] - View top start
- * @param {number} bottom - View bottom end
- * @param {number} [near=0.1] - Observable start
- * @param {number} [far=1] - Observable end
+ * @param {number} [left=-1] - Specifies the left most boundary of the projection.
+ * @param {number} right - Specifies the right most boundary of the projection.
+ * @param {number} [top=-1] - Specifies the top most boundary of the projection.
+ * @param {number} bottom - Specifies the bottom most boundary of the projection.
+ * @param {number} [near=0.1] - Specifies the front most boundary of the projection.
+ * @param {number} [far=1] - Specifies the back most boundary of the projection.
  */
 class OrthographicCamera extends Camera
 {
-   constructor({ name = 'orthographic.Camera', program, background, left = -1, right, bottom, top = -1, near = 0.1, far = 1 } = {})
+   constructor({ name = _name, program, background, left = _left, right, bottom, top = _top, near = _near, far = _far } = {})
    {
       super({ name, program, background });
 
       /**
-       * View left start
-       * @var {number} Entity.Camera.OrthographicCamera.left
-       * @default -1
-       * @private
+       * The left most boundary of the projection.
+       * @var {number} [Entity.Camera.OrthographicCamera.left=-1]
        */
       this.left = left;
 
       /**
-       * View right end
+       * The right most boundary of the projection.
        * @var {number} Entity.Camera.OrthographicCamera.right
-       * @private
        */
       this.right = right;
 
       /**
-       * View bottom end
+       * The bottom most boundary of the projection.
        * @var {number} Entity.Camera.OrthographicCamera.bottom
-       * @private
        */
       this.bottom = bottom;
 
       /**
-       * View top start
-       * @var {number} Entity.Camera.OrthographicCamera.top
-       * @default -1
-       * @private
+       * The top most boundary of the projection.
+       * @var {number} [Entity.Camera.OrthographicCamera.top=-1]
        */
       this.top = top;
 
       /**
-       * Observable start
-       * @var {number} Entity.Camera.OrthographicCamera.near
-       * @default 0.1
-       * @private
+       * Specifies the front most boundary of the projection.
+       * @var {number} [Entity.Camera.OrthographicCamera.near=0.1]
        */
       this.near = near;
 
       /**
-       * Observable end
-       * @var {number} Entity.Camera.OrthographicCamera.far
-       * @default 1
-       * @private
+       * The back most boundary of the projection.
+       * @var {number} [Entity.Camera.OrthographicCamera.far=1]
        */
       this.far = far;
 
@@ -76,7 +71,8 @@ class OrthographicCamera extends Camera
    }
 
    /**
-    * Configure a mat4 orthographic projection
+    * Generates an orthogonal projection matrix with the given bounds and
+    * initialises the modelview matrix to an identity matrix.
     * @function Entity.Camera.OrthographicCamera.configure
     * @returns {undefined}
     */
@@ -89,14 +85,15 @@ class OrthographicCamera extends Camera
    }
 
    /**
-    * Apply orthographic projection to active framebuffer
+    * Specify the value of the uniform variables for the current program object;
+    * disable depth testing and set the viewport boundaries with the given
+    * bounds.
     * @function Entity.Camera.OrthographicCamera.bind
-    * @param {Entity.Structure} structure - Camera shader uniforms
     * @returns {undefined}
     */
-   bind(structure)
+   bind()
    {
-      super.bind(structure);
+      super.bind();
 
       gl.disable(gl.DEPTH_TEST);
       gl.viewport(0, 0, this.right, this.top);

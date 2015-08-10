@@ -4847,8 +4847,9 @@ THE SOFTWARE. */
          * @param {number} [format=gl.FLOAT] - Specifies the data type of each component in the array.
          * @param {boolean} [normalized=false] - Specifies whether fixed-point data values should be normalized
          * (true) or converted directly as fixed-point values (false) when they are accessed.
-         * @param {number} [offset=0] - Specifies a offset of the first component of the first generic vertex attribute]
-         * in the array in the data store of the buffer currently bound to the gl.ARRAY_BUFFER target. The initial value is 0.
+         * @param {number} [offset=0] - Specifies the offset of the first component of the first generic vertex
+         * attribute in the array in the data store of the buffer currently bound to the gl.ARRAY_BUFFER.
+         * The initial value is 0.
          */
         var Attribute = (function(_Entity) {
             _inherits(Attribute, _Entity);
@@ -4872,7 +4873,7 @@ THE SOFTWARE. */
                 });
                 /**
                  * Vertex attribute variable name as used in the shader.
-                 * @var {object} [Entity.Attribute.attribute=a_${attribute}]
+                 * @var {object} Entity.Attribute.attribute
                  */
                 this.attribute = attribute;
                 /**
@@ -4899,8 +4900,9 @@ THE SOFTWARE. */
                 /**
                  * The offset of the first component of the first generic
                  * vertex attribute in the array in the data store of the
-                 * buffer currently bound to the gl.ARRAY_BUFFER.
-                 * @var {number} Entity.Attribute.offset
+                 * buffer currently bound to the gl.ARRAY_BUFFER. The
+                 * initial value is 0.
+                 * @var {number} [Entity.Attribute.offset=0]
                  */
                 this.offset = offset;
             }
@@ -4968,7 +4970,7 @@ THE SOFTWARE. */
         var _background = [0, 0, 0, 1];
         /**
          * A camera simplifies transforming the perspective of the view, including scaling, rotating and translating,
-         * thereby configuring projections into framebuffers
+         * thereby configuring projections into framebuffers or output display.
          * @class Camera
          * @name Entity.Camera
          * @extends Entity
@@ -6362,24 +6364,28 @@ THE SOFTWARE. */
     }],
     26: [function(require, module, exports) {
         'use strict';
-        var Camera = require('./Camera');
         var gl = require('./gl');
         var glm = require('gl-matrix');
         var mat4 = glm.mat4;
+        var Camera = require('./Camera');
+        var _name = 'orthographic.camera';
+        var _left = -1;
+        var _top = -1;
+        var _near = 0.1;
+        var _far = 1;
         /**
-         * OrthographicCamera configures an othographic projection into
-         * the associated framebuffer
+         * An orthographic camera produces an orthogonal projection into framebuffers.
          * @class OrthographicCamera
          * @name Entity.Camera.OrthographicCamera
          * @extends Entity.Camera
-         * @param {string} [name=orthographic.camera] - Instance name
+         * @param {string} [name=orthographic.camera] - Specifies the entities friendly name.
          * @param {vec4} [background=[0, 0, 0, 1]] - Camera background color
-         * @param {number} [left=-1] - View left start
-         * @param {number} right - View right end
-         * @param {number} [top=-1] - View top start
-         * @param {number} bottom - View bottom end
-         * @param {number} [near=0.1] - Observable start
-         * @param {number} [far=1] - Observable end
+         * @param {number} [left=-1] - Specifies the left most boundary of the projection.
+         * @param {number} right - Specifies the right most boundary of the projection.
+         * @param {number} [top=-1] - Specifies the top most boundary of the projection.
+         * @param {number} bottom - Specifies the bottom most boundary of the projection.
+         * @param {number} [near=0.1] - Specifies the front most boundary of the projection.
+         * @param {number} [far=1] - Specifies the back most boundary of the projection.
          */
         var OrthographicCamera = (function(_Camera) {
             _inherits(OrthographicCamera, _Camera);
@@ -6387,19 +6393,19 @@ THE SOFTWARE. */
             function OrthographicCamera() {
                 var _ref17 = arguments.length &lt;= 0 || arguments[0] === undefined ? {} : arguments[0];
                 var _ref17$name = _ref17.name;
-                var name = _ref17$name === undefined ? 'orthographic.Camera' : _ref17$name;
+                var name = _ref17$name === undefined ? _name : _ref17$name;
                 var program = _ref17.program;
                 var background = _ref17.background;
                 var _ref17$left = _ref17.left;
-                var left = _ref17$left === undefined ? -1 : _ref17$left;
+                var left = _ref17$left === undefined ? _left : _ref17$left;
                 var right = _ref17.right;
                 var bottom = _ref17.bottom;
                 var _ref17$top = _ref17.top;
-                var top = _ref17$top === undefined ? -1 : _ref17$top;
+                var top = _ref17$top === undefined ? _top : _ref17$top;
                 var _ref17$near = _ref17.near;
-                var near = _ref17$near === undefined ? 0.1 : _ref17$near;
+                var near = _ref17$near === undefined ? _near : _ref17$near;
                 var _ref17$far = _ref17.far;
-                var far = _ref17$far === undefined ? 1 : _ref17$far;
+                var far = _ref17$far === undefined ? _far : _ref17$far;
                 _classCallCheck(this, OrthographicCamera);
                 _get(Object.getPrototypeOf(OrthographicCamera.prototype), "constructor", this).call(this, {
                     name: name,
@@ -6407,49 +6413,40 @@ THE SOFTWARE. */
                     background: background
                 });
                 /**
-                 * View left start
-                 * @var {number} Entity.Camera.OrthographicCamera.left
-                 * @default -1
-                 * @private
+                 * The left most boundary of the projection.
+                 * @var {number} [Entity.Camera.OrthographicCamera.left=-1]
                  */
                 this.left = left;
                 /**
-                 * View right end
+                 * The right most boundary of the projection.
                  * @var {number} Entity.Camera.OrthographicCamera.right
-                 * @private
                  */
                 this.right = right;
                 /**
-                 * View bottom end
+                 * The bottom most boundary of the projection.
                  * @var {number} Entity.Camera.OrthographicCamera.bottom
-                 * @private
                  */
                 this.bottom = bottom;
                 /**
-                 * View top start
-                 * @var {number} Entity.Camera.OrthographicCamera.top
-                 * @default -1
-                 * @private
+                 * The top most boundary of the projection.
+                 * @var {number} [Entity.Camera.OrthographicCamera.top=-1]
                  */
                 this.top = top;
                 /**
-                 * Observable start
-                 * @var {number} Entity.Camera.OrthographicCamera.near
-                 * @default 0.1
-                 * @private
+                 * Specifies the front most boundary of the projection.
+                 * @var {number} [Entity.Camera.OrthographicCamera.near=0.1]
                  */
                 this.near = near;
                 /**
-                 * Observable end
-                 * @var {number} Entity.Camera.OrthographicCamera.far
-                 * @default 1
-                 * @private
+                 * The back most boundary of the projection.
+                 * @var {number} [Entity.Camera.OrthographicCamera.far=1]
                  */
                 this.far = far;
                 this.configure();
             }
             /**
-             * Configure a mat4 orthographic projection
+             * Generates an orthogonal projection matrix with the given bounds and
+             * initialises the modelview matrix to an identity matrix.
              * @function Entity.Camera.OrthographicCamera.configure
              * @returns {undefined}
              */
@@ -6461,15 +6458,16 @@ THE SOFTWARE. */
                         mat4.identity(this.modelViewMatrix);
                     }
                     /**
-                     * Apply orthographic projection to active framebuffer
+                     * Specify the value of the uniform variables for the current program object;
+                     * disable depth testing and set the viewport boundaries with the given
+                     * bounds.
                      * @function Entity.Camera.OrthographicCamera.bind
-                     * @param {Entity.Structure} structure - Camera shader uniforms
                      * @returns {undefined}
                      */
             }, {
                 key: "bind",
-                value: function bind(structure) {
-                    _get(Object.getPrototypeOf(OrthographicCamera.prototype), "bind", this).call(this, structure);
+                value: function bind() {
+                    _get(Object.getPrototypeOf(OrthographicCamera.prototype), "bind", this).call(this);
                     gl.disable(gl.DEPTH_TEST);
                     gl.viewport(0, 0, this.right, this.top);
                 }
@@ -7526,7 +7524,7 @@ THE SOFTWARE. */
                 this.path = path;
                 /**
                  * Shader variable name
-                 * @var {string} Entity.uniform - Shader uniform
+                 * @var {string} Entity.Uniform.uniform - Shader uniform
                  * @private
                  */
                 this.uniform = uniform;
@@ -7932,7 +7930,7 @@ THE SOFTWARE. */
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Mon Aug 10 2015 00:51:07 GMT+0100 (BST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Mon Aug 10 2015 18:15:11 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>

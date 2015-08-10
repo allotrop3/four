@@ -23,8 +23,9 @@ const _offset = 0;
  * @param {number} [format=gl.FLOAT] - Specifies the data type of each component in the array.
  * @param {boolean} [normalized=false] - Specifies whether fixed-point data values should be normalized
  * (true) or converted directly as fixed-point values (false) when they are accessed.
- * @param {number} [offset=0] - Specifies a offset of the first component of the first generic vertex attribute]
- * in the array in the data store of the buffer currently bound to the gl.ARRAY_BUFFER target. The initial value is 0.
+ * @param {number} [offset=0] - Specifies the offset of the first component of the first generic vertex
+ * attribute in the array in the data store of the buffer currently bound to the gl.ARRAY_BUFFER.
+ * The initial value is 0.
  */
 class Attribute extends Entity
 {
@@ -34,7 +35,7 @@ class Attribute extends Entity
 
       /**
        * Vertex attribute variable name as used in the shader.
-       * @var {object} [Entity.Attribute.attribute=a_${attribute}]
+       * @var {object} Entity.Attribute.attribute
        */
       this.attribute = attribute;
 
@@ -66,8 +67,9 @@ class Attribute extends Entity
       /**
        * The offset of the first component of the first generic
        * vertex attribute in the array in the data store of the
-       * buffer currently bound to the gl.ARRAY_BUFFER.
-       * @var {number} Entity.Attribute.offset
+       * buffer currently bound to the gl.ARRAY_BUFFER. The
+       * initial value is 0.
+       * @var {number} [Entity.Attribute.offset=0]
        */
       this.offset = offset;
    }

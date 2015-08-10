@@ -16,7 +16,7 @@ const _background = [0, 0, 0, 1];
 
 /**
  * A camera simplifies transforming the perspective of the view, including scaling, rotating and translating,
- * thereby configuring projections into framebuffers
+ * thereby configuring projections into framebuffers or output display.
  * @class Camera
  * @name Entity.Camera
  * @extends Entity
