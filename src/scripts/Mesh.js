@@ -171,7 +171,7 @@ class Mesh extends Entity
     * @function Entity.Mesh.draw
     * @param {number} [primitive=gl.TRIANGLES] - Specifies what
     * kind of primitives to render;
-    * <code>gl[LINES|LINE_STRIP|LINE_LOOP|TRIANGLES|TRIANGLE_STRIP|TRIANGLE_FAN|POINTS]</code>
+    * `gl[LINES|LINE_STRIP|LINE_LOOP|TRIANGLES|TRIANGLE_STRIP|TRIANGLE_FAN|POINTS]`
     * @param {number} [offset=0] - Specifies the starting index
     * in the enabled arrays.
     * @param {boolean|number} [count=this.count] - Specifies the

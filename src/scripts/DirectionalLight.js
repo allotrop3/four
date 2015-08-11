@@ -7,18 +7,18 @@ const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f intensity
 const _direction = [0, 0, 0];
 
 /**
- * DirectionalLight is a directional light source to illuminate the scene
+ * A directional light is a structure concept. It is therefore a light source to illuminate the scene.
  * @class DirectionalLight
  * @name Entity.Structure.Light.DirectionalLight
  * @extends Entity.Structure.Light
- * @param {string} [name=directional.light] - Instance name
- * @param {Entity.Program} program - Uniforms' program
- * @param {vec3} ambient - Ambient component
- * @param {vec3} diffuse - Diffuse component
- * @param {vec3} specular - Specular component
- * @param {number} [intensity=1] - Light intensity
- * @param {vec3} [location=[0, 0, 0]] - Light position
- * @param {vec3} [direction=[0, 0, 0]] - Light direction
+ * @param {string} [name=directional.light] - Specifies the entities friendly name.
+ * @param {Entity.Program} Specifies the program in which the uniforms should be located.
+ * @param {vec3} ambient - Specifies the ambient component of the light source.
+ * @param {vec3} diffuse - Specifies the diffuse component of the light source.
+ * @param {vec3} specular - Specifies the specular component of the light source.
+ * @param {number} [intensity=1] - Specifies the intensity of the light source.
+ * @param {vec3} [location=[0, 0, 0]] - Specifies the location of the light source.
+ * @param {vec3} [direction=[0, 0, 0]] - Specifies the position at which the light aimed.
  */
 class DirectionalLight extends Light
 {
@@ -27,10 +27,8 @@ class DirectionalLight extends Light
       super({ name, program, uniforms, ambient, diffuse, specular, intensity, location });
 
       /**
-       * Light direction
-       * @var {vec3} Entity.Structure.Light.DirectionalLight.direction
-       * @default [0, 0, 0]
-       * @private
+       * The position at which the light aimed.
+       * @var {vec3} [Entity.Structure.Light.DirectionalLight.direction=[0, 0, 0]]
        */
       this.direction = direction;
    }

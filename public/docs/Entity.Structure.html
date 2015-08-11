@@ -44,15 +44,18 @@
 
     
 
-    <h4 class="name" id="Structure"><span class="type-signature"></span>new Structure<span class="signature">(program, path, unpathiforms<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Structure"><span class="type-signature"></span>new Structure<span class="signature">(name<span class="signature-attributes">opt</span>, program, path, uniforms<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Structure automates and simplifies the instantiation of struct
-typed uniforms
+    <p>A structure, at a high-level, is a concept that groups a collection of related uniforms
+and their values. Alternatively, it is an abstraction layer to link client-side properties
+with their uniform counter-part, thereby simplifying the process of updating uniforms on
+the shader. Extensions, however, may introduce functionality bespoke to a particular
+concept.</p>
 </div>
 
 
@@ -92,6 +95,45 @@ typed uniforms
 
         <tr>
             
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    structure
+                
+                </td>
+            
+
+            <td class="description last"><p>Specifies the entities friendly name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>program</code></td>
             
 
@@ -120,7 +162,7 @@ typed uniforms
                 </td>
             
 
-            <td class="description last">Program in which the shader uniform is used</td>
+            <td class="description last"><p>Specifies the program in which the uniforms should be located.</p></td>
         </tr>
 
     
@@ -155,14 +197,14 @@ typed uniforms
                 </td>
             
 
-            <td class="description last">Struct path to uniforms</td>
+            <td class="description last"><p>Specifies the shader <code>struct</code> path to the uniform, if required.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>unpathiforms</code></td>
+                <td class="name"><code>uniforms</code></td>
             
 
             <td class="type">
@@ -194,7 +236,9 @@ typed uniforms
                 </td>
             
 
-            <td class="description last">Uniforms within structure</td>
+            <td class="description last"><p>Specifies a collection of related uniform variables
+as is declared in the shader. The names imply the <code>u_</code> namespace is used as per the uniform
+variable naming convention.</p></td>
         </tr>
 
     
@@ -300,13 +344,13 @@ typed uniforms
 
         
             
-<h4 class="name" id=".path"><span class="type-signature">(private, static) </span>path<span class="type-signature"> :string</span></h4>
+<h4 class="name" id=".path"><span class="type-signature">(static) </span>path<span class="type-signature"> :string</span></h4>
 
 
 
 
 <div class="description">
-    Struct path to uniforms
+    <p>The shader <code>struct</code> path to the uniform, if required.</p>
 </div>
 
 
@@ -354,7 +398,7 @@ typed uniforms
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Structure.js.html">Structure.js</a>, <a href="Structure.js.html#line43">line 43</a>
+        <a href="Structure.js.html">Structure.js</a>, <a href="Structure.js.html#line49">line 49</a>
     </li></ul></dd>
     
 
@@ -372,13 +416,14 @@ typed uniforms
 
         
             
-<h4 class="name" id=".uniforms"><span class="type-signature">(private, static) </span>uniforms<span class="type-signature"> :Array.&lt;<a href="Entity.Uniform.html">Entity.Uniform</a>></span></h4>
+<h4 class="name" id=".uniforms"><span class="type-signature">(static) </span>uniforms<span class="type-signature"> :Array</span></h4>
 
 
 
 
 <div class="description">
-    Shader uniforms
+    <p>The collection of related uniform variables as is declared
+in the shader. The names imply the <code>u_</code> namespace is used.</p>
 </div>
 
 
@@ -387,7 +432,7 @@ typed uniforms
     <ul>
         <li>
             
-<span class="param-type">Array.&lt;<a href="Entity.Uniform.html">Entity.Uniform</a>></span>
+<span class="param-type">Array</span>
 
 
         </li>
@@ -426,7 +471,7 @@ typed uniforms
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Structure.js.html">Structure.js</a>, <a href="Structure.js.html#line50">line 50</a>
+        <a href="Structure.js.html">Structure.js</a>, <a href="Structure.js.html#line55">line 55</a>
     </li></ul></dd>
     
 
@@ -460,7 +505,7 @@ typed uniforms
 
 
 <div class="description">
-    Bind uniform values to the current progam
+    <p>Bind the structure.</p>
 </div>
 
 
@@ -504,7 +549,7 @@ typed uniforms
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Structure.js.html">Structure.js</a>, <a href="Structure.js.html#line76">line 76</a>
+        <a href="Structure.js.html">Structure.js</a>, <a href="Structure.js.html#line83">line 83</a>
     </li></ul></dd>
     
 
@@ -566,7 +611,7 @@ typed uniforms
 
 
 <div class="description">
-    Instantiate the uniforms
+    <p>Instantiate the uniforms - see <a href="Entity.Uniform.html">Entity.Uniform</a>.</p>
 </div>
 
 
@@ -618,7 +663,8 @@ typed uniforms
 
             
 
-            <td class="description last">Program in which the shader uniform is used</td>
+            <td class="description last"><p>Specifies the program in which the uniforms
+should be located.</p></td>
         </tr>
 
     
@@ -641,7 +687,8 @@ typed uniforms
 
             
 
-            <td class="description last">Shader uniform format and property name</td>
+            <td class="description last"><p>Specifies the uniform variable as is declared
+in the shader.</p></td>
         </tr>
 
     
@@ -682,7 +729,7 @@ typed uniforms
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Structure.js.html">Structure.js</a>, <a href="Structure.js.html#line58">line 58</a>
+        <a href="Structure.js.html">Structure.js</a>, <a href="Structure.js.html#line63">line 63</a>
     </li></ul></dd>
     
 
@@ -738,7 +785,7 @@ typed uniforms
 
 
 <div class="description">
-    Set uniform values
+    <p>Set the value of the given uniform.</p>
 </div>
 
 
@@ -790,7 +837,7 @@ typed uniforms
 
             
 
-            <td class="description last">Uniform to set</td>
+            <td class="description last"><p>Specifies the uniform to assign.</p></td>
         </tr>
 
     
@@ -831,7 +878,7 @@ typed uniforms
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Structure.js.html">Structure.js</a>, <a href="Structure.js.html#line87">line 87</a>
+        <a href="Structure.js.html">Structure.js</a>, <a href="Structure.js.html#line94">line 94</a>
     </li></ul></dd>
     
 
@@ -895,7 +942,7 @@ typed uniforms
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 21:31:01 GMT+0100 (BST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 22:13:37 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>

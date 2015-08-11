@@ -8,17 +8,17 @@ const _intensity = 1;
 const _location = [0, 0, 0];
 
 /**
- * Light is a global light source to illuminate the scene
+ * A light is a structure concept. It is therefore a light source to illuminate the scene.
  * @class Light
  * @name Entity.Structure.Light
  * @extends Entity.Structure
- * @param {string} [name=light] - Instance name
- * @param {Entity.Program} program - Uniforms' program
- * @param {vec3} ambient - Ambient component
- * @param {vec3} diffuse - Diffuse component
- * @param {vec3} specular - Specular component
- * @param {number} [intensity=1] - Light intensity
- * @param {vec3} [location=[0, 0, 0]] - Light position
+ * @param {string} [name=light] - Specifies the entities friendly name.
+ * @param {Entity.Program} Specifies the program in which the uniforms should be located.
+ * @param {vec3} ambient - Specifies the ambient component of the light source.
+ * @param {vec3} diffuse - Specifies the diffuse component of the light source.
+ * @param {vec3} specular - Specifies the specular component of the light source.
+ * @param {number} [intensity=1] - Specifies the intensity of the light source.
+ * @param {vec3} [location=[0, 0, 0]] - Specifies the location of the light source.
  */
  class Light extends Structure
  {
@@ -27,39 +27,32 @@ const _location = [0, 0, 0];
        super({ name, program, path: 'light', uniforms });
 
        /**
-        * Ambient component
+        * The ambient component of the light source.
         * @var {vec3}Entity.Structure.Light.ambient
-        * @private
         */
        this.ambient = ambient;
 
        /**
-        * Diffuse component
+        * The diffuse component of the light source.
         * @var {vec3} Entity.Structure.Light.diffuse
-        * @private
         */
        this.diffuse = diffuse;
 
        /**
-        * Specular component
+        * The specular component of the light source.
         * @var {vec3} Entity.Structure.Light.specular
-        * @private
         */
        this.specular = specular;
 
        /**
-        * Light intensity
-        * @var {number} Entity.Structure.Light.intensity
-        * @default 1
-        * @private
+        * The light intensity of the light source.
+        * @var {number} [Entity.Structure.Light.intensity=1]
         */
        this.intensity = intensity;
 
        /**
-        * Light position
-        * @var {vec3} Entity.Structure.Light.location
-        * @default [0, 0, 0]
-        * @private
+        * The location of the light source.
+        * @var {vec3} [Entity.Structure.Light.location=[0, 0, 0]]
         */
        this.location = location;
     }

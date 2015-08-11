@@ -44,14 +44,14 @@
 
     
 
-    <h4 class="name" id="Light"><span class="type-signature"></span>new Light<span class="signature">(name<span class="signature-attributes">opt</span>, program, ambient, diffuse, specular, intensity<span class="signature-attributes">opt</span>, location<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Light"><span class="type-signature"></span>new Light<span class="signature">(name<span class="signature-attributes">opt</span>, Specifies, ambient, diffuse, specular, intensity<span class="signature-attributes">opt</span>, location<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Light is a global light source to illuminate the scene
+    <p>A light is a structure concept. It is therefore a light source to illuminate the scene.</p>
 </div>
 
 
@@ -123,14 +123,14 @@
                 </td>
             
 
-            <td class="description last">Instance name</td>
+            <td class="description last"><p>Specifies the entities friendly name.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>program</code></td>
+                <td class="name"><code>Specifies</code></td>
             
 
             <td class="type">
@@ -158,7 +158,7 @@
                 </td>
             
 
-            <td class="description last">Uniforms' program</td>
+            <td class="description last"><p>the program in which the uniforms should be located.</p></td>
         </tr>
 
     
@@ -193,7 +193,7 @@
                 </td>
             
 
-            <td class="description last">Ambient component</td>
+            <td class="description last"><p>Specifies the ambient component of the light source.</p></td>
         </tr>
 
     
@@ -228,7 +228,7 @@
                 </td>
             
 
-            <td class="description last">Diffuse component</td>
+            <td class="description last"><p>Specifies the diffuse component of the light source.</p></td>
         </tr>
 
     
@@ -263,7 +263,7 @@
                 </td>
             
 
-            <td class="description last">Specular component</td>
+            <td class="description last"><p>Specifies the specular component of the light source.</p></td>
         </tr>
 
     
@@ -302,7 +302,7 @@
                 </td>
             
 
-            <td class="description last">Light intensity</td>
+            <td class="description last"><p>Specifies the intensity of the light source.</p></td>
         </tr>
 
     
@@ -341,7 +341,7 @@
                 </td>
             
 
-            <td class="description last">Light position</td>
+            <td class="description last"><p>Specifies the location of the light source.</p></td>
         </tr>
 
     
@@ -450,13 +450,13 @@
 
         
             
-<h4 class="name" id=".ambient"><span class="type-signature">(private, static) </span>ambient<span class="type-signature"> :vec3</span></h4>
+<h4 class="name" id=".ambient"><span class="type-signature">(static) </span>ambient<span class="type-signature"> :vec3</span></h4>
 
 
 
 
 <div class="description">
-    Ambient component
+    <p>The ambient component of the light source.</p>
 </div>
 
 
@@ -522,13 +522,13 @@
 
         
             
-<h4 class="name" id=".diffuse"><span class="type-signature">(private, static) </span>diffuse<span class="type-signature"> :vec3</span></h4>
+<h4 class="name" id=".diffuse"><span class="type-signature">(static) </span>diffuse<span class="type-signature"> :vec3</span></h4>
 
 
 
 
 <div class="description">
-    Diffuse component
+    <p>The diffuse component of the light source.</p>
 </div>
 
 
@@ -576,7 +576,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Light.js.html">Light.js</a>, <a href="Light.js.html#line60">line 60</a>
+        <a href="Light.js.html">Light.js</a>, <a href="Light.js.html#line59">line 59</a>
     </li></ul></dd>
     
 
@@ -594,13 +594,13 @@
 
         
             
-<h4 class="name" id=".intensity"><span class="type-signature">(private, static) </span>intensity<span class="type-signature"> :number</span></h4>
+<h4 class="name" id=".intensity"><span class="type-signature">(static) </span>intensity<span class="type-signature"> :number</span></h4>
 
 
 
 
 <div class="description">
-    Light intensity
+    <p>The light intensity of the light source.</p>
 </div>
 
 
@@ -653,7 +653,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Light.js.html">Light.js</a>, <a href="Light.js.html#line74">line 74</a>
+        <a href="Light.js.html">Light.js</a>, <a href="Light.js.html#line71">line 71</a>
     </li></ul></dd>
     
 
@@ -671,13 +671,13 @@
 
         
             
-<h4 class="name" id=".location"><span class="type-signature">(private, static) </span>location<span class="type-signature"> :vec3</span></h4>
+<h4 class="name" id=".location"><span class="type-signature">(static) </span>location<span class="type-signature"> :vec3</span></h4>
 
 
 
 
 <div class="description">
-    Light position
+    <p>The location of the light source.</p>
 </div>
 
 
@@ -730,7 +730,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Light.js.html">Light.js</a>, <a href="Light.js.html#line82">line 82</a>
+        <a href="Light.js.html">Light.js</a>, <a href="Light.js.html#line77">line 77</a>
     </li></ul></dd>
     
 
@@ -748,13 +748,13 @@
 
         
             
-<h4 class="name" id=".specular"><span class="type-signature">(private, static) </span>specular<span class="type-signature"> :vec3</span></h4>
+<h4 class="name" id=".specular"><span class="type-signature">(static) </span>specular<span class="type-signature"> :vec3</span></h4>
 
 
 
 
 <div class="description">
-    Specular component
+    <p>The specular component of the light source.</p>
 </div>
 
 
@@ -802,7 +802,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Light.js.html">Light.js</a>, <a href="Light.js.html#line67">line 67</a>
+        <a href="Light.js.html">Light.js</a>, <a href="Light.js.html#line65">line 65</a>
     </li></ul></dd>
     
 
@@ -842,7 +842,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 21:31:01 GMT+0100 (BST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 22:13:37 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -22,7 +22,7 @@ class Framebuffer extends Entity
       super({ name });
 
       /**
-       * The framebuffer is set to <code>null</code> and thus references the default framebuffer.
+       * The framebuffer is set to `null` and thus references the default framebuffer.
        * @var {object} [Entity.Framebuffer.buffer=null]
        */
       this.buffer = null;
@@ -33,7 +33,7 @@ class Framebuffer extends Entity
     * another framebuffer is bound.
     * @function Entity.Framebuffer.bind
     * @param {boolean} [flush=true] - Flag to flush the contents of the active framebuffer.
-    * The initial value is set to <code>true</code>.
+    * The initial value is set to `true`.
     * @returns {undefined}
     */
    bind(flush = true)

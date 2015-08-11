@@ -12,7 +12,7 @@ const _offset = 0;
  * This provides a wrapper to simplify locating, enabling and disabling generic vertex attributes.
  * Vertex attributes are used to communicate from "outside" to the vertex shader. Unlike uniform variables,
  * values are provided per vertex (and not globally for all vertices). Each generic vertex attribute array
- * is initially disabled and isn't accessed when <code>gl[drawElements|drawArrays]</code> is called.
+ * is initially disabled and isn't accessed when `gl[drawElements|drawArrays]` is called.
  * @class Attribute
  * @name Entity.Attribute
  * @extends Entity
@@ -24,7 +24,7 @@ const _offset = 0;
  * @param {boolean} [normalized=false] - Specifies whether fixed-point data values should be normalized
  * (true) or converted directly as fixed-point values (false) when they are accessed.
  * @param {number} [offset=0] - Specifies the offset of the first component of the first generic vertex
- * attribute in the array in the data store of the buffer currently bound to the <code>gl.ARRAY_BUFFER</code>.
+ * attribute in the array in the data store of the buffer currently bound to the `gl.ARRAY_BUFFER`.
  * The initial value is 0.
  */
 class Attribute extends Entity
@@ -58,8 +58,8 @@ class Attribute extends Entity
       this.format = format;
 
       /**
-       * Specifies whether fixed-point data values should be normalized (<code>true</code>)
-       * or converted directly as fixed-point values (<code>false</code>) when they are accessed.
+       * Specifies whether fixed-point data values should be normalized (`true`)
+       * or converted directly as fixed-point values (`false`) when they are accessed.
        * @var {number} [Entity.Attribute.normalized=false]
        */
       this.normalized = normalized;
@@ -67,7 +67,7 @@ class Attribute extends Entity
       /**
        * The offset of the first component of the first generic
        * vertex attribute in the array in the data store of the
-       * buffer currently bound to the <code>gl.ARRAY_BUFFER</code>. The
+       * buffer currently bound to the `gl.ARRAY_BUFFER`. The
        * initial value is 0.
        * @var {number} [Entity.Attribute.offset=0]
        */

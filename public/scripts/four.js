@@ -4808,7 +4808,7 @@ THE SOFTWARE. */
          * This provides a wrapper to simplify locating, enabling and disabling generic vertex attributes.
          * Vertex attributes are used to communicate from "outside" to the vertex shader. Unlike uniform variables,
          * values are provided per vertex (and not globally for all vertices). Each generic vertex attribute array
-         * is initially disabled and isn't accessed when <code>gl[drawElements|drawArrays]</code> is called.
+         * is initially disabled and isn't accessed when `gl[drawElements|drawArrays]` is called.
          * @class Attribute
          * @name Entity.Attribute
          * @extends Entity
@@ -4820,7 +4820,7 @@ THE SOFTWARE. */
          * @param {boolean} [normalized=false] - Specifies whether fixed-point data values should be normalized
          * (true) or converted directly as fixed-point values (false) when they are accessed.
          * @param {number} [offset=0] - Specifies the offset of the first component of the first generic vertex
-         * attribute in the array in the data store of the buffer currently bound to the <code>gl.ARRAY_BUFFER</code>.
+         * attribute in the array in the data store of the buffer currently bound to the `gl.ARRAY_BUFFER`.
          * The initial value is 0.
          */
         var Attribute = (function(_Entity) {
@@ -4864,15 +4864,15 @@ THE SOFTWARE. */
                  */
                 this.format = format;
                 /**
-                 * Specifies whether fixed-point data values should be normalized (<code>true</code>)
-                 * or converted directly as fixed-point values (<code>false</code>) when they are accessed.
+                 * Specifies whether fixed-point data values should be normalized (`true`)
+                 * or converted directly as fixed-point values (`false`) when they are accessed.
                  * @var {number} [Entity.Attribute.normalized=false]
                  */
                 this.normalized = normalized;
                 /**
                  * The offset of the first component of the first generic
                  * vertex attribute in the array in the data store of the
-                 * buffer currently bound to the <code>gl.ARRAY_BUFFER</code>. The
+                 * buffer currently bound to the `gl.ARRAY_BUFFER`. The
                  * initial value is 0.
                  * @var {number} [Entity.Attribute.offset=0]
                  */
@@ -5408,18 +5408,18 @@ THE SOFTWARE. */
         var _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f intensity', 'vec3 location', 'vec3 direction'];
         var _direction = [0, 0, 0];
         /**
-         * DirectionalLight is a directional light source to illuminate the scene
+         * A directional light is a structure concept. It is therefore a light source to illuminate the scene.
          * @class DirectionalLight
          * @name Entity.Structure.Light.DirectionalLight
          * @extends Entity.Structure.Light
-         * @param {string} [name=directional.light] - Instance name
-         * @param {Entity.Program} program - Uniforms' program
-         * @param {vec3} ambient - Ambient component
-         * @param {vec3} diffuse - Diffuse component
-         * @param {vec3} specular - Specular component
-         * @param {number} [intensity=1] - Light intensity
-         * @param {vec3} [location=[0, 0, 0]] - Light position
-         * @param {vec3} [direction=[0, 0, 0]] - Light direction
+         * @param {string} [name=directional.light] - Specifies the entities friendly name.
+         * @param {Entity.Program} Specifies the program in which the uniforms should be located.
+         * @param {vec3} ambient - Specifies the ambient component of the light source.
+         * @param {vec3} diffuse - Specifies the diffuse component of the light source.
+         * @param {vec3} specular - Specifies the specular component of the light source.
+         * @param {number} [intensity=1] - Specifies the intensity of the light source.
+         * @param {vec3} [location=[0, 0, 0]] - Specifies the location of the light source.
+         * @param {vec3} [direction=[0, 0, 0]] - Specifies the position at which the light aimed.
          */
         var DirectionalLight = (function(_Light) {
             _inherits(DirectionalLight, _Light);
@@ -5450,10 +5450,8 @@ THE SOFTWARE. */
                     location: location
                 });
                 /**
-                 * Light direction
-                 * @var {vec3} Entity.Structure.Light.DirectionalLight.direction
-                 * @default [0, 0, 0]
-                 * @private
+                 * The position at which the light aimed.
+                 * @var {vec3} [Entity.Structure.Light.DirectionalLight.direction=[0, 0, 0]]
                  */
                 this.direction = direction;
             }
@@ -5613,7 +5611,7 @@ THE SOFTWARE. */
                     name: name
                 });
                 /**
-                 * The framebuffer is set to <code>null</code> and thus references the default framebuffer.
+                 * The framebuffer is set to `null` and thus references the default framebuffer.
                  * @var {object} [Entity.Framebuffer.buffer=null]
                  */
                 this.buffer = null;
@@ -5623,7 +5621,7 @@ THE SOFTWARE. */
              * another framebuffer is bound.
              * @function Entity.Framebuffer.bind
              * @param {boolean} [flush=true] - Flag to flush the contents of the active framebuffer.
-             * The initial value is set to <code>true</code>.
+             * The initial value is set to `true`.
              * @returns {undefined}
              */
             _createClass(Framebuffer, [{
@@ -5814,17 +5812,17 @@ THE SOFTWARE. */
         var _intensity = 1;
         var _location = [0, 0, 0];
         /**
-         * Light is a global light source to illuminate the scene
+         * A light is a structure concept. It is therefore a light source to illuminate the scene.
          * @class Light
          * @name Entity.Structure.Light
          * @extends Entity.Structure
-         * @param {string} [name=light] - Instance name
-         * @param {Entity.Program} program - Uniforms' program
-         * @param {vec3} ambient - Ambient component
-         * @param {vec3} diffuse - Diffuse component
-         * @param {vec3} specular - Specular component
-         * @param {number} [intensity=1] - Light intensity
-         * @param {vec3} [location=[0, 0, 0]] - Light position
+         * @param {string} [name=light] - Specifies the entities friendly name.
+         * @param {Entity.Program} Specifies the program in which the uniforms should be located.
+         * @param {vec3} ambient - Specifies the ambient component of the light source.
+         * @param {vec3} diffuse - Specifies the diffuse component of the light source.
+         * @param {vec3} specular - Specifies the specular component of the light source.
+         * @param {number} [intensity=1] - Specifies the intensity of the light source.
+         * @param {vec3} [location=[0, 0, 0]] - Specifies the location of the light source.
          */
         var Light = (function(_Structure2) {
             _inherits(Light, _Structure2);
@@ -5851,35 +5849,28 @@ THE SOFTWARE. */
                     uniforms: uniforms
                 });
                 /**
-                 * Ambient component
+                 * The ambient component of the light source.
                  * @var {vec3}Entity.Structure.Light.ambient
-                 * @private
                  */
                 this.ambient = ambient;
                 /**
-                 * Diffuse component
+                 * The diffuse component of the light source.
                  * @var {vec3} Entity.Structure.Light.diffuse
-                 * @private
                  */
                 this.diffuse = diffuse;
                 /**
-                 * Specular component
+                 * The specular component of the light source.
                  * @var {vec3} Entity.Structure.Light.specular
-                 * @private
                  */
                 this.specular = specular;
                 /**
-                 * Light intensity
-                 * @var {number} Entity.Structure.Light.intensity
-                 * @default 1
-                 * @private
+                 * The light intensity of the light source.
+                 * @var {number} [Entity.Structure.Light.intensity=1]
                  */
                 this.intensity = intensity;
                 /**
-                 * Light position
-                 * @var {vec3} Entity.Structure.Light.location
-                 * @default [0, 0, 0]
-                 * @private
+                 * The location of the light source.
+                 * @var {vec3} [Entity.Structure.Light.location=[0, 0, 0]]
                  */
                 this.location = location;
             }
@@ -6124,7 +6115,7 @@ THE SOFTWARE. */
                      * @function Entity.Mesh.draw
                      * @param {number} [primitive=gl.TRIANGLES] - Specifies what
                      * kind of primitives to render;
-                     * <code>gl[LINES|LINE_STRIP|LINE_LOOP|TRIANGLES|TRIANGLE_STRIP|TRIANGLE_FAN|POINTS]</code>
+                     * `gl[LINES|LINE_STRIP|LINE_LOOP|TRIANGLES|TRIANGLE_STRIP|TRIANGLE_FAN|POINTS]`
                      * @param {number} [offset=0] - Specifies the starting index
                      * in the enabled arrays.
                      * @param {boolean|number} [count=this.count] - Specifies the
@@ -6230,7 +6221,7 @@ THE SOFTWARE. */
             }
             /**
              * Asynchronously fetches the mesh file contents, parses it, and
-             * subsequently deletes the <code>tmp</code> temporary storage buffer.
+             * subsequently deletes the `tmp` temporary storage buffer.
              * @function Entity.MeshLoader.fetch
              * @param {string} path - Specifies the relative path to the mesh file.
              * @returns {undefined}
@@ -7061,9 +7052,9 @@ THE SOFTWARE. */
         var _name = 'shader';
         /**
          * A shader is used to maintain the source code strings that define a shader. Two types of
-         * shader are supported. A shader of type <code>gl.VERTEX_SHADER</code> is a shader that is
+         * shader are supported. A shader of type `gl.VERTEX_SHADER` is a shader that is
          * intended to run on the programmable vertex processor. A shader of type
-         * <code>gl.FRAGMENT_SHADER</code> is a shader that is intended to run on the programmable
+         * `gl.FRAGMENT_SHADER` is a shader that is intended to run on the programmable
          * fragment processor.
          * @class Shader
          * @name Entity.Shader
@@ -7226,14 +7217,20 @@ THE SOFTWARE. */
         var _name = 'structure';
         var _uniforms = [];
         /**
-         * Structure automates and simplifies the instantiation of struct
-         * typed uniforms
+         * A structure, at a high-level, is a concept that groups a collection of related uniforms
+         * and their values. Alternatively, it is an abstraction layer to link client-side properties
+         * with their uniform counter-part, thereby simplifying the process of updating uniforms on
+         * the shader. Extensions, however, may introduce functionality bespoke to a particular
+         * concept.
          * @class Structure
          * @name Entity.Structure
          * @extends Entity
-         * @param {Entity.Program} program - Program in which the shader uniform is used
-         * @param {string} path - Struct path to uniforms
-         * @param {Array} [unpathiforms=[]] - Uniforms within structure
+         * @param {string} [name=structure] - Specifies the entities friendly name.
+         * @param {Entity.Program} program - Specifies the program in which the uniforms should be located.
+         * @param {string} path - Specifies the shader `struct` path to the uniform, if required.
+         * @param {Array} [uniforms=[]] - Specifies a collection of related uniform variables
+         * as is declared in the shader. The names imply the `u_` namespace is used as per the uniform
+         * variable naming convention.
          */
         var Structure = (function(_Entity11) {
             _inherits(Structure, _Entity11);
@@ -7250,23 +7247,24 @@ THE SOFTWARE. */
                     name: name
                 });
                 /**
-                 * Struct path to uniforms
+                 * The shader `struct` path to the uniform, if required.
                  * @var {string} Entity.Structure.path
-                 * @private
                  */
                 this.path = path;
                 /**
-                 * Shader uniforms
-                 * @var {Entity.Uniform[]} Entity.Structure.uniforms
-                 * @private
+                 * The collection of related uniform variables as is declared
+                 * in the shader. The names imply the `u_` namespace is used.
+                 * @var {Array} Entity.Structure.uniforms
                  */
                 this.uniforms = uniforms.map(this.instantiate.bind(this, program));
             }
             /**
-             * Instantiate the uniforms
+             * Instantiate the uniforms - see <a href="Entity.Uniform.html">Entity.Uniform</a>.
              * @callback Entity.Structure.instantiate
-             * @param {Entity.Program} program - Program in which the shader uniform is used
-             * @param {string} qualifying - Shader uniform format and property name
+             * @param {Entity.Program} program - Specifies the program in which the uniforms
+             * should be located.
+             * @param {string} qualifying - Specifies the uniform variable as is declared
+             * in the shader.
              * @returns {undefind}
              */
             _createClass(Structure, [{
@@ -7283,7 +7281,7 @@ THE SOFTWARE. */
                         });
                     }
                     /**
-                     * Bind uniform values to the current progam
+                     * Bind the structure.
                      * @function Entity.Structure.bind
                      * @returns {undefind}
                      */
@@ -7293,9 +7291,9 @@ THE SOFTWARE. */
                         this.uniforms.map(this.set.bind(this));
                     }
                     /**
-                     * Set uniform values
+                     * Set the value of the given uniform.
                      * @callback Entity.Structure.set
-                     * @param {Entity.Uniform} uniform - Uniform to set
+                     * @param {Entity.Uniform} uniform - Specifies the uniform to assign.
                      * @returns {undefind}
                      */
             }, {

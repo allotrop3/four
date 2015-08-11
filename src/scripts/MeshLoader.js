@@ -72,7 +72,7 @@ class MeshLoader extends Entity
 
    /**
     * Asynchronously fetches the mesh file contents, parses it, and
-    * subsequently deletes the <code>tmp</code> temporary storage buffer.
+    * subsequently deletes the `tmp` temporary storage buffer.
     * @function Entity.MeshLoader.fetch
     * @param {string} path - Specifies the relative path to the mesh file.
     * @returns {undefined}

@@ -8,9 +8,9 @@ const _name = 'shader';
 
 /**
  * A shader is used to maintain the source code strings that define a shader. Two types of
- * shader are supported. A shader of type <code>gl.VERTEX_SHADER</code> is a shader that is
+ * shader are supported. A shader of type `gl.VERTEX_SHADER` is a shader that is
  * intended to run on the programmable vertex processor. A shader of type
- * <code>gl.FRAGMENT_SHADER</code> is a shader that is intended to run on the programmable
+ * `gl.FRAGMENT_SHADER` is a shader that is intended to run on the programmable
  * fragment processor.
  * @class Shader
  * @name Entity.Shader
