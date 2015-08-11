@@ -5553,15 +5553,17 @@ THE SOFTWARE. */
     }],
     18: [function(require, module, exports) {
         'use strict';
-        var Shader = require('./Shader');
         var gl = require('./gl');
+        var Shader = require('./Shader');
+        var _name = 'fragment.shader';
         /**
-         * FragmentShader is a wrapper on WebGLShader buffers
+         * A fragment shader is used to maintain the source code strings that define
+         * a shader executable on the programmable fragment processor.
          * @class FragmentShader
          * @name Entity.Shader.FragmentShader
          * @extends Entity.Shader
-         * @param {string} [name=fragment.shader] - Instance name
-         * @param {string} path - Filepath to fragment shader source
+         * @param {string} [name=shader] - Specifies the entities friendly name.
+         * @param {string} path - Specifies the relative path to the shader file.
          */
         var FragmentShader = (function(_Shader) {
             _inherits(FragmentShader, _Shader);
@@ -5569,7 +5571,7 @@ THE SOFTWARE. */
             function FragmentShader() {
                 var _ref8 = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
                 var _ref8$name = _ref8.name;
-                var name = _ref8$name === undefined ? 'fragment.shader' : _ref8$name;
+                var name = _ref8$name === undefined ? _name : _ref8$name;
                 var path = _ref8.path;
                 _classCallCheck(this, FragmentShader);
                 _get(Object.getPrototypeOf(FragmentShader.prototype), "constructor", this).call(this, {
@@ -5655,7 +5657,7 @@ THE SOFTWARE. */
                         gl.clear(gl.DEPTH_BUFFER_BIT);
                     }
                     /**
-                     * Validate the compile status of the active framebuffer.
+                     * Validates the compile status of the active framebuffer.
                      * @function Entity.Framebuffer.check
                      * @returns {undefined|Error}
                      */
@@ -6845,7 +6847,7 @@ THE SOFTWARE. */
                         gl.useProgram(this.buffer);
                     }
                     /**
-                     * Validate the link status of the program.
+                     * Validates the link status of the program.
                      * @function Entity.Program.check
                      * @returns {undefined|Error}
                      */
@@ -6959,11 +6961,11 @@ THE SOFTWARE. */
         var Entity = require('./Entity');
         var _name = 'renderer';
         /**
-         * Renderer
+         * Renderer. Coming soon...
          * @class Renderer
          * @name Entity.Renderer
          * @extends Entity
-         * @param {string} [name=renderer] - Instance name
+         * @param {string} [name=renderer] - Specifies the entities friendly name.
          */
         var Renderer = (function(_Entity8) {
             _inherits(Renderer, _Entity8);
@@ -7053,17 +7055,22 @@ THE SOFTWARE. */
     }],
     34: [function(require, module, exports) {
         'use strict';
-        var Entity = require('./Entity');
         var gl = require('./gl');
         var ajax = require('./utils/ajax');
+        var Entity = require('./Entity');
+        var _name = 'shader';
         /**
-         * Shader is a wrapper on WebGLShader buffers
+         * A shader is used to maintain the source code strings that define a shader. Two types of
+         * shader are supported. A shader of type <code>gl.VERTEX_SHADER</code> is a shader that is
+         * intended to run on the programmable vertex processor. A shader of type
+         * <code>gl.FRAGMENT_SHADER</code> is a shader that is intended to run on the programmable
+         * fragment processor.
          * @class Shader
          * @name Entity.Shader
          * @extends Entity
-         * @param {string} [name=shader] - Instance name
-         * @param {string} path - Filepath to shader source
-         * @param {number} type - Shader type
+         * @param {string} [name=shader] - Specifies the entities friendly name.
+         * @param {string} path - Specifies the relative path to the shader file.
+         * @param {number} type - Specifies the type of shader.
          */
         var Shader = (function(_Entity10) {
             _inherits(Shader, _Entity10);
@@ -7071,25 +7078,23 @@ THE SOFTWARE. */
             function Shader(_x27, type) {
                 var _ref25 = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
                 var _ref25$name = _ref25.name;
-                var name = _ref25$name === undefined ? 'shader' : _ref25$name;
+                var name = _ref25$name === undefined ? _name : _ref25$name;
                 var path = _ref25.path;
                 _classCallCheck(this, Shader);
                 _get(Object.getPrototypeOf(Shader.prototype), "constructor", this).call(this, {
                     name: name
                 });
                 /**
-                 * WebGL shader buffer
-                 * @var {WebGLShader} Entity.Shader.buffer
-                 * @default WebGLShader
-                 * @private
+                 * The shader.
+                 * @var {WebGLShader} [Entity.Shader.buffer=WebGLShader]
                  */
                 this.buffer = gl.createShader(type);
                 this.fetch(path);
             }
             /**
-             * Fetch and compile the shader source
+             * Asynchronously fetches the shader file contents.
              * @function Entity.Shader.fetch
-             * @param {string} path - Filepath to shader source
+             * @param {string} path - Specifies the relative path to the shader file.
              * @returns {undefined}
              */
             _createClass(Shader, [{
@@ -7098,9 +7103,9 @@ THE SOFTWARE. */
                         ajax(path).then(this.compile.bind(this));
                     }
                     /**
-                     * Compile the shader source
+                     * Compiles the source code strings.
                      * @callback Entity.Shader.compile
-                     * @param {string} source - Shader source
+                     * @param {string} source - Specifies the shader source code strings.
                      * @returns {undefined}
                      */
             }, {
@@ -7112,9 +7117,9 @@ THE SOFTWARE. */
                         this.check();
                     }
                     /**
-                     * Validate shader compile status
+                     * Validates the compile status of the shader.
                      * @function Entity.Shader.check
-                     * @returns {undefined}
+                     * @returns {undefined|Error}
                      */
             }, {
                 key: "check",
@@ -7127,7 +7132,6 @@ THE SOFTWARE. */
                         gl.deleteShader(buffer);
                         throw new Error(error);
                     }
-                    return true;
                 }
             }]);
             return Shader;
@@ -7753,15 +7757,17 @@ THE SOFTWARE. */
     }],
     40: [function(require, module, exports) {
         'use strict';
-        var Shader = require('./Shader');
         var gl = require('./gl');
+        var Shader = require('./Shader');
+        var _name = 'vertex.shader';
         /**
-         * VertexShader is a wrapper on WebGLShader buffers
+         * A vertex shader is used to maintain the source code strings that define
+         * a shader executable on the programmable vertex processor.
          * @class VertexShader
          * @name Entity.Shader.VertexShader
          * @extends Entity.Shader
-         * @param {string} [name=vertex.shader] - Instance name
-         * @param {string} path - Filepath to vertex shader source
+         * @param {string} [name=shader] - Specifies the entities friendly name.
+         * @param {string} path - Specifies the relative path to the shader file.
          */
         var VertexShader = (function(_Shader2) {
             _inherits(VertexShader, _Shader2);
@@ -7769,7 +7775,7 @@ THE SOFTWARE. */
             function VertexShader() {
                 var _ref31 = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
                 var _ref31$name = _ref31.name;
-                var name = _ref31$name === undefined ? 'vertex.shader' : _ref31$name;
+                var name = _ref31$name === undefined ? _name : _ref31$name;
                 var path = _ref31.path;
                 _classCallCheck(this, VertexShader);
                 _get(Object.getPrototypeOf(VertexShader.prototype), "constructor", this).call(this, {

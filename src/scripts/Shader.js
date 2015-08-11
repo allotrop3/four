@@ -1,29 +1,33 @@
 'use strict';
 
-let Entity = require('./Entity');
 let gl = require('./gl');
 let ajax = require('./utils/ajax');
+let Entity = require('./Entity');
+
+const _name = 'shader';
 
 /**
- * Shader is a wrapper on WebGLShader buffers
+ * A shader is used to maintain the source code strings that define a shader. Two types of
+ * shader are supported. A shader of type <code>gl.VERTEX_SHADER</code> is a shader that is
+ * intended to run on the programmable vertex processor. A shader of type
+ * <code>gl.FRAGMENT_SHADER</code> is a shader that is intended to run on the programmable
+ * fragment processor.
  * @class Shader
  * @name Entity.Shader
  * @extends Entity
- * @param {string} [name=shader] - Instance name
- * @param {string} path - Filepath to shader source
- * @param {number} type - Shader type
+ * @param {string} [name=shader] - Specifies the entities friendly name.
+ * @param {string} path - Specifies the relative path to the shader file.
+ * @param {number} type - Specifies the type of shader.
  */
 class Shader extends Entity
 {
-   constructor({ name = 'shader', path } = {}, type)
+   constructor({ name = _name, path } = {}, type)
    {
       super({ name });
 
       /**
-       * WebGL shader buffer
-       * @var {WebGLShader} Entity.Shader.buffer
-       * @default WebGLShader
-       * @private
+       * The shader.
+       * @var {WebGLShader} [Entity.Shader.buffer=WebGLShader]
        */
       this.buffer = gl.createShader(type);
 
@@ -31,9 +35,9 @@ class Shader extends Entity
    }
 
    /**
-    * Fetch and compile the shader source
+    * Asynchronously fetches the shader file contents.
     * @function Entity.Shader.fetch
-    * @param {string} path - Filepath to shader source
+    * @param {string} path - Specifies the relative path to the shader file.
     * @returns {undefined}
     */
    fetch(path)
@@ -42,9 +46,9 @@ class Shader extends Entity
    }
 
    /**
-    * Compile the shader source
+    * Compiles the source code strings.
     * @callback Entity.Shader.compile
-    * @param {string} source - Shader source
+    * @param {string} source - Specifies the shader source code strings.
     * @returns {undefined}
     */
    compile(source)
@@ -58,9 +62,9 @@ class Shader extends Entity
    }
 
    /**
-    * Validate shader compile status
+    * Validates the compile status of the shader.
     * @function Entity.Shader.check
-    * @returns {undefined}
+    * @returns {undefined|Error}
     */
    check()
    {
@@ -76,8 +80,6 @@ class Shader extends Entity
 
          throw new Error(error);
       }
-
-      return true;
    }
 }
 

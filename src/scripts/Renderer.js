@@ -5,11 +5,11 @@ let Entity = require('./Entity');
 const _name = 'renderer';
 
 /**
- * Renderer
+ * Renderer. Coming soon...
  * @class Renderer
  * @name Entity.Renderer
  * @extends Entity
- * @param {string} [name=renderer] - Instance name
+ * @param {string} [name=renderer] - Specifies the entities friendly name.
  */
 class Renderer extends Entity
 {

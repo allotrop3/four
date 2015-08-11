@@ -68,7 +68,7 @@ class Framebuffer extends Entity
    }
 
    /**
-    * Validate the compile status of the active framebuffer.
+    * Validates the compile status of the active framebuffer.
     * @function Entity.Framebuffer.check
     * @returns {undefined|Error}
     */

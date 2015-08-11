@@ -74,7 +74,7 @@ class Program extends Entity
    }
 
    /**
-    * Validate the link status of the program.
+    * Validates the link status of the program.
     * @function Entity.Program.check
     * @returns {undefined|Error}
     */
