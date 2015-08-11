@@ -7,9 +7,9 @@ const _name = 'framebuffer';
 
 /**
  * A framebuffer is a collection of buffers that can be used as the destination for rendering. There are
- * two kinds of framebuffers: the default framebuffer, which is wrapped in this class for ease of binding
- * and unbinding and renders to the screen of the device; and user-created framebuffers called framebuffer
- * objects - see <a href="Entity.Framebuffer.DeferredFramebuffer.html">Entity.Framebuffer.DeferredFramebuffer</a>.
+ * two kinds of framebuffers: the default framebuffer, which refers to the canvas element, and user-created
+ * framebuffers called framebuffer objects - see
+ * <a href="Entity.Framebuffer.DeferredFramebuffer.html">Entity.Framebuffer.DeferredFramebuffer</a>.
  * @class Framebuffer
  * @name Entity.Framebuffer
  * @extends Entity
@@ -29,7 +29,8 @@ class Framebuffer extends Entity
    }
 
    /**
-    * Bind the framebuffer as the destination for rendering.
+    * Bind the framebuffer as the destination for rendering until it is deleted or
+    * another framebuffer is bound.
     * @function Entity.Framebuffer.bind
     * @param {boolean} [flush=true] - Flag to flush the contents of the active framebuffer.
     * The initial value is set to <code>true</code>.
@@ -69,7 +70,7 @@ class Framebuffer extends Entity
    /**
     * Validate the compile status of the active framebuffer.
     * @function Entity.Framebuffer.check
-    * @returns {undefined|object}
+    * @returns {undefined|Error}
     */
    check()
    {

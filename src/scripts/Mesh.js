@@ -13,8 +13,8 @@ const _usage = gl.STATIC_DRAW;
 
 /**
  * A mesh is a collection of vertices and faces that define the construction of a shape.
- * It further includes information to shade the mesh, such as vertex colors, texture mapping
- * coordinates and face normals.
+ * It further includes data to shade the mesh, such as vertex colors, texture mapping
+ * coordinates and per-vertex/face normals.
  * @class Mesh
  * @name Entity.Mesh
  * @extends Entity
@@ -46,7 +46,7 @@ class Mesh extends Entity
       this.vao = vao;
 
       /**
-       * The mesh vertex positions
+       * The mesh vertex positions.
        * @var {Array} [Entity.Mesh.vertices=[]]
        */
       this.vertices = vertices;
@@ -70,7 +70,7 @@ class Mesh extends Entity
       this.normals = normals;
 
       /**
-       * The indices used to constructthe primitives if it
+       * The indices used to construct the primitives if it
        * uses an element array buffer object. If it does not,
        * this value is set to false. The initial value is false.
        * @var {Array} [Entity.Mesh.indices=Uint16Array]

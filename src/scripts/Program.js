@@ -1,42 +1,43 @@
 'use strict';
 
-let Entity = require('./Entity');
 let gl = require('./gl');
+let Entity = require('./Entity');
+
+const _name = 'program';
 
 /**
- * Program is a wrapper on WebGLProgram containers
+ * A program is an object to which shader objects can be attached. This provides a mechanism to
+ * specify the shader objects that will be linked to create a program. It also provides a means for checking
+ * the compatibility of the shaders that will be used to create a program (for instance, checking the
+ * compatibility between a vertex shader and a fragment shader).
  * @class Program
  * @name Entity.Program
  * @extends Entity
- * @param {string} [name=program] - Instance name
- * @param {Entity.Shader.VertexShader} vertexShader - Vertex shader
- * @param {Entity.Shader.FragmentShader} fragmentShader - Fragment shader
+ * @param {string} [name=program] - Specifies the entities friendly name.
+ * @param {Entity.Shader.VertexShader} vertexShader - Specifies the vertex shader.
+ * @param {Entity.Shader.FragmentShader} fragmentShader - Specifies the fragment shader.
  */
 class Program extends Entity
 {
-   constructor({ name = 'program', vertexShader, fragmentShader })
+   constructor({ name = _name, vertexShader, fragmentShader })
    {
       super({ name });
 
       /**
-       * WebGL program container
-       * @var {WebGLProgram} Entity.Program.program
-       * @default WebGLProgram
-       * @private
+       * The program to which the vertex and fragment shader will be attached.
+       * @var {WebGLProgram} [Entity.Program.program=WebGLProgram]
        */
       this.buffer = gl.createProgram();
 
       /**
-       * Vertex shader
+       * The vertex shader.
        * @var {Entity.Shader.VertexShader} Entity.Program.vertexShader
-       * @private
        */
       this.vertexShader = vertexShader;
 
       /**
-       * Fragment shader
+       * The fragment shader.
        * @var {Entity.Shader.FragmentShader} Entity.Program.fragmentShader
-       * @private
        */
       this.fragmentShader = fragmentShader;
 
@@ -44,14 +45,16 @@ class Program extends Entity
    }
 
    /**
-    * Link the vertex and fragment shader to the program
+    * Links the program by creating executables for the vertex and
+    * fragment shader to run on the vertex and fragment processors,
+    * respectively.
     * @function Entity.Program.link
     * @returns {undefined}
     */
    link()
    {
       let buffer = this.buffer;
-      
+
       gl.attachShader(buffer, this.vertexShader.buffer);
       gl.attachShader(buffer, this.fragmentShader.buffer);
 
@@ -61,7 +64,7 @@ class Program extends Entity
    }
 
    /**
-    * Bind the program vertex and fragment shader
+    * Installs the program as part of the current rendering state.
     * @function Entity.Program.bind
     * @returns {undefined}
     */
@@ -71,10 +74,9 @@ class Program extends Entity
    }
 
    /**
-    * Validate the program vertex and fragment
-    * shader link status
+    * Validate the link status of the program.
     * @function Entity.Program.check
-    * @returns {undefined}
+    * @returns {undefined|Error}
     */
    check()
    {

@@ -1,42 +1,40 @@
 'use strict';
 
-let Entity = require('./Entity');
 let gl = require('./gl');
+let Entity = require('./Entity');
+
+const _name = 'renderbuffer';
 
 /**
- * Renderbuffer is a wrapper on WebGLRenderbuffer buffers
+ * A renderbuffer is a data storage object containing a single image of a renderable internal format.
  * @class Renderbuffer
  * @name Entity.Renderbuffer
  * @extends Entity
- * @param {string} [name=renderbuffer] - Instance name
- * @param {number} width - Buffer width
- * @param {number} height - Buffer height
+ * @param {string} [name=renderbuffer] - Specifies the entities friendly name.
+ * @param {number} width - The width of the renderbuffer.
+ * @param {number} height - The height of the renderbuffer.
  */
 class Renderbuffer extends Entity
 {
-   constructor({ name = 'renderbuffer', width, height } = {})
+   constructor({ name = _name, width, height } = {})
    {
       super({ name });
 
       /**
-       * WebGL renderbuffer
-       * @var {WebGLRenderbuffer} Entity.Renderbuffer.buffer
-       * @default WebGLRenderbuffer
-       * @private
+       * The renderbuffer object.
+       * @var {WebGLRenderbuffer} [Entity.Renderbuffer.buffer=WebGLRenderbuffer]
        */
       this.buffer = gl.createRenderbuffer();
 
       /**
-       * Buffer width
+       * The width of the renderbuffer.
        * @var {number} Entity.Renderbuffer.width
-       * @private
        */
       this.width = width;
 
        /**
-       * Buffer height
+       * The height of the renderbuffer.
        * @var {number} Entity.Renderbuffer.height
-       * @private
        */
       this.height = height;
 
@@ -44,7 +42,8 @@ class Renderbuffer extends Entity
    }
 
    /**
-    * Configure the dimensions of the renderbuffer
+    * Establish the data storage, format and dimensions
+    * of the renderbuffer.
     * @function Entity.Renderbuffer.configure
     * @returns {undefined}
     */
@@ -58,7 +57,7 @@ class Renderbuffer extends Entity
    }
 
    /**
-    * Bind the renderbuffer
+    * Bind the renderbuffer.
     * @function Entity.Renderbuffer.bind
     * @returns {undefined}
     */
@@ -68,7 +67,7 @@ class Renderbuffer extends Entity
    }
 
    /**
-    * Unbind the renderbuffer
+    * Unbind the renderbuffer.
     * @function Entity.Renderbuffer.unbind
     * @returns {undefined}
     */

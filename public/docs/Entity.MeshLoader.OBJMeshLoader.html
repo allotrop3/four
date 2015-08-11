@@ -51,8 +51,9 @@
 
 
 <div class="description">
-    OBJMeshLoader is a base class to parse
-OBJ mesh data
+    An OBJ mesh loader is a .obj file parser that extracts the collections of vertices
+and faces that define a shape. It may also include data to shade the mesh, such as
+vertex colors, coordinates and per-vertex/face normals.
 </div>
 
 
@@ -119,12 +120,12 @@ OBJ mesh data
             
                 <td class="default">
                 
-                    obj.mesh.loader
+                    mesh.loader
                 
                 </td>
             
 
-            <td class="description last">Instance name</td>
+            <td class="description last">Specifies the entities friendly name.</td>
         </tr>
 
     
@@ -159,7 +160,7 @@ OBJ mesh data
                 </td>
             
 
-            <td class="description last">Filepath to mesh data</td>
+            <td class="description last">Specifies the relative path to the mesh file.</td>
         </tr>
 
     
@@ -200,7 +201,7 @@ OBJ mesh data
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6256">line 6256</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6257">line 6257</a>
     </li></ul></dd>
     
 
@@ -269,7 +270,8 @@ OBJ mesh data
 
 
 <div class="description">
-    Push data into appropriate vertex data arrays
+    Populate the mesh data arrays with the given contents of the
+OBJ mesh file.
 </div>
 
 
@@ -321,7 +323,8 @@ OBJ mesh data
 
             
 
-            <td class="description last">Mesh file line</td>
+            <td class="description last">Specifies an excerpt from the OBJ mesh
+file to parse.</td>
         </tr>
 
     
@@ -362,7 +365,7 @@ OBJ mesh data
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6291">line 6291</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6292">line 6292</a>
     </li></ul></dd>
     
 
@@ -411,14 +414,14 @@ OBJ mesh data
 
     
 
-    <h4 class="name" id=".decrement"><span class="type-signature"></span>decrement<span class="signature">(value)</span><span class="type-signature"> &rarr; {undefined}</span></h4>
+    <h4 class="name" id=".decrement"><span class="type-signature"></span>decrement<span class="signature">(value)</span><span class="type-signature"> &rarr; {number}</span></h4>
 
     
 
 
 
 <div class="description">
-    Decrement the given value by 1
+    Decrements the given value by 1.
 </div>
 
 
@@ -473,7 +476,7 @@ OBJ mesh data
 
             
 
-            <td class="description last">Value to decrement</td>
+            <td class="description last">Specifies the number to decrement.</td>
         </tr>
 
     
@@ -514,7 +517,7 @@ OBJ mesh data
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6333">line 6333</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6339">line 6339</a>
     </li></ul></dd>
     
 
@@ -548,7 +551,7 @@ OBJ mesh data
     </dt>
     <dd>
         
-<span class="param-type">undefined</span>
+<span class="param-type">number</span>
 
 
     </dd>
@@ -570,8 +573,9 @@ OBJ mesh data
 
 
 <div class="description">
-    Recategorise vertex data arrays based on
-face indices
+    Recategorise the mesh data in the temporary storage buffer
+to the mesh data arrays using the indices defined in the OBJ
+mesh file.
 </div>
 
 
@@ -623,7 +627,9 @@ face indices
 
             
 
-            <td class="description last">Vertex face word</td>
+            <td class="description last">Specifies the indices to the vertex position,
+texture mapping coordinate and per-vertex/face normals in the
+temporary storage buffer for a vertex instance.</td>
         </tr>
 
     
@@ -664,7 +670,7 @@ face indices
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6317">line 6317</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6320">line 6320</a>
     </li></ul></dd>
     
 
@@ -720,7 +726,7 @@ face indices
 
 
 <div class="description">
-    Parse the obj mesh data line by line
+    Parses the contents of the OBJ mesh file.
 </div>
 
 
@@ -772,7 +778,7 @@ face indices
 
             
 
-            <td class="description last">Mesh data</td>
+            <td class="description last">The OBJ mesh file contents.</td>
         </tr>
 
     
@@ -813,7 +819,7 @@ face indices
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6279">line 6279</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6281">line 6281</a>
     </li></ul></dd>
     
 
@@ -877,7 +883,7 @@ face indices
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 00:05:05 GMT+0100 (BST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 20:32:49 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>

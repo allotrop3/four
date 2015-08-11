@@ -5379,8 +5379,8 @@ THE SOFTWARE. */
                 this.configure();
             }
             /**
-             * Attach a texture object as a color buffer and a renderbuffer object
-             * as a depth buffer of the framebuffer object.
+             * Establish the color attachment and depth attachment
+             * of the framebuffer object.
              * @function Entity.Framebuffer.DeferredFramebuffer.configure
              * @returns {undefined}
              */
@@ -5591,9 +5591,9 @@ THE SOFTWARE. */
         var _name = 'framebuffer';
         /**
          * A framebuffer is a collection of buffers that can be used as the destination for rendering. There are
-         * two kinds of framebuffers: the default framebuffer, which is wrapped in this class for ease of binding
-         * and unbinding and renders to the screen of the device; and user-created framebuffers called framebuffer
-         * objects - see <a href="Entity.Framebuffer.DeferredFramebuffer.html">Entity.Framebuffer.DeferredFramebuffer</a>.
+         * two kinds of framebuffers: the default framebuffer, which refers to the canvas element, and user-created
+         * framebuffers called framebuffer objects - see
+         * <a href="Entity.Framebuffer.DeferredFramebuffer.html">Entity.Framebuffer.DeferredFramebuffer</a>.
          * @class Framebuffer
          * @name Entity.Framebuffer
          * @extends Entity
@@ -5617,7 +5617,8 @@ THE SOFTWARE. */
                 this.buffer = null;
             }
             /**
-             * Bind the framebuffer as the destination for rendering.
+             * Bind the framebuffer as the destination for rendering until it is deleted or
+             * another framebuffer is bound.
              * @function Entity.Framebuffer.bind
              * @param {boolean} [flush=true] - Flag to flush the contents of the active framebuffer.
              * The initial value is set to <code>true</code>.
@@ -5656,7 +5657,7 @@ THE SOFTWARE. */
                     /**
                      * Validate the compile status of the active framebuffer.
                      * @function Entity.Framebuffer.check
-                     * @returns {undefined|object}
+                     * @returns {undefined|Error}
                      */
             }, {
                 key: "check",
@@ -5967,8 +5968,8 @@ THE SOFTWARE. */
         var _usage = gl.STATIC_DRAW;
         /**
          * A mesh is a collection of vertices and faces that define the construction of a shape.
-         * It further includes information to shade the mesh, such as vertex colors, texture mapping
-         * coordinates and face normals.
+         * It further includes data to shade the mesh, such as vertex colors, texture mapping
+         * coordinates and per-vertex/face normals.
          * @class Mesh
          * @name Entity.Mesh
          * @extends Entity
@@ -6018,7 +6019,7 @@ THE SOFTWARE. */
                  */
                 this.vao = vao;
                 /**
-                 * The mesh vertex positions
+                 * The mesh vertex positions.
                  * @var {Array} [Entity.Mesh.vertices=[]]
                  */
                 this.vertices = vertices;
@@ -6038,7 +6039,7 @@ THE SOFTWARE. */
                  */
                 this.normals = normals;
                 /**
-                 * The indices used to constructthe primitives if it
+                 * The indices used to construct the primitives if it
                  * uses an element array buffer object. If it does not,
                  * this value is set to false. The initial value is false.
                  * @var {Array} [Entity.Mesh.indices=Uint16Array]
@@ -6158,16 +6159,19 @@ THE SOFTWARE. */
     }],
     24: [function(require, module, exports) {
         'use strict';
-        var Entity = require('./Entity');
         var ajax = require('./utils/ajax');
+        var Entity = require('./Entity');
+        var _name = 'mesh.loader';
         /**
-         * MeshLoader is a base class to parse
-         * different mesh data formats – OBJ
+         * A mesh loader is a mesh file parser that extracts the collections of vertices
+         * and faces that define a shape. It may also include data to shade the mesh,
+         * such as vertex colors, coordinates and per-vertex/face normals, depending
+         * on the mesh file format.
          * @class MeshLoader
          * @name Entity.MeshLoader
          * @extends Entity
-         * @param {string} [name=mesh.loader] - Instance name
-         * @param {string} path - Filepath to mesh data
+         * @param {string} [name=mesh.loader] - Specifies the entities friendly name.
+         * @param {string} path - Specifies the relative path to the mesh file.
          */
         var MeshLoader = (function(_Entity5) {
             _inherits(MeshLoader, _Entity5);
@@ -6175,46 +6179,39 @@ THE SOFTWARE. */
             function MeshLoader() {
                 var _ref15 = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
                 var _ref15$name = _ref15.name;
-                var name = _ref15$name === undefined ? 'mesh.loader' : _ref15$name;
+                var name = _ref15$name === undefined ? _name : _ref15$name;
                 var path = _ref15.path;
                 _classCallCheck(this, MeshLoader);
                 _get(Object.getPrototypeOf(MeshLoader.prototype), "constructor", this).call(this, {
                     name: name
                 });
                 /**
-                 * Mesh loader xhr promise handler
+                 * The mesh loader xhr promise handler to help emulate synchronous
+                 * behaviour (callback execution).
                  * @var {Promise} Entity.MeshLoader.request
-                 * @private
                  */
                 this.request = undefined;
                 /**
-                 * Mesh vertices
-                 * @var {Array} Entity.MeshLoader.vertices
-                 * @default []
-                 * @private
+                 * The mesh vertex positions.
+                 * @var {Array} [Entity.MeshLoader.vertices=[]]
                  */
                 this.vertices = [];
                 /**
-                 * Mesh vertex texture coordinates
-                 * @var {Array} Entity.MeshLoader.uvs
-                 * @default []
-                 * @private
+                 * The mesh vertex texture mapping coordinates.
+                 * @var {Array} [Entity.MeshLoader.uvs=[]]
                  */
                 this.uvs = [];
                 /**
-                 * Mesh vertex normals
-                 * @var {Array} Entity.MeshLoader.normals
-                 * @default []
-                 * @private
+                 * The mesh vertex normals.
+                 * @var {Array} [Entity.MeshLoader.normals=[]]
                  */
                 this.normals = [];
                 /**
-                 * Temporary storage for vertex data
-                 * to assist parsing the contents of the
-                 * mesh file
-                 * @var {Array} Entity.MeshLoader.tmp
-                 * @default { colors: [], uvs: [], normals: [] }
-                 * @private
+                 * A temporary storage buffer for the mesh data to assist
+                 * generating the mesh data arrays, if necessary.
+                 * This object is automatically deleted once the mesh data
+                 * has been allocated to their properties.
+                 * @var {object} [Entity.MeshLoader.tmp={ vertices: [], colors: [], uvs: [], normals: [] }]
                  */
                 this.tmp = {
                     vertices: [],
@@ -6223,24 +6220,28 @@ THE SOFTWARE. */
                     normals: []
                 };
                 /**
-                 * Mesh vertex array buffer primitive indices
-                 * @var {Array} Entity.MeshLoader.indices
-                 * @default []
-                 * @private
+                 * The indices used to construct the primitives.
+                 * @var {Array} [Entity.MeshLoader.indices=[]]
                  */
                 this.indices = [];
                 this.fetch(path);
             }
             /**
-             * Fetch and parse the mesh data
+             * Asynchronously fetches the mesh file contents, parses it, and
+             * subsequently deletes the <code>tmp</code> temporary storage buffer.
              * @function Entity.MeshLoader.fetch
-             * @param {string} path - Filepath to mesh data
+             * @param {string} path - Specifies the relative path to the mesh file.
              * @returns {undefined}
              */
             _createClass(MeshLoader, [{
                 key: "fetch",
                 value: function fetch(path) {
-                    this.request = ajax(path).then(this.parse.bind(this));
+                    this.request = ajax(path).then(this.parse.bind(this)).then(this.flush.bind(this));
+                }
+            }, {
+                key: "flush",
+                value: function flush() {
+                    delete this.tmp;
                 }
             }]);
             return MeshLoader;
@@ -6254,13 +6255,14 @@ THE SOFTWARE. */
         'use strict';
         var MeshLoader = require('./MeshLoader');
         /**
-         * OBJMeshLoader is a base class to parse
-         * OBJ mesh data
+         * An OBJ mesh loader is a .obj file parser that extracts the collections of vertices
+         * and faces that define a shape. It may also include data to shade the mesh, such as
+         * vertex colors, coordinates and per-vertex/face normals.
          * @class OBJMeshLoader
          * @name Entity.MeshLoader.OBJMeshLoader
          * @extends Entity
-         * @param {string} [name=obj.mesh.loader] - Instance name
-         * @param {string} path - Filepath to mesh data
+         * @param {string} [name=mesh.loader] - Specifies the entities friendly name.
+         * @param {string} path - Specifies the relative path to the mesh file.
          */
         var OBJMeshLoader = (function(_MeshLoader) {
             _inherits(OBJMeshLoader, _MeshLoader);
@@ -6277,21 +6279,22 @@ THE SOFTWARE. */
                 });
             }
             /**
-             * Parse the obj mesh data line by line
+             * Parses the contents of the OBJ mesh file.
              * @callback Entity.MeshLoader.OBJMeshLoader.parse
-             * @param {string} raw - Mesh data
+             * @param {string} raw - The OBJ mesh file contents.
              * @returns {undefined}
              */
             _createClass(OBJMeshLoader, [{
                 key: "parse",
                 value: function parse(raw) {
                         raw.split('\n').map(this.categorise.bind(this));
-                        delete this.tmp;
                     }
                     /**
-                     * Push data into appropriate vertex data arrays
+                     * Populate the mesh data arrays with the given contents of the
+                     * OBJ mesh file.
                      * @callback Entity.MeshLoader.OBJMeshLoader.categorise
-                     * @param {string} line - Mesh file line
+                     * @param {string} line - Specifies an excerpt from the OBJ mesh
+                     * file to parse.
                      * @returns {undefined}
                      */
             }, {
@@ -6315,10 +6318,13 @@ THE SOFTWARE. */
                         }
                     }
                     /**
-                     * Recategorise vertex data arrays based on
-                     * face indices
+                     * Recategorise the mesh data in the temporary storage buffer
+                     * to the mesh data arrays using the indices defined in the OBJ
+                     * mesh file.
                      * @callback Entity.MeshLoader.OBJMeshLoader.index
-                     * @param {string} word - Vertex face word
+                     * @param {string} word - Specifies the indices to the vertex position,
+                     * texture mapping coordinate and per-vertex/face normals in the
+                     * temporary storage buffer for a vertex instance.
                      * @returns {undefined}
                      */
             }, {
@@ -6331,10 +6337,10 @@ THE SOFTWARE. */
                         this.normals.push(tmp.normals[indices[2]]);
                     }
                     /**
-                     * Decrement the given value by 1
+                     * Decrements the given value by 1.
                      * @callback Entity.MeshLoader.OBJMeshLoader.decrement
-                     * @param {string|number} value - Value to decrement
-                     * @returns {undefined}
+                     * @param {string|number} value - Specifies the number to decrement.
+                     * @returns {number}
                      */
             }, {
                 key: "decrement",
@@ -6768,23 +6774,27 @@ THE SOFTWARE. */
     }],
     30: [function(require, module, exports) {
         'use strict';
-        var Entity = require('./Entity');
         var gl = require('./gl');
+        var Entity = require('./Entity');
+        var _name = 'program';
         /**
-         * Program is a wrapper on WebGLProgram containers
+         * A program is an object to which shader objects can be attached. This provides a mechanism to
+         * specify the shader objects that will be linked to create a program. It also provides a means for checking
+         * the compatibility of the shaders that will be used to create a program (for instance, checking the
+         * compatibility between a vertex shader and a fragment shader).
          * @class Program
          * @name Entity.Program
          * @extends Entity
-         * @param {string} [name=program] - Instance name
-         * @param {Entity.Shader.VertexShader} vertexShader - Vertex shader
-         * @param {Entity.Shader.FragmentShader} fragmentShader - Fragment shader
+         * @param {string} [name=program] - Specifies the entities friendly name.
+         * @param {Entity.Shader.VertexShader} vertexShader - Specifies the vertex shader.
+         * @param {Entity.Shader.FragmentShader} fragmentShader - Specifies the fragment shader.
          */
         var Program = (function(_Entity6) {
             _inherits(Program, _Entity6);
 
             function Program(_ref21) {
                 var _ref21$name = _ref21.name;
-                var name = _ref21$name === undefined ? 'program' : _ref21$name;
+                var name = _ref21$name === undefined ? _name : _ref21$name;
                 var vertexShader = _ref21.vertexShader;
                 var fragmentShader = _ref21.fragmentShader;
                 _classCallCheck(this, Program);
@@ -6792,28 +6802,26 @@ THE SOFTWARE. */
                     name: name
                 });
                 /**
-                 * WebGL program container
-                 * @var {WebGLProgram} Entity.Program.program
-                 * @default WebGLProgram
-                 * @private
+                 * The program to which the vertex and fragment shader will be attached.
+                 * @var {WebGLProgram} [Entity.Program.program=WebGLProgram]
                  */
                 this.buffer = gl.createProgram();
                 /**
-                 * Vertex shader
+                 * The vertex shader.
                  * @var {Entity.Shader.VertexShader} Entity.Program.vertexShader
-                 * @private
                  */
                 this.vertexShader = vertexShader;
                 /**
-                 * Fragment shader
+                 * The fragment shader.
                  * @var {Entity.Shader.FragmentShader} Entity.Program.fragmentShader
-                 * @private
                  */
                 this.fragmentShader = fragmentShader;
                 this.link();
             }
             /**
-             * Link the vertex and fragment shader to the program
+             * Links the program by creating executables for the vertex and
+             * fragment shader to run on the vertex and fragment processors,
+             * respectively.
              * @function Entity.Program.link
              * @returns {undefined}
              */
@@ -6827,7 +6835,7 @@ THE SOFTWARE. */
                         this.check();
                     }
                     /**
-                     * Bind the program vertex and fragment shader
+                     * Installs the program as part of the current rendering state.
                      * @function Entity.Program.bind
                      * @returns {undefined}
                      */
@@ -6837,10 +6845,9 @@ THE SOFTWARE. */
                         gl.useProgram(this.buffer);
                     }
                     /**
-                     * Validate the program vertex and fragment
-                     * shader link status
+                     * Validate the link status of the program.
                      * @function Entity.Program.check
-                     * @returns {undefined}
+                     * @returns {undefined|Error}
                      */
             }, {
                 key: "check",
@@ -6864,16 +6871,17 @@ THE SOFTWARE. */
     }],
     31: [function(require, module, exports) {
         'use strict';
-        var Entity = require('./Entity');
         var gl = require('./gl');
+        var Entity = require('./Entity');
+        var _name = 'renderbuffer';
         /**
-         * Renderbuffer is a wrapper on WebGLRenderbuffer buffers
+         * A renderbuffer is a data storage object containing a single image of a renderable internal format.
          * @class Renderbuffer
          * @name Entity.Renderbuffer
          * @extends Entity
-         * @param {string} [name=renderbuffer] - Instance name
-         * @param {number} width - Buffer width
-         * @param {number} height - Buffer height
+         * @param {string} [name=renderbuffer] - Specifies the entities friendly name.
+         * @param {number} width - The width of the renderbuffer.
+         * @param {number} height - The height of the renderbuffer.
          */
         var Renderbuffer = (function(_Entity7) {
             _inherits(Renderbuffer, _Entity7);
@@ -6881,7 +6889,7 @@ THE SOFTWARE. */
             function Renderbuffer() {
                 var _ref22 = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
                 var _ref22$name = _ref22.name;
-                var name = _ref22$name === undefined ? 'renderbuffer' : _ref22$name;
+                var name = _ref22$name === undefined ? _name : _ref22$name;
                 var width = _ref22.width;
                 var height = _ref22.height;
                 _classCallCheck(this, Renderbuffer);
@@ -6889,28 +6897,25 @@ THE SOFTWARE. */
                     name: name
                 });
                 /**
-                 * WebGL renderbuffer
-                 * @var {WebGLRenderbuffer} Entity.Renderbuffer.buffer
-                 * @default WebGLRenderbuffer
-                 * @private
+                 * The renderbuffer object.
+                 * @var {WebGLRenderbuffer} [Entity.Renderbuffer.buffer=WebGLRenderbuffer]
                  */
                 this.buffer = gl.createRenderbuffer();
                 /**
-                 * Buffer width
+                 * The width of the renderbuffer.
                  * @var {number} Entity.Renderbuffer.width
-                 * @private
                  */
                 this.width = width;
                 /**
-                 * Buffer height
+                 * The height of the renderbuffer.
                  * @var {number} Entity.Renderbuffer.height
-                 * @private
                  */
                 this.height = height;
                 this.configure();
             }
             /**
-             * Configure the dimensions of the renderbuffer
+             * Establish the data storage, format and dimensions
+             * of the renderbuffer.
              * @function Entity.Renderbuffer.configure
              * @returns {undefined}
              */
@@ -6922,7 +6927,7 @@ THE SOFTWARE. */
                         this.unbind();
                     }
                     /**
-                     * Bind the renderbuffer
+                     * Bind the renderbuffer.
                      * @function Entity.Renderbuffer.bind
                      * @returns {undefined}
                      */
@@ -6932,7 +6937,7 @@ THE SOFTWARE. */
                         gl.bindRenderbuffer(gl.RENDERBUFFER, this.buffer);
                     }
                     /**
-                     * Unbind the renderbuffer
+                     * Unbind the renderbuffer.
                      * @function Entity.Renderbuffer.unbind
                      * @returns {undefined}
                      */

@@ -45,8 +45,8 @@ class DeferredFramebuffer extends Framebuffer
    }
 
    /**
-    * Attach a texture object as a color buffer and a renderbuffer object
-    * as a depth buffer of the framebuffer object.
+    * Establish the color attachment and depth attachment
+    * of the framebuffer object.
     * @function Entity.Framebuffer.DeferredFramebuffer.configure
     * @returns {undefined}
     */

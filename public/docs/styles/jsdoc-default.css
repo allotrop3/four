@@ -344,6 +344,11 @@ h6
     padding-bottom: 0;
 }
 
+.params td.type
+{
+    font-style: italic;
+}
+
 .disabled {
     color: #454545;
 }

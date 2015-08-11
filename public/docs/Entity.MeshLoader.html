@@ -51,8 +51,10 @@
 
 
 <div class="description">
-    MeshLoader is a base class to parse
-different mesh data formats – OBJ
+    A mesh loader is a mesh file parser that extracts the collections of vertices
+and faces that define a shape. It may also include data to shade the mesh,
+such as vertex colors, coordinates and per-vertex/face normals, depending
+on the mesh file format.
 </div>
 
 
@@ -124,7 +126,7 @@ different mesh data formats – OBJ
                 </td>
             
 
-            <td class="description last">Instance name</td>
+            <td class="description last">Specifies the entities friendly name.</td>
         </tr>
 
     
@@ -159,7 +161,7 @@ different mesh data formats – OBJ
                 </td>
             
 
-            <td class="description last">Filepath to mesh data</td>
+            <td class="description last">Specifies the relative path to the mesh file.</td>
         </tr>
 
     
@@ -200,7 +202,7 @@ different mesh data formats – OBJ
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6163">line 6163</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6165">line 6165</a>
     </li></ul></dd>
     
 
@@ -262,13 +264,13 @@ different mesh data formats – OBJ
 
         
             
-<h4 class="name" id=".indices"><span class="type-signature">(private, static) </span>indices<span class="type-signature"> :Array</span></h4>
+<h4 class="name" id=".indices"><span class="type-signature">(static) </span>indices<span class="type-signature"> :Array</span></h4>
 
 
 
 
 <div class="description">
-    Mesh vertex array buffer primitive indices
+    The indices used to construct the primitives.
 </div>
 
 
@@ -321,7 +323,7 @@ different mesh data formats – OBJ
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6225">line 6225</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6222">line 6222</a>
     </li></ul></dd>
     
 
@@ -339,13 +341,13 @@ different mesh data formats – OBJ
 
         
             
-<h4 class="name" id=".normals"><span class="type-signature">(private, static) </span>normals<span class="type-signature"> :Array</span></h4>
+<h4 class="name" id=".normals"><span class="type-signature">(static) </span>normals<span class="type-signature"> :Array</span></h4>
 
 
 
 
 <div class="description">
-    Mesh vertex normals
+    The mesh vertex normals.
 </div>
 
 
@@ -416,13 +418,14 @@ different mesh data formats – OBJ
 
         
             
-<h4 class="name" id=".request"><span class="type-signature">(private, static) </span>request<span class="type-signature"> :Promise</span></h4>
+<h4 class="name" id=".request"><span class="type-signature">(static) </span>request<span class="type-signature"> :Promise</span></h4>
 
 
 
 
 <div class="description">
-    Mesh loader xhr promise handler
+    The mesh loader xhr promise handler to help emulate synchronous
+behaviour (callback execution).
 </div>
 
 
@@ -470,7 +473,7 @@ different mesh data formats – OBJ
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6184">line 6184</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6188">line 6188</a>
     </li></ul></dd>
     
 
@@ -488,15 +491,16 @@ different mesh data formats – OBJ
 
         
             
-<h4 class="name" id=".tmp"><span class="type-signature">(private, static) </span>tmp<span class="type-signature"> :Array</span></h4>
+<h4 class="name" id=".tmp"><span class="type-signature">(static) </span>tmp<span class="type-signature"> :object</span></h4>
 
 
 
 
 <div class="description">
-    Temporary storage for vertex data
-to assist parsing the contents of the
-mesh file
+    A temporary storage buffer for the mesh data to assist
+generating the mesh data arrays, if necessary.
+This object is automatically deleted once the mesh data
+has been allocated to their properties.
 </div>
 
 
@@ -505,7 +509,7 @@ mesh file
     <ul>
         <li>
             
-<span class="param-type">Array</span>
+<span class="param-type">object</span>
 
 
         </li>
@@ -542,14 +546,14 @@ mesh file
     
     <dt class="tag-default">Default Value:</dt>
     <dd class="tag-default"><ul class="dummy">
-            <li>{ colors: [], uvs: [], normals: [] }</li>
+            <li>{ vertices: [], colors: [], uvs: [], normals: [] }</li>
         </ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6211">line 6211</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6209">line 6209</a>
     </li></ul></dd>
     
 
@@ -567,90 +571,13 @@ mesh file
 
         
             
-<h4 class="name" id=".uvs"><span class="type-signature">(private, static) </span>uvs<span class="type-signature"> :Array</span></h4>
+<h4 class="name" id=".uvs"><span class="type-signature">(static) </span>uvs<span class="type-signature"> :Array</span></h4>
 
 
 
 
 <div class="description">
-    Mesh vertex texture coordinates
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">Array</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy">
-            <li>[]</li>
-        </ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6197">line 6197</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id=".vertices"><span class="type-signature">(private, static) </span>vertices<span class="type-signature"> :Array</span></h4>
-
-
-
-
-<div class="description">
-    Mesh vertices
+    The mesh vertex texture mapping coordinates.
 </div>
 
 
@@ -703,7 +630,84 @@ mesh file
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6190">line 6190</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6199">line 6199</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".vertices"><span class="type-signature">(static) </span>vertices<span class="type-signature"> :Array</span></h4>
+
+
+
+
+<div class="description">
+    The mesh vertex positions.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Array</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>[]</li>
+        </ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6194">line 6194</a>
     </li></ul></dd>
     
 
@@ -737,7 +741,8 @@ mesh file
 
 
 <div class="description">
-    Fetch and parse the mesh data
+    Asynchronously fetches the mesh file contents, parses it, and
+subsequently deletes the <code>tmp</code> temporary storage buffer.
 </div>
 
 
@@ -789,7 +794,7 @@ mesh file
 
             
 
-            <td class="description last">Filepath to mesh data</td>
+            <td class="description last">Specifies the relative path to the mesh file.</td>
         </tr>
 
     
@@ -830,7 +835,7 @@ mesh file
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6234">line 6234</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6229">line 6229</a>
     </li></ul></dd>
     
 
@@ -896,7 +901,7 @@ mesh file
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 00:05:05 GMT+0100 (BST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 20:32:49 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>

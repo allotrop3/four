@@ -3,13 +3,14 @@
 let MeshLoader = require('./MeshLoader');
 
 /**
- * OBJMeshLoader is a base class to parse
- * OBJ mesh data
+ * An OBJ mesh loader is a .obj file parser that extracts the collections of vertices
+ * and faces that define a shape. It may also include data to shade the mesh, such as
+ * vertex colors, coordinates and per-vertex/face normals.
  * @class OBJMeshLoader
  * @name Entity.MeshLoader.OBJMeshLoader
  * @extends Entity
- * @param {string} [name=obj.mesh.loader] - Instance name
- * @param {string} path - Filepath to mesh data
+ * @param {string} [name=mesh.loader] - Specifies the entities friendly name.
+ * @param {string} path - Specifies the relative path to the mesh file.
  */
 class OBJMeshLoader extends MeshLoader
 {
@@ -19,22 +20,22 @@ class OBJMeshLoader extends MeshLoader
    }
 
    /**
-    * Parse the obj mesh data line by line
+    * Parses the contents of the OBJ mesh file.
     * @callback Entity.MeshLoader.OBJMeshLoader.parse
-    * @param {string} raw - Mesh data
+    * @param {string} raw - The OBJ mesh file contents.
     * @returns {undefined}
     */
    parse(raw)
    {
       raw.split('\n').map(this.categorise.bind(this));
-
-      delete this.tmp;
    }
 
    /**
-    * Push data into appropriate vertex data arrays
+    * Populate the mesh data arrays with the given contents of the
+    * OBJ mesh file.
     * @callback Entity.MeshLoader.OBJMeshLoader.categorise
-    * @param {string} line - Mesh file line
+    * @param {string} line - Specifies an excerpt from the OBJ mesh
+    * file to parse.
     * @returns {undefined}
     */
    categorise(line)
@@ -63,10 +64,13 @@ class OBJMeshLoader extends MeshLoader
    }
 
    /**
-    * Recategorise vertex data arrays based on
-    * face indices
+    * Recategorise the mesh data in the temporary storage buffer
+    * to the mesh data arrays using the indices defined in the OBJ
+    * mesh file.
     * @callback Entity.MeshLoader.OBJMeshLoader.index
-    * @param {string} word - Vertex face word
+    * @param {string} word - Specifies the indices to the vertex position,
+    * texture mapping coordinate and per-vertex/face normals in the
+    * temporary storage buffer for a vertex instance.
     * @returns {undefined}
     */
    recategorise(word)
@@ -80,10 +84,10 @@ class OBJMeshLoader extends MeshLoader
    }
 
    /**
-    * Decrement the given value by 1
+    * Decrements the given value by 1.
     * @callback Entity.MeshLoader.OBJMeshLoader.decrement
-    * @param {string|number} value - Value to decrement
-    * @returns {undefined}
+    * @param {string|number} value - Specifies the number to decrement.
+    * @returns {number}
     */
    decrement(value)
    {

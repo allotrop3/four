@@ -51,7 +51,7 @@
 
 
 <div class="description">
-    Renderbuffer is a wrapper on WebGLRenderbuffer buffers
+    A renderbuffer is a data storage object containing a single image of a renderable internal format.
 </div>
 
 
@@ -123,7 +123,7 @@
                 </td>
             
 
-            <td class="description last">Instance name</td>
+            <td class="description last">Specifies the entities friendly name.</td>
         </tr>
 
     
@@ -158,7 +158,7 @@
                 </td>
             
 
-            <td class="description last">Buffer width</td>
+            <td class="description last">The width of the renderbuffer.</td>
         </tr>
 
     
@@ -193,7 +193,7 @@
                 </td>
             
 
-            <td class="description last">Buffer height</td>
+            <td class="description last">The height of the renderbuffer.</td>
         </tr>
 
     
@@ -234,7 +234,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6869">line 6869</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6877">line 6877</a>
     </li></ul></dd>
     
 
@@ -289,13 +289,13 @@
 
         
             
-<h4 class="name" id=".buffer"><span class="type-signature">(private, static) </span>buffer<span class="type-signature"> :WebGLRenderbuffer</span></h4>
+<h4 class="name" id=".buffer"><span class="type-signature">(static) </span>buffer<span class="type-signature"> :WebGLRenderbuffer</span></h4>
 
 
 
 
 <div class="description">
-    WebGL renderbuffer
+    The renderbuffer object.
 </div>
 
 
@@ -348,7 +348,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6891">line 6891</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6899">line 6899</a>
     </li></ul></dd>
     
 
@@ -366,13 +366,85 @@
 
         
             
-<h4 class="name" id=".height"><span class="type-signature">(private, static) </span>height<span class="type-signature"> :number</span></h4>
+<h4 class="name" id=".height"><span class="type-signature">(static) </span>height<span class="type-signature"> :number</span></h4>
 
 
 
 
 <div class="description">
-    Buffer height
+    The height of the renderbuffer.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6909">line 6909</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".width"><span class="type-signature">(static) </span>width<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    The width of the renderbuffer.
 </div>
 
 
@@ -437,78 +509,6 @@
 
 
         
-            
-<h4 class="name" id=".width"><span class="type-signature">(private, static) </span>width<span class="type-signature"> :number</span></h4>
-
-
-
-
-<div class="description">
-    Buffer width
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">number</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6898">line 6898</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
     
 
     
@@ -526,7 +526,7 @@
 
 
 <div class="description">
-    Bind the renderbuffer
+    Bind the renderbuffer.
 </div>
 
 
@@ -570,7 +570,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6924">line 6924</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6929">line 6929</a>
     </li></ul></dd>
     
 
@@ -626,7 +626,8 @@
 
 
 <div class="description">
-    Configure the dimensions of the renderbuffer
+    Establish the data storage, format and dimensions
+of the renderbuffer.
 </div>
 
 
@@ -670,7 +671,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6912">line 6912</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6916">line 6916</a>
     </li></ul></dd>
     
 
@@ -726,7 +727,7 @@
 
 
 <div class="description">
-    Unbind the renderbuffer
+    Unbind the renderbuffer.
 </div>
 
 
@@ -770,7 +771,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6934">line 6934</a>
+        <a href="four.js.html">four.js</a>, <a href="four.js.html#line6939">line 6939</a>
     </li></ul></dd>
     
 
@@ -836,7 +837,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 00:05:05 GMT+0100 (BST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 20:32:49 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>
