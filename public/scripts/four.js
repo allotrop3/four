@@ -4944,7 +4944,7 @@ THE SOFTWARE. */
          * A camera simplifies transforming the perspective of the view, including scaling, rotating and translating,
          * thereby configuring projections into framebuffers or output display.
          * @class Camera
-         * @name Entity.Camera
+         * @name Entity.Structure.Camera
          * @extends Entity
          * @param {string} [name=camera] - Specifies the entities friendly name.
          * @param {string} program - Specifies the program in which the camera used.
@@ -4975,37 +4975,37 @@ THE SOFTWARE. */
                 });
                 /**
                  * The clear value for the color buffers.
-                 * @var {number} [Entity.Camera.background=[0, 0, 0, 1]]
+                 * @var {number} [Entity.Structure.Camera.background=[0, 0, 0, 1]]
                  */
                 this.background = background;
                 /**
                  * The modelview matrix contains modeling and viewing transformations,
                  * which transform object space coordinates into eye space coordinates.
-                 * @var {number} [Entity.Camera.modelViewMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+                 * @var {number} [Entity.Structure.Camera.modelViewMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
                  */
                 this.modelViewMatrix = mat4.create();
                 /**
                  * The projection matrix contains the transformation calls it needs
                  * to transform eye space coordinates into clip coordinates.
-                 * @var {number} [Entity.Camera.projectionMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+                 * @var {number} [Entity.Structure.Camera.projectionMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
                  */
                 this.projectionMatrix = mat4.create();
                 /**
                  * The normal matrix is the transpose of the modelview matrix. It is
                  * used to orient vertex normals correctly based on the on the
                  * transformation of its governing mesh.
-                 * @var {number} [Entity.Camera.normalMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0]]
+                 * @var {number} [Entity.Structure.Camera.normalMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0]]
                  */
                 this.normalMatrix = mat3.create();
                 /**
                  * The view transformation stack retains saved modelview states.
-                 * @var {Array} [Entity.Camera.stack=[]]
+                 * @var {Array} [Entity.Structure.Camera.stack=[]]
                  */
                 this.stack = [];
             }
             /**
              * Enable back-face culling and set counter clock-wise front face winding order.
-             * @function Entity.Camera.configure
+             * @function Entity.Structure.Camera.configure
              * @returns {undefined}
              */
             _createClass(Camera, [{
@@ -5017,7 +5017,7 @@ THE SOFTWARE. */
                     }
                     /**
                      * Specify the value of the uniform variables for the current program object.
-                     * @function Entity.Camera.configure
+                     * @function Entity.Structure.Camera.configure
                      * @returns {undefined}
                      */
             }, {
@@ -5028,7 +5028,7 @@ THE SOFTWARE. */
                     }
                     /**
                      * Save the current state of the camera into the view transformation stack.
-                     * @function Entity.Camera.save
+                     * @function Entity.Structure.Camera.save
                      * @returns {undefined}
                      */
             }, {
@@ -5040,7 +5040,7 @@ THE SOFTWARE. */
                     /**
                      * Revert the current view state to the previously saved state in view
                      * transformation stack.
-                     * @function Entity.Camera.restore
+                     * @function Entity.Structure.Camera.restore
                      * @returns {undefined}
                      */
             }, {
@@ -5054,7 +5054,7 @@ THE SOFTWARE. */
                     }
                     /**
                      * Zoom the camera by a given multiplier.
-                     * @function Entity.Camera.scale
+                     * @function Entity.Structure.Camera.scale
                      * @param {number} scaleX - Scale multiplier along the x axis.
                      * @param {number} scaleY - Scale multiplier along the y axis.
                      * @param {number} scaleZ - Scale multiplier along the z axis.
@@ -5068,7 +5068,7 @@ THE SOFTWARE. */
                     }
                     /**
                      * Zoom the camera by a given multiplier along the x axis.
-                     * @function Entity.Camera.scaleX
+                     * @function Entity.Structure.Camera.scaleX
                      * @param {number} scale - Scale multiplier along the x axis.
                      * @returns {undefined}
                      */
@@ -5079,7 +5079,7 @@ THE SOFTWARE. */
                     }
                     /**
                      * Zoom the camera by a given multiplier along the y axis.
-                     * @function Entity.Camera.scaleY
+                     * @function Entity.Structure.Camera.scaleY
                      * @param {number} scale - Scale multiplier along the y axis.
                      * @returns {undefined}
                      */
@@ -5090,7 +5090,7 @@ THE SOFTWARE. */
                     }
                     /**
                      * Zoom the camera by a given multiplier along the z axis.
-                     * @function Entity.Camera.scaleZ
+                     * @function Entity.Structure.Camera.scaleZ
                      * @param {number} scale - Scale multiplier along the z axis.
                      * @returns {undefined}
                      */
@@ -5102,7 +5102,7 @@ THE SOFTWARE. */
                     /**
                      * Rotate the camera by a given amount around the given axis. The amount
                      * should be provided in degrees.
-                     * @function Entity.Camera.rotate
+                     * @function Entity.Structure.Camera.rotate
                      * @param {number} rotation - Rotation in degrees around the given pivot.
                      * The inital value is the y axis.
                      * @param {string} [pivot=y] - Axis around which to rotate the view.
@@ -5119,7 +5119,7 @@ THE SOFTWARE. */
                     /**
                      * Rotate the camera by a given amount around the x axis. The amount
                      * should be provided in degrees.
-                     * @function Entity.Camera.rotateX
+                     * @function Entity.Structure.Camera.rotateX
                      * @param {number} rotation - Rotation in degrees around the x axis.
                      * @returns {undefined}
                      */
@@ -5131,7 +5131,7 @@ THE SOFTWARE. */
                     /**
                      * Rotate the camera by a given amount around the y axis. The amount
                      * should be provided in degrees.
-                     * @function Entity.Camera.rotateY
+                     * @function Entity.Structure.Camera.rotateY
                      * @param {number} rotation - Rotation in degrees around the y axis.
                      * @returns {undefined}
                      */
@@ -5143,7 +5143,7 @@ THE SOFTWARE. */
                     /**
                      * Rotate the camera by a given amount around the z axis. The amount
                      * should be provided in degrees.
-                     * @function Entity.Camera.rotateZ
+                     * @function Entity.Structure.Camera.rotateZ
                      * @param {number} rotation - Rotation in degrees around the z axis.
                      * @returns {undefined}
                      */
@@ -5154,7 +5154,7 @@ THE SOFTWARE. */
                     }
                     /**
                      * Translate the camera by the given vector.
-                     * @function Entity.Camera.translate
+                     * @function Entity.Structure.Camera.translate
                      * @param {number} translateX - Translation along the x axis.
                      * @param {number} translateY - Translation along the y axis.
                      * @param {number} translateZ - Translation along the z axis.
@@ -5169,7 +5169,7 @@ THE SOFTWARE. */
                     /**
                      * Translate the camera by the given number of units along
                      * the x axis.
-                     * @function Entity.Camera.translateX
+                     * @function Entity.Structure.Camera.translateX
                      * @param {number} translation - Translation along the x axis.
                      * @returns {undefined}
                      */
@@ -5181,7 +5181,7 @@ THE SOFTWARE. */
                     /**
                      * Translate the camera by the given number of units along
                      * the y axis.
-                     * @function Entity.Camera.translateY
+                     * @function Entity.Structure.Camera.translateY
                      * @param {number} translation - Translation along the y axis.
                      * @returns {undefined}
                      */
@@ -5193,7 +5193,7 @@ THE SOFTWARE. */
                     /**
                      * Translate the camera by the given number of units along
                      * the z axis.
-                     * @function Entity.Camera.translateZ
+                     * @function Entity.Structure.Camera.translateZ
                      * @param {number} translation - Translation along the z axis.
                      * @returns {undefined}
                      */
@@ -5408,7 +5408,7 @@ THE SOFTWARE. */
         var _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f intensity', 'vec3 location', 'vec3 direction'];
         var _direction = [0, 0, 0];
         /**
-         * A directional light is a structure concept. It is therefore a light source to illuminate the scene.
+         * A directional light radiates light in a specific direction.
          * @class DirectionalLight
          * @name Entity.Structure.Light.DirectionalLight
          * @extends Entity.Structure.Light
@@ -5812,7 +5812,7 @@ THE SOFTWARE. */
         var _intensity = 1;
         var _location = [0, 0, 0];
         /**
-         * A light is a structure concept. It is therefore a light source to illuminate the scene.
+         * A light source to globally illuminate the scene.
          * @class Light
          * @name Entity.Structure.Light
          * @extends Entity.Structure
@@ -6361,8 +6361,8 @@ THE SOFTWARE. */
         /**
          * An orthographic camera produces a two dimensional projection into framebuffers.
          * @class OrthographicCamera
-         * @name Entity.Camera.OrthographicCamera
-         * @extends Entity.Camera
+         * @name Entity.Structure.Camera.OrthographicCamera
+         * @extends Entity.Structure.Camera
          * @param {string} [name=orthographic.camera] - Specifies the entities friendly name.
          * @param {Entity.Program} program - Specifies the program in which the camera used.
          * @param {string} [path=camera] - Specifies the uniform structure path to the generic uniforms.
@@ -6406,32 +6406,32 @@ THE SOFTWARE. */
                 });
                 /**
                  * The left most boundary of the projection.
-                 * @var {number} [Entity.Camera.OrthographicCamera.left=-1]
+                 * @var {number} [Entity.Structure.Camera.OrthographicCamera.left=-1]
                  */
                 this.left = left;
                 /**
                  * The right most boundary of the projection.
-                 * @var {number} Entity.Camera.OrthographicCamera.right
+                 * @var {number} Entity.Structure.Camera.OrthographicCamera.right
                  */
                 this.right = right;
                 /**
                  * The bottom most boundary of the projection.
-                 * @var {number} Entity.Camera.OrthographicCamera.bottom
+                 * @var {number} Entity.Structure.Camera.OrthographicCamera.bottom
                  */
                 this.bottom = bottom;
                 /**
                  * The top most boundary of the projection.
-                 * @var {number} [Entity.Camera.OrthographicCamera.top=-1]
+                 * @var {number} [Entity.Structure.Camera.OrthographicCamera.top=-1]
                  */
                 this.top = top;
                 /**
                  * Specifies the front most boundary of the projection.
-                 * @var {number} [Entity.Camera.OrthographicCamera.near=0.1]
+                 * @var {number} [Entity.Structure.Camera.OrthographicCamera.near=0.1]
                  */
                 this.near = near;
                 /**
                  * The back most boundary of the projection.
-                 * @var {number} [Entity.Camera.OrthographicCamera.far=1]
+                 * @var {number} [Entity.Structure.Camera.OrthographicCamera.far=1]
                  */
                 this.far = far;
                 this.configure();
@@ -6439,7 +6439,7 @@ THE SOFTWARE. */
             /**
              * Generates an orthogonal projection matrix with the given bounds and
              * initialises the modelview matrix to an identity matrix.
-             * @function Entity.Camera.OrthographicCamera.configure
+             * @function Entity.Structure.Camera.OrthographicCamera.configure
              * @returns {undefined}
              */
             _createClass(OrthographicCamera, [{
@@ -6453,7 +6453,7 @@ THE SOFTWARE. */
                      * Specify the value of the uniform variables for the current program object;
                      * disable depth testing and set the viewport boundaries with the given
                      * bounds.
-                     * @function Entity.Camera.OrthographicCamera.bind
+                     * @function Entity.Structure.Camera.OrthographicCamera.bind
                      * @returns {undefined}
                      */
             }, {
@@ -6489,8 +6489,8 @@ THE SOFTWARE. */
         /**
          * An perspective camera produces a three dimensional projection into framebuffers.
          * @class PerspectiveCamera
-         * @name Entity.Camera.PerspectiveCamera
-         * @extends Entity.Camera
+         * @name Entity.Structure.Camera.PerspectiveCamera
+         * @extends Entity.Structure.Camera
          * @param {string} [name=perspective.camera] - Specifies the entities friendly name.
          * @param {Entity.Program} program - Specifies the program in which the camera used.
          * @param {string} [path=camera] - Specifies the uniform structure path to the generic uniforms.
@@ -6541,48 +6541,48 @@ THE SOFTWARE. */
                 });
                 /**
                  * The projection width. The initial value is set to the width of the canvas.
-                 * @var {number} [Entity.Camera.PerspectiveCamera.width=gl.canvas.width]
+                 * @var {number} [Entity.Structure.Camera.PerspectiveCamera.width=gl.canvas.width]
                  */
                 this.width = width;
                 /**
                  * The projection height. The initial value is set to the height of the canvas.
-                 * @var {number} [Entity.Camera.PerspectiveCamera.height=gl.canvas.height]
+                 * @var {number} [Entity.Structure.Camera.PerspectiveCamera.height=gl.canvas.height]
                  */
                 this.height = height;
                 /**
                  * The field of view of the projection.
-                 * @var {number} [Entity.Camera.PerspectiveCamera.fov=45]
+                 * @var {number} [Entity.Structure.Camera.PerspectiveCamera.fov=45]
                  */
                 this.fov = fov;
                 /**
                  * The aspect ratio of the projection. This is calculated by dividing the width
                  * of the projection by its height.
-                 * @var {number} [Entity.Camera.PerspectiveCamera.ratio=gl.canvas.width/gl.canvas.height]
+                 * @var {number} [Entity.Structure.Camera.PerspectiveCamera.ratio=gl.canvas.width/gl.canvas.height]
                  */
                 this.ratio = width / height;
                 /**
                  * Specifies the front most boundary of the projection.
-                 * @var {number} [Entity.Camera.PerspectiveCamera.near=0.1]
+                 * @var {number} [Entity.Structure.Camera.PerspectiveCamera.near=0.1]
                  */
                 this.near = near;
                 /**
                  * Specifies the back most boundary of the projection.
-                 * @var {number} [Entity.Camera.PerspectiveCamera.far=1000]
+                 * @var {number} [Entity.Structure.Camera.PerspectiveCamera.far=1000]
                  */
                 this.far = far;
                 /**
                  * The position at which the projection is aimed.
-                 * @var {vec3} [Entity.Camera.PerspectiveCamera.direction=[0, 0, 0]]
+                 * @var {vec3} [Entity.Structure.Camera.PerspectiveCamera.direction=[0, 0, 0]]
                  */
                 this.direction = direction;
                 /**
                  * The position of the projection.
-                 * @var {vec3} Entity.Camera.PerspectiveCamera.location
+                 * @var {vec3} Entity.Structure.Camera.PerspectiveCamera.location
                  */
                 this.location = location;
                 /**
                  * The orientation of the projection.
-                 * @var {vec3} [Entity.Camera.PerspectiveCamera.up=[0, 1, 0]]
+                 * @var {vec3} [Entity.Structure.Camera.PerspectiveCamera.up=[0, 1, 0]]
                  */
                 this.up = up;
                 this.configure();
@@ -6591,7 +6591,7 @@ THE SOFTWARE. */
              * Generates a perspective projection matrix with the given bounds;
              * initialises the modelview matrix to an identity matrix and subsequently
              * computes a look-at matrix with the given eye position, focal point, and up axis.
-             * @function Entity.Camera.PerspectiveCamera.configure
+             * @function Entity.Structure.Camera.PerspectiveCamera.configure
              * @returns {undefined}
              */
             _createClass(PerspectiveCamera, [{
@@ -6609,7 +6609,7 @@ THE SOFTWARE. */
                      * Specify the value of the uniform variables for the current program object;
                      * enable depth testing and set the viewport boundaries with the given
                      * bounds.
-                     * @function Entity.Camera.PerspectiveCamera.bind
+                     * @function Entity.Structure.Camera.PerspectiveCamera.bind
                      * @returns {undefined}
                      */
             }, {
@@ -6696,7 +6696,8 @@ THE SOFTWARE. */
         var _name = 'point.light';
         var _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'vec3 fade', 'vec3 location'];
         /**
-         * A point light is a structure concept. It is therefore a light source to illuminate the scene.
+         * A point light radiates light in all directions from the given location, however
+         * has a limited reach.
          * @class PointLight
          * @name Entity.Structure.Light.PointLight
          * @extends Entity.Structure.Light
@@ -6709,7 +6710,6 @@ THE SOFTWARE. */
          * @param {vec3} fade - Specifies the coefficient, linear and quadratic elements of the light source.
          * @param {number} [intensity=1] - Specifies the intensity of the light source.
          * @param {vec3} [location=[0, 0, 0]] - Specifies the location of the light source.
-         * @param {vec3} [direction=[0, 0, 0]] - Specifies the position at which the light aimed.
          */
         var PointLight = (function(_Light2) {
             _inherits(PointLight, _Light2);
@@ -7124,21 +7124,21 @@ THE SOFTWARE. */
         var _name = 'spot.light';
         var _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f exponent', 'f cutoff', 'f intensity', 'vec3 location', 'vec3 direction'];
         /**
-         * SpotLight is a local light source pointing in a particular
-         * direction to illuminate an area of the scene
+         * A spot light defines a directional cone-shaped radiation of light to
+         * illuminate a specific area.
          * @class SpotLight
          * @name Entity.Structure.Light.SpotLight
          * @extends Entity.Structure.Light
-         * @param {string} [name=spot.light] - Instance name
-         * @param {Entity.Program} program - Uniforms' program
-         * @param {vec3} ambient - Ambient component
-         * @param {vec3} diffuse - Diffuse component
-         * @param {vec3} specular - Specular component
-         * @param {number} exponent - Light fade intensity
-         * @param {number} cutoff - Light cutoff
-         * @param {number} [intensity=1] - Light intensity
-         * @param {vec3} [location=[0, 0, 0]] - Light position
-         * @param {vec3} [direction=[0, 0, 0]] - Light direction
+         * @param {string} [name=spot.light] - Specifies the entities friendly name.
+         * @param {Entity.Program} program - Specifies the program in which the uniforms should be located.
+         * @param {vec3} ambient - Specifies the ambient component of the light source.
+         * @param {vec3} diffuse - Specifies the diffuse component of the light source.
+         * @param {vec3} specular - Specifies the specular component of the light source.
+         * @param {number} exponent - Specifies the fade intensity of the illuminated boundary.
+         * @param {number} cutoff - Specifies the illuminated boundary of the light source.
+         * @param {number} [intensity=1] - Specifies the intensity of the light source.
+         * @param {vec3} [location=[0, 0, 0]] - Specifies the location of the light source.
+         * @param {vec3} [direction=[0, 0, 0]] - Specifies the position at which the light aimed.
          */
         var SpotLight = (function(_Light3) {
             _inherits(SpotLight, _Light3);
@@ -7157,7 +7157,8 @@ THE SOFTWARE. */
                 var cutoff = _ref26.cutoff;
                 var intensity = _ref26.intensity;
                 var location = _ref26.location;
-                var direction = _ref26.direction;
+                var _ref26$direction = _ref26.direction;
+                var direction = _ref26$direction === undefined ? _direction : _ref26$direction;
                 _classCallCheck(this, SpotLight);
                 _get(Object.getPrototypeOf(SpotLight.prototype), "constructor", this).call(this, {
                     name: name,
@@ -7170,22 +7171,18 @@ THE SOFTWARE. */
                     location: location
                 });
                 /**
-                 * Light fade intensity
+                 * The intensity of the illuminated field boundary.
                  * @var {number} Entity.Structure.Light.SpotLight.exponent
-                 * @private
                  */
                 this.exponent = exponent;
                 /**
-                 * Light cutoff
+                 * The illuminated field of the light source.
                  * @var {number} Entity.Structure.Light.SpotLight.cutoff
-                 * @private
                  */
                 this.cutoff = cutoff;
                 /**
-                 * Light direction
-                 * @var {vec3} Entity.Structure.Light.SpotLight.direction
-                 * @default [0, 0, 0]
-                 * @private
+                 * The position at which the light aimed.
+                 * @var {vec3} [Entity.Structure.Light.SpotLight.direction=[0, 0, 0]]
                  */
                 this.direction = direction;
             }

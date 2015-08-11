@@ -6,7 +6,8 @@ const _name = 'point.light';
 const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'vec3 fade', 'vec3 location'];
 
 /**
- * A point light is a structure concept. It is therefore a light source to illuminate the scene.
+ * A point light radiates light in all directions from the given location, however
+ * has a limited reach.
  * @class PointLight
  * @name Entity.Structure.Light.PointLight
  * @extends Entity.Structure.Light
@@ -19,7 +20,6 @@ const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'vec3 fade',
  * @param {vec3} fade - Specifies the coefficient, linear and quadratic elements of the light source.
  * @param {number} [intensity=1] - Specifies the intensity of the light source.
  * @param {vec3} [location=[0, 0, 0]] - Specifies the location of the light source.
- * @param {vec3} [direction=[0, 0, 0]] - Specifies the position at which the light aimed.
  */
 class PointLight extends Light
 {

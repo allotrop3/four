@@ -8,7 +8,7 @@ const _intensity = 1;
 const _location = [0, 0, 0];
 
 /**
- * A light is a structure concept. It is therefore a light source to illuminate the scene.
+ * A light source to globally illuminate the scene.
  * @class Light
  * @name Entity.Structure.Light
  * @extends Entity.Structure

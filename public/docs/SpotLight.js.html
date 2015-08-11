@@ -33,48 +33,44 @@ let Light = require('./Light');
 const _name = 'spot.light';
 const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f exponent', 'f cutoff', 'f intensity', 'vec3 location', 'vec3 direction'];
 
-/**
- * SpotLight is a local light source pointing in a particular
- * direction to illuminate an area of the scene
+ /**
+ * A spot light defines a directional cone-shaped radiation of light to
+ * illuminate a specific area.
  * @class SpotLight
  * @name Entity.Structure.Light.SpotLight
  * @extends Entity.Structure.Light
- * @param {string} [name=spot.light] - Instance name
- * @param {Entity.Program} program - Uniforms' program
- * @param {vec3} ambient - Ambient component
- * @param {vec3} diffuse - Diffuse component
- * @param {vec3} specular - Specular component
- * @param {number} exponent - Light fade intensity
- * @param {number} cutoff - Light cutoff
- * @param {number} [intensity=1] - Light intensity
- * @param {vec3} [location=[0, 0, 0]] - Light position
- * @param {vec3} [direction=[0, 0, 0]] - Light direction
+ * @param {string} [name=spot.light] - Specifies the entities friendly name.
+ * @param {Entity.Program} program - Specifies the program in which the uniforms should be located.
+ * @param {vec3} ambient - Specifies the ambient component of the light source.
+ * @param {vec3} diffuse - Specifies the diffuse component of the light source.
+ * @param {vec3} specular - Specifies the specular component of the light source.
+ * @param {number} exponent - Specifies the fade intensity of the illuminated boundary.
+ * @param {number} cutoff - Specifies the illuminated boundary of the light source.
+ * @param {number} [intensity=1] - Specifies the intensity of the light source.
+ * @param {vec3} [location=[0, 0, 0]] - Specifies the location of the light source.
+ * @param {vec3} [direction=[0, 0, 0]] - Specifies the position at which the light aimed.
  */
 class SpotLight extends Light
 {
-   constructor({ name = _name, program, uniforms = _uniforms, ambient, diffuse, specular, exponent, cutoff, intensity, location, direction } = {})
+   constructor({ name = _name, program, uniforms = _uniforms, ambient, diffuse, specular, exponent, cutoff, intensity, location,  direction = _direction } = {})
    {
       super({ name, program, uniforms, ambient, diffuse, specular, intensity, location });
 
       /**
-       * Light fade intensity
+       * The intensity of the illuminated field boundary.
        * @var {number} Entity.Structure.Light.SpotLight.exponent
-       * @private
        */
       this.exponent = exponent;
 
       /**
-       * Light cutoff
+       * The illuminated field of the light source.
        * @var {number} Entity.Structure.Light.SpotLight.cutoff
-       * @private
        */
       this.cutoff = cutoff;
 
       /**
-       * Light direction
-       * @var {vec3} Entity.Structure.Light.SpotLight.direction
-       * @default [0, 0, 0]
-       * @private
+       * The position at which the light aimed.
+       * @var {vec3} [Entity.Structure.Light.SpotLight.direction=[0, 0, 0]]
        */
       this.direction = direction;
    }
@@ -90,13 +86,13 @@ module.exports = SpotLight;</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Entity.html">Entity</a></li><li><a href="Entity.Attribute.html">Attribute</a></li><li><a href="Entity.Camera.html">Camera</a></li><li><a href="Entity.Camera.OrthographicCamera.html">OrthographicCamera</a></li><li><a href="Entity.Camera.PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="Entity.Fluid.html">Fluid</a></li><li><a href="Entity.Framebuffer.html">Framebuffer</a></li><li><a href="Entity.Framebuffer.DeferredFramebuffer.html">DeferredFramebuffer</a></li><li><a href="Entity.Mesh.html">Mesh</a></li><li><a href="Entity.MeshLoader.html">MeshLoader</a></li><li><a href="Entity.MeshLoader.OBJMeshLoader.html">OBJMeshLoader</a></li><li><a href="Entity.Program.html">Program</a></li><li><a href="Entity.Renderbuffer.html">Renderbuffer</a></li><li><a href="Entity.Renderer.html">Renderer</a></li><li><a href="Entity.Shader.html">Shader</a></li><li><a href="Entity.Shader.FragmentShader.html">FragmentShader</a></li><li><a href="Entity.Shader.VertexShader.html">VertexShader</a></li><li><a href="Entity.Structure.html">Structure</a></li><li><a href="Entity.Structure.Light.html">Light</a></li><li><a href="Entity.Structure.Light.DirectionalLight.html">DirectionalLight</a></li><li><a href="Entity.Structure.Light.PointLight.html">PointLight</a></li><li><a href="Entity.Structure.Light.SpotLight.html">SpotLight</a></li><li><a href="Entity.Structure.Material.html">Material</a></li><li><a href="Entity.Structure.Material.PhongMaterial.html">PhongMaterial</a></li><li><a href="Entity.Texture.html">Texture</a></li><li><a href="Entity.Texture.DataTexture.html">DataTexture</a></li><li><a href="Entity.Texture.ImageTexture.html">ImageTexture</a></li><li><a href="Entity.Uniform.html">Uniform</a></li><li><a href="Entity.VertexArrayObject.html">VertexArrayObject</a></li></ul><h3>Global</h3><ul><li><a href="global.html#uniform">uniform</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Entity.html">Entity</a></li><li><a href="Entity.Attribute.html">Attribute</a></li><li><a href="Entity.Fluid.html">Fluid</a></li><li><a href="Entity.Framebuffer.html">Framebuffer</a></li><li><a href="Entity.Framebuffer.DeferredFramebuffer.html">DeferredFramebuffer</a></li><li><a href="Entity.Mesh.html">Mesh</a></li><li><a href="Entity.MeshLoader.html">MeshLoader</a></li><li><a href="Entity.MeshLoader.OBJMeshLoader.html">OBJMeshLoader</a></li><li><a href="Entity.Program.html">Program</a></li><li><a href="Entity.Renderbuffer.html">Renderbuffer</a></li><li><a href="Entity.Renderer.html">Renderer</a></li><li><a href="Entity.Shader.html">Shader</a></li><li><a href="Entity.Shader.FragmentShader.html">FragmentShader</a></li><li><a href="Entity.Shader.VertexShader.html">VertexShader</a></li><li><a href="Entity.Structure.html">Structure</a></li><li><a href="Entity.Structure.Camera.html">Camera</a></li><li><a href="Entity.Structure.Camera.OrthographicCamera.html">OrthographicCamera</a></li><li><a href="Entity.Structure.Camera.PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="Entity.Structure.Light.html">Light</a></li><li><a href="Entity.Structure.Light.DirectionalLight.html">DirectionalLight</a></li><li><a href="Entity.Structure.Light.PointLight.html">PointLight</a></li><li><a href="Entity.Structure.Light.SpotLight.html">SpotLight</a></li><li><a href="Entity.Structure.Material.html">Material</a></li><li><a href="Entity.Structure.Material.PhongMaterial.html">PhongMaterial</a></li><li><a href="Entity.Texture.html">Texture</a></li><li><a href="Entity.Texture.DataTexture.html">DataTexture</a></li><li><a href="Entity.Texture.ImageTexture.html">ImageTexture</a></li><li><a href="Entity.Uniform.html">Uniform</a></li><li><a href="Entity.VertexArrayObject.html">VertexArrayObject</a></li></ul><h3>Global</h3><ul><li><a href="global.html#uniform">uniform</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 22:34:20 GMT+0100 (BST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 22:59:54 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -18,7 +18,7 @@ const _background = [0, 0, 0, 1];
  * A camera simplifies transforming the perspective of the view, including scaling, rotating and translating,
  * thereby configuring projections into framebuffers or output display.
  * @class Camera
- * @name Entity.Camera
+ * @name Entity.Structure.Camera
  * @extends Entity
  * @param {string} [name=camera] - Specifies the entities friendly name.
  * @param {string} program - Specifies the program in which the camera used.
@@ -34,21 +34,21 @@ class Camera extends Structure
 
       /**
        * The clear value for the color buffers.
-       * @var {number} [Entity.Camera.background=[0, 0, 0, 1]]
+       * @var {number} [Entity.Structure.Camera.background=[0, 0, 0, 1]]
        */
       this.background = background;
 
       /**
        * The modelview matrix contains modeling and viewing transformations,
        * which transform object space coordinates into eye space coordinates.
-       * @var {number} [Entity.Camera.modelViewMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+       * @var {number} [Entity.Structure.Camera.modelViewMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
        */
       this.modelViewMatrix = mat4.create();
 
       /**
        * The projection matrix contains the transformation calls it needs
        * to transform eye space coordinates into clip coordinates.
-       * @var {number} [Entity.Camera.projectionMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+       * @var {number} [Entity.Structure.Camera.projectionMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
        */
       this.projectionMatrix = mat4.create();
 
@@ -56,20 +56,20 @@ class Camera extends Structure
        * The normal matrix is the transpose of the modelview matrix. It is
        * used to orient vertex normals correctly based on the on the
        * transformation of its governing mesh.
-       * @var {number} [Entity.Camera.normalMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0]]
+       * @var {number} [Entity.Structure.Camera.normalMatrix=[0, 0, 0, 0, 0, 0, 0, 0, 0]]
        */
       this.normalMatrix = mat3.create();
 
       /**
        * The view transformation stack retains saved modelview states.
-       * @var {Array} [Entity.Camera.stack=[]]
+       * @var {Array} [Entity.Structure.Camera.stack=[]]
        */
       this.stack = [];
    }
 
    /**
     * Enable back-face culling and set counter clock-wise front face winding order.
-    * @function Entity.Camera.configure
+    * @function Entity.Structure.Camera.configure
     * @returns {undefined}
     */
    configure()
@@ -81,7 +81,7 @@ class Camera extends Structure
 
    /**
     * Specify the value of the uniform variables for the current program object.
-    * @function Entity.Camera.configure
+    * @function Entity.Structure.Camera.configure
     * @returns {undefined}
     */
    bind()
@@ -93,7 +93,7 @@ class Camera extends Structure
 
    /**
     * Save the current state of the camera into the view transformation stack.
-    * @function Entity.Camera.save
+    * @function Entity.Structure.Camera.save
     * @returns {undefined}
     */
    save()
@@ -106,7 +106,7 @@ class Camera extends Structure
    /**
     * Revert the current view state to the previously saved state in view
     * transformation stack.
-    * @function Entity.Camera.restore
+    * @function Entity.Structure.Camera.restore
     * @returns {undefined}
     */
    restore()
@@ -123,7 +123,7 @@ class Camera extends Structure
 
    /**
     * Zoom the camera by a given multiplier.
-    * @function Entity.Camera.scale
+    * @function Entity.Structure.Camera.scale
     * @param {number} scaleX - Scale multiplier along the x axis.
     * @param {number} scaleY - Scale multiplier along the y axis.
     * @param {number} scaleZ - Scale multiplier along the z axis.
@@ -138,7 +138,7 @@ class Camera extends Structure
 
    /**
     * Zoom the camera by a given multiplier along the x axis.
-    * @function Entity.Camera.scaleX
+    * @function Entity.Structure.Camera.scaleX
     * @param {number} scale - Scale multiplier along the x axis.
     * @returns {undefined}
     */
@@ -149,7 +149,7 @@ class Camera extends Structure
 
    /**
     * Zoom the camera by a given multiplier along the y axis.
-    * @function Entity.Camera.scaleY
+    * @function Entity.Structure.Camera.scaleY
     * @param {number} scale - Scale multiplier along the y axis.
     * @returns {undefined}
     */
@@ -160,7 +160,7 @@ class Camera extends Structure
 
    /**
     * Zoom the camera by a given multiplier along the z axis.
-    * @function Entity.Camera.scaleZ
+    * @function Entity.Structure.Camera.scaleZ
     * @param {number} scale - Scale multiplier along the z axis.
     * @returns {undefined}
     */
@@ -172,7 +172,7 @@ class Camera extends Structure
    /**
     * Rotate the camera by a given amount around the given axis. The amount
     * should be provided in degrees.
-    * @function Entity.Camera.rotate
+    * @function Entity.Structure.Camera.rotate
     * @param {number} rotation - Rotation in degrees around the given pivot.
     * The inital value is the y axis.
     * @param {string} [pivot=y] - Axis around which to rotate the view.
@@ -189,7 +189,7 @@ class Camera extends Structure
    /**
     * Rotate the camera by a given amount around the x axis. The amount
     * should be provided in degrees.
-    * @function Entity.Camera.rotateX
+    * @function Entity.Structure.Camera.rotateX
     * @param {number} rotation - Rotation in degrees around the x axis.
     * @returns {undefined}
     */
@@ -201,7 +201,7 @@ class Camera extends Structure
    /**
     * Rotate the camera by a given amount around the y axis. The amount
     * should be provided in degrees.
-    * @function Entity.Camera.rotateY
+    * @function Entity.Structure.Camera.rotateY
     * @param {number} rotation - Rotation in degrees around the y axis.
     * @returns {undefined}
     */
@@ -213,7 +213,7 @@ class Camera extends Structure
    /**
     * Rotate the camera by a given amount around the z axis. The amount
     * should be provided in degrees.
-    * @function Entity.Camera.rotateZ
+    * @function Entity.Structure.Camera.rotateZ
     * @param {number} rotation - Rotation in degrees around the z axis.
     * @returns {undefined}
     */
@@ -224,7 +224,7 @@ class Camera extends Structure
 
    /**
     * Translate the camera by the given vector.
-    * @function Entity.Camera.translate
+    * @function Entity.Structure.Camera.translate
     * @param {number} translateX - Translation along the x axis.
     * @param {number} translateY - Translation along the y axis.
     * @param {number} translateZ - Translation along the z axis.
@@ -240,7 +240,7 @@ class Camera extends Structure
    /**
     * Translate the camera by the given number of units along
     * the x axis.
-    * @function Entity.Camera.translateX
+    * @function Entity.Structure.Camera.translateX
     * @param {number} translation - Translation along the x axis.
     * @returns {undefined}
     */
@@ -252,7 +252,7 @@ class Camera extends Structure
    /**
     * Translate the camera by the given number of units along
     * the y axis.
-    * @function Entity.Camera.translateY
+    * @function Entity.Structure.Camera.translateY
     * @param {number} translation - Translation along the y axis.
     * @returns {undefined}
     */
@@ -264,7 +264,7 @@ class Camera extends Structure
    /**
     * Translate the camera by the given number of units along
     * the z axis.
-    * @function Entity.Camera.translateZ
+    * @function Entity.Structure.Camera.translateZ
     * @param {number} translation - Translation along the z axis.
     * @returns {undefined}
     */

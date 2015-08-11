@@ -7,7 +7,7 @@ const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f intensity
 const _direction = [0, 0, 0];
 
 /**
- * A directional light is a structure concept. It is therefore a light source to illuminate the scene.
+ * A directional light radiates light in a specific direction.
  * @class DirectionalLight
  * @name Entity.Structure.Light.DirectionalLight
  * @extends Entity.Structure.Light

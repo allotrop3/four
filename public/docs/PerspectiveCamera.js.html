@@ -45,8 +45,8 @@ const _up = [0, 1, 0];
 /**
  * An perspective camera produces a three dimensional projection into framebuffers.
  * @class PerspectiveCamera
- * @name Entity.Camera.PerspectiveCamera
- * @extends Entity.Camera
+ * @name Entity.Structure.Camera.PerspectiveCamera
+ * @extends Entity.Structure.Camera
  * @param {string} [name=perspective.camera] - Specifies the entities friendly name.
  * @param {Entity.Program} program - Specifies the program in which the camera used.
  * @param {string} [path=camera] - Specifies the uniform structure path to the generic uniforms.
@@ -69,56 +69,56 @@ class PerspectiveCamera extends Camera
 
       /**
        * The projection width. The initial value is set to the width of the canvas.
-       * @var {number} [Entity.Camera.PerspectiveCamera.width=gl.canvas.width]
+       * @var {number} [Entity.Structure.Camera.PerspectiveCamera.width=gl.canvas.width]
        */
       this.width = width;
 
        /**
        * The projection height. The initial value is set to the height of the canvas.
-       * @var {number} [Entity.Camera.PerspectiveCamera.height=gl.canvas.height]
+       * @var {number} [Entity.Structure.Camera.PerspectiveCamera.height=gl.canvas.height]
        */
       this.height = height;
 
       /**
        * The field of view of the projection.
-       * @var {number} [Entity.Camera.PerspectiveCamera.fov=45]
+       * @var {number} [Entity.Structure.Camera.PerspectiveCamera.fov=45]
        */
       this.fov = fov;
 
       /**
        * The aspect ratio of the projection. This is calculated by dividing the width
        * of the projection by its height.
-       * @var {number} [Entity.Camera.PerspectiveCamera.ratio=gl.canvas.width/gl.canvas.height]
+       * @var {number} [Entity.Structure.Camera.PerspectiveCamera.ratio=gl.canvas.width/gl.canvas.height]
        */
       this.ratio = width / height;
 
       /**
        * Specifies the front most boundary of the projection.
-       * @var {number} [Entity.Camera.PerspectiveCamera.near=0.1]
+       * @var {number} [Entity.Structure.Camera.PerspectiveCamera.near=0.1]
        */
       this.near = near;
 
       /**
        * Specifies the back most boundary of the projection.
-       * @var {number} [Entity.Camera.PerspectiveCamera.far=1000]
+       * @var {number} [Entity.Structure.Camera.PerspectiveCamera.far=1000]
        */
       this.far = far;
 
       /**
        * The position at which the projection is aimed.
-       * @var {vec3} [Entity.Camera.PerspectiveCamera.direction=[0, 0, 0]]
+       * @var {vec3} [Entity.Structure.Camera.PerspectiveCamera.direction=[0, 0, 0]]
        */
       this.direction = direction;
 
       /**
        * The position of the projection.
-       * @var {vec3} Entity.Camera.PerspectiveCamera.location
+       * @var {vec3} Entity.Structure.Camera.PerspectiveCamera.location
        */
       this.location = location;
 
       /**
        * The orientation of the projection.
-       * @var {vec3} [Entity.Camera.PerspectiveCamera.up=[0, 1, 0]]
+       * @var {vec3} [Entity.Structure.Camera.PerspectiveCamera.up=[0, 1, 0]]
        */
       this.up = up;
 
@@ -129,7 +129,7 @@ class PerspectiveCamera extends Camera
     * Generates a perspective projection matrix with the given bounds;
     * initialises the modelview matrix to an identity matrix and subsequently
     * computes a look-at matrix with the given eye position, focal point, and up axis.
-    * @function Entity.Camera.PerspectiveCamera.configure
+    * @function Entity.Structure.Camera.PerspectiveCamera.configure
     * @returns {undefined}
     */
    configure()
@@ -150,7 +150,7 @@ class PerspectiveCamera extends Camera
     * Specify the value of the uniform variables for the current program object;
     * enable depth testing and set the viewport boundaries with the given
     * bounds.
-    * @function Entity.Camera.PerspectiveCamera.bind
+    * @function Entity.Structure.Camera.PerspectiveCamera.bind
     * @returns {undefined}
     */
    bind()
@@ -173,13 +173,13 @@ module.exports = PerspectiveCamera;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Entity.html">Entity</a></li><li><a href="Entity.Attribute.html">Attribute</a></li><li><a href="Entity.Camera.html">Camera</a></li><li><a href="Entity.Camera.OrthographicCamera.html">OrthographicCamera</a></li><li><a href="Entity.Camera.PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="Entity.Fluid.html">Fluid</a></li><li><a href="Entity.Framebuffer.html">Framebuffer</a></li><li><a href="Entity.Framebuffer.DeferredFramebuffer.html">DeferredFramebuffer</a></li><li><a href="Entity.Mesh.html">Mesh</a></li><li><a href="Entity.MeshLoader.html">MeshLoader</a></li><li><a href="Entity.MeshLoader.OBJMeshLoader.html">OBJMeshLoader</a></li><li><a href="Entity.Program.html">Program</a></li><li><a href="Entity.Renderbuffer.html">Renderbuffer</a></li><li><a href="Entity.Renderer.html">Renderer</a></li><li><a href="Entity.Shader.html">Shader</a></li><li><a href="Entity.Shader.FragmentShader.html">FragmentShader</a></li><li><a href="Entity.Shader.VertexShader.html">VertexShader</a></li><li><a href="Entity.Structure.html">Structure</a></li><li><a href="Entity.Structure.Light.html">Light</a></li><li><a href="Entity.Structure.Light.DirectionalLight.html">DirectionalLight</a></li><li><a href="Entity.Structure.Light.PointLight.html">PointLight</a></li><li><a href="Entity.Structure.Light.SpotLight.html">SpotLight</a></li><li><a href="Entity.Structure.Material.html">Material</a></li><li><a href="Entity.Structure.Material.PhongMaterial.html">PhongMaterial</a></li><li><a href="Entity.Texture.html">Texture</a></li><li><a href="Entity.Texture.DataTexture.html">DataTexture</a></li><li><a href="Entity.Texture.ImageTexture.html">ImageTexture</a></li><li><a href="Entity.Uniform.html">Uniform</a></li><li><a href="Entity.VertexArrayObject.html">VertexArrayObject</a></li></ul><h3>Global</h3><ul><li><a href="global.html#uniform">uniform</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Entity.html">Entity</a></li><li><a href="Entity.Attribute.html">Attribute</a></li><li><a href="Entity.Fluid.html">Fluid</a></li><li><a href="Entity.Framebuffer.html">Framebuffer</a></li><li><a href="Entity.Framebuffer.DeferredFramebuffer.html">DeferredFramebuffer</a></li><li><a href="Entity.Mesh.html">Mesh</a></li><li><a href="Entity.MeshLoader.html">MeshLoader</a></li><li><a href="Entity.MeshLoader.OBJMeshLoader.html">OBJMeshLoader</a></li><li><a href="Entity.Program.html">Program</a></li><li><a href="Entity.Renderbuffer.html">Renderbuffer</a></li><li><a href="Entity.Renderer.html">Renderer</a></li><li><a href="Entity.Shader.html">Shader</a></li><li><a href="Entity.Shader.FragmentShader.html">FragmentShader</a></li><li><a href="Entity.Shader.VertexShader.html">VertexShader</a></li><li><a href="Entity.Structure.html">Structure</a></li><li><a href="Entity.Structure.Camera.html">Camera</a></li><li><a href="Entity.Structure.Camera.OrthographicCamera.html">OrthographicCamera</a></li><li><a href="Entity.Structure.Camera.PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="Entity.Structure.Light.html">Light</a></li><li><a href="Entity.Structure.Light.DirectionalLight.html">DirectionalLight</a></li><li><a href="Entity.Structure.Light.PointLight.html">PointLight</a></li><li><a href="Entity.Structure.Light.SpotLight.html">SpotLight</a></li><li><a href="Entity.Structure.Material.html">Material</a></li><li><a href="Entity.Structure.Material.PhongMaterial.html">PhongMaterial</a></li><li><a href="Entity.Texture.html">Texture</a></li><li><a href="Entity.Texture.DataTexture.html">DataTexture</a></li><li><a href="Entity.Texture.ImageTexture.html">ImageTexture</a></li><li><a href="Entity.Uniform.html">Uniform</a></li><li><a href="Entity.VertexArrayObject.html">VertexArrayObject</a></li></ul><h3>Global</h3><ul><li><a href="global.html#uniform">uniform</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 22:34:20 GMT+0100 (BST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 22:59:54 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>

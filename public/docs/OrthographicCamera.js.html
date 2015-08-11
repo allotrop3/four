@@ -42,8 +42,8 @@ const _far = 1;
 /**
  * An orthographic camera produces a two dimensional projection into framebuffers.
  * @class OrthographicCamera
- * @name Entity.Camera.OrthographicCamera
- * @extends Entity.Camera
+ * @name Entity.Structure.Camera.OrthographicCamera
+ * @extends Entity.Structure.Camera
  * @param {string} [name=orthographic.camera] - Specifies the entities friendly name.
  * @param {Entity.Program} program - Specifies the program in which the camera used.
  * @param {string} [path=camera] - Specifies the uniform structure path to the generic uniforms.
@@ -64,37 +64,37 @@ class OrthographicCamera extends Camera
 
       /**
        * The left most boundary of the projection.
-       * @var {number} [Entity.Camera.OrthographicCamera.left=-1]
+       * @var {number} [Entity.Structure.Camera.OrthographicCamera.left=-1]
        */
       this.left = left;
 
       /**
        * The right most boundary of the projection.
-       * @var {number} Entity.Camera.OrthographicCamera.right
+       * @var {number} Entity.Structure.Camera.OrthographicCamera.right
        */
       this.right = right;
 
       /**
        * The bottom most boundary of the projection.
-       * @var {number} Entity.Camera.OrthographicCamera.bottom
+       * @var {number} Entity.Structure.Camera.OrthographicCamera.bottom
        */
       this.bottom = bottom;
 
       /**
        * The top most boundary of the projection.
-       * @var {number} [Entity.Camera.OrthographicCamera.top=-1]
+       * @var {number} [Entity.Structure.Camera.OrthographicCamera.top=-1]
        */
       this.top = top;
 
       /**
        * Specifies the front most boundary of the projection.
-       * @var {number} [Entity.Camera.OrthographicCamera.near=0.1]
+       * @var {number} [Entity.Structure.Camera.OrthographicCamera.near=0.1]
        */
       this.near = near;
 
       /**
        * The back most boundary of the projection.
-       * @var {number} [Entity.Camera.OrthographicCamera.far=1]
+       * @var {number} [Entity.Structure.Camera.OrthographicCamera.far=1]
        */
       this.far = far;
 
@@ -104,7 +104,7 @@ class OrthographicCamera extends Camera
    /**
     * Generates an orthogonal projection matrix with the given bounds and
     * initialises the modelview matrix to an identity matrix.
-    * @function Entity.Camera.OrthographicCamera.configure
+    * @function Entity.Structure.Camera.OrthographicCamera.configure
     * @returns {undefined}
     */
    configure()
@@ -119,7 +119,7 @@ class OrthographicCamera extends Camera
     * Specify the value of the uniform variables for the current program object;
     * disable depth testing and set the viewport boundaries with the given
     * bounds.
-    * @function Entity.Camera.OrthographicCamera.bind
+    * @function Entity.Structure.Camera.OrthographicCamera.bind
     * @returns {undefined}
     */
    bind()
@@ -142,13 +142,13 @@ module.exports = OrthographicCamera;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Entity.html">Entity</a></li><li><a href="Entity.Attribute.html">Attribute</a></li><li><a href="Entity.Camera.html">Camera</a></li><li><a href="Entity.Camera.OrthographicCamera.html">OrthographicCamera</a></li><li><a href="Entity.Camera.PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="Entity.Fluid.html">Fluid</a></li><li><a href="Entity.Framebuffer.html">Framebuffer</a></li><li><a href="Entity.Framebuffer.DeferredFramebuffer.html">DeferredFramebuffer</a></li><li><a href="Entity.Mesh.html">Mesh</a></li><li><a href="Entity.MeshLoader.html">MeshLoader</a></li><li><a href="Entity.MeshLoader.OBJMeshLoader.html">OBJMeshLoader</a></li><li><a href="Entity.Program.html">Program</a></li><li><a href="Entity.Renderbuffer.html">Renderbuffer</a></li><li><a href="Entity.Renderer.html">Renderer</a></li><li><a href="Entity.Shader.html">Shader</a></li><li><a href="Entity.Shader.FragmentShader.html">FragmentShader</a></li><li><a href="Entity.Shader.VertexShader.html">VertexShader</a></li><li><a href="Entity.Structure.html">Structure</a></li><li><a href="Entity.Structure.Light.html">Light</a></li><li><a href="Entity.Structure.Light.DirectionalLight.html">DirectionalLight</a></li><li><a href="Entity.Structure.Light.PointLight.html">PointLight</a></li><li><a href="Entity.Structure.Light.SpotLight.html">SpotLight</a></li><li><a href="Entity.Structure.Material.html">Material</a></li><li><a href="Entity.Structure.Material.PhongMaterial.html">PhongMaterial</a></li><li><a href="Entity.Texture.html">Texture</a></li><li><a href="Entity.Texture.DataTexture.html">DataTexture</a></li><li><a href="Entity.Texture.ImageTexture.html">ImageTexture</a></li><li><a href="Entity.Uniform.html">Uniform</a></li><li><a href="Entity.VertexArrayObject.html">VertexArrayObject</a></li></ul><h3>Global</h3><ul><li><a href="global.html#uniform">uniform</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Entity.html">Entity</a></li><li><a href="Entity.Attribute.html">Attribute</a></li><li><a href="Entity.Fluid.html">Fluid</a></li><li><a href="Entity.Framebuffer.html">Framebuffer</a></li><li><a href="Entity.Framebuffer.DeferredFramebuffer.html">DeferredFramebuffer</a></li><li><a href="Entity.Mesh.html">Mesh</a></li><li><a href="Entity.MeshLoader.html">MeshLoader</a></li><li><a href="Entity.MeshLoader.OBJMeshLoader.html">OBJMeshLoader</a></li><li><a href="Entity.Program.html">Program</a></li><li><a href="Entity.Renderbuffer.html">Renderbuffer</a></li><li><a href="Entity.Renderer.html">Renderer</a></li><li><a href="Entity.Shader.html">Shader</a></li><li><a href="Entity.Shader.FragmentShader.html">FragmentShader</a></li><li><a href="Entity.Shader.VertexShader.html">VertexShader</a></li><li><a href="Entity.Structure.html">Structure</a></li><li><a href="Entity.Structure.Camera.html">Camera</a></li><li><a href="Entity.Structure.Camera.OrthographicCamera.html">OrthographicCamera</a></li><li><a href="Entity.Structure.Camera.PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="Entity.Structure.Light.html">Light</a></li><li><a href="Entity.Structure.Light.DirectionalLight.html">DirectionalLight</a></li><li><a href="Entity.Structure.Light.PointLight.html">PointLight</a></li><li><a href="Entity.Structure.Light.SpotLight.html">SpotLight</a></li><li><a href="Entity.Structure.Material.html">Material</a></li><li><a href="Entity.Structure.Material.PhongMaterial.html">PhongMaterial</a></li><li><a href="Entity.Texture.html">Texture</a></li><li><a href="Entity.Texture.DataTexture.html">DataTexture</a></li><li><a href="Entity.Texture.ImageTexture.html">ImageTexture</a></li><li><a href="Entity.Uniform.html">Uniform</a></li><li><a href="Entity.VertexArrayObject.html">VertexArrayObject</a></li></ul><h3>Global</h3><ul><li><a href="global.html#uniform">uniform</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 22:34:20 GMT+0100 (BST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 22:59:54 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>

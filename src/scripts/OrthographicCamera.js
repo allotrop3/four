@@ -14,8 +14,8 @@ const _far = 1;
 /**
  * An orthographic camera produces a two dimensional projection into framebuffers.
  * @class OrthographicCamera
- * @name Entity.Camera.OrthographicCamera
- * @extends Entity.Camera
+ * @name Entity.Structure.Camera.OrthographicCamera
+ * @extends Entity.Structure.Camera
  * @param {string} [name=orthographic.camera] - Specifies the entities friendly name.
  * @param {Entity.Program} program - Specifies the program in which the camera used.
  * @param {string} [path=camera] - Specifies the uniform structure path to the generic uniforms.
@@ -36,37 +36,37 @@ class OrthographicCamera extends Camera
 
       /**
        * The left most boundary of the projection.
-       * @var {number} [Entity.Camera.OrthographicCamera.left=-1]
+       * @var {number} [Entity.Structure.Camera.OrthographicCamera.left=-1]
        */
       this.left = left;
 
       /**
        * The right most boundary of the projection.
-       * @var {number} Entity.Camera.OrthographicCamera.right
+       * @var {number} Entity.Structure.Camera.OrthographicCamera.right
        */
       this.right = right;
 
       /**
        * The bottom most boundary of the projection.
-       * @var {number} Entity.Camera.OrthographicCamera.bottom
+       * @var {number} Entity.Structure.Camera.OrthographicCamera.bottom
        */
       this.bottom = bottom;
 
       /**
        * The top most boundary of the projection.
-       * @var {number} [Entity.Camera.OrthographicCamera.top=-1]
+       * @var {number} [Entity.Structure.Camera.OrthographicCamera.top=-1]
        */
       this.top = top;
 
       /**
        * Specifies the front most boundary of the projection.
-       * @var {number} [Entity.Camera.OrthographicCamera.near=0.1]
+       * @var {number} [Entity.Structure.Camera.OrthographicCamera.near=0.1]
        */
       this.near = near;
 
       /**
        * The back most boundary of the projection.
-       * @var {number} [Entity.Camera.OrthographicCamera.far=1]
+       * @var {number} [Entity.Structure.Camera.OrthographicCamera.far=1]
        */
       this.far = far;
 
@@ -76,7 +76,7 @@ class OrthographicCamera extends Camera
    /**
     * Generates an orthogonal projection matrix with the given bounds and
     * initialises the modelview matrix to an identity matrix.
-    * @function Entity.Camera.OrthographicCamera.configure
+    * @function Entity.Structure.Camera.OrthographicCamera.configure
     * @returns {undefined}
     */
    configure()
@@ -91,7 +91,7 @@ class OrthographicCamera extends Camera
     * Specify the value of the uniform variables for the current program object;
     * disable depth testing and set the viewport boundaries with the given
     * bounds.
-    * @function Entity.Camera.OrthographicCamera.bind
+    * @function Entity.Structure.Camera.OrthographicCamera.bind
     * @returns {undefined}
     */
    bind()
