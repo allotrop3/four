@@ -18,7 +18,7 @@ function main()
    var planeVao = new FOUR.VertexArrayObject({ program: program, attributes: ['vec3 position', 'vec3 normal'] });
 
    material = new FOUR.PhongMaterial({ program: program, ambient: [0.5, 0.5, 0.5], diffuse: [0.2, 0.2, 0.2], specular: [0.2, 0.2, 0.2], shininess: 1 });
-   pointLight = new FOUR.PointLight({ program: program, ambient: [0, 0, 0], diffuse: [1, 1, 1], specular: [1, 1, 1], location: [10, 15, 10], coefficient: 0.025, linear: 0.0025, quadratic: 0.00025 });
+   pointLight = new FOUR.PointLight({ program: program, ambient: [0, 0, 0], diffuse: [1, 1, 1], specular: [1, 1, 1], fade: [0.025, 0.0025, 0.00025], location: [10, 15, 10] });
 
    view = new FOUR.Framebuffer();
 

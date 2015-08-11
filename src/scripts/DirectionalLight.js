@@ -12,7 +12,7 @@ const _direction = [0, 0, 0];
  * @name Entity.Structure.Light.DirectionalLight
  * @extends Entity.Structure.Light
  * @param {string} [name=directional.light] - Specifies the entities friendly name.
- * @param {Entity.Program} Specifies the program in which the uniforms should be located.
+ * @param {Entity.Program} program - Specifies the program in which the uniforms should be located.
  * @param {vec3} ambient - Specifies the ambient component of the light source.
  * @param {vec3} diffuse - Specifies the diffuse component of the light source.
  * @param {vec3} specular - Specifies the specular component of the light source.

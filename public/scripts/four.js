@@ -5413,7 +5413,7 @@ THE SOFTWARE. */
          * @name Entity.Structure.Light.DirectionalLight
          * @extends Entity.Structure.Light
          * @param {string} [name=directional.light] - Specifies the entities friendly name.
-         * @param {Entity.Program} Specifies the program in which the uniforms should be located.
+         * @param {Entity.Program} program - Specifies the program in which the uniforms should be located.
          * @param {vec3} ambient - Specifies the ambient component of the light source.
          * @param {vec3} diffuse - Specifies the diffuse component of the light source.
          * @param {vec3} specular - Specifies the specular component of the light source.
@@ -5817,7 +5817,7 @@ THE SOFTWARE. */
          * @name Entity.Structure.Light
          * @extends Entity.Structure
          * @param {string} [name=light] - Specifies the entities friendly name.
-         * @param {Entity.Program} Specifies the program in which the uniforms should be located.
+         * @param {Entity.Program} program - Specifies the program in which the uniforms should be located.
          * @param {vec3} ambient - Specifies the ambient component of the light source.
          * @param {vec3} diffuse - Specifies the diffuse component of the light source.
          * @param {vec3} specular - Specifies the specular component of the light source.
@@ -6694,22 +6694,22 @@ THE SOFTWARE. */
         'use strict';
         var Light = require('./Light');
         var _name = 'point.light';
-        var _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f coefficient', 'f linear', 'f quadratic', 'f intensity', 'vec3 location'];
+        var _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'vec3 fade', 'vec3 location'];
         /**
-         * PointLight is a local light source to illuminate an area of the scene
+         * A point light is a structure concept. It is therefore a light source to illuminate the scene.
          * @class PointLight
          * @name Entity.Structure.Light.PointLight
          * @extends Entity.Structure.Light
-         * @param {string} [name=point.light] - Instance name
-         * @param {Entity.Program} program - Uniforms' program
-         * @param {vec3} ambient - Ambient component
-         * @param {vec3} diffuse - Diffuse component
+         * @param {string} [name=point.light] - Specifies the entities friendly name.
+         * @param {Entity.Program} program - Specifies the program in which the uniforms should be located.
+         * @param {vec3} ambient - Specifies the ambient component of the light source.
+         * @param {vec3} diffuse - Specifies the diffuse component of the light source.
+         * @param {vec3} specular - Specifies the specular component of the light source.
          * @param {vec3} specular - Specular component
-         * @param {vec3} coefficient - Coefficient component
-         * @param {vec3} linear - Linear component
-         * @param {vec3} quadratic - Quadratic component
-         * @param {number} [intensity=1] - Light intensity
-         * @param {vec3} [location=[0, 0, 0]] - Light position
+         * @param {vec3} fade - Specifies the coefficient, linear and quadratic elements of the light source.
+         * @param {number} [intensity=1] - Specifies the intensity of the light source.
+         * @param {vec3} [location=[0, 0, 0]] - Specifies the location of the light source.
+         * @param {vec3} [direction=[0, 0, 0]] - Specifies the position at which the light aimed.
          */
         var PointLight = (function(_Light2) {
             _inherits(PointLight, _Light2);
@@ -6724,9 +6724,7 @@ THE SOFTWARE. */
                 var ambient = _ref20.ambient;
                 var diffuse = _ref20.diffuse;
                 var specular = _ref20.specular;
-                var coefficient = _ref20.coefficient;
-                var linear = _ref20.linear;
-                var quadratic = _ref20.quadratic;
+                var fade = _ref20.fade;
                 var intensity = _ref20.intensity;
                 var location = _ref20.location;
                 _classCallCheck(this, PointLight);
@@ -6741,23 +6739,10 @@ THE SOFTWARE. */
                     location: location
                 });
                 /**
-                 * Coefficient component
-                 * @var {vec3} Entity.Structure.Light.PointLight.coefficient
-                 * @private
+                 * The coefficient, linear and quadratic elements of the light source.
+                 * @var {number} Entity.Structure.Light.PointLight.fade
                  */
-                this.coefficient = coefficient;
-                /**
-                 * Linear component
-                 * @var {vec3} Entity.Structure.Light.PointLight.linear
-                 * @private
-                 */
-                this.linear = linear;
-                /**
-                 * Quadratic component
-                 * @var {vec3} Entity.Structure.Light.PointLight.quadratic
-                 * @private
-                 */
-                this.quadratic = quadratic;
+                this.fade = fade;
             }
             return PointLight;
         })(Light);
