@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Uniform.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Uniform.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+let Entity = require('./Entity');
+let gl = require('./gl');
+
+const formats = {
+   i: '1i',
+   ivec2: '2iv',
+   ivec3: '3iv',
+   ivec4: '4iv',
+   f: '1f',
+   vec2: '2fv',
+   vec3: '3fv',
+   vec4: '4fv',
+   mat2: 'Matrix2fv',
+   mat3: 'Matrix3fv',
+   mat4: 'Matrix4fv'
+};
+
+const _name = 'uniform';
+
+/**
+ * Uniform is a wrapper on shader WebGLUniformLocation uniforms.
+ * Supported types include i, vec2i, vec3i, vec4i, f, vec2f, vec3f
+ * vec4f, mat2, mat3, and mat4
+ * @class Uniform
+ * @name Entity.Uniform
+ * @extends Entity
+ * @param {string} [name=program] - Instance name
+ * @param {string} [path] - Struct path to uniform
+ * @param {Entity.Program} program - Program in which the shader uniform is used
+ * @param {string} uniform - Shader variable name
+ * @param {number} format - Component data format
+ */
+class Uniform extends Entity
+{
+   constructor({ name = _name, program, path, uniform, format } = {})
+   {
+      super({ name });
+
+      /**
+       * Shader variable name
+       * @var {string} [uniform] - Shader uniform
+       * @private
+       */
+      this.path = path;
+
+      /**
+       * Shader variable name
+       * @var {string} Entity.Uniform.uniform - Shader uniform
+       * @private
+       */
+      this.uniform = uniform;
+
+      /**
+       * Shader uniform location
+       * @var {WebGLUniformLocation} [Entity.Uniform.location=WebGLUniformLocation]
+       * @private
+       */
+      this.location = this.from(program);
+
+      /**
+       * Uniform setter method
+       * @var {string} [Entity.Uniform.location=uniform${format}]
+       * @private
+       */
+      this.method = `uniform${formats[format]}`;
+   }
+
+   /**
+    * Set shader uniform value
+    * @function Entity.Uniform.set
+    * @param {*} value - Shader uniform value
+    * @returns {undefined}
+    */
+   set(value)
+   {
+      let location = this.location;
+      let method = this.method;
+      let setter = gl[this.method].bind(gl, this.location);
+
+      if (method.match('Matrix') !== null)
+      {
+         setter(false, value);
+      }
+      else
+      {
+         setter(value);
+      }
+   }
+
+   /**
+    * Locate the shader uniform from within the given program
+    * @function Entity.Uniform.from
+    * @param {Entity.Program} program - Program in which the shader uniform is used
+    * @returns {object|WebGLUniformLocation}
+    */
+    from(program)
+    {
+       let uniform = [this.path, this.uniform].join('.');
+
+       return gl.getUniformLocation(program.buffer, `u_${uniform}`);
+    }
+}
+
+module.exports = Uniform;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Entity.html">Entity</a></li><li><a href="Entity.Attribute.html">Attribute</a></li><li><a href="Entity.Camera.html">Camera</a></li><li><a href="Entity.Camera.OrthographicCamera.html">OrthographicCamera</a></li><li><a href="Entity.Camera.PerspectiveCamera.html">PerspectiveCamera</a></li><li><a href="Entity.Fluid.html">Fluid</a></li><li><a href="Entity.Framebuffer.html">Framebuffer</a></li><li><a href="Entity.Framebuffer.DeferredFramebuffer.html">DeferredFramebuffer</a></li><li><a href="Entity.Mesh.html">Mesh</a></li><li><a href="Entity.MeshLoader.html">MeshLoader</a></li><li><a href="Entity.MeshLoader.OBJMeshLoader.html">OBJMeshLoader</a></li><li><a href="Entity.Program.html">Program</a></li><li><a href="Entity.Renderbuffer.html">Renderbuffer</a></li><li><a href="Entity.Renderer.html">Renderer</a></li><li><a href="Entity.Shader.html">Shader</a></li><li><a href="Entity.Shader.FragmentShader.html">FragmentShader</a></li><li><a href="Entity.Shader.VertexShader.html">VertexShader</a></li><li><a href="Entity.Structure.html">Structure</a></li><li><a href="Entity.Structure.Light.html">Light</a></li><li><a href="Entity.Structure.Light.DirectionalLight.html">DirectionalLight</a></li><li><a href="Entity.Structure.Light.PointLight.html">PointLight</a></li><li><a href="Entity.Structure.Light.SpotLight.html">SpotLight</a></li><li><a href="Entity.Structure.Material.html">Material</a></li><li><a href="Entity.Structure.Material.PhongMaterial.html">PhongMaterial</a></li><li><a href="Entity.Texture.html">Texture</a></li><li><a href="Entity.Texture.DataTexture.html">DataTexture</a></li><li><a href="Entity.Texture.ImageTexture.html">ImageTexture</a></li><li><a href="Entity.Uniform.html">Uniform</a></li><li><a href="Entity.VertexArrayObject.html">VertexArrayObject</a></li></ul><h3>Global</h3><ul><li><a href="global.html#uniform">uniform</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 21:31:01 GMT+0100 (BST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

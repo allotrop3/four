@@ -7,7 +7,8 @@ module.exports = function(grunt)
          cache: './.tmp/scripts/four.js',
          concatenated: './public/scripts/four.js',
          minified: './public/scripts/four.min.js',
-         docs: './public/docs'
+         docs: './public/docs',
+         jsdocconf: './jsdoc.conf.json'
       },
       browserify: {
          dist: {
@@ -44,10 +45,11 @@ module.exports = function(grunt)
       },
       jsdoc: {
          dist: {
-            src: '<%= config.concatenated %>',
+            src: '<%= config.source %>',
             options: {
                destination: '<%= config.docs %>',
-               ignoreWarnings: true
+               ignoreWarnings: true,
+               configure: '<%= config.jsdocconf %>'
             }
          }
       },
