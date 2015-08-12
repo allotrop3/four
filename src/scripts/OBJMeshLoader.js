@@ -2,6 +2,8 @@
 
 let MeshLoader = require('./MeshLoader');
 
+const _name = 'obj.mesh.loader';
+
 /**
  * An OBJ mesh loader is a .obj file parser that extracts the collections of vertices
  * and faces that define a shape. It may also include data to shade the mesh, such as
@@ -14,7 +16,7 @@ let MeshLoader = require('./MeshLoader');
  */
 class OBJMeshLoader extends MeshLoader
 {
-   constructor({ name = 'obj.mesh.loader', path } = {})
+   constructor({ name = _name, path } = {})
    {
       super({ name, path });
    }

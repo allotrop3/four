@@ -6,7 +6,7 @@
  * @author Jason Petersen
  * @version 0.0.0
  */
-var FOUR = {
+let FOUR = {
    glm: require('gl-matrix'),
    gl: require('./gl'),
    Entity: require('./Entity'),

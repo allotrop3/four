@@ -159,7 +159,7 @@ thereby configuring projections into framebuffers or output display.</p>
                 </td>
             
 
-            <td class="description last"><p>Specifies the program in which the camera used.</p></td>
+            <td class="description last"><p>Specifies the program in which the camera is used.</p></td>
         </tr>
 
     
@@ -198,7 +198,7 @@ thereby configuring projections into framebuffers or output display.</p>
                 </td>
             
 
-            <td class="description last"><p>Specifies the uniform structure path to the generic uniforms.</p></td>
+            <td class="description last"><p>Specifies the shader <code>struct</code> path to the uniforms, if required.</p></td>
         </tr>
 
     
@@ -237,7 +237,9 @@ thereby configuring projections into framebuffers or output display.</p>
                 </td>
             
 
-            <td class="description last"><p>Specifies the formats and names of the generic uniforms as used in the shader.</p></td>
+            <td class="description last"><p>Specifies the uniform variables
+as is declared in the shader. The names imply the <code>u_</code> namespace is used as per the uniform variable naming convention. If a
+<code>struct</code> path is defined, the <code>u_</code> namespace is implied on this instead.</p></td>
         </tr>
 
     
@@ -441,7 +443,7 @@ thereby configuring projections into framebuffers or output display.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line58">line 58</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line60">line 60</a>
     </li></ul></dd>
     
 
@@ -519,7 +521,7 @@ which transform object space coordinates into eye space coordinates.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line64">line 64</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line66">line 66</a>
     </li></ul></dd>
     
 
@@ -598,7 +600,7 @@ transformation of its governing mesh.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line78">line 78</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -676,7 +678,7 @@ to transform eye space coordinates into clip coordinates.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line71">line 71</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line73">line 73</a>
     </li></ul></dd>
     
 
@@ -753,7 +755,7 @@ to transform eye space coordinates into clip coordinates.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line86">line 86</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line88">line 88</a>
     </li></ul></dd>
     
 
@@ -831,7 +833,7 @@ to transform eye space coordinates into clip coordinates.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line107">line 107</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line109">line 109</a>
     </li></ul></dd>
     
 
@@ -931,7 +933,7 @@ to transform eye space coordinates into clip coordinates.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line93">line 93</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line95">line 95</a>
     </li></ul></dd>
     
 
@@ -1032,7 +1034,7 @@ transformation stack.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line133">line 133</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line135">line 135</a>
     </li></ul></dd>
     
 
@@ -1238,7 +1240,7 @@ The inital value is the y axis.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line203">line 203</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line205">line 205</a>
     </li></ul></dd>
     
 
@@ -1388,7 +1390,7 @@ should be provided in degrees.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line223">line 223</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line225">line 225</a>
     </li></ul></dd>
     
 
@@ -1538,7 +1540,7 @@ should be provided in degrees.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line236">line 236</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line238">line 238</a>
     </li></ul></dd>
     
 
@@ -1688,7 +1690,7 @@ should be provided in degrees.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line249">line 249</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line251">line 251</a>
     </li></ul></dd>
     
 
@@ -1788,7 +1790,7 @@ should be provided in degrees.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line120">line 120</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line122">line 122</a>
     </li></ul></dd>
     
 
@@ -1983,7 +1985,7 @@ should be provided in degrees.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line151">line 151</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line153">line 153</a>
     </li></ul></dd>
     
 
@@ -2132,7 +2134,7 @@ should be provided in degrees.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line167">line 167</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line169">line 169</a>
     </li></ul></dd>
     
 
@@ -2281,7 +2283,7 @@ should be provided in degrees.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line179">line 179</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line181">line 181</a>
     </li></ul></dd>
     
 
@@ -2430,7 +2432,7 @@ should be provided in degrees.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line191">line 191</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line193">line 193</a>
     </li></ul></dd>
     
 
@@ -2625,7 +2627,7 @@ should be provided in degrees.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line262">line 262</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line264">line 264</a>
     </li></ul></dd>
     
 
@@ -2775,7 +2777,7 @@ the x axis.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line278">line 278</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line280">line 280</a>
     </li></ul></dd>
     
 
@@ -2925,7 +2927,7 @@ the y axis.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line291">line 291</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line293">line 293</a>
     </li></ul></dd>
     
 
@@ -3075,7 +3077,7 @@ the z axis.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line304">line 304</a>
+        <a href="Camera.js.html">Camera.js</a>, <a href="Camera.js.html#line306">line 306</a>
     </li></ul></dd>
     
 
@@ -3141,7 +3143,7 @@ the z axis.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 11 2015 22:59:55 GMT+0100 (BST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Wed Aug 12 2015 10:28:45 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>

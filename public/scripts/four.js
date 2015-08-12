@@ -4947,9 +4947,11 @@ THE SOFTWARE. */
          * @name Entity.Structure.Camera
          * @extends Entity
          * @param {string} [name=camera] - Specifies the entities friendly name.
-         * @param {string} program - Specifies the program in which the camera used.
-         * @param {string} [path=camera] - Specifies the uniform structure path to the generic uniforms.
-         * @param {Array} [uniforms=['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix']] - Specifies the formats and names of the generic uniforms as used in the shader.
+         * @param {string} program - Specifies the program in which the camera is used.
+         * @param {string} [path=camera] - Specifies the shader `struct` path to the uniforms, if required.
+         * @param {Array} [uniforms=['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix']] - Specifies the uniform variables
+         * as is declared in the shader. The names imply the `u_` namespace is used as per the uniform variable naming convention. If a
+         * `struct` path is defined, the `u_` namespace is implied on this instead.
          * @param {vec4} [background=[0, 0, 0, 1]] - Specifies the clear value for the color buffers.
          */
         var Camera = (function(_Structure) {
@@ -5414,6 +5416,10 @@ THE SOFTWARE. */
          * @extends Entity.Structure.Light
          * @param {string} [name=directional.light] - Specifies the entities friendly name.
          * @param {Entity.Program} program - Specifies the program in which the uniforms should be located.
+         * @param {string} [path=light] - Specifies the shader `struct` path to the uniforms, if required.
+         * @param {Array} [uniforms=['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f intensity', 'vec3 location', 'vec3 direction']] - Specifies the uniform variables
+         * as is declared in the shader. The names imply the `u_` namespace is used as per the uniform variable naming convention. If a `struct` path is defined, the
+         * `u_` namespace is implied on this instead.
          * @param {vec3} ambient - Specifies the ambient component of the light source.
          * @param {vec3} diffuse - Specifies the diffuse component of the light source.
          * @param {vec3} specular - Specifies the specular component of the light source.
@@ -5429,6 +5435,7 @@ THE SOFTWARE. */
                 var _ref5$name = _ref5.name;
                 var name = _ref5$name === undefined ? _name : _ref5$name;
                 var program = _ref5.program;
+                var path = _ref5.path;
                 var _ref5$uniforms = _ref5.uniforms;
                 var uniforms = _ref5$uniforms === undefined ? _uniforms : _ref5$uniforms;
                 var ambient = _ref5.ambient;
@@ -5442,6 +5449,7 @@ THE SOFTWARE. */
                 _get(Object.getPrototypeOf(DirectionalLight.prototype), "constructor", this).call(this, {
                     name: name,
                     program: program,
+                    path: path,
                     uniforms: uniforms,
                     ambient: ambient,
                     diffuse: diffuse,
@@ -5808,6 +5816,7 @@ THE SOFTWARE. */
         'use strict';
         var Structure = require('./Structure');
         var _name = 'light';
+        var _path = 'light';
         var _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f intensity', 'vec3 location'];
         var _intensity = 1;
         var _location = [0, 0, 0];
@@ -5818,6 +5827,10 @@ THE SOFTWARE. */
          * @extends Entity.Structure
          * @param {string} [name=light] - Specifies the entities friendly name.
          * @param {Entity.Program} program - Specifies the program in which the uniforms should be located.
+         * @param {string} [path=light] - Specifies the shader `struct` path to the uniforms, if required.
+         * @param {Array} [uniforms=['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f intensity', 'vec3 location']] - Specifies the uniform variables
+         * as is declared in the shader. The names imply the `u_` namespace is used as per the uniform variable naming convention.
+         * If a `struct` path is defined, the `u_` namespace is implied on this instead.
          * @param {vec3} ambient - Specifies the ambient component of the light source.
          * @param {vec3} diffuse - Specifies the diffuse component of the light source.
          * @param {vec3} specular - Specifies the specular component of the light source.
@@ -5832,6 +5845,8 @@ THE SOFTWARE. */
                 var _ref11$name = _ref11.name;
                 var name = _ref11$name === undefined ? _name : _ref11$name;
                 var program = _ref11.program;
+                var _ref11$path = _ref11.path;
+                var path = _ref11$path === undefined ? _path : _ref11$path;
                 var _ref11$uniforms = _ref11.uniforms;
                 var uniforms = _ref11$uniforms === undefined ? _uniforms : _ref11$uniforms;
                 var ambient = _ref11.ambient;
@@ -5845,7 +5860,7 @@ THE SOFTWARE. */
                 _get(Object.getPrototypeOf(Light.prototype), "constructor", this).call(this, {
                     name: name,
                     program: program,
-                    path: 'light',
+                    path: path,
                     uniforms: uniforms
                 });
                 /**
@@ -6247,6 +6262,7 @@ THE SOFTWARE. */
     25: [function(require, module, exports) {
         'use strict';
         var MeshLoader = require('./MeshLoader');
+        var _name = 'obj.mesh.loader';
         /**
          * An OBJ mesh loader is a .obj file parser that extracts the collections of vertices
          * and faces that define a shape. It may also include data to shade the mesh, such as
@@ -6263,7 +6279,7 @@ THE SOFTWARE. */
             function OBJMeshLoader() {
                 var _ref16 = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
                 var _ref16$name = _ref16.name;
-                var name = _ref16$name === undefined ? 'obj.mesh.loader' : _ref16$name;
+                var name = _ref16$name === undefined ? _name : _ref16$name;
                 var path = _ref16.path;
                 _classCallCheck(this, OBJMeshLoader);
                 _get(Object.getPrototypeOf(OBJMeshLoader.prototype), "constructor", this).call(this, {
@@ -6366,7 +6382,9 @@ THE SOFTWARE. */
          * @param {string} [name=orthographic.camera] - Specifies the entities friendly name.
          * @param {Entity.Program} program - Specifies the program in which the camera used.
          * @param {string} [path=camera] - Specifies the uniform structure path to the generic uniforms.
-         * @param {Array} [uniforms=['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix']] - Specifies the formats and names of the generic uniforms as used in the shader.
+         * @param {Array} [uniforms=['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix']] - Specifies the uniform variables
+         * as is declared in the shader. The names imply the `u_` namespace is used as per the uniform variable naming convention.
+         * If a `struct` path is defined, the `u_` namespace is implied on this instead.
          * @param {vec4} [background=[0, 0, 0, 1]] - Specifies the clear value for the color buffers.
          * @param {number} [left=-1] - Specifies the left most boundary of the projection.
          * @param {number} right - Specifies the right most boundary of the projection.
@@ -6494,7 +6512,9 @@ THE SOFTWARE. */
          * @param {string} [name=perspective.camera] - Specifies the entities friendly name.
          * @param {Entity.Program} program - Specifies the program in which the camera used.
          * @param {string} [path=camera] - Specifies the uniform structure path to the generic uniforms.
-         * @param {Array} [uniforms=['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix']] - Specifies the formats and names of the generic uniforms as used in the shader.
+         * @param {Array} [uniforms=['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix']] - Specifies the uniform variables
+         * as is declared in the shader. The names imply the `u_` namespace is used as per the uniform variable naming convention.
+         * If a `struct` path is defined, the `u_` namespace is implied on this instead.
          * @param {vec4} [background=[0, 0, 0, 1]] - Specifies the clear value for the color buffers.
          * @param {number} [width=gl.canvas.width] - Specifies the projection width. The initial value is set to the width of the canvas.
          * @param {number} [height=gl.canvas.height] - Specifies the projection height. The initial value is set to the height of the canvas.
@@ -6703,6 +6723,10 @@ THE SOFTWARE. */
          * @extends Entity.Structure.Light
          * @param {string} [name=point.light] - Specifies the entities friendly name.
          * @param {Entity.Program} program - Specifies the program in which the uniforms should be located.
+         * @param {string} [path=light] - Specifies the shader `struct` path to the uniforms, if required.
+         * @param {Array} [uniforms=['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'vec3 fade', 'vec3 location']] - Specifies the uniform
+         * variables as is declared in the shader. The names imply the `u_` namespace is used as per the uniform variable naming convention.
+         * If a `struct` path is defined, the `u_` namespace is implied on this instead.
          * @param {vec3} ambient - Specifies the ambient component of the light source.
          * @param {vec3} diffuse - Specifies the diffuse component of the light source.
          * @param {vec3} specular - Specifies the specular component of the light source.
@@ -6719,6 +6743,7 @@ THE SOFTWARE. */
                 var _ref20$name = _ref20.name;
                 var name = _ref20$name === undefined ? _name : _ref20$name;
                 var program = _ref20.program;
+                var path = _ref20.path;
                 var _ref20$uniforms = _ref20.uniforms;
                 var uniforms = _ref20$uniforms === undefined ? _uniforms : _ref20$uniforms;
                 var ambient = _ref20.ambient;
@@ -6731,6 +6756,7 @@ THE SOFTWARE. */
                 _get(Object.getPrototypeOf(PointLight.prototype), "constructor", this).call(this, {
                     name: name,
                     program: program,
+                    path: path,
                     uniforms: uniforms,
                     ambient: ambient,
                     diffuse: diffuse,
@@ -7131,6 +7157,10 @@ THE SOFTWARE. */
          * @extends Entity.Structure.Light
          * @param {string} [name=spot.light] - Specifies the entities friendly name.
          * @param {Entity.Program} program - Specifies the program in which the uniforms should be located.
+         * @param {string} [path=light] - Specifies the shader `struct` path to the uniforms, if required.
+         * @param {Array} [uniforms=['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f exponent', 'f cutoff', 'f intensity', 'vec3 location', 'vec3 direction']] - Specifies
+         * the uniform variables as is declared in the shader. The names imply the `u_` namespace is used as per the uniform variable naming convention. If a `struct` path
+         * is defined, the `u_` namespace is implied on this instead.
          * @param {vec3} ambient - Specifies the ambient component of the light source.
          * @param {vec3} diffuse - Specifies the diffuse component of the light source.
          * @param {vec3} specular - Specifies the specular component of the light source.
@@ -7148,6 +7178,7 @@ THE SOFTWARE. */
                 var _ref26$name = _ref26.name;
                 var name = _ref26$name === undefined ? _name : _ref26$name;
                 var program = _ref26.program;
+                var path = _ref26.path;
                 var _ref26$uniforms = _ref26.uniforms;
                 var uniforms = _ref26$uniforms === undefined ? _uniforms : _ref26$uniforms;
                 var ambient = _ref26.ambient;
@@ -7163,6 +7194,7 @@ THE SOFTWARE. */
                 _get(Object.getPrototypeOf(SpotLight.prototype), "constructor", this).call(this, {
                     name: name,
                     program: program,
+                    path: path,
                     uniforms: uniforms,
                     ambient: ambient,
                     diffuse: diffuse,
@@ -7209,10 +7241,11 @@ THE SOFTWARE. */
          * @extends Entity
          * @param {string} [name=structure] - Specifies the entities friendly name.
          * @param {Entity.Program} program - Specifies the program in which the uniforms should be located.
-         * @param {string} path - Specifies the shader `struct` path to the uniform, if required.
+         * @param {string} path - Specifies the shader `struct` path to the uniforms, if required.
          * @param {Array} [uniforms=[]] - Specifies a collection of related uniform variables
          * as is declared in the shader. The names imply the `u_` namespace is used as per the uniform
-         * variable naming convention.
+         * variable naming convention. If a `struct` path is defined, the `u_` namespace is implied
+         * on this instead.
          */
         var Structure = (function(_Entity11) {
             _inherits(Structure, _Entity11);

@@ -3,6 +3,7 @@
 let Structure = require('./Structure');
 
 const _name = 'light';
+const _path = 'light';
 const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f intensity', 'vec3 location'];
 const _intensity = 1;
 const _location = [0, 0, 0];
@@ -14,6 +15,10 @@ const _location = [0, 0, 0];
  * @extends Entity.Structure
  * @param {string} [name=light] - Specifies the entities friendly name.
  * @param {Entity.Program} program - Specifies the program in which the uniforms should be located.
+ * @param {string} [path=light] - Specifies the shader `struct` path to the uniforms, if required.
+ * @param {Array} [uniforms=['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f intensity', 'vec3 location']] - Specifies the uniform variables
+ * as is declared in the shader. The names imply the `u_` namespace is used as per the uniform variable naming convention.
+ * If a `struct` path is defined, the `u_` namespace is implied on this instead.
  * @param {vec3} ambient - Specifies the ambient component of the light source.
  * @param {vec3} diffuse - Specifies the diffuse component of the light source.
  * @param {vec3} specular - Specifies the specular component of the light source.
@@ -22,9 +27,9 @@ const _location = [0, 0, 0];
  */
  class Light extends Structure
  {
-    constructor({ name = _name, program, uniforms = _uniforms, ambient, diffuse, specular, intensity = _intensity, location = _location } = {})
+    constructor({ name = _name, program, path = _path, uniforms = _uniforms, ambient, diffuse, specular, intensity = _intensity, location = _location } = {})
     {
-       super({ name, program, path: 'light', uniforms });
+       super({ name, program, path: path, uniforms });
 
        /**
         * The ambient component of the light source.

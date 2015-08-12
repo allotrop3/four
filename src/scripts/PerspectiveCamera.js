@@ -22,7 +22,9 @@ const _up = [0, 1, 0];
  * @param {string} [name=perspective.camera] - Specifies the entities friendly name.
  * @param {Entity.Program} program - Specifies the program in which the camera used.
  * @param {string} [path=camera] - Specifies the uniform structure path to the generic uniforms.
- * @param {Array} [uniforms=['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix']] - Specifies the formats and names of the generic uniforms as used in the shader.
+ * @param {Array} [uniforms=['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix']] - Specifies the uniform variables
+ * as is declared in the shader. The names imply the `u_` namespace is used as per the uniform variable naming convention.
+ * If a `struct` path is defined, the `u_` namespace is implied on this instead.
  * @param {vec4} [background=[0, 0, 0, 1]] - Specifies the clear value for the color buffers.
  * @param {number} [width=gl.canvas.width] - Specifies the projection width. The initial value is set to the width of the canvas.
  * @param {number} [height=gl.canvas.height] - Specifies the projection height. The initial value is set to the height of the canvas.

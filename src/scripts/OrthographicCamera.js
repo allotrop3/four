@@ -19,7 +19,9 @@ const _far = 1;
  * @param {string} [name=orthographic.camera] - Specifies the entities friendly name.
  * @param {Entity.Program} program - Specifies the program in which the camera used.
  * @param {string} [path=camera] - Specifies the uniform structure path to the generic uniforms.
- * @param {Array} [uniforms=['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix']] - Specifies the formats and names of the generic uniforms as used in the shader.
+ * @param {Array} [uniforms=['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix']] - Specifies the uniform variables
+ * as is declared in the shader. The names imply the `u_` namespace is used as per the uniform variable naming convention.
+ * If a `struct` path is defined, the `u_` namespace is implied on this instead.
  * @param {vec4} [background=[0, 0, 0, 1]] - Specifies the clear value for the color buffers.
  * @param {number} [left=-1] - Specifies the left most boundary of the projection.
  * @param {number} right - Specifies the right most boundary of the projection.

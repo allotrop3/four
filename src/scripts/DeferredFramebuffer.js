@@ -3,7 +3,7 @@
 let gl = require('./gl');
 let Framebuffer = require('./Framebuffer');
 
-let _name = 'deferred.framebuffer';
+const _name = 'deferred.framebuffer';
 
 /**
  * A deferred framebuffer encapsulates user-created framebuffer objects that

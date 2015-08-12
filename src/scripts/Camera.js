@@ -21,9 +21,11 @@ const _background = [0, 0, 0, 1];
  * @name Entity.Structure.Camera
  * @extends Entity
  * @param {string} [name=camera] - Specifies the entities friendly name.
- * @param {string} program - Specifies the program in which the camera used.
- * @param {string} [path=camera] - Specifies the uniform structure path to the generic uniforms.
- * @param {Array} [uniforms=['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix']] - Specifies the formats and names of the generic uniforms as used in the shader.
+ * @param {string} program - Specifies the program in which the camera is used.
+ * @param {string} [path=camera] - Specifies the shader `struct` path to the uniforms, if required.
+ * @param {Array} [uniforms=['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix']] - Specifies the uniform variables
+ * as is declared in the shader. The names imply the `u_` namespace is used as per the uniform variable naming convention. If a
+ * `struct` path is defined, the `u_` namespace is implied on this instead.
  * @param {vec4} [background=[0, 0, 0, 1]] - Specifies the clear value for the color buffers.
  */
 class Camera extends Structure

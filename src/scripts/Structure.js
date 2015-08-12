@@ -17,10 +17,11 @@ const _uniforms = [];
  * @extends Entity
  * @param {string} [name=structure] - Specifies the entities friendly name.
  * @param {Entity.Program} program - Specifies the program in which the uniforms should be located.
- * @param {string} path - Specifies the shader `struct` path to the uniform, if required.
+ * @param {string} path - Specifies the shader `struct` path to the uniforms, if required.
  * @param {Array} [uniforms=[]] - Specifies a collection of related uniform variables
  * as is declared in the shader. The names imply the `u_` namespace is used as per the uniform
- * variable naming convention.
+ * variable naming convention. If a `struct` path is defined, the `u_` namespace is implied
+ * on this instead.
  */
 class Structure extends Entity
 {
