@@ -1,15 +1,15 @@
 'use strict';
 
-var planePattern = new Four.ImageTexture({ path: 'textures/plane/terrain.jpg', anisotropy: 16, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
-var bodyPattern = new Four.ImageTexture({ path: 'textures/house-high/body.jpg', anisotropy: 16, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
-var wallsPattern = new Four.ImageTexture({ path: 'textures/house-high/walls.jpg', anisotropy: 16, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
-var roofPattern = new Four.ImageTexture({ path: 'textures/house-high/roof.jpg', anisotropy: 16, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
-var floorPattern = new Four.ImageTexture({ path: 'textures/house-high/floor.jpg', anisotropy: 16, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
-var bodyLoader = new Four.OBJMeshLoader({ path: 'meshes/obj/house/body.obj' });
-var wallsLoader = new Four.OBJMeshLoader({ path: 'meshes/obj/house/walls.obj' });
-var roofLoader = new Four.OBJMeshLoader({ path: 'meshes/obj/house/roof.obj' });
-var floorLoader = new Four.OBJMeshLoader({ path: 'meshes/obj/house/floor.obj' });
-var planeLoader = new Four.OBJMeshLoader({ path: 'meshes/obj/plane/plane.obj' });
+var planePattern = new Four.ImageTexture({ path: '/textures/plane/terrain.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+var bodyPattern = new Four.ImageTexture({ path: '/textures/house-high/body.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+var wallsPattern = new Four.ImageTexture({ path: '/textures/house-high/walls.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+var roofPattern = new Four.ImageTexture({ path: '/textures/house-high/roof.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+var floorPattern = new Four.ImageTexture({ path: '/textures/house-high/floor.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+var bodyLoader = new Four.OBJMeshLoader({ path: '../meshes/obj/house/body.obj' });
+var wallsLoader = new Four.OBJMeshLoader({ path: '../meshes/obj/house/walls.obj' });
+var roofLoader = new Four.OBJMeshLoader({ path: '../meshes/obj/house/roof.obj' });
+var floorLoader = new Four.OBJMeshLoader({ path: '../meshes/obj/house/floor.obj' });
+var planeLoader = new Four.OBJMeshLoader({ path: '../meshes/obj/plane/plane.obj' });
 
 function main()
 {
@@ -17,11 +17,11 @@ function main()
 
    var program = new Four.Program({ selector: '.four__shader--default' });
 
-   var pointLight = new Four.PointLight({ program: program, attenuation: [0.025, 0.01, 0.00025], location: [0, 5, 0] });
+   var spotLight = new Four.SpotLight({ program: program, attenuation: [0, 0.15, 0.25], exponent: 45, cutoff: 25, location: [30, 100, -65], direction: [-0.25, -1.0, -0.15] });
 
    var view = new Four.Framebuffer();
 
-   var camera = new Four.PerspectiveCamera({ program: program, fov: 45, location: [40, 30, 40] });
+   var camera = new Four.PerspectiveCamera({ program: program, fov: 45, location: [50, 30, 50] });
 
    var roof = new Four.Mesh({
       buffers: new Four.VertexArrayObject({ program: program, attributes: ['vec3 position', 'vec2 uv', 'vec3 normal'] }),
@@ -69,7 +69,7 @@ function main()
    body.scale = [3.5, 3.5, 3.5];
    walls.scale = [3.5, 3.5, 3.5];
    floor.scale = [3.5, 3.5, 3.5];
-   plane.scale = [150, 150, 150];
+   plane.scale = [175, 175, 175];
 
    scene.put(roof);
    scene.put(body);
@@ -79,7 +79,7 @@ function main()
 
    program.bind();
 
-   pointLight.bind();
+   spotLight.bind();
 
    scene.render(view, camera, function()
    {
