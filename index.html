@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
     <section class="page-header">
       <h1 class="project-name">Four</h1>
@@ -21,66 +20,69 @@
 
     <section class="main-content">
       <h1>
-        <a id="--four" class="anchor" href="#--four" aria-hidden="true"><span class="octicon octicon-link"></span></a><img src="http://allotrop3.github.io/four/demo/images/four-icon.png" alt="Four" height="30px">  Four</h1>
+<a id="--four" class="anchor" href="#--four" aria-hidden="true"><span class="octicon octicon-link"></span></a><img src="http://allotrop3.github.io/four/demo/images/four-icon.png" alt="Four" height="30px">  Four</h1>
 
-        <p>Four is a WebGL framework that abstracts the low-level API to a quickly usable interface – <a href="http://allotrop3.github.io/four/demo">view demo</a>.</p>
+<p>Four is a WebGL framework that abstracts the low-level API to a quickly usable interface.</p>
 
-        <p>It uses the gl-matrix library, which is also included in the framework. The documentation for the gl-matrix librabry can be found <a href="http://glmatrix.net/docs/2.2.0/">here</a>.</p>
+<p>It uses the gl-matrix library, which is also included in the framework. The documentation for the gl-matrix librabry can be found <a href="http://glmatrix.net/docs/2.2.0/">here</a>.</p>
 
-        <h2>
-          <a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting started</h2>
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting started</h2>
 
-          <p>Simply download <a href="http://allotrop3.github.io/four/demo/scripts/four.min.js">Four</a> and include the script in your project.</p>
+<p>Simply download <a href="http://allotrop3.github.io/four/demo/scripts/four.min.js">Four</a> and include the script in your project.</p>
 
-          <div class="highlight highlight-javascript"><pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> src<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>path/to/four.min.js<span class="pl-pds">"</span></span><span class="pl-k">&gt;&lt;</span>/script<span class="pl-k">&gt;</span></pre></div>
+<div class="highlight highlight-javascript"><pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> src<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>path/to/four.min.js<span class="pl-pds">"</span></span><span class="pl-k">&gt;&lt;</span>/script<span class="pl-k">&gt;</span></pre></div>
 
-          <p>Also be sure to include an HTML <code>canavs</code> element in your project. If no default <code>width</code> or <code>height</code> attributes are set, the framework assumes their respective window dimension.</p>
+<p>Also be sure to include an HTML <code>canavs</code> element in your project. If no default <code>width</code> or <code>height</code> attributes are set, the framework assumes their respective window dimension.</p>
 
-          <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">canvas</span> <span class="pl-e">width</span>=<span class="pl-s"><span class="pl-pds">"</span>500<span class="pl-pds">"</span></span> <span class="pl-e">height</span>=<span class="pl-s"><span class="pl-pds">"</span>500<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">canvas</span>&gt;</pre></div>
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">canvas</span> <span class="pl-e">width</span>=<span class="pl-s"><span class="pl-pds">"</span>500<span class="pl-pds">"</span></span> <span class="pl-e">height</span>=<span class="pl-s"><span class="pl-pds">"</span>500<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">canvas</span>&gt;</pre></div>
 
-          <h3>
-            <a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h3>
+<h3>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h3>
 
-            <p>The following example assumes an OBJ mesh file loader to import a mesh into the scene. It further constructs a point light source and a three dimensional perspective projection to illuminate and visualise the scene, respectively. The scenes pre-render execution routine simply rotates the scene around the mesh.</p>
+<p>The following example assumes an OBJ mesh file loader to import a mesh into the scene. It further constructs a point light source and a three dimensional perspective projection to illuminate and visualise the scene, respectively. The scenes pre-render execution routine simply rotates the scene around the mesh.</p>
 
-            <div class="highlight highlight-javascript"><pre><span class="pl-k">&lt;</span>script<span class="pl-k">&gt;</span>
-             <span class="pl-k">var</span> meshLoader <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.OBJMeshLoader</span>({ path<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>../path/to/mesh.obj<span class="pl-pds">'</span></span> });
+<div class="highlight highlight-javascript"><pre><span class="pl-k">&lt;</span>script<span class="pl-k">&gt;</span>
+   <span class="pl-k">var</span> meshLoader <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.OBJMeshLoader</span>({ path<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>../path/to/mesh.obj<span class="pl-pds">'</span></span> });
 
-             <span class="pl-k">function</span> <span class="pl-en">main</span>()
-             {
-             <span class="pl-k">var</span> program <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.Program</span>({ selector<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>.class-to-shaders<span class="pl-pds">'</span></span> });
+   <span class="pl-k">function</span> <span class="pl-en">main</span>()
+   {
+      <span class="pl-k">var</span> program <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.Program</span>({ selector<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>.class-to-shaders<span class="pl-pds">'</span></span> });
 
-             <span class="pl-k">var</span> pointLight <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.PointLight</span>({ program<span class="pl-k">:</span> program, attenuation<span class="pl-k">:</span> [<span class="pl-c1">0.025</span>, <span class="pl-c1">0.01</span>, <span class="pl-c1">0.00025</span>], location<span class="pl-k">:</span> [<span class="pl-c1">10</span>, <span class="pl-c1">15</span>, <span class="pl-c1">10</span>] });
+      <span class="pl-k">var</span> pointLight <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.PointLight</span>({ program<span class="pl-k">:</span> program, attenuation<span class="pl-k">:</span> [<span class="pl-c1">0.025</span>, <span class="pl-c1">0.01</span>, <span class="pl-c1">0.00025</span>], location<span class="pl-k">:</span> [<span class="pl-c1">10</span>, <span class="pl-c1">15</span>, <span class="pl-c1">10</span>] });
 
-             <span class="pl-k">var</span> view <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.Framebuffer</span>();
+      <span class="pl-k">var</span> view <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.Framebuffer</span>();
 
-             <span class="pl-k">var</span> camera <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.PerspectiveCamera</span>({ program<span class="pl-k">:</span> program, location<span class="pl-k">:</span> [<span class="pl-c1">40</span>, <span class="pl-c1">30</span>, <span class="pl-c1">40</span>] });
+      <span class="pl-k">var</span> camera <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.PerspectiveCamera</span>({ program<span class="pl-k">:</span> program, location<span class="pl-k">:</span> [<span class="pl-c1">40</span>, <span class="pl-c1">30</span>, <span class="pl-c1">40</span>] });
 
-             <span class="pl-k">var</span> mesh <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.Mesh</span>({
-             buffers<span class="pl-k">:</span> <span class="pl-k">new</span> <span class="pl-en">Four.VertexArrayObject</span>({ program<span class="pl-k">:</span> program, attributes<span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">'</span>vec3 position<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>vec3 normal<span class="pl-pds">'</span></span>] }),
-             vertices<span class="pl-k">:</span> meshLoader.<span class="pl-c1">vertices</span>,
-             normals<span class="pl-k">:</span> meshLoader.<span class="pl-c1">normals</span>,
-             material<span class="pl-k">:</span> <span class="pl-k">new</span> <span class="pl-en">Four.Material</span>({ program<span class="pl-k">:</span> program, diffuse<span class="pl-k">:</span> <span class="pl-c1">0x9F8A60</span> })
-           });
+      <span class="pl-k">var</span> mesh <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.Mesh</span>({
+         buffers<span class="pl-k">:</span> <span class="pl-k">new</span> <span class="pl-en">Four.VertexArrayObject</span>({ program<span class="pl-k">:</span> program, attributes<span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">'</span>vec3 position<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>vec3 normal<span class="pl-pds">'</span></span>] }),
+         vertices<span class="pl-k">:</span> meshLoader.<span class="pl-c1">vertices</span>,
+         normals<span class="pl-k">:</span> meshLoader.<span class="pl-c1">normals</span>,
+         material<span class="pl-k">:</span> <span class="pl-k">new</span> <span class="pl-en">Four.Material</span>({ program<span class="pl-k">:</span> program, diffuse<span class="pl-k">:</span> <span class="pl-c1">0x9F8A60</span> })
+      });
 
-           scene <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.Scene</span>();
+      scene <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.Scene</span>();
 
-           scene.<span class="pl-c1">put</span>(mesh);
+      scene.<span class="pl-c1">put</span>(mesh);
 
-           scene.<span class="pl-c1">render</span>(view, camera, <span class="pl-k">function</span>()
-           {
-           scene.<span class="pl-c1">rotation</span> <span class="pl-k">+=</span> <span class="pl-c1">0.25</span>;
-         });
-       }
+      scene.<span class="pl-c1">render</span>(view, camera, <span class="pl-k">function</span>()
+      {
+         scene.<span class="pl-c1">rotation</span> <span class="pl-k">+=</span> <span class="pl-c1">0.25</span>;
+      });
+   }
 
-       <span class="pl-c1">setTimeout</span>(main, <span class="pl-c1">3000</span>);
-       <span class="pl-k">&lt;</span>/script<span class="pl-k">&gt;</span></pre></div>
+   <span class="pl-c1">setTimeout</span>(main, <span class="pl-c1">3000</span>);
+<span class="pl-k">&lt;</span>/script<span class="pl-k">&gt;</span></pre></div>
 
-       <footer class="site-footer">
+      <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/allotrop3/four">Four</a> is maintained by <a href="https://github.com/allotrop3">allotrop3</a>.</span>
 
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
+
     </section>
+
+  
   </body>
 </html>
