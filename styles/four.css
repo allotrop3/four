@@ -12,7 +12,7 @@ body
 
 canvas
 {
-   background: #222 url(images/four-loader.gif) no-repeat;
+   background: #222 url(../images/four-loader.gif) no-repeat;
    background-position: center;
    background-size: 70px;
    margin: 0 auto;
