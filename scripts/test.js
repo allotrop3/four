@@ -1,10 +1,10 @@
 'use strict';
 
 var planePattern = new Four.ImageTexture({ path: 'textures/plane/terrain.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
-var bodyPattern = new Four.ImageTexture({ path: 'textures/house-high/body.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
-var wallsPattern = new Four.ImageTexture({ path: 'textures/house-high/walls.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
-var roofPattern = new Four.ImageTexture({ path: 'textures/house-high/roof.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
-var floorPattern = new Four.ImageTexture({ path: 'textures/house-high/floor.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+var bodyPattern = new Four.ImageTexture({ path: 'textures/house-med/body.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+var wallsPattern = new Four.ImageTexture({ path: 'textures/house-med/walls.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+var roofPattern = new Four.ImageTexture({ path: 'textures/house-med/roof.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+var floorPattern = new Four.ImageTexture({ path: 'textures/house-med/floor.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
 var bodyLoader = new Four.OBJMeshLoader({ path: 'meshes/obj/house/body.obj' });
 var wallsLoader = new Four.OBJMeshLoader({ path: 'meshes/obj/house/walls.obj' });
 var roofLoader = new Four.OBJMeshLoader({ path: 'meshes/obj/house/roof.obj' });
