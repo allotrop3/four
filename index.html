@@ -1,88 +1,157 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Four by allotrop3</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Four</h1>
-      <h2 class="project-tagline">Four</h2>
-      <a href="https://github.com/allotrop3/four" class="btn">View on GitHub</a>
-      <a href="https://github.com/allotrop3/four/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/allotrop3/four/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
 
-    <section class="main-content">
-      <h1>
-<a id="--four" class="anchor" href="#--four" aria-hidden="true"><span class="octicon octicon-link"></span></a><img src="http://allotrop3.github.io/four/demo/images/four-icon.png" alt="Four" height="30px">  Four</h1>
+      <link rel="icon" type="image/png" href="/favicon.png">
 
-<p>Four is a WebGL framework that abstracts the low-level API to a quickly usable interface - <a href="http://allotrop3.github.io/four/demo">View demo</a>.</p>
+      <title>Four</title>
 
-<p>It uses the gl-matrix library, which is also included in the framework. The documentation for the gl-matrix librabry can be found <a href="http://glmatrix.net/docs/2.2.0/">here</a>.</p>
+      <link rel="stylesheet" type="text/css" href="/styles/four.css">
+   </head>
 
-<h2>
-<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting started</h2>
+   <body>
+      <canvas></canvas>
 
-<p>Simply download <a href="http://allotrop3.github.io/four/demo/scripts/four.min.js">Four</a> and include the script in your project.</p>
+      <script class="four__shader--default" type="x-shader/x-vertex">
+         #version 100
 
-<div class="highlight highlight-javascript"><pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> src<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>path/to/four.min.js<span class="pl-pds">"</span></span><span class="pl-k">&gt;&lt;</span>/script<span class="pl-k">&gt;</span></pre></div>
+         precision lowp float;
 
-<p>Also be sure to include an HTML <code>canavs</code> element in your project. If no default <code>width</code> or <code>height</code> attributes are set, the framework assumes their respective window dimension.</p>
+         struct camera
+         {
+            mat4 projectionMatrix;
+            mat4 modelViewMatrix;
+            mat3 normalMatrix;
+         };
 
-<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">canvas</span> <span class="pl-e">width</span>=<span class="pl-s"><span class="pl-pds">"</span>500<span class="pl-pds">"</span></span> <span class="pl-e">height</span>=<span class="pl-s"><span class="pl-pds">"</span>500<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">canvas</span>&gt;</pre></div>
+         attribute vec3 a_position;
+         attribute vec2 a_uv;
+         attribute vec3 a_normal;
 
-<h3>
-<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h3>
+         uniform camera u_camera;
 
-<p>The following example assumes an OBJ mesh file loader to import a mesh into the scene. It further constructs a point light source and a three dimensional perspective projection to illuminate and visualise the scene, respectively. The scenes pre-render execution routine simply rotates the scene around the mesh.</p>
+         varying vec3 v_position;
+         varying vec2 v_uv;
+         varying vec3 v_normal;
 
-<div class="highlight highlight-javascript"><pre><span class="pl-k">&lt;</span>script<span class="pl-k">&gt;</span>
-   <span class="pl-k">var</span> meshLoader <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.OBJMeshLoader</span>({ path<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>../path/to/mesh.obj<span class="pl-pds">'</span></span> });
+         void main(void)
+         {
+            vec4 position = vec4(a_position, 1.0);
 
-   <span class="pl-k">function</span> <span class="pl-en">main</span>()
-   {
-      <span class="pl-k">var</span> program <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.Program</span>({ selector<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>.class-to-shaders<span class="pl-pds">'</span></span> });
+            gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * position;
 
-      <span class="pl-k">var</span> pointLight <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.PointLight</span>({ program<span class="pl-k">:</span> program, attenuation<span class="pl-k">:</span> [<span class="pl-c1">0.025</span>, <span class="pl-c1">0.01</span>, <span class="pl-c1">0.00025</span>], location<span class="pl-k">:</span> [<span class="pl-c1">10</span>, <span class="pl-c1">15</span>, <span class="pl-c1">10</span>] });
+            v_position = vec3(u_camera.modelViewMatrix * position);
+            v_uv = a_uv;
+            v_normal = normalize(u_camera.normalMatrix * a_normal);
+         }
+      </script>
 
-      <span class="pl-k">var</span> view <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.Framebuffer</span>();
+      <script class="four__shader--default" type="x-shader/x-fragment">
+         #version 100
 
-      <span class="pl-k">var</span> camera <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.PerspectiveCamera</span>({ program<span class="pl-k">:</span> program, location<span class="pl-k">:</span> [<span class="pl-c1">40</span>, <span class="pl-c1">30</span>, <span class="pl-c1">40</span>] });
+         precision lowp float;
 
-      <span class="pl-k">var</span> mesh <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.Mesh</span>({
-         buffers<span class="pl-k">:</span> <span class="pl-k">new</span> <span class="pl-en">Four.VertexArrayObject</span>({ program<span class="pl-k">:</span> program, attributes<span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">'</span>vec3 position<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>vec3 normal<span class="pl-pds">'</span></span>] }),
-         vertices<span class="pl-k">:</span> meshLoader.<span class="pl-c1">vertices</span>,
-         normals<span class="pl-k">:</span> meshLoader.<span class="pl-c1">normals</span>,
-         material<span class="pl-k">:</span> <span class="pl-k">new</span> <span class="pl-en">Four.Material</span>({ program<span class="pl-k">:</span> program, diffuse<span class="pl-k">:</span> <span class="pl-c1">0x9F8A60</span> })
-      });
+         struct material
+         {
+            vec3 ambient;
+            vec3 diffuse;
+            vec3 specular;
+            int shading;
+            float shininess;
+            int type;
+         };
 
-      scene <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Four.Scene</span>();
+         struct light
+         {
+            vec3 ambient;
+            vec3 diffuse;
+            vec3 specular;
+            vec3 attenuation;
+            float exponent;
+            float cutoff;
+            float intensity;
+            vec3 location;
+            vec3 direction;
+            int type;
+         };
 
-      scene.<span class="pl-c1">put</span>(mesh);
+         uniform sampler2D u_image;
+         uniform material u_material;
+         uniform light u_light;
 
-      scene.<span class="pl-c1">render</span>(view, camera, <span class="pl-k">function</span>()
-      {
-         scene.<span class="pl-c1">rotation</span> <span class="pl-k">+=</span> <span class="pl-c1">0.25</span>;
-      });
-   }
+         varying vec3 v_position;
+         varying vec2 v_uv;
+         varying vec3 v_normal;
 
-   <span class="pl-c1">setTimeout</span>(main, <span class="pl-c1">3000</span>);
-<span class="pl-k">&lt;</span>/script<span class="pl-k">&gt;</span></pre></div>
+         vec3 pointLight(vec3 base)
+         {
+            vec3 normal = normalize(v_normal);
+            vec3 direction = normalize(u_light.location - v_position);
+            float weight = max(dot(direction, normal), 0.0);
+            vec3 color = vec3(0.0);
+            float range = length(direction);
+            float attenuation = 1.0 / (u_light.attenuation.x + u_light.attenuation.y * range + u_light.attenuation.z * pow(range, 2.0));
+            vec3 ambient = u_light.ambient * u_material.ambient;
+            vec3 diffuse = u_light.intensity * u_light.diffuse * (u_material.diffuse + base) * weight;
+            vec3 specular = vec3(0.0);
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/allotrop3/four">Four</a> is maintained by <a href="https://github.com/allotrop3">allotrop3</a>.</span>
+            if (u_material.type == 1)
+            {
+               if (weight > 0.0)
+               {
+                  specular = u_light.specular * u_material.specular * pow(max(dot(reflect(-direction, normal), normalize(-v_position)), 0.0), u_material.shininess);
+               }
+            }
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
+            return (ambient + diffuse + specular) * attenuation;
+         }
 
-    </section>
+         vec3 spotLight(vec3 base)
+         {
+            vec3 normal = normalize(v_normal);
+            vec3 direction = normalize(u_light.location - v_position);
+            vec3 aim = normalize(u_light.direction);
+            float angle = acos(dot(-direction, aim));
+            float cutoff = radians(clamp(u_light.cutoff, 0.0, 90.0));
 
-  
-  </body>
+            if (angle < cutoff)
+            {
+               return pointLight(base) * pow(dot(-direction, aim), u_light.exponent) * u_light.intensity;
+            }
+            else
+            {
+               return vec3(0.0);
+            }
+         }
+
+         void main(void)
+         {
+            vec3 base = texture2D(u_image, v_uv).xyz;
+            vec3 color = vec3(0.0);
+
+            /* directional light */
+            if (u_light.type == 1)
+            {
+               // todo
+            }
+
+            /* point light */
+            if (u_light.type == 2)
+            {
+               color = pointLight(base);
+            }
+
+            /* spot light */
+            if (u_light.type == 3)
+            {
+               color = spotLight(base);
+            }
+
+            gl_FragColor = vec4(color, 1.0);
+         }
+      </script>
+
+      <script src="/scripts/four.min.js"></script>
+      <script src="/scripts/test.js"></script>
+   </body>
 </html>
