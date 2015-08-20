@@ -1,4 +1,4 @@
-# Four
+<img src="http://allotrop3.github.io/four/images/four.jpg">
 
 **Four** is a slightly higher level graphics API based on WebGL 1.0. It abstracts only what is necessary to simplify getting started whilst still exposing the flexibility you would have using the WebGL API directly. Notably the classes defined map directly to the concepts familiar to an OpenGL application, including Attributes, Uniforms, Structures, Shaders, Programs and more; all of which implement the basic functions associated to them, but with fewer function calls to the user. This allows you, as the developer, to focus on what is important: **getting something on the screen**.
 
