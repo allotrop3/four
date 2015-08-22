@@ -30,6 +30,7 @@ let Four = {
    Structure: require('./Structure'),
    Texture: require('./Texture'),
    DataTexture: require('./DataTexture'),
+   DepthTexture: require('./DepthTexture'),
    ImageTexture: require('./ImageTexture'),
    Uniform: require('./Uniform'),
    VertexArrayObject: require('./VertexArrayObject')
