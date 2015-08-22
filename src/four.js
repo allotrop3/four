@@ -10,6 +10,7 @@ let Four = {
    PerspectiveCamera: require('./PerspectiveCamera'),
    Framebuffer: require('./Framebuffer'),
    DeferredFramebuffer: require('./DeferredFramebuffer'),
+   DepthFramebuffer: require('./DepthFramebuffer'),
    Light: require('./Light'),
    DirectionalLight: require('./DirectionalLight'),
    PointLight: require('./PointLight'),

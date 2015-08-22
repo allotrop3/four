@@ -8,7 +8,7 @@ let DeferredFramebuffer = require('./DeferredFramebuffer');
 
 const _name = 'shadow.map';
 
-class ShadowMap extends Structure
+class ShadowMapper extends Structure
 {
    constructor({ name = _name, program, path, uniforms })
    {
@@ -30,4 +30,4 @@ class ShadowMap extends Structure
    }
 }
 
-module.exports = ShadowMap;
+module.exports = ShadowMapper;
