@@ -4,6 +4,8 @@
 
 It uses the gl-matrix library, which is also included in the framework. The documentation for the gl-matrix librabry can be found [here](http://glmatrix.net/docs/2.2.0/).
 
+In case you want to learn more about Four and why I've built it, I suggest you to read [the article I've published on SitePoint](http://www.sitepoint.com/introducing-four-webgl-easier/).
+
 ## Demo
 
 See a [live demo](http://allotrop3.github.io/four).
