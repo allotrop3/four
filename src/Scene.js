@@ -25,10 +25,15 @@ class Scene extends Entity
       this.meshes.push(mesh);
    }
 
-   render(target, camera, prestep = false, poststep = false)
+   animate(target, camera, prestep, poststep)
    {
       let step = this.render.bind(this, target, camera, prestep, poststep);
 
+      requestAnimationFrame(step);
+   }
+
+   render(target, camera, prestep = false, poststep = false)
+   {
       target.bind();
 
       if (prestep)
@@ -53,7 +58,7 @@ class Scene extends Entity
          poststep();
       }
 
-      requestAnimationFrame(step);
+      target.unbind();
    }
 
    draw(camera, mesh)
