@@ -45,8 +45,6 @@ class ImageTexture extends Texture
          gl.texParameterf(gl.TEXTURE_2D, this.anisotropicFilter.TEXTURE_MAX_ANISOTROPY_EXT, anisotropy);
       }
 
-      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-
       gl.texImage2D(gl.TEXTURE_2D, this.lod, components, components, this.format, this.image);
 
       if (this.mipmap)

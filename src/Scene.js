@@ -27,7 +27,9 @@ class Scene extends Entity
 
    animate(target, camera, prestep, poststep)
    {
-      let step = this.render.bind(this, target, camera, prestep, poststep);
+      let step = this.animate.bind(this, target, camera, prestep, poststep);
+
+      this.render.apply(this, arguments);
 
       requestAnimationFrame(step);
    }

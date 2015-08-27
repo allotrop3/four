@@ -1,0 +1,170 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+
+      <title>Shadow mapping</title>
+   </head>
+
+   <body style="margin:0">
+      <canvas height="500px" width="500px"></canvas>
+
+      <script class="shadow-mapper" type="x-shader/x-vertex">
+         #version 100
+
+         precision lowp float;
+
+         attribute vec3 a_position;
+         attribute vec2 a_uv;
+         attribute vec3 a_normal;
+
+         struct camera
+         {
+            mat4 projectionMatrix;
+            mat4 modelViewMatrix;
+            mat3 normalMatrix;
+         };
+
+         uniform camera u_camera;
+
+         varying vec3 v_position;
+         varying vec2 v_uv;
+         varying vec3 v_normal;
+
+         void main()
+         {
+            gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * vec4(a_position, 1.0);
+
+            v_position = a_position;
+            v_uv = normalize(a_uv);
+            v_normal = normalize(u_camera.normalMatrix * a_normal);
+         }
+      </script>
+
+      <script class="shadow-mapper" type="x-shader/x-fragment">
+         #version 100
+
+         precision lowp float;
+
+         struct material
+         {
+            int image;
+            vec3 ambient;
+            vec3 diffuse;
+            vec3 specular;
+            int shading;
+            int type;
+         };
+
+         struct light
+         {
+            vec3 ambient;
+            vec3 diffuse;
+            vec3 specular;
+            vec3 attenuation;
+            float intensity;
+            vec3 location;
+            int type;
+         };
+
+         uniform sampler2D u_image;
+         uniform material u_material;
+         uniform light u_light;
+
+         varying vec3 v_position;
+         varying vec2 v_uv;
+         varying vec3 v_normal;
+
+         vec3 pointLight()
+         {
+            vec3 normal = normalize(v_normal);
+            vec3 direction = normalize(u_light.location - v_position);
+            float weight = max(dot(direction, normal), 0.0);
+            vec3 color = vec3(0.0);
+            float range = length(direction);
+            float attenuation = 1.0 / (u_light.attenuation.x + u_light.attenuation.y * range + u_light.attenuation.z * pow(range, 2.0));
+            vec3 ambient = u_light.ambient * u_material.ambient;
+            vec3 diffuse = u_light.intensity * u_light.diffuse * u_material.diffuse * weight;
+
+            return (ambient + diffuse) * attenuation;
+         }
+
+         void main(void)
+         {
+            gl_FragColor = vec4(pointLight(), 1.0);
+         }
+      </script>
+
+      <script src="../dist/four.js"></script>
+
+      <script>
+         var cubeLoader = new Four.OBJMeshLoader({ path: 'meshes/cuboid.obj' });
+         var planeLoader = new Four.OBJMeshLoader({ path: 'meshes/plane.obj' });
+
+         setTimeout(function()
+         {
+            var program = new Four.Program({ selector: '.shadow-mapper' });
+            var view = new Four.Framebuffer();
+            var camera = new Four.PerspectiveCamera({
+               program: program,
+               direction: [1, -1, -1],
+               location: [-10, 5, 10]
+            });
+            var scene = new Four.Scene();
+            var light = new Four.PointLight({
+               program: program,
+               attenuation: [0.5, 0.5, 1],
+               location: [0, 0, 5]
+            });
+            var cube = new Four.Mesh({
+               buffers: new Four.VertexArrayObject({
+                  program: program,
+                  attributes: ['vec3 position', 'vec3 normal']
+               }),
+               vertices: cubeLoader.vertices,
+               normals: cubeLoader.normals,
+               material: new Four.Material({
+                  program: program,
+                  diffuse: 0xFFFFFF
+               })
+            });
+            var colorAttachment = new Four.DataTexture({
+               width: Four.gl.canvas.width,
+               height: Four.gl.canvas.height
+            });
+            var depthAttachment = new Four.Renderbuffer({
+               width: Four.gl.canvas.width,
+               height: Four.gl.canvas.height
+            });
+            var plane = new Four.Mesh({
+               buffers: new Four.VertexArrayObject({
+                  program: program,
+                  attributes: ['vec3 position', 'vec2 uv', 'vec3 normal']
+               }),
+               vertices: planeLoader.vertices,
+               uvs: planeLoader.uvs,
+               normals: planeLoader.normals,
+               material: new Four.Material({
+                  program: program,
+                  diffuse: 0xFFFFFF
+               })
+            });
+            var depthView = new Four.DeferredFramebuffer({
+               colorAttachment: colorAttachment,
+               depthAttachment: depthAttachment
+            });
+
+            program.bind();
+            light.bind();
+
+            scene.put(cube);
+            scene.put(plane);
+
+            scene.render(depthView, camera);
+
+            plane.material = colorAttachment;
+
+            scene.animate(view, camera);
+         }, 2000);
+      </script>
+   </body>
+</html>

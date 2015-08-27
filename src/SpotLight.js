@@ -13,7 +13,7 @@ class SpotLight extends Light
       super({ name, program, path, uniforms, ambient, diffuse, specular, intensity, location });
 
       this.attenuation = attenuation;
-      
+
       this.exponent = exponent;
 
       this.cutoff = cutoff;

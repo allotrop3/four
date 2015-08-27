@@ -2,7 +2,6 @@
 
 let gl = require('./gl');
 let Framebuffer = require('./Framebuffer');
-let DataTexture = require('./DataTexture');
 
 const _name = 'depth.framebuffer';
 
