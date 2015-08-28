@@ -6,7 +6,7 @@
    </head>
 
    <body style="margin:0">
-      <canvas height="500px" width="500px"></canvas>
+      <canvas></canvas>
 
       <script class="shadow-mapper" type="x-shader/x-vertex">
          #version 100
@@ -131,10 +131,11 @@
                width: Four.gl.canvas.width,
                height: Four.gl.canvas.height
             });
-            var depthAttachment = new Four.Renderbuffer({
+            var depthAttachment = new Four.DepthTexture({
                width: Four.gl.canvas.width,
                height: Four.gl.canvas.height
             });
+            console.log(depthAttachment);
             var plane = new Four.Mesh({
                buffers: new Four.VertexArrayObject({
                   program: program,
@@ -148,7 +149,7 @@
                   diffuse: 0xFFFFFF
                })
             });
-            var depthView = new Four.DeferredFramebuffer({
+            var depthView = new Four.DepthFramebuffer({
                colorAttachment: colorAttachment,
                depthAttachment: depthAttachment
             });

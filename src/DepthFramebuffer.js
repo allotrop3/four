@@ -22,7 +22,7 @@ class DepthFramebuffer extends Framebuffer
 
    configure()
    {
-      this.bind();
+      this.bind(false);
 
       gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.colorAttachment.buffer, 0);
       gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.TEXTURE_2D, this.depthAttachment.buffer, 0);

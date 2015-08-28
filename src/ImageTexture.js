@@ -66,7 +66,7 @@ class ImageTexture extends Texture
          return Math.min(anisotropy, Math.max(anisotropy, maxAnisotropy));
       }
 
-      return false;
+      return 0;
    }
 }
 
