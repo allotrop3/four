@@ -39,11 +39,12 @@ class Uniform extends Entity
 
    locate(program)
    {
+      let path = this.path;
       let uniform = this.uniform;
 
-      if (this.format !== 'sampler')
+      if (this.format !== 'sampler' && path !== undefined)
       {
-         uniform = [this.path, this.uniform].join('.');
+         uniform = [path, uniform].join('.');
       }
 
       return this.location = gl.getUniformLocation(program.buffer, `u_${uniform}`);

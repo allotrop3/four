@@ -5,18 +5,65 @@
       <title>Shadow mapping</title>
       
       <link rel="stylesheet" href="http://benvanik.github.io/WebGL-Inspector/core/lib/gli.all.css">
-      
+
       <script src="http://benvanik.github.io/WebGL-Inspector/core/lib/gli.all.js"></script>
       <script src="http://benvanik.github.io/WebGL-Inspector/core/embed.js"></script>
    </head>
 
-   <body style="margin:0;background:#000">
+   <body style="margin:0;background:#222">
       <canvas></canvas>
 
       <script class="shadow-mapper" type="x-shader/x-vertex">
          #version 100
 
-         precision lowp float;
+         precision mediump float;
+
+         attribute vec3 a_position;
+
+         struct camera
+         {
+            mat4 projectionMatrix;
+            mat4 modelViewMatrix;
+            mat3 normalMatrix;
+         };
+
+         uniform camera u_lightCamera;
+         
+         varying vec4 v_position;
+         varying vec4 v_positionFromLight;
+         
+         void main()
+         {
+            vec4 position = vec4(a_position, 1.0);
+            vec4 positionFromLight = u_lightCamera.projectionMatrix * u_lightCamera.modelViewMatrix * position;
+         
+            gl_Position = positionFromLight;
+            
+            v_position = position;
+            v_positionFromLight = positionFromLight;
+         }
+      </script>
+
+      <script class="shadow-mapper" type="x-shader/x-fragment">
+         #version 100
+
+         precision mediump float;
+         
+         varying vec4 v_position;
+         varying vec4 v_positionFromLight;
+         
+         void main(void)
+         {
+            float shadow = distance(v_positionFromLight, v_position);
+         
+            gl_FragColor = vec4(shadow, 0.0, 0.0, 0.0);
+         }
+      </script>
+
+      <script class="renderer" type="x-shader/x-vertex">
+         #version 100
+
+         precision mediump float;
 
          attribute vec3 a_position;
          attribute vec2 a_uv;
@@ -30,8 +77,10 @@
          };
 
          uniform camera u_camera;
+         uniform camera u_lightCamera;
 
-         varying vec3 v_position;
+         varying vec4 v_position;
+         varying vec4 v_positionFromLight;
          varying vec2 v_uv;
          varying vec3 v_normal;
 
@@ -39,16 +88,17 @@
          {
             gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * vec4(a_position, 1.0);
 
-            v_position = a_position;
+            v_position = vec4(a_position, 1.0);
+            v_positionFromLight = mat4(0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.5, 0.5, 0.5, 1.0) * u_lightCamera.projectionMatrix * u_lightCamera.modelViewMatrix * vec4(a_position, 1.0);
             v_uv = normalize(a_uv);
             v_normal = normalize(u_camera.normalMatrix * a_normal);
          }
       </script>
 
-      <script class="shadow-mapper" type="x-shader/x-fragment">
+      <script class="renderer" type="x-shader/x-fragment">
          #version 100
 
-         precision lowp float;
+         precision mediump float;
 
          struct material
          {
@@ -72,17 +122,19 @@
          };
 
          uniform sampler2D u_image;
+         uniform sampler2D u_shadowMap;
          uniform material u_material;
          uniform light u_light;
 
-         varying vec3 v_position;
+         varying vec4 v_position;
+         varying vec4 v_positionFromLight;
          varying vec2 v_uv;
          varying vec3 v_normal;
 
          vec3 pointLight()
          {
             vec3 normal = normalize(v_normal);
-            vec3 direction = normalize(u_light.location - v_position);
+            vec3 direction = normalize(u_light.location - v_position.xyz);
             float weight = max(dot(direction, normal), 0.0);
             vec3 color = vec3(0.0);
             float range = length(direction);
@@ -92,97 +144,24 @@
 
             return (ambient + diffuse) * attenuation;
          }
-
-         void main(void)
+         
+         float visibility()
          {
-            gl_FragColor = vec4(pointLight(), 1.0);
-         }
-      </script>
-
-      <script class="renderer" type="x-shader/x-vertex">
-         #version 100
-
-         precision lowp float;
-
-         attribute vec3 a_position;
-         attribute vec2 a_uv;
-         attribute vec3 a_normal;
-
-         struct camera
-         {
-            mat4 projectionMatrix;
-            mat4 modelViewMatrix;
-            mat3 normalMatrix;
-         };
-
-         uniform camera u_camera;
-
-         varying vec3 v_position;
-         varying vec2 v_uv;
-         varying vec3 v_normal;
-
-         void main()
-         {
-            gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * vec4(a_position, 1.0);
-
-            v_position = a_position;
-            v_uv = normalize(a_uv);
-            v_normal = normalize(u_camera.normalMatrix * a_normal);
-         }
-      </script>
-
-      <script class="renderer" type="x-shader/x-fragment">
-         #version 100
-
-         precision lowp float;
-
-         struct material
-         {
-            int image;
-            vec3 ambient;
-            vec3 diffuse;
-            vec3 specular;
-            int shading;
-            int type;
-         };
-
-         struct light
-         {
-            vec3 ambient;
-            vec3 diffuse;
-            vec3 specular;
-            vec3 attenuation;
-            float intensity;
-            vec3 location;
-            int type;
-         };
-
-         uniform sampler2D u_image;
-         uniform material u_material;
-         uniform light u_light;
-
-         varying vec3 v_position;
-         varying vec2 v_uv;
-         varying vec3 v_normal;
-
-         vec3 pointLight()
-         {
-            vec3 base = texture2D(u_image, normalize(v_uv)).rgb;
-            vec3 normal = normalize(v_normal);
-            vec3 direction = normalize(u_light.location - v_position);
-            float weight = max(dot(direction, normal), 0.0);
-            vec3 color = vec3(0.0);
-            float range = length(direction);
-            float attenuation = 1.0 / (u_light.attenuation.x + u_light.attenuation.y * range + u_light.attenuation.z * pow(range, 2.0));
-            vec3 ambient = u_light.ambient * u_material.ambient;
-            vec3 diffuse = u_light.intensity * u_light.diffuse * (u_material.diffuse + base) * weight;
-
-            return (ambient + diffuse) * attenuation;
+            vec3 depth = v_positionFromLight.xyz / v_positionFromLight.w;
+            float shadow = texture2D(u_shadowMap, depth.xy).r;
+            float visible = 1.0;
+            
+            if (shadow < depth.z * 0.999)
+            {
+               visible = 0.5;
+            }
+            
+            return visible;
          }
 
          void main(void)
          {
-            gl_FragColor = vec4(pointLight(), 1.0);
+            gl_FragColor = vec4(pointLight() * visibility(), 1.0);
          }
       </script>
 
@@ -198,13 +177,18 @@
             var rendererProgram = new Four.Program({ selector: '.renderer' });
             var view = new Four.Framebuffer();
             var camera = new Four.PerspectiveCamera({
-               direction: [1, -1, -1],
-               location: [-10, 5, 10]
+               direction: [0, 0, 0],
+               location: [-15, 5, 15]
+            });
+            var lightCamera = new Four.PerspectiveCamera({
+               path: 'lightCamera',
+               direction: [-1, -1, 1],
+               location: [2.5, 2.5, 2.5]
             });
             var scene = new Four.Scene();
             var light = new Four.PointLight({
                attenuation: [0.5, 0.5, 1],
-               location: [0, 0, 5]
+               location: lightCamera.location
             });
             var cube = new Four.Mesh({
                buffers: new Four.VertexArrayObject({
@@ -217,10 +201,12 @@
                })
             });
             var colorAttachment = new Four.DataTexture({
+               image: [],
+               format: Four.gl.FLOAT,
                width: Four.gl.canvas.width,
                height: Four.gl.canvas.height
             });
-            var depthAttachment = new Four.DepthTexture({
+            var depthAttachment = new Four.Renderbuffer({
                width: Four.gl.canvas.width,
                height: Four.gl.canvas.height
             });
@@ -235,9 +221,13 @@
                   diffuse: 0xFFFFFF
                })
             });
-            var depthView = new Four.DepthFramebuffer({
+            var depthView = new Four.DeferredFramebuffer({
                colorAttachment: colorAttachment,
                depthAttachment: depthAttachment
+            });
+            var shadowMap = new Four.Uniform({
+               uniform: 'shadowMap',
+               format: 'sampler'
             });
             
             scene.put(cube);
@@ -245,16 +235,22 @@
 
             scene.use(shadowMapperProgram);
             light.bind(shadowMapperProgram);
-            scene.render(depthView, camera);
-
-            plane.material = new Four.Material({
-               diffuse: 0xFFFFFF,
-               pattern: depthAttachment
-            });
+            scene.render(depthView, lightCamera);
             
             scene.use(rendererProgram);
             light.bind(rendererProgram);
-            scene.animate(view, camera);
+            lightCamera.bind(rendererProgram);
+            scene.animate(view, camera,
+               function()
+               {
+                  colorAttachment.bind();
+                  shadowMap.set(rendererProgram, colorAttachment.unit);
+               },
+               function()
+               {
+                  colorAttachment.unbind();
+               }
+            );
          }, 2000);
       </script>
    </body>
