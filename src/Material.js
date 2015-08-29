@@ -15,9 +15,9 @@ const _shading = 'smooth';
 
 class Material extends Structure
 {
-   constructor({ name = _name, program, path = _path, uniforms = _uniforms, pattern = _pattern, ambient = _ambient, diffuse = _diffuse, shading = _shading } = {})
+   constructor({ name = _name, path = _path, uniforms = _uniforms, pattern = _pattern, ambient = _ambient, diffuse = _diffuse, shading = _shading } = {})
    {
-      super({ name, program, path, uniforms });
+      super({ name, path, uniforms });
 
       this.ambient = LSL(ambient);
 

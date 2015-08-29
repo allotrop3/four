@@ -7,9 +7,9 @@ const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'vec3 attenu
 
 class PointLight extends Light
 {
-   constructor({ name = _name, program, path, uniforms = _uniforms, ambient, diffuse, specular, attenuation, intensity, location } = {})
+   constructor({ name = _name, path, uniforms = _uniforms, ambient, diffuse, specular, attenuation, intensity, location } = {})
    {
-      super({ name, program, path, uniforms, ambient, diffuse, specular, intensity, location });
+      super({ name, path, uniforms, ambient, diffuse, specular, intensity, location });
 
       this.attenuation = attenuation;
 

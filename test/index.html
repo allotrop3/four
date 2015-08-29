@@ -5,7 +5,7 @@
       <title>Shadow mapping</title>
    </head>
 
-   <body style="margin:0">
+   <body style="margin:0;background:#000">
       <canvas></canvas>
       
       <script class="shadow-mapper" type="x-shader/x-vertex">
@@ -193,13 +193,11 @@
             var rendererProgram = new Four.Program({ selector: '.renderer' });
             var view = new Four.Framebuffer();
             var camera = new Four.PerspectiveCamera({
-               program: shadowMapperProgram,
                direction: [1, -1, -1],
                location: [-10, 5, 10]
             });
             var scene = new Four.Scene();
             var light = new Four.PointLight({
-               program: shadowMapperProgram,
                attenuation: [0.5, 0.5, 1],
                location: [0, 0, 5]
             });
@@ -211,7 +209,6 @@
                vertices: cubeLoader.vertices,
                normals: cubeLoader.normals,
                material: new Four.Material({
-                  program: shadowMapperProgram,
                   diffuse: 0xFFFFFF
                })
             });
@@ -232,7 +229,6 @@
                uvs: planeLoader.uvs,
                normals: planeLoader.normals,
                material: new Four.Material({
-                  program: shadowMapperProgram,
                   diffuse: 0xFFFFFF
                })
             });
@@ -248,7 +244,10 @@
             light.bind(shadowMapperProgram);
             scene.render(depthView, camera);
 
-            plane.material = colorAttachment;
+            plane.material = new Four.Material({
+               diffuse: 0xFFFFFF,
+               pattern: colorAttachment
+            });
             
             scene.use(rendererProgram);
             light.bind(rendererProgram);

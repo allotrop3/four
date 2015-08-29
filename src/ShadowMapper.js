@@ -10,9 +10,9 @@ const _name = 'shadow.map';
 
 class ShadowMapper extends Structure
 {
-   constructor({ name = _name, program, path, uniforms })
+   constructor({ name = _name, path, uniforms })
    {
-      super({ name, program, path, uniforms });
+      super({ name, path, uniforms });
 
       this.view = undefined;
 

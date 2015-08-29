@@ -8,11 +8,9 @@ const _uniforms = [];
 
 class Structure extends Entity
 {
-   constructor({ name = _name, program, path, uniforms = _uniforms })
+   constructor({ name = _name, path, uniforms = _uniforms })
    {
       super({ name });
-      
-      this.program = program;
 
       this.path = path;
 
@@ -21,9 +19,9 @@ class Structure extends Entity
 
    instantiate(qualifying)
    {
-      let vars = qualifying.split(' ');
-      let format = vars[0];
-      let uniform = vars[1];
+      let properties = qualifying.split(' ');
+      let format = properties[0];
+      let uniform = properties[1];
 
       return new Uniform({ path: this.path, uniform: uniform, format: format });
    }

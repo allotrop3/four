@@ -10,9 +10,9 @@ const _shininess = 75;
 
 class PhongMaterial extends Material
 {
-   constructor({ name = _name, program, path, uniforms = _uniforms, pattern, ambient, diffuse, specular = _specular, shading, shininess = _shininess } = {})
+   constructor({ name = _name, path, uniforms = _uniforms, pattern, ambient, diffuse, specular = _specular, shading, shininess = _shininess } = {})
    {
-      super({ name, program, path, uniforms, pattern, ambient, diffuse, shading });
+      super({ name, path, uniforms, pattern, ambient, diffuse, shading });
 
       this.specular = LSL(specular);
 

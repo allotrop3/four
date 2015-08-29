@@ -8,9 +8,9 @@ const _direction = [0, 0, 0];
 
 class SpotLight extends Light
 {
-   constructor({ name = _name, program, path, uniforms = _uniforms, ambient, diffuse, specular, attenuation, exponent, cutoff, intensity, location,  direction = _direction } = {})
+   constructor({ name = _name, path, uniforms = _uniforms, ambient, diffuse, specular, attenuation, exponent, cutoff, intensity, location,  direction = _direction } = {})
    {
-      super({ name, program, path, uniforms, ambient, diffuse, specular, intensity, location });
+      super({ name, path, uniforms, ambient, diffuse, specular, intensity, location });
 
       this.attenuation = attenuation;
 

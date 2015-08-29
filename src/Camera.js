@@ -17,9 +17,9 @@ const _background = 0x000000;
 
 class Camera extends Structure
 {
-   constructor({ name = _name, program, path = _path, uniforms = _uniforms, background = _background } = {})
+   constructor({ name = _name, path = _path, uniforms = _uniforms, background = _background } = {})
    {
-      super({ name, program, path, uniforms });
+      super({ name, path, uniforms });
 
       this.background = LSL(background);
 

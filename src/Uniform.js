@@ -35,11 +35,11 @@ class Uniform extends Entity
       this.method = `uniform${formats[format]}`;
    }
 
-   locate(program, format)
+   locate(program)
    {
       let uniform = this.uniform;
 
-      if (format !== 'sampler')
+      if (this.format !== 'sampler')
       {
          uniform = [this.path, this.uniform].join('.');
       }
@@ -49,17 +49,16 @@ class Uniform extends Entity
 
    set(program, value)
    {
-      let location = this.locate(program, this.format);
+      let location = this.locate(program);
       let method = this.method;
-      let setter = gl[method].bind(gl, location);
 
       if (method.match('Matrix') !== null)
       {
-         setter(false, value);
+         gl[method](location, false, value);
       }
       else
       {
-         setter(value);
+         gl[method](location, value);
       }
    }
 }

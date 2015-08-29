@@ -16,9 +16,9 @@ const _up = [0, 1, 0];
 
 class PerspectiveCamera extends Camera
 {
-   constructor({ name = _name, program, path, uniforms, background, width = _width, height = _height, fov = _fov, near = _near, far = _far, direction = _direction, location, up = _up } = {})
+   constructor({ name = _name, path, uniforms, background, width = _width, height = _height, fov = _fov, near = _near, far = _far, direction = _direction, location, up = _up } = {})
    {
-      super({ name, program, path, uniforms, background });
+      super({ name, path, uniforms, background });
 
       this.width = width;
 
