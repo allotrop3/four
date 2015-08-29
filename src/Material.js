@@ -32,9 +32,9 @@ class Material extends Structure
       this.type = 0;
    }
 
-   bind()
+   bind(program)
    {
-      super.bind();
+      super.bind(program);
 
       if (this.image !== undefined)
       {

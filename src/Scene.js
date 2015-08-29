@@ -10,6 +10,8 @@ class Scene extends Entity
    constructor({ name = _name } = {})
    {
       super({ name });
+      
+      this.program = undefined;
 
       this.meshes = [];
 
@@ -18,6 +20,13 @@ class Scene extends Entity
       this.rotation = 0;
 
       this.translation = [0, 0, 0];
+   }
+   
+   use(program)
+   {   
+      program.bind();
+      
+      this.program = program;
    }
 
    put(mesh)
@@ -49,7 +58,7 @@ class Scene extends Entity
       camera.rotate(this.rotation);
       camera.translate.apply(camera, this.translation);
 
-      camera.bind();
+      camera.bind(this.program);
 
       this.meshes.map(this.draw.bind(this, camera));
 
@@ -65,6 +74,7 @@ class Scene extends Entity
 
    draw(camera, mesh)
    {
+      let program = this.program;
       let material = mesh.material;
 
       camera.save();
@@ -74,9 +84,9 @@ class Scene extends Entity
 
       camera.translate.apply(camera, mesh.translation);
 
-      camera.bind();
-
-      material.bind();
+      camera.bind(program);
+      
+      material.bind(program);
 
       mesh.draw();
 

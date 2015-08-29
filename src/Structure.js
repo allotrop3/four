@@ -11,31 +11,33 @@ class Structure extends Entity
    constructor({ name = _name, program, path, uniforms = _uniforms })
    {
       super({ name });
+      
+      this.program = program;
 
       this.path = path;
 
-      this.uniforms = uniforms.map(this.instantiate.bind(this, program));
+      this.uniforms = uniforms.map(this.instantiate.bind(this));
    }
 
-   instantiate(program, qualifying)
+   instantiate(qualifying)
    {
       let vars = qualifying.split(' ');
       let format = vars[0];
       let uniform = vars[1];
 
-      return new Uniform({ program: program, path: this.path, uniform: uniform, format: format });
+      return new Uniform({ path: this.path, uniform: uniform, format: format });
    }
 
-   bind()
+   bind(program)
    {
-      this.uniforms.map(this.set.bind(this));
+      this.uniforms.map(this.set.bind(this, program));
    }
 
    unbind() {}
 
-   set(uniform)
+   set(program, uniform)
    {
-      uniform.set(this[uniform.uniform]);
+      uniform.set(program, this[uniform.uniform]);
    }
 }
 

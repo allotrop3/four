@@ -22,7 +22,7 @@ const _name = 'uniform';
 
 class Uniform extends Entity
 {
-   constructor({ name = _name, program, path, uniform, format } = {})
+   constructor({ name = _name, path, uniform, format } = {})
    {
       super({ name });
 
@@ -30,12 +30,12 @@ class Uniform extends Entity
 
       this.uniform = uniform;
 
-      this.location = this.from(program, format);
+      this.format = format;
 
       this.method = `uniform${formats[format]}`;
    }
 
-   from(program, format)
+   locate(program, format)
    {
       let uniform = this.uniform;
 
@@ -47,11 +47,11 @@ class Uniform extends Entity
       return gl.getUniformLocation(program.buffer, `u_${uniform}`);
    }
 
-   set(value)
+   set(program, value)
    {
-      let location = this.location;
+      let location = this.locate(program, this.format);
       let method = this.method;
-      let setter = gl[this.method].bind(gl, this.location);
+      let setter = gl[method].bind(gl, location);
 
       if (method.match('Matrix') !== null)
       {

@@ -40,9 +40,9 @@ class OrthographicCamera extends Camera
       mat4.identity(this.modelViewMatrix);
    }
 
-   bind()
+   bind(program)
    {
-      super.bind();
+      super.bind(program);
 
       gl.disable(gl.DEPTH_TEST);
       gl.viewport(0, 0, this.right, this.top);

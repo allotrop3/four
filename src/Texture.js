@@ -2,7 +2,7 @@
 
 let Entity = require('./Entity');
 let gl = require('./gl');
-let unit = 1;
+let unit = 0;
 
 const _name = 'texture';
 const _lod = 0;

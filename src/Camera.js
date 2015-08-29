@@ -39,11 +39,11 @@ class Camera extends Structure
       gl.clearColor.apply(gl, this.background.concat(1));
    }
 
-   bind()
+   bind(program)
    {
       mat3.normalFromMat4(this.normalMatrix, this.modelViewMatrix);
 
-      super.bind();
+      super.bind(program);
    }
 
    save()

@@ -55,9 +55,9 @@ class PerspectiveCamera extends Camera
       mat4.lookAt(modelViewMatrix, this.location, this.direction, this.up);
    }
 
-   bind()
+   bind(program)
    {
-      super.bind();
+      super.bind(program);
 
       gl.enable(gl.DEPTH_TEST);
       gl.viewport(0, 0, this.width, this.height);
