@@ -81,11 +81,11 @@ class Mesh extends Entity
       [].push.apply(interleaved, contatenation.map(parseFloat));
    }
 
-   draw({ primitive = gl.TRIANGLES, offset = 0, count = this.count } = {})
+   draw({ program, primitive = gl.TRIANGLES, offset = 0, count = this.count } = {})
    {
       let buffers = this.buffers;
 
-      buffers.bind();
+      buffers.bind(program);
 
       if (buffers.indexed)
       {

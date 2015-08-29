@@ -29,6 +29,8 @@ class Uniform extends Entity
       this.path = path;
 
       this.uniform = uniform;
+      
+      this.location = undefined;
 
       this.format = format;
 
@@ -44,7 +46,7 @@ class Uniform extends Entity
          uniform = [this.path, this.uniform].join('.');
       }
 
-      return gl.getUniformLocation(program.buffer, `u_${uniform}`);
+      return this.location = gl.getUniformLocation(program.buffer, `u_${uniform}`);
    }
 
    set(program, value)

@@ -3,11 +3,16 @@
       <meta charset="utf-8">
 
       <title>Shadow mapping</title>
+      
+      <link rel="stylesheet" href="http://benvanik.github.io/WebGL-Inspector/core/lib/gli.all.css">
+      
+      <script src="http://benvanik.github.io/WebGL-Inspector/core/lib/gli.all.js"></script>
+      <script src="http://benvanik.github.io/WebGL-Inspector/core/embed.js"></script>
    </head>
 
    <body style="margin:0;background:#000">
       <canvas></canvas>
-      
+
       <script class="shadow-mapper" type="x-shader/x-vertex">
          #version 100
 
@@ -203,7 +208,6 @@
             });
             var cube = new Four.Mesh({
                buffers: new Four.VertexArrayObject({
-                  program: shadowMapperProgram,
                   attributes: ['vec3 position', 'vec3 normal']
                }),
                vertices: cubeLoader.vertices,
@@ -222,7 +226,6 @@
             });
             var plane = new Four.Mesh({
                buffers: new Four.VertexArrayObject({
-                  program: shadowMapperProgram,
                   attributes: ['vec3 position', 'vec2 uv', 'vec3 normal']
                }),
                vertices: planeLoader.vertices,
@@ -246,7 +249,7 @@
 
             plane.material = new Four.Material({
                diffuse: 0xFFFFFF,
-               pattern: colorAttachment
+               pattern: depthAttachment
             });
             
             scene.use(rendererProgram);

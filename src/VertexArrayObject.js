@@ -19,7 +19,7 @@ const _attributes = [];
 
 class VertexArrayObject extends Entity
 {
-   constructor({ name = _name, program, indexed = _indexed, view = _view, attributes = _attributes } = {})
+   constructor({ name = _name, indexed = _indexed, view = _view, attributes = _attributes } = {})
    {
       super({ name });
 
@@ -33,7 +33,7 @@ class VertexArrayObject extends Entity
 
       this.view = view;
 
-      this.attributes = attributes.map(this.generate.bind(this, program));
+      this.attributes = attributes.map(this.generate.bind(this));
 
       this.configure();
    }
@@ -46,22 +46,22 @@ class VertexArrayObject extends Entity
       }
    }
 
-   generate(program, qualifying)
+   generate(qualifying)
    {
       let offset = this.stride;
       let vars = qualifying.split(' ');
       let length = lengths[vars[0]];
       let name = vars[1];
-      let attribute = new Attribute({ program: program, attribute: name, length: length, offset: offset });
+      let attribute = new Attribute({ attribute: name, length: length, offset: offset });
 
       this.stride += attribute.getByteCount(this.view.BYTES_PER_ELEMENT);
 
       return attribute;
    }
 
-   enable(attribute)
+   enable(program, attribute)
    {
-      attribute.enable(this.stride);
+      attribute.enable(program, this.stride);
    }
 
    disable(attribute)
@@ -69,7 +69,7 @@ class VertexArrayObject extends Entity
       attribute.disable();
    }
 
-   bind()
+   bind(program = false)
    {
       gl.bindBuffer(gl.ARRAY_BUFFER, this.primary);
 
@@ -77,8 +77,11 @@ class VertexArrayObject extends Entity
       {
          gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.secondary);
       }
-
-      this.attributes.map(this.enable.bind(this));
+      
+      if (program)
+      {
+         this.attributes.map(this.enable.bind(this, program));  
+      }      
    }
 
    unbind()

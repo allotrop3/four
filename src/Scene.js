@@ -86,9 +86,9 @@ class Scene extends Entity
 
       camera.bind(program);
       
-      material.bind(program);
-
-      mesh.draw();
+      material.bind(program)
+      
+      mesh.draw({ program });
 
       material.unbind();
 
