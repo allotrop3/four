@@ -12,7 +12,7 @@ let FRAGMENT_SHADER = [
    '   float weight = max(dot(direction, normal), 0.0);',
    '   vec3 ambient = light.ambient * material.ambient;',
    '   vec3 diffuse = light.intensity * light.diffuse * (material.diffuse + base) * weight;',
-   '   vec3 specular = vec3(0.0)',
+   '   vec3 specular = vec3(0.0);',
    '   if (material.type == 1 && weight > 0.0)',
    '   {',
    '      specular = light.specular * material.specular * pow(max(dot(reflect(-direction, normal), normalize(-position)), 0.0), material.shininess);',
