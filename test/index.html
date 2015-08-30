@@ -14,6 +14,62 @@
 
    <body style="margin:0;background:#222;position:relative;overflow:hidden">
       <canvas></canvas>
+      
+      <script class="renderer" type="x-shader/x-vertex">
+         #version 100
+
+         precision mediump float;
+      
+         @Camera;
+         @ShadowMapper;
+         
+         attribute vec3 a_position;
+         attribute vec2 a_uv;
+         attribute vec3 a_normal;
+         
+         varying vec4 v_position;
+         varying vec2 v_uv;
+         varying vec3 v_normal;
+         
+         uniform Camera u_camera;
+         uniform Camera u_lightCamera;
+         
+         void main()
+         {
+            vec4 position = vec4(a_position, 1.0);
+            
+            v_position = position;
+            v_uv = normalize(a_uv);
+            v_normal = u_camera.normalMatrix * a_normal;
+         
+            shadow(u_lightCamera, position);
+            
+            gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * position;
+         }
+      </script>
+      
+      <script class="renderer" type="x-shader/x-fragment">
+         #version 100
+
+         precision mediump float;
+         
+         @Material;
+         @Light;
+         @PointLight;
+         @ShadowMapper;
+         
+         uniform Light u_light;
+         uniform Material u_material;
+         
+         varying vec4 v_position;
+         varying vec2 v_uv;
+         varying vec3 v_normal;
+         
+         void main()
+         {
+            gl_FragColor = vec4(pointLight(u_light, u_material, v_position, v_normal, vec3(0.0)) * visibility(), 1.0);
+         }
+      </script>
 
       <script class="shadow-mapper" type="x-shader/x-vertex">
          #version 100
@@ -47,7 +103,8 @@
             gl_FragColor = vec4(gl_FragCoord.z, 0.0, 0.0, 0.0);
          }
       </script>
-
+      
+      <!--
       <script class="renderer" type="x-shader/x-vertex">
          #version 100
 
@@ -86,7 +143,7 @@
             v_normal = u_camera.normalMatrix * a_normal;
          }
       </script>
-
+      
       <script class="renderer" type="x-shader/x-fragment">
          #version 100
 
@@ -150,6 +207,7 @@
             gl_FragColor = vec4(pointLight(u_material) * visibility(), 1.0);
          }
       </script>
+      -->
 
       <script src="../dist/four.js"></script>
 
@@ -215,6 +273,8 @@
                uniform: 'shadowMap',
                format: 'sampler'
             });
+            
+            // new ShaderPackage({ shaders: ['Point'] })
             
             scene.put(monkey);
             scene.put(plane);

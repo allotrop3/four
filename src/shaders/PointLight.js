@@ -15,7 +15,7 @@ let FRAGMENT_SHADER = [
    '   vec3 specular = vec3(0.0);',
    '   if (material.type == 1 && weight > 0.0)',
    '   {',
-   '      specular = light.specular * material.specular * pow(max(dot(reflect(-direction, normal), normalize(-position)), 0.0), material.shininess);',
+   '      specular = light.specular * material.specular * pow(max(dot(reflect(-direction, normal), normalize(-position.xyz)), 0.0), material.shininess);',
    '   }',
    '   float distanceFromLight = length(direction);',
    '   float attenuation = 1.0 / (light.attenuation.x + light.attenuation.y * distanceFromLight + light.attenuation.z * pow(distanceFromLight, 2.0));',

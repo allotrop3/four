@@ -8,7 +8,7 @@ let VERTEX_SHADER = [
    '   mat4 projectionMatrix;',
    '   mat4 modelViewMatrix;',
    '   mat3 normalMatrix;',
-   '};',
+   '};'
 ].join('\n');
 
 let FRAGMENT_SHADER = [

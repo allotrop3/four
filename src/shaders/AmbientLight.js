@@ -6,7 +6,7 @@ let VERTEX_SHADER = [
 ].join('\n');
 
 let FRAGMENT_SHADER = [
-   'vec3 light(Light light, Material material, vec4 position, vec3 normal, vec3 base)',
+   'vec3 ambientLight(Light light, Material material, vec4 position, vec3 normal, vec3 base)',
    '{',
    '   vec3 direction = normalize(light.location - position.xyz);',
    '   float weight = max(dot(direction, normal), 0.0);',

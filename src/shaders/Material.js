@@ -12,6 +12,7 @@ let FRAGMENT_SHADER = [
    '   vec3 ambient;',
    '   vec3 diffuse;',
    '   vec3 specular;',
+   '   float shininess;',
    '   int shading;',   
    '   int type;',
    '};',
@@ -19,7 +20,7 @@ let FRAGMENT_SHADER = [
 ].join('\n');
 
 module.exports = {
-  dependencies: dependencies,
+   dependencies: dependencies,
    VERTEX_SHADER: VERTEX_SHADER,
    FRAGMENT_SHADER: FRAGMENT_SHADER
 };

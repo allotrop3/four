@@ -3,6 +3,7 @@
 let gl = require('./gl');
 let ajax = require('./utils/ajax');
 let Entity = require('./Entity');
+let shaders = require('./shaders/shaders');
 
 const _name = 'shader';
 
@@ -12,15 +13,27 @@ class Shader extends Entity
    {
       super({ name });
 
-      this.buffer = gl.createShader(type);
-
-      this.compile(selector);
+      this.buffer = gl.createShader(gl[type]);
+      
+      this.compile(type, selector);
+   }
+   
+   generate(type, selector)
+   {
+      let source = document.querySelector(selector).textContent;
+      
+      for (var tag in shaders)
+      {
+         source = source.replace(`@${tag};`, shaders[tag][type]);  
+      }
+      
+      return source;
    }
 
-   compile(selector)
+   compile(type, selector)
    {
       let buffer = this.buffer;
-      let source = document.querySelector(selector).textContent;
+      let source = this.generate(type, selector);
 
       gl.shaderSource(buffer, source);
       gl.compileShader(buffer);

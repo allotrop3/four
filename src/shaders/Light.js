@@ -11,6 +11,7 @@ let FRAGMENT_SHADER = [
    '   vec3 ambient;',
    '   vec3 diffuse;',
    '   vec3 specular;',
+   '   vec3 attenuation;',
    '   float intensity;',
    '   vec3 location;',
    '   int type;',
