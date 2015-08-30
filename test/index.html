@@ -5,12 +5,14 @@
       <title>Shadow mapping</title>
       
       <link rel="stylesheet" href="http://benvanik.github.io/WebGL-Inspector/core/lib/gli.all.css">
-
+      
+      <!--
       <script src="http://benvanik.github.io/WebGL-Inspector/core/lib/gli.all.js"></script>
       <script src="http://benvanik.github.io/WebGL-Inspector/core/embed.js"></script>
+      -->
    </head>
 
-   <body style="margin:0;background:#222">
+   <body style="margin:0;background:#222;position:relative;overflow:hidden">
       <canvas></canvas>
 
       <script class="shadow-mapper" type="x-shader/x-vertex">
@@ -29,18 +31,9 @@
 
          uniform camera u_lightCamera;
          
-         varying vec4 v_position;
-         varying vec4 v_positionFromLight;
-         
          void main()
          {
-            vec4 position = vec4(a_position, 1.0);
-            vec4 positionFromLight = u_lightCamera.projectionMatrix * u_lightCamera.modelViewMatrix * position;
-         
-            gl_Position = positionFromLight;
-            
-            v_position = position;
-            v_positionFromLight = positionFromLight;
+            gl_Position = u_lightCamera.projectionMatrix * u_lightCamera.modelViewMatrix * vec4(a_position, 1.0);
          }
       </script>
 
@@ -49,14 +42,9 @@
 
          precision mediump float;
          
-         varying vec4 v_position;
-         varying vec4 v_positionFromLight;
-         
          void main(void)
          {
-            float shadow = distance(v_positionFromLight, v_position);
-         
-            gl_FragColor = vec4(shadow, 0.0, 0.0, 0.0);
+            gl_FragColor = vec4(gl_FragCoord.z, 0.0, 0.0, 0.0);
          }
       </script>
 
@@ -64,6 +52,8 @@
          #version 100
 
          precision mediump float;
+         
+         const mat4 depthMatrix = mat4(0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.5, 0.5, 0.5, 1.0);
 
          attribute vec3 a_position;
          attribute vec2 a_uv;
@@ -80,18 +70,20 @@
          uniform camera u_lightCamera;
 
          varying vec4 v_position;
-         varying vec4 v_positionFromLight;
+         varying vec4 v_shadow;
          varying vec2 v_uv;
          varying vec3 v_normal;
 
          void main()
          {
-            gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * vec4(a_position, 1.0);
+            vec4 position = vec4(a_position, 1.0);
+         
+            gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * position;
 
-            v_position = vec4(a_position, 1.0);
-            v_positionFromLight = mat4(0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.5, 0.5, 0.5, 1.0) * u_lightCamera.projectionMatrix * u_lightCamera.modelViewMatrix * vec4(a_position, 1.0);
+            v_position = position;
+            v_shadow = depthMatrix * u_lightCamera.projectionMatrix * u_lightCamera.modelViewMatrix * position;
             v_uv = normalize(a_uv);
-            v_normal = normalize(u_camera.normalMatrix * a_normal);
+            v_normal = u_camera.normalMatrix * a_normal;
          }
       </script>
 
@@ -127,7 +119,7 @@
          uniform light u_light;
 
          varying vec4 v_position;
-         varying vec4 v_positionFromLight;
+         varying vec4 v_shadow;
          varying vec2 v_uv;
          varying vec3 v_normal;
 
@@ -147,13 +139,13 @@
          
          float visibility()
          {
-            vec3 depth = v_positionFromLight.xyz / v_positionFromLight.w;
+            vec3 depth = v_shadow.xyz / v_shadow.w;
             float shadow = texture2D(u_shadowMap, depth.xy).r;
             float visible = 1.0;
             
-            if (shadow < depth.z * 0.999)
+            if (shadow < depth.z * 0.9999)
             {
-               visible = 0.5;
+               visible = 0.25;
             }
             
             return visible;
@@ -169,6 +161,7 @@
 
       <script>
          var cubeLoader = new Four.OBJMeshLoader({ path: 'meshes/cuboid.obj' });
+         var monkeyLoader = new Four.OBJMeshLoader({ path: 'meshes/monkey.obj' });
          var planeLoader = new Four.OBJMeshLoader({ path: 'meshes/plane.obj' });
 
          setTimeout(function()
@@ -182,8 +175,10 @@
             });
             var lightCamera = new Four.PerspectiveCamera({
                path: 'lightCamera',
-               direction: [-1, -1, 1],
-               location: [2.5, 2.5, 2.5]
+               width: Four.gl.canvas.width,
+               height: Four.gl.canvas.height,
+               direction: [-1, -1, -1],
+               location: [5, 10, 5]
             });
             var scene = new Four.Scene();
             var light = new Four.PointLight({
@@ -200,13 +195,21 @@
                   diffuse: 0xFFFFFF
                })
             });
+            var monkey = new Four.Mesh({
+               buffers: new Four.VertexArrayObject({
+                  attributes: ['vec3 position', 'vec3 normal']
+               }),
+               vertices: monkeyLoader.vertices,
+               normals: monkeyLoader.normals,
+               material: new Four.Material({
+                  diffuse: 0xFFFFFF
+               })
+            });
             var colorAttachment = new Four.DataTexture({
-               image: [],
-               format: Four.gl.FLOAT,
                width: Four.gl.canvas.width,
                height: Four.gl.canvas.height
             });
-            var depthAttachment = new Four.Renderbuffer({
+            var depthAttachment = new Four.DepthTexture({
                width: Four.gl.canvas.width,
                height: Four.gl.canvas.height
             });
@@ -221,7 +224,7 @@
                   diffuse: 0xFFFFFF
                })
             });
-            var depthView = new Four.DeferredFramebuffer({
+            var depthView = new Four.DepthFramebuffer({
                colorAttachment: colorAttachment,
                depthAttachment: depthAttachment
             });
@@ -230,7 +233,7 @@
                format: 'sampler'
             });
             
-            scene.put(cube);
+            scene.put(monkey);
             scene.put(plane);
 
             scene.use(shadowMapperProgram);
@@ -243,12 +246,12 @@
             scene.animate(view, camera,
                function()
                {
-                  colorAttachment.bind();
-                  shadowMap.set(rendererProgram, colorAttachment.unit);
+                  depthAttachment.bind();
+                  shadowMap.set(rendererProgram, depthAttachment.unit);
                },
                function()
                {
-                  colorAttachment.unbind();
+                  depthAttachment.unbind();
                }
             );
          }, 2000);
