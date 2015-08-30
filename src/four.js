@@ -1,6 +1,7 @@
 'use strict';
 
 let Four = {
+   shaders: require('./shaders/shaders'),
    glm: require('gl-matrix'),
    gl: require('./gl'),
    Entity: require('./Entity'),
