@@ -1,7 +1,6 @@
 'use strict';
 
 let VERTEX_SHADER = [
-   
 ].join('\n');
 
 let FRAGMENT_SHADER = [
@@ -12,11 +11,11 @@ let FRAGMENT_SHADER = [
    '   vec3 specular;',
    '   float intensity;',
    '   vec3 location;',
-   '   int type',
+   '   int type;',
    '};'
-];
+].join('\n');
 
 module.exports = {
-   VERTEX_SHADER: '',
+   VERTEX_SHADER: VERTEX_SHADER,
    FRAGMENT_SHADER: FRAGMENT_SHADER
 };

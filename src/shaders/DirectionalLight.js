@@ -1,11 +1,9 @@
 'use strict';
 
 let VERTEX_SHADER = [
-   
 ].join('\n');
 
 let FRAGMENT_SHADER = [
-   
 ].join('\n');
 
 module.exports = {

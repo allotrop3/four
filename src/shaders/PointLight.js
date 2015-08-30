@@ -1,16 +1,9 @@
 'use strict';
 
-let Light = require('./Light');
-let Material = require('./Material');
-
 let VERTEX_SHADER = [
-   Light.VERTEX_SHADER,
-   Material.VERTEX_SHADER
 ].join('\n');
 
 let FRAGMENT_SHADER = [
-   Light.FRAGMENT_SHADER,
-   Material.FRAGMENT_SHADER,
    'vec3 pointLight(Light light, Material material, vec4 position, vec3 normal, vec3 base)',
    '{',
    '   vec3 direction = normalize(light.location - position.xyz);',
