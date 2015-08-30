@@ -154,7 +154,6 @@
       <script src="../dist/four.js"></script>
 
       <script>
-         var cubeLoader = new Four.OBJMeshLoader({ path: 'meshes/cuboid.obj' });
          var monkeyLoader = new Four.OBJMeshLoader({ path: 'meshes/monkey.obj' });
          var planeLoader = new Four.OBJMeshLoader({ path: 'meshes/plane.obj' });
 
@@ -178,16 +177,6 @@
             var light = new Four.PointLight({
                attenuation: [0.5, 0.5, 1],
                location: lightCamera.location
-            });
-            var cube = new Four.Mesh({
-               buffers: new Four.VertexArrayObject({
-                  attributes: ['vec3 position', 'vec3 normal']
-               }),
-               vertices: cubeLoader.vertices,
-               normals: cubeLoader.normals,
-               material: new Four.Material({
-                  diffuse: 0xFFFFFF
-               })
             });
             var monkey = new Four.Mesh({
                buffers: new Four.VertexArrayObject({
