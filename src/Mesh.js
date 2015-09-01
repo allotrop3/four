@@ -2,6 +2,13 @@
 
 let gl = require('./gl');
 let Entity = require('./Entity');
+let VertexArrayObject = require('./VertexArrayObject');
+
+const attributes = {
+   vertices: 'position',
+   uvs: 'uv',
+   normals: 'normal'
+};
 
 const _name = 'mesh';
 const _vertices = [];
@@ -16,7 +23,7 @@ class Mesh extends Entity
    constructor({ name = _name, buffers, vertices = _vertices, colors = _colors, uvs = _uvs, normals = _normals, indices = _indices, usage = _usage, material } = {})
    {
       super({ name });
-
+      
       this.buffers = buffers;
 
       this.vertices = vertices;
@@ -41,7 +48,28 @@ class Mesh extends Entity
       
       this.inheritance = ['Entity', 'Mesh'];
 
+      this.generate();
       this.configure();
+   }
+   
+   generate()
+   {
+      if (this.buffers === undefined)
+      {
+         let generated = [];
+         
+         for (let name in attributes)
+         {
+            let coordinates = this[name];
+            
+            if (coordinates.length > 0)
+            {
+               generated.push(`vec${coordinates[0].length} ${attributes[name]}`);
+            }
+         }
+         
+         this.buffers = new VertexArrayObject({ attributes: generated });
+      }
    }
 
    configure()

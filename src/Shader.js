@@ -24,7 +24,7 @@ class Shader extends Entity
    {
       let source = document.querySelector(selector).textContent;
       
-      for (var tag in shaders)
+      for (let tag in shaders)
       {
          source = source.replace(`@${tag};`, shaders[tag][type]);  
       }

@@ -119,13 +119,11 @@
             });
             var light = new Four.PointLight({ attenuation: [0.5, 0.5, 1], location: lightCamera.location });
             var monkey = new Four.Mesh({
-               buffers: new Four.VertexArrayObject({ attributes: ['vec3 position', 'vec3 normal'] }),
                vertices: monkeyLoader.vertices,
                normals: monkeyLoader.normals,
                material: new Four.Material({ diffuse: 0xFFFFFF })
             });
             var plane = new Four.Mesh({
-               buffers: new Four.VertexArrayObject({ attributes: ['vec3 position', 'vec3 normal'] }),
                vertices: planeLoader.vertices,
                normals: planeLoader.normals,
                material: new Four.Material({ diffuse: 0xFFFFFF })
@@ -144,7 +142,7 @@
             lightCamera.bind(rendererProgram);
             shadowMapper.bind(rendererProgram);
             scene.animate(view, camera);
-         }, 2000);
+         }, 100);
       </script>
    </body>
 </html>
