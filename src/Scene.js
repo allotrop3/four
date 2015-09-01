@@ -15,6 +15,8 @@ class Scene extends Entity
 
       this.meshes = [];
 
+      this.lights = [];
+
       this.scale = [1, 1, 1];
 
       this.rotation = 0;
@@ -31,9 +33,22 @@ class Scene extends Entity
       this.program = program;
    }
 
-   put(mesh)
+   put(item)
    {
-      this.meshes.push(mesh);
+      switch (true)
+      {
+         case item.isType('Mesh'):
+            this.meshes.push(item);
+            break;
+         
+         case item.isType('Light'):
+            this.lights.push(item);
+            break;
+            
+         default:
+            console.warn(`${item.name} disallowed in scene`);
+            break;
+      }
    }
 
    animate(target, camera, prestep, poststep)
@@ -46,14 +61,11 @@ class Scene extends Entity
    }
 
    render(target, camera, prestep = false, poststep = false)
-   {
+   {  
       target.bind();
-
-      if (prestep)
-      {
-         prestep();
-      }
-
+      
+      this.lights.map(this.binder.bind(this));
+      
       camera.save();
 
       camera.scale.apply(camera, this.scale);
@@ -65,11 +77,6 @@ class Scene extends Entity
       this.meshes.map(this.draw.bind(this, camera));
 
       camera.restore();
-
-      if (poststep)
-      {
-         poststep();
-      }
 
       target.unbind();
    }
@@ -95,6 +102,11 @@ class Scene extends Entity
       material.unbind();
 
       camera.restore();
+   }
+   
+   binder(entity)
+   {
+      entity.bind(this.program);
    }
 }
 

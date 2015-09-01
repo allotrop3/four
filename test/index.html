@@ -24,7 +24,6 @@
          @ShadowMapper;
          
          attribute vec3 a_position;
-         attribute vec2 a_uv;
          attribute vec3 a_normal;
          
          varying vec4 v_position;
@@ -39,7 +38,6 @@
             vec4 position = vec4(a_position, 1.0);
             
             v_position = position;
-            v_uv = normalize(a_uv);
             v_normal = u_camera.normalMatrix * a_normal;
          
             shadow(u_lightCamera, position);
@@ -62,7 +60,6 @@
          uniform Material u_material;
          
          varying vec4 v_position;
-         varying vec2 v_uv;
          varying vec3 v_normal;
          
          void main()
@@ -136,33 +133,17 @@
             var shadowMapper = new Four.ShadowMapper();
             var scene = new Four.Scene();
             
+            scene.put(light);
             scene.put(monkey);
             scene.put(plane);
-            
-            // scene.enable('ShadowMapper')
 
-            scene.animate(view, camera,
-               function()
-               {
-                  scene.use(shadowMapperProgram);
-                  scene.render(shadowMapper.view, lightCamera, function()
-                     {
-                        light.bind(shadowMapperProgram);
-                     },
-                     function()
-                     {
-                        scene.use(rendererProgram);
-                        light.bind(rendererProgram);
-                        lightCamera.bind(rendererProgram);
-                        shadowMapper.bind(rendererProgram);
-                     }
-                  );
-               },
-               function()
-               {
-                  shadowMapper.unbind();
-               }
-            );
+            scene.use(shadowMapperProgram);
+            scene.render(shadowMapper.view, lightCamera);
+            
+            scene.use(rendererProgram);
+            lightCamera.bind(rendererProgram);
+            shadowMapper.bind(rendererProgram);
+            scene.animate(view, camera);
          }, 2000);
       </script>
    </body>

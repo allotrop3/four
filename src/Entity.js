@@ -32,7 +32,7 @@ class Entity
       return this.name.match(identity, 'i') !== null;
    }
    
-   instanceof(entity)
+   isType(entity)
    {
       return this.inheritance.indexOf(entity) !== -1;
    }
