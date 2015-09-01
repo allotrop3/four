@@ -15,6 +15,8 @@ class Shader extends Entity
 
       this.buffer = gl.createShader(gl[type]);
       
+      this.inheritance = ['Entity', 'Shader'];
+      
       this.compile(type, selector);
    }
    

@@ -20,6 +20,8 @@ class ImageTexture extends Texture
       this.anisotropy = this.checkAnisotropy(anisotropy);
 
       this.mipmap = mipmap;
+      
+      this.inheritance = ['Entity', 'Texture', 'ImageTexture'];
 
       this.fetch(path);
    }

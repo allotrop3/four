@@ -28,6 +28,8 @@ class OrthographicCamera extends Camera
       this.near = near;
 
       this.far = far;
+      
+      this.inheritance = ['Entity', 'Structure', 'Camera', 'OrthographicCamera'];
 
       this.configure();
    }

@@ -12,6 +12,8 @@ class Framebuffer extends Entity
       super({ name });
 
       this.buffer = null;
+      
+      this.inheritance = ['Entity', 'Framebuffer'];
    }
 
    bind(flush = true)

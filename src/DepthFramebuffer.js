@@ -16,6 +16,8 @@ class DepthFramebuffer extends Framebuffer
       this.colorAttachment = colorAttachment;
 
       this.depthAttachment = depthAttachment;
+            
+      this.inheritance = ['Entity', 'Framebuffer', 'DepthFramebuffer'];
 
       this.configure();
    }

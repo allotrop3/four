@@ -30,6 +30,8 @@ class Material extends Structure
       this.pattern = pattern;
 
       this.type = 0;
+      
+      this.inheritance = ['Entity', 'Structure', 'Material'];
    }
 
    bind(program)

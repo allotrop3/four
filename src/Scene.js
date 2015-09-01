@@ -20,6 +20,8 @@ class Scene extends Entity
       this.rotation = 0;
 
       this.translation = [0, 0, 0];
+      
+      this.inheritance = ['Entity', 'Scene'];
    }
    
    use(program)

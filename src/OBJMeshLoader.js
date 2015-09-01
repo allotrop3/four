@@ -9,6 +9,8 @@ class OBJMeshLoader extends MeshLoader
    constructor({ name = _name, path } = {})
    {
       super({ name, path });
+      
+      this.inheritance = ['Entity', 'MeshLoader', 'OBJMeshLoader'];
    }
 
    parse(raw)

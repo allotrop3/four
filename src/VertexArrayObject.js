@@ -34,6 +34,8 @@ class VertexArrayObject extends Entity
       this.view = view;
 
       this.attributes = attributes.map(this.generate.bind(this));
+      
+      this.inheritance = ['Entity', 'VertexArrayObject'];
 
       this.configure();
    }

@@ -37,6 +37,8 @@ class PerspectiveCamera extends Camera
       this.location = location;
 
       this.up = up;
+      
+      this.inheritance = ['Entity', 'Structure', 'Camera', 'PerspectiveCamera'];
 
       this.configure();
    }

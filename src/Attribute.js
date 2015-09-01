@@ -25,6 +25,8 @@ class Attribute extends Entity
       this.normalized = normalized;
 
       this.offset = offset;
+      
+      this.inheritance = ['Entity', 'Attribute'];
    }
 
    getByteCount(bytes)

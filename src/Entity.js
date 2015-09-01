@@ -11,6 +11,8 @@ class Entity
       this.name = this.index(name);
 
       this.basename = name;
+      
+      this.inheritance = ['Entity'];
    }
 
    index(name)
@@ -28,6 +30,11 @@ class Entity
    is(identity)
    {
       return this.name.match(identity, 'i') !== null;
+   }
+   
+   instanceof(entity)
+   {
+      return this.inheritance.indexOf(entity) !== -1;
    }
 }
 

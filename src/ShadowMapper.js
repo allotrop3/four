@@ -21,6 +21,8 @@ class ShadowMapper extends Structure
       this.depthAttachment = new DepthTexture({ width: width, height: height });
       this.view = new DepthFramebuffer({ colorAttachment: this.colorAttachment, depthAttachment: this.depthAttachment });
       this.shadowMap = this.depthAttachment.unit;
+      
+      this.inheritance = ['Entity', 'Structure', 'ShadowMapper'];
    }
    
    bind(program)

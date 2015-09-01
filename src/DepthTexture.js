@@ -16,6 +16,8 @@ class DepthTexture extends Texture
       this.width = width;
 
       this.height = height;
+      
+      this.inheritance = ['Entity', 'Texture', 'DepthTexture'];
 
       this.configure();
    }

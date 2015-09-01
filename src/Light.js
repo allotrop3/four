@@ -29,6 +29,8 @@ class Light extends Structure
       this.location = location;
 
       this.type = 0;
+      
+      this.inheritance = ['Entity', 'Structure'. 'Light'];
    }
 }
 

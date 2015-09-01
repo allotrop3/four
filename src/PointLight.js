@@ -14,6 +14,8 @@ class PointLight extends Light
       this.attenuation = attenuation;
 
       this.type = 2;
+      
+      this.inheritance = ['Entity', 'Structure', 'Light', 'PointLight'];
    }
 }
 

@@ -27,6 +27,8 @@ class MeshLoader extends Entity
       };
 
       this.indices = [];
+      
+      this.inheritance = ['Entity', 'MeshLoader'];
 
       this.fetch(path);
    }

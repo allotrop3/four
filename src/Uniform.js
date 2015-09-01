@@ -35,6 +35,8 @@ class Uniform extends Entity
       this.format = format;
 
       this.method = `uniform${formats[format]}`;
+      
+      this.inheritance = ['Entity', 'Uniform'];
    }
 
    locate(program)
