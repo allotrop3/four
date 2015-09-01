@@ -112,7 +112,7 @@
             var shadowMapperProgram = new Four.Program({ selector: '.shadow-mapper' });
             var rendererProgram = new Four.Program({ selector: '.renderer' });
             var view = new Four.Framebuffer();
-            var camera = new Four.PerspectiveCamera({ direction: [0, 0, 0], location: [-15, 5, 15] });
+            var camera = new Four.PerspectiveCamera({ direction: [1, -1, -1], location: [-10, 5, 15] });
             var lightCamera = new Four.PerspectiveCamera({
                path: 'lightCamera',
                width: width,
@@ -138,18 +138,25 @@
             
             scene.put(monkey);
             scene.put(plane);
-
-            scene.use(shadowMapperProgram);
-            light.bind(shadowMapperProgram);
-            scene.render(shadowMapper.view, lightCamera);
             
-            scene.use(rendererProgram);
-            light.bind(rendererProgram);
-            lightCamera.bind(rendererProgram);
+            // scene.enable('ShadowMapper')
+
             scene.animate(view, camera,
                function()
                {
-                  shadowMapper.bind(rendererProgram);
+                  scene.use(shadowMapperProgram);
+                  scene.render(shadowMapper.view, lightCamera, function()
+                     {
+                        light.bind(shadowMapperProgram);
+                     },
+                     function()
+                     {
+                        scene.use(rendererProgram);
+                        light.bind(rendererProgram);
+                        lightCamera.bind(rendererProgram);
+                        shadowMapper.bind(rendererProgram);
+                     }
+                  );
                },
                function()
                {
