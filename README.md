@@ -20,7 +20,7 @@ Simply download [Four](http://allotrop3.github.io/four/demo/scripts/four.min.js)
 <script type="text/javascript" src="path/to/four.min.js"></script>
 ```
 
-Also be sure to include an HTML `canavs` element in your project. If no default `width` or `height` attributes are set, the framework assumes their respective window dimension.
+Also be sure to include an HTML `canvas` element in your project. If no default `width` or `height` attributes are set, the framework assumes their respective window dimension.
 
 ```html
 <canvas width="500" height="500"></canvas>
