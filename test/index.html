@@ -36,13 +36,14 @@
          void main()
          {
             vec4 position = vec4(a_position, 1.0);
+            vec4 modelViewPosition = u_camera.modelViewMatrix * position;
 
-            v_position = position;
+            v_position = modelViewPosition;
             v_normal = u_camera.normalMatrix * a_normal;
 
             shadow(u_lightCamera, position);
 
-            gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * position;
+            gl_Position = u_camera.projectionMatrix * modelViewPosition;
          }
       </script>
 
@@ -64,7 +65,7 @@
 
          void main()
          {
-            gl_FragColor = vec4(pointLight(u_light, u_material, v_position, v_normal, vec3(0.0)) * visibility(0.1), 1.0);
+            gl_FragColor = vec4(pointLight(u_light, u_material, v_position, v_normal) * visibility(), 1.0);
          }
       </script>
 
@@ -120,11 +121,11 @@
             var light = new Four.PointLight({ attenuation: [0.5, 0.5, 1], location: lightCamera.location });
             var monkey = new Four.Mesh({
                loader: monkeyLoader,
-               material: new Four.Material({ diffuse: 0xFFFFFF })
+               material: new Four.Material()
             });
             var plane = new Four.Mesh({
                loader: planeLoader,
-               material: new Four.Material({ diffuse: 0xFFFFFF })
+               material: new Four.Material()
             });
             var shadowMapper = new Four.ShadowMapper();
             var scene = new Four.Scene();

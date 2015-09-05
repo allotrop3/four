@@ -51,20 +51,23 @@ class Scene extends Entity
       }
    }
 
-   animate(target, camera)
+   animate(target, camera, pre = false, post = false)
    {
-      let step = this.animate.bind(this, target, camera);
+      let step = this.animate.bind(this, target, camera, pre, post);
 
       this.render.apply(this, arguments);
 
       requestAnimationFrame(step);
    }
 
-   render(target, camera)
+   render(target, camera, pre, post)
    {
       target.bind();
 
-      this.lights.map(this.binder.bind(this));
+      if (pre)
+      {
+         pre();
+      }
 
       camera.save();
 
@@ -72,11 +75,22 @@ class Scene extends Entity
       camera.rotate(this.rotation);
       camera.translate.apply(camera, this.translation);
 
+      this.lights.map(this.binder.bind(this));
       this.meshes.map(this.draw.bind(this, camera));
 
       camera.restore();
 
+      if (post)
+      {
+         post();
+      }
+
       target.unbind();
+   }
+
+   binder(entity)
+   {
+      entity.bind(this.program);
    }
 
    draw(camera, mesh)
@@ -99,11 +113,6 @@ class Scene extends Entity
       material.unbind();
 
       camera.restore();
-   }
-
-   binder(entity)
-   {
-      entity.bind(this.program);
    }
 }
 

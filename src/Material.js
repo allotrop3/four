@@ -10,7 +10,7 @@ const _path = 'material';
 const _uniforms = ['sampler image', 'vec3 ambient', 'vec3 diffuse', 'i shading', 'i type'];
 const _pattern = {};
 const _ambient = 0xFFFFFF;
-const _diffuse = 0x000000;
+const _diffuse = 0xFFFFFF;
 const _shading = 'smooth';
 
 class Material extends Structure
@@ -30,7 +30,7 @@ class Material extends Structure
       this.pattern = pattern;
 
       this.type = 0;
-      
+
       this.inheritance = ['Entity', 'Structure', 'Material'];
    }
 
