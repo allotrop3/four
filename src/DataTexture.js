@@ -56,7 +56,7 @@ class DataTexture extends Texture
       if (image instanceof Array)
       {
          let count = this.width * this.height * this.length - image.length;
-         let nixels = `,-1`.repeat(count).substring(1).split(',').map(parseFloat);
+         let nixels = Array.from(new Array(count), () => -1);
 
          this.image = image.concat(nixels);
       }

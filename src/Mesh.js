@@ -6,6 +6,7 @@ let VertexArrayObject = require('./VertexArrayObject');
 
 const attributes = {
    vertices: 'position',
+   colors: 'color',
    uvs: 'uv',
    normals: 'normal'
 };
@@ -20,7 +21,7 @@ const _usage = gl.STATIC_DRAW;
 
 class Mesh extends Entity
 {
-   constructor({ name = _name, buffers, vertices = _vertices, colors = _colors, uvs = _uvs, normals = _normals, indices = _indices, usage = _usage, material } = {})
+   constructor({ name = _name, buffers, loader, vertices = _vertices, colors = _colors, uvs = _uvs, normals = _normals, indices = _indices, usage = _usage, material } = {})
    {
       super({ name });
       
@@ -48,8 +49,21 @@ class Mesh extends Entity
       
       this.inheritance = ['Entity', 'Mesh'];
 
+      this.unpack(loader);
       this.generate();
       this.configure();
+   }
+   
+   unpack(loader)
+   {
+      if (loader !== undefined)
+      {
+         this.vertices = loader.vertices;
+         this.colors = loader.colors;
+         this.uvs = loader.uvs;
+         this.normals = loader.normals;
+         this.indices = loader.indices;
+      }
    }
    
    generate()
@@ -57,6 +71,7 @@ class Mesh extends Entity
       if (this.buffers === undefined)
       {
          let generated = [];
+         let indexed = (this.indices.length > 0);
          
          for (let name in attributes)
          {
@@ -68,7 +83,7 @@ class Mesh extends Entity
             }
          }
          
-         this.buffers = new VertexArrayObject({ attributes: generated });
+         this.buffers = new VertexArrayObject({ attributes: generated, indexed });
       }
    }
 
@@ -83,7 +98,7 @@ class Mesh extends Entity
 
       buffers.bind();
 
-      gl.bufferData(gl.ARRAY_BUFFER, new this.buffers.view(interleaved), usage);
+      gl.bufferData(gl.ARRAY_BUFFER, new buffers.view(interleaved), usage);
 
       if (buffers.indexed)
       {
