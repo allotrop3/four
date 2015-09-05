@@ -30,7 +30,7 @@ class Camera extends Structure
       this.normalMatrix = mat3.create();
 
       this.stack = [];
-      
+
       this.inheritance = ['Entity', 'Structure', 'Camera'];
    }
 

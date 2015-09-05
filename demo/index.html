@@ -19,11 +19,13 @@
          #version 100
 
          precision mediump float;
+         precision mediump float;
 
          @Camera;
          @ShadowMapper;
 
          attribute vec3 a_position;
+         attribute vec2 a_uv;
          attribute vec3 a_normal;
 
          varying vec4 v_position;
@@ -38,6 +40,7 @@
             vec4 position = vec4(a_position, 1.0);
 
             v_position = position;
+            v_uv = a_uv;
             v_normal = u_camera.normalMatrix * a_normal;
 
             shadow(u_lightCamera, position);
@@ -60,11 +63,14 @@
          uniform Material u_material;
 
          varying vec4 v_position;
+         varying vec2 v_uv;
          varying vec3 v_normal;
 
          void main()
          {
-            gl_FragColor = vec4(pointLight(u_light, u_material, v_position, v_normal, vec3(0.0)) * visibility(0.1), 1.0);
+            vec3 base = texture2D(u_image, v_uv).xyz;
+
+            gl_FragColor = vec4(pointLight(u_light, u_material, v_position, v_normal, base) * visibility(0.1), 1.0);
          }
       </script>
 
@@ -99,48 +105,98 @@
       <script src="../dist/four.js"></script>
 
       <script>
-         var monkeyLoader = new Four.OBJMeshLoader({ path: 'meshes/monkey.obj' });
+         'use strict';
+
+         // var planePattern = new Four.ImageTexture({ path: 'textures/terrain.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+         // var bodyPattern = new Four.ImageTexture({ path: 'textures/body.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+         // var wallsPattern = new Four.ImageTexture({ path: 'textures/walls.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+         // var roofPattern = new Four.ImageTexture({ path: 'textures/roof.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+         // var floorPattern = new Four.ImageTexture({ path: 'textures/floor.jpg', anisotropy: 4, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+         var bodyLoader = new Four.OBJMeshLoader({ path: 'meshes/body.obj' });
+         var wallsLoader = new Four.OBJMeshLoader({ path: 'meshes/walls.obj' });
+         var roofLoader = new Four.OBJMeshLoader({ path: 'meshes/roof.obj' });
+         var floorLoader = new Four.OBJMeshLoader({ path: 'meshes/floor.obj' });
          var planeLoader = new Four.OBJMeshLoader({ path: 'meshes/plane.obj' });
 
-         setTimeout(function()
+         function main()
          {
             var width = Four.gl.canvas.width;
             var height = Four.gl.canvas.height;
+
             var shadowMapperProgram = new Four.Program({ selector: '.shadow-mapper' });
             var rendererProgram = new Four.Program({ selector: '.renderer' });
+
+            var pointLight = new Four.PointLight({
+               attenuation: [0.1, 0.3, 0.5],
+               location: [10, 15, 10],
+               intensity: 0.5
+            });
+
             var view = new Four.Framebuffer();
-            var camera = new Four.PerspectiveCamera({ direction: [1, -1, -1], location: [-10, 5, 15] });
+
+            var camera = new Four.PerspectiveCamera({
+               direction: [1, -1, -1],
+               location: [-15, 10, 15]
+            });
+
             var lightCamera = new Four.PerspectiveCamera({
                path: 'lightCamera',
                width: width,
                height: height,
                direction: [-1, -1, -1],
-               location: [5, 10, 5]
+               location: pointLight.location
             });
-            var light = new Four.PointLight({ attenuation: [0.5, 0.5, 1], location: lightCamera.location });
-            var monkey = new Four.Mesh({
-               loader: monkeyLoader,
-               material: new Four.Material({ diffuse: 0xFFFFFF })
+
+            var material = new Four.Material({ diffuse: 0xFFFFFF });
+
+            var roof = new Four.Mesh({
+               loader: roofLoader,
+               material: material
             });
+
+            var body = new Four.Mesh({
+               loader: bodyLoader,
+               material: material
+            });
+
+            var walls = new Four.Mesh({
+               loader: wallsLoader,
+               material: material
+            });
+
+            var floor = new Four.Mesh({
+               loader: floorLoader,
+               material: material
+            });
+
             var plane = new Four.Mesh({
                loader: planeLoader,
-               material: new Four.Material({ diffuse: 0xFFFFFF })
+               material: material
             });
+
             var shadowMapper = new Four.ShadowMapper();
+
             var scene = new Four.Scene();
 
-            scene.put(light);
-            scene.put(monkey);
+            scene.put(pointLight);
+            scene.put(roof);
+            scene.put(body);
+            scene.put(walls);
+            scene.put(floor);
             scene.put(plane);
 
             scene.use(shadowMapperProgram);
             scene.render(shadowMapper.view, lightCamera);
 
+            scene.rotation = 180;
+
             scene.use(rendererProgram);
             lightCamera.bind(rendererProgram);
             shadowMapper.bind(rendererProgram);
             scene.animate(view, camera);
-         }, 100);
+         }
+
+         setTimeout(main, 1500);
       </script>
    </body>
 </html>

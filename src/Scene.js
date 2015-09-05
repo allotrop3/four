@@ -10,7 +10,7 @@ class Scene extends Entity
    constructor({ name = _name } = {})
    {
       super({ name });
-      
+
       this.program = undefined;
 
       this.meshes = [];
@@ -22,14 +22,14 @@ class Scene extends Entity
       this.rotation = 0;
 
       this.translation = [0, 0, 0];
-      
+
       this.inheritance = ['Entity', 'Scene'];
    }
-   
+
    use(program)
-   {   
+   {
       program.bind();
-      
+
       this.program = program;
    }
 
@@ -40,39 +40,37 @@ class Scene extends Entity
          case item.isType('Mesh'):
             this.meshes.push(item);
             break;
-         
+
          case item.isType('Light'):
             this.lights.push(item);
             break;
-            
+
          default:
             console.warn(`${item.name} disallowed in scene`);
             break;
       }
    }
 
-   animate(target, camera, prestep, poststep)
+   animate(target, camera)
    {
-      let step = this.animate.bind(this, target, camera, prestep, poststep);
+      let step = this.animate.bind(this, target, camera);
 
       this.render.apply(this, arguments);
 
       requestAnimationFrame(step);
    }
 
-   render(target, camera, prestep = false, poststep = false)
-   {  
+   render(target, camera)
+   {
       target.bind();
-      
+
       this.lights.map(this.binder.bind(this));
-      
+
       camera.save();
 
       camera.scale.apply(camera, this.scale);
       camera.rotate(this.rotation);
       camera.translate.apply(camera, this.translation);
-
-      camera.bind(this.program);
 
       this.meshes.map(this.draw.bind(this, camera));
 
@@ -90,20 +88,19 @@ class Scene extends Entity
 
       camera.scale.apply(camera, mesh.scale);
       camera.rotate(mesh.rotation);
-
       camera.translate.apply(camera, mesh.translation);
 
       camera.bind(program);
-      
+
       material.bind(program)
-      
+
       mesh.draw({ program });
 
       material.unbind();
 
       camera.restore();
    }
-   
+
    binder(entity)
    {
       entity.bind(this.program);
