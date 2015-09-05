@@ -60,7 +60,7 @@ class Scene extends Entity
       requestAnimationFrame(step);
    }
 
-   render(target, camera, pre, post)
+   render(target, camera, pre = false, post = false)
    {
       target.bind();
 
@@ -88,11 +88,6 @@ class Scene extends Entity
       target.unbind();
    }
 
-   binder(entity)
-   {
-      entity.bind(this.program);
-   }
-
    draw(camera, mesh)
    {
       let program = this.program;
@@ -113,6 +108,11 @@ class Scene extends Entity
       material.unbind();
 
       camera.restore();
+   }
+
+   binder(entity)
+   {
+      entity.bind(this.program);
    }
 }
 

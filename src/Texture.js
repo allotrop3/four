@@ -36,7 +36,7 @@ class Texture extends Entity
       this.T = T;
 
       this.unit = unit++;
-      
+
       this.inheritance = ['Entity', 'Texture'];
    }
 

@@ -16,7 +16,7 @@ class DepthTexture extends Texture
       this.width = width;
 
       this.height = height;
-      
+
       this.inheritance = ['Entity', 'Texture', 'DepthTexture'];
 
       this.configure();
@@ -28,7 +28,7 @@ class DepthTexture extends Texture
 
       gl.getExtension('WEBGL_depth_texture');
 
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.DEPTH_COMPONENT, this.width, this.height, 0, gl.DEPTH_COMPONENT, gl.UNSIGNED_SHORT, null);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.DEPTH_COMPONENT, this.width, this.height, 0, gl.DEPTH_COMPONENT, gl.UNSIGNED_INT, null);
 
       this.unbind();
    }

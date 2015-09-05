@@ -129,18 +129,23 @@
             var rendererProgram = new Four.Program({ selector: '.renderer' });
 
             var pointLight = new Four.PointLight({
+               diffuse: 0xFFD1B2,
                attenuation: [0.5, 0.5, 0.5],
-               location: [10, 15, 10]
+               location: [5, 15, 10]
             });
 
             var view = new Four.Framebuffer();
 
-            var camera = new Four.PerspectiveCamera({ location: [-15, 10, 15] });
+            var camera = new Four.PerspectiveCamera({
+               direction: [1, -1, 1],
+               location: [-15, 10, 15]
+            });
 
             var lightCamera = new Four.PerspectiveCamera({
                path: 'lightCamera',
                width: width,
                height: height,
+               direction: [-1, -1, -1],
                location: pointLight.location
             });
 
@@ -180,16 +185,21 @@
             scene.put(floor);
             scene.put(plane);
 
-            scene.use(shadowMapperProgram);
-            scene.render(shadowMapper.view, lightCamera);
+            scene.animate(view, camera,
+               function()
+               {
+                  scene.use(shadowMapperProgram);
+                  scene.render(shadowMapper.view, lightCamera);
 
-            scene.use(rendererProgram);
-            lightCamera.bind(rendererProgram);
-            shadowMapper.bind(rendererProgram);
-            scene.animate(view, camera, function()
-            {
-               scene.rotation += 0.05;
-            });
+                  scene.use(rendererProgram);
+                  lightCamera.bind(rendererProgram);
+                  shadowMapper.bind(rendererProgram);
+               },
+               function()
+               {
+                  shadowMapper.unbind();
+               }
+            );
          }
 
          setTimeout(main, 3000);
