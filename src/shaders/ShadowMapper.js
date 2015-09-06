@@ -18,7 +18,7 @@ let FRAGMENT_SHADER = [
    '   float shadow = texture2D(u_shadowMap, depth.xy).r;',
    '   float compare = depth.z;',
    '   float biased = compare * 0.99995;',
-   '   if (compare <= 1.0 && shadow < biased)',
+   '   if (compare <= 1.0 && shadow <= biased)',
    '   {',
    '      return 0.3;',
    '   }',
