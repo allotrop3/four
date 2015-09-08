@@ -38,33 +38,28 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
    {
       var program = new Four.Program({ selector: '.class-to-shaders' });
    
-      var pointLight = new Four.PointLight({
-         program: program,
-         attenuation: [0.025, 0.01, 0.00025],
+      var pointLight = new Four.Poi);
+   ntLight({
+         radius: 10,
          location: [10, 15, 10]
       });
    
-      var view = new Four.Framebuffer();
-   
+      var view = new Four.Framebuffer(
       var camera = new Four.PerspectiveCamera({
          program: program,
          location: [40, 30, 40]
       });
       
       var mesh = new Four.Mesh({
-         buffers: new Four.VertexArrayObject({
-            program: program,
-            attributes: ['vec3 position', 'vec3 normal']
-         }),
-         vertices: meshLoader.vertices,
-         normals: meshLoader.normals,
+         loader: meshLoader
          material: new Four.Material({
-            program: program,
             diffuse: 0x9F8A60
          })
       });
    
       scene = new Four.Scene();
+      
+      scene.use(program);
    
       scene.put(mesh);
    
