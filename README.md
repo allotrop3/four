@@ -73,6 +73,8 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
 
 #### Shaders
 
+##### Vertex shader
+
 ```glsl
 <script class="renderer" type="x-shader/x-vertex">
    #version 100
@@ -103,7 +105,10 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
       gl_Position = u_camera.projectionMatrix * modelViewPosition;
    }
 </script>
+```
+##### Fragment shader
 
+```glsl
 <script class="renderer" type="x-shader/x-fragment">
    #version 100
 
