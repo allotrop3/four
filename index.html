@@ -2,156 +2,218 @@
    <head>
       <meta charset="utf-8">
 
-      <link rel="icon" type="image/png" href="favicon.png">
+      <title>Shadow mapping</title>
 
-      <title>Four</title>
+      <link rel="stylesheet" href="http://benvanik.github.io/WebGL-Inspector/core/lib/gli.all.css">
 
-      <link rel="stylesheet" type="text/css" href="styles/four.css">
+      <!--
+      <script src="http://benvanik.github.io/WebGL-Inspector/core/lib/gli.all.js"></script>
+      <script src="http://benvanik.github.io/WebGL-Inspector/core/embed.js"></script>
+      -->
    </head>
 
-   <body>
+   <body style="margin:0;background:#222;position:relative;overflow:hidden">
       <canvas></canvas>
 
-      <script class="four__shader--default" type="x-shader/x-vertex">
+      <script class="renderer" type="x-shader/x-vertex">
          #version 100
 
-         precision lowp float;
+         precision mediump float;
+         precision mediump float;
 
-         struct camera
-         {
-            mat4 projectionMatrix;
-            mat4 modelViewMatrix;
-            mat3 normalMatrix;
-         };
+         @Camera;
+         @ShadowMapper;
 
          attribute vec3 a_position;
          attribute vec2 a_uv;
          attribute vec3 a_normal;
 
-         uniform camera u_camera;
-
-         varying vec3 v_position;
+         varying vec4 v_position;
          varying vec2 v_uv;
          varying vec3 v_normal;
 
-         void main(void)
+         uniform Camera u_camera;
+         uniform Camera u_lightCamera;
+
+         void main()
          {
             vec4 position = vec4(a_position, 1.0);
+            vec4 modelViewPosition = u_camera.modelViewMatrix * position;
 
-            gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * position;
-
-            v_position = vec3(u_camera.modelViewMatrix * position);
+            v_position = position;
             v_uv = a_uv;
-            v_normal = normalize(u_camera.normalMatrix * a_normal);
+            v_normal = u_camera.normalMatrix * a_normal;
+
+            shadow(u_lightCamera, position);
+
+            gl_Position = u_camera.projectionMatrix * modelViewPosition;
          }
       </script>
 
-      <script class="four__shader--default" type="x-shader/x-fragment">
+      <script class="renderer" type="x-shader/x-fragment">
          #version 100
 
-         precision lowp float;
+         precision mediump float;
 
-         struct material
-         {
-            vec3 ambient;
-            vec3 diffuse;
-            vec3 specular;
-            int shading;
-            float shininess;
-            int type;
-         };
+         @Material;
+         @Light;
+         @PointLight;
+         @ShadowMapper;
 
-         struct light
-         {
-            vec3 ambient;
-            vec3 diffuse;
-            vec3 specular;
-            vec3 attenuation;
-            float exponent;
-            float cutoff;
-            float intensity;
-            vec3 location;
-            vec3 direction;
-            int type;
-         };
+         uniform Light u_light;
+         uniform Material u_material;
 
-         uniform sampler2D u_image;
-         uniform material u_material;
-         uniform light u_light;
-
-         varying vec3 v_position;
+         varying vec4 v_position;
          varying vec2 v_uv;
          varying vec3 v_normal;
 
-         vec3 pointLight(vec3 base)
+         void main()
          {
-            vec3 normal = normalize(v_normal);
-            vec3 direction = normalize(u_light.location - v_position);
-            float weight = max(dot(direction, normal), 0.0);
-            vec3 color = vec3(0.0);
-            float range = length(direction);
-            float attenuation = 1.0 / (u_light.attenuation.x + u_light.attenuation.y * range + u_light.attenuation.z * pow(range, 2.0));
-            vec3 ambient = u_light.ambient * u_material.ambient;
-            vec3 diffuse = u_light.intensity * u_light.diffuse * (u_material.diffuse + base) * weight;
-            vec3 specular = vec3(0.0);
+            vec3 base = texture2D(u_image, v_uv).rgb;
+            vec3 lighting = base * pointLight(u_light, u_material, v_position, v_normal) * visibility();
 
-            if (u_material.type == 1)
-            {
-               if (weight > 0.0)
-               {
-                  specular = u_light.specular * u_material.specular * pow(max(dot(reflect(-direction, normal), normalize(-v_position)), 0.0), u_material.shininess);
-               }
-            }
-
-            return (ambient + diffuse + specular) * attenuation;
+            gl_FragColor = vec4(lighting, 1.0);
          }
+      </script>
 
-         vec3 spotLight(vec3 base)
+      <script class="shadow-mapper" type="x-shader/x-vertex">
+         #version 100
+
+         precision mediump float;
+
+         attribute vec3 a_position;
+
+         @Camera;
+
+         uniform Camera u_lightCamera;
+
+         void main()
          {
-            vec3 normal = normalize(v_normal);
-            vec3 direction = normalize(u_light.location - v_position);
-            vec3 aim = normalize(u_light.direction);
-            float angle = acos(dot(-direction, aim));
-            float cutoff = radians(clamp(u_light.cutoff, 0.0, 90.0));
-
-            if (angle < cutoff)
-            {
-               return pointLight(base) * pow(dot(-direction, aim), u_light.exponent) * u_light.intensity;
-            }
-            else
-            {
-               return vec3(0.0);
-            }
+            gl_Position = u_lightCamera.projectionMatrix * u_lightCamera.modelViewMatrix * vec4(a_position, 1.0);
          }
+      </script>
+
+      <script class="shadow-mapper" type="x-shader/x-fragment">
+         #version 100
+
+         precision mediump float;
 
          void main(void)
          {
-            vec3 base = texture2D(u_image, v_uv).xyz;
-            vec3 color = vec3(0.0);
-
-            /* directional light */
-            if (u_light.type == 1)
-            {
-               // todo
-            }
-
-            /* point light */
-            if (u_light.type == 2)
-            {
-               color = pointLight(base);
-            }
-
-            /* spot light */
-            if (u_light.type == 3)
-            {
-               color = spotLight(base);
-            }
-
-            gl_FragColor = vec4(color, 1.0);
+            gl_FragColor = vec4(0.0);
          }
       </script>
 
       <script src="scripts/four.min.js"></script>
-      <script src="scripts/test.js"></script>
+
+      <script>
+         'use strict';
+
+         var planePattern = new Four.ImageTexture({ path: 'textures/terrain.jpg', anisotropy: 16, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+         var bodyPattern = new Four.ImageTexture({ path: 'textures/body.jpg', anisotropy: 16, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+         var wallsPattern = new Four.ImageTexture({ path: 'textures/walls.jpg', anisotropy: 16, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+         var roofPattern = new Four.ImageTexture({ path: 'textures/roof.jpg', anisotropy: 16, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+         var floorPattern = new Four.ImageTexture({ path: 'textures/floor.jpg', anisotropy: 16, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+         var bodyLoader = new Four.OBJMeshLoader({ path: 'meshes/body.obj' });
+         var wallsLoader = new Four.OBJMeshLoader({ path: 'meshes/walls.obj' });
+         var roofLoader = new Four.OBJMeshLoader({ path: 'meshes/roof.obj' });
+         var floorLoader = new Four.OBJMeshLoader({ path: 'meshes/floor.obj' });
+         var planeLoader = new Four.OBJMeshLoader({ path: 'meshes/plane.obj' });
+
+         function main()
+         {
+            var width = Four.gl.canvas.width;
+            var height = Four.gl.canvas.height;
+
+            var shadowMapperProgram = new Four.Program({ selector: '.shadow-mapper' });
+            var rendererProgram = new Four.Program({ selector: '.renderer' });
+
+            var pointLight = new Four.PointLight({
+               diffuse: 0xFFD1B2,
+               radius: 10,
+               location: [10, 15, 10],
+               intensity: 10
+            });
+
+            var view = new Four.Framebuffer();
+
+            var camera = new Four.PerspectiveCamera({
+               location: [-15, 10, 15]
+            });
+
+            var lightCamera = new Four.PerspectiveCamera({
+               path: 'lightCamera',
+               width: width,
+               height: height,
+               direction: [0, -1, 0],
+               location: pointLight.location
+            });
+
+            var roof = new Four.Mesh({
+               loader: roofLoader,
+               material: new Four.Material({ pattern: roofPattern })
+            });
+
+            var body = new Four.Mesh({
+               loader: bodyLoader,
+               material: new Four.Material({ pattern: bodyPattern })
+            });
+
+            var walls = new Four.Mesh({
+               loader: wallsLoader,
+               material: new Four.Material({ pattern: wallsPattern })
+            });
+
+            var floor = new Four.Mesh({
+               loader: floorLoader,
+               material: new Four.Material({ pattern: floorPattern })
+            });
+
+            var plane = new Four.Mesh({
+               loader: planeLoader,
+               material: new Four.Material({ pattern: planePattern })
+            });
+
+            var shadowMapper = new Four.ShadowMapper();
+
+            var scene = new Four.Scene();
+
+            scene.put(pointLight);
+            scene.put(roof);
+            scene.put(body);
+            scene.put(walls);
+            scene.put(floor);
+            scene.put(plane);
+
+            var depthScene = new Four.Scene();
+
+            depthScene.put(pointLight);
+            depthScene.put(roof);
+            depthScene.put(body);
+            depthScene.put(walls);
+            depthScene.put(floor);
+            depthScene.put(plane);
+
+            scene.animate(view, camera,
+               function()
+               {
+                  scene.rotation += 0.25;
+
+                  depthScene.use(shadowMapperProgram);
+                  depthScene.render(shadowMapper.view, lightCamera);
+
+                  scene.use(rendererProgram);
+                  lightCamera.bind(rendererProgram);
+                  shadowMapper.bind(rendererProgram);
+               },
+               function()
+               {
+                  shadowMapper.unbind();
+               }
+            );
+         }
+
+         setTimeout(main, 3000);
+      </script>
    </body>
 </html>
