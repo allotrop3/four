@@ -69,6 +69,65 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
 </script>
 ```
 
+### Shaders
+
+```glsl
+<script class="renderer" type="x-shader/x-vertex">
+   #version 100
+
+   precision mediump float
+   
+   @Camera;
+
+   attribute vec3 a_position;
+   attribute vec2 a_uv;
+   attribute vec3 a_normal;
+
+   varying vec4 v_position;
+   varying vec2 v_uv;
+   varying vec3 v_normal;
+
+   uniform Camera u_camera;
+
+   void main()
+   {
+      vec4 position = vec4(a_position, 1.0);
+      vec4 modelViewPosition = u_camera.modelViewMatrix * position;
+
+      v_position = position;
+      v_uv = a_uv;
+      v_normal = u_camera.normalMatrix * a_normal;
+
+      gl_Position = u_camera.projectionMatrix * modelViewPosition;
+   }
+</script>
+
+<script class="renderer" type="x-shader/x-fragment">
+   #version 100
+
+   precision mediump float;
+
+   @Material;
+   @Light;
+   @PointLight;
+
+   uniform Light u_light;
+   uniform Material u_material;
+
+   varying vec4 v_position;
+   varying vec2 v_uv;
+   varying vec3 v_normal;
+
+   void main()
+   {
+      vec3 base = texture2D(u_image, v_uv).rgb;
+      vec3 lighting = base * pointLight(u_light, u_material, v_position, v_normal);
+
+      gl_FragColor = vec4(lighting, 1.0);
+   }
+</script>
+```
+
 ## Documentation
 
 See full [documentation](https://github.com/allotrop3/four/wiki).
