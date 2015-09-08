@@ -38,8 +38,7 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
    {
       var program = new Four.Program({ selector: '.class-to-shaders' });
    
-      var pointLight = new Four.Poi);
-   ntLight({
+      var pointLight = new Four.PointLight({
          radius: 10,
          location: [10, 15, 10]
       });
