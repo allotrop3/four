@@ -27,7 +27,6 @@
          attribute vec3 a_normal;
 
          varying vec4 v_position;
-         varying vec2 v_uv;
          varying vec3 v_normal;
 
          uniform Camera u_camera;
@@ -118,7 +117,7 @@
                direction: [-1, -1, -1],
                location: [5, 10, 5]
             });
-            var light = new Four.PointLight({ attenuation: [0.5, 0.5, 1], location: lightCamera.location });
+            var light = new Four.PointLight({ radius: 5, location: lightCamera.location, intensity: 10 });
             var monkey = new Four.Mesh({
                loader: monkeyLoader,
                material: new Four.Material()

@@ -15,7 +15,7 @@ let FRAGMENT_SHADER = [
    'float visibility()',
    '{',
    '   vec3 depth = v_shadow.xyz / v_shadow.w;',
-   '   if (depth.x >= 0.0 && depth.x <=  1.0 && depth.y >= 0.0 && depth.y <= 1.0)',
+   '   if (depth.x >= 0.0 && depth.x <= 1.0 && depth.y >= 0.0 && depth.y <= 1.0)',
    '   {',
    '      float shadow = texture2D(u_shadowMap, depth.xy).r;',
    '      float biased = depth.z * 0.99995;',

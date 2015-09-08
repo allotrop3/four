@@ -40,7 +40,7 @@
             vec4 position = vec4(a_position, 1.0);
             vec4 modelViewPosition = u_camera.modelViewMatrix * position;
 
-            v_position = modelViewPosition;
+            v_position = position;
             v_uv = a_uv;
             v_normal = u_camera.normalMatrix * a_normal;
 
@@ -130,19 +130,22 @@
 
             var pointLight = new Four.PointLight({
                diffuse: 0xFFD1B2,
-               radius: 5,
+               radius: 10,
                location: [10, 15, 10],
-               intensity: 100
+               intensity: 10
             });
 
             var view = new Four.Framebuffer();
 
-            var camera = new Four.PerspectiveCamera({ location: [-15, 10, 15] });
+            var camera = new Four.PerspectiveCamera({
+               location: [-15, 10, 15]
+            });
 
             var lightCamera = new Four.PerspectiveCamera({
                path: 'lightCamera',
                width: width,
                height: height,
+               direction: [0, -1, 0],
                location: pointLight.location
             });
 
