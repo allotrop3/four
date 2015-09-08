@@ -30,6 +30,8 @@ Also be sure to include an HTML `canvas` element in your project. If no default 
 
 The following example assumes an OBJ mesh file loader to import a mesh into the scene. It further constructs a point light source and a three dimensional perspective projection to illuminate and visualise the scene, respectively. The scenes pre-render execution routine simply rotates the scene around the mesh.
 
+#### JavaScript
+
 ```javascript
 <script>
    var meshLoader = new Four.OBJMeshLoader({ path: 'path/to/mesh.obj' });
@@ -69,7 +71,7 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
 </script>
 ```
 
-### Shaders
+#### Shaders
 
 ```glsl
 <script class="renderer" type="x-shader/x-vertex">
