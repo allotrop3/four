@@ -13,9 +13,9 @@ const _far = 1;
 
 class OrthographicCamera extends Camera
 {
-   constructor({ name = _name, program, path, uniforms, background, left = _left, right, bottom, top = _top, near = _near, far = _far } = {})
+   constructor({ name = _name, path, uniforms, background, left = _left, right, bottom, top = _top, near = _near, far = _far } = {})
    {
-      super({ name, program, path, uniforms, background });
+      super({ name, path, uniforms, background });
 
       this.left = left;
 
@@ -28,6 +28,8 @@ class OrthographicCamera extends Camera
       this.near = near;
 
       this.far = far;
+      
+      this.inheritance = ['Entity', 'Structure', 'Camera', 'OrthographicCamera'];
 
       this.configure();
    }
@@ -40,9 +42,9 @@ class OrthographicCamera extends Camera
       mat4.identity(this.modelViewMatrix);
    }
 
-   bind()
+   bind(program)
    {
-      super.bind();
+      super.bind(program);
 
       gl.disable(gl.DEPTH_TEST);
       gl.viewport(0, 0, this.right, this.top);

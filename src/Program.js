@@ -18,6 +18,8 @@ class Program extends Entity
       this.vertexShader = new VertexShader({ selector: selector });
 
       this.fragmentShader = new FragmentShader({ selector: selector });
+      
+      this.inheritance = ['Entity', 'Program'];
 
       this.link();
    }

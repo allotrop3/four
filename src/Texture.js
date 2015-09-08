@@ -36,6 +36,8 @@ class Texture extends Entity
       this.T = T;
 
       this.unit = unit++;
+
+      this.inheritance = ['Entity', 'Texture'];
    }
 
    configure()
@@ -46,20 +48,16 @@ class Texture extends Entity
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, this.minification);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, this.S);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, this.T);
+
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
    }
 
-   bind(sampler)
+   bind()
    {
-      let unit = this.unit;
-      let active = gl.TEXTURE0 + unit;
+      let active = gl.TEXTURE0 + this.unit;
 
       gl.activeTexture(active);
       gl.bindTexture(gl.TEXTURE_2D, this.buffer);
-
-      if (sampler !== undefined)
-      {
-         sampler.set(unit);
-      }
    }
 
    unbind()

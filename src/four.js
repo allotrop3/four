@@ -10,6 +10,7 @@ let Four = {
    PerspectiveCamera: require('./PerspectiveCamera'),
    Framebuffer: require('./Framebuffer'),
    DeferredFramebuffer: require('./DeferredFramebuffer'),
+   DepthFramebuffer: require('./DepthFramebuffer'),
    Light: require('./Light'),
    DirectionalLight: require('./DirectionalLight'),
    PointLight: require('./PointLight'),
@@ -29,6 +30,7 @@ let Four = {
    Structure: require('./Structure'),
    Texture: require('./Texture'),
    DataTexture: require('./DataTexture'),
+   DepthTexture: require('./DepthTexture'),
    ImageTexture: require('./ImageTexture'),
    Uniform: require('./Uniform'),
    VertexArrayObject: require('./VertexArrayObject')

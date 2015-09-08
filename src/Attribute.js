@@ -10,13 +10,13 @@ const _offset = 0;
 
 class Attribute extends Entity
 {
-   constructor({ name = _name, program, attribute, length, format = _format, normalized = _normalized, offset = _offset } = {})
+   constructor({ name = _name, attribute, length, format = _format, normalized = _normalized, offset = _offset } = {})
    {
       super({ name });
 
       this.attribute = attribute;
-
-      this.location = gl.getAttribLocation(program.buffer, `a_${attribute}`);
+      
+      this.location = undefined;
 
       this.length = length;
 
@@ -25,16 +25,23 @@ class Attribute extends Entity
       this.normalized = normalized;
 
       this.offset = offset;
+      
+      this.inheritance = ['Entity', 'Attribute'];
    }
 
    getByteCount(bytes)
    {
       return this.length * bytes;
    }
-
-   enable(stride = 0)
+   
+   locate(program)
    {
-      let location = this.location;
+      return this.location = gl.getAttribLocation(program.buffer, `a_${this.attribute}`);
+   }
+
+   enable(program, stride = 0)
+   {
+      let location = this.locate(program);
 
       gl.enableVertexAttribArray(location);
 

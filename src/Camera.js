@@ -17,9 +17,9 @@ const _background = 0x000000;
 
 class Camera extends Structure
 {
-   constructor({ name = _name, program, path = _path, uniforms = _uniforms, background = _background } = {})
+   constructor({ name = _name, path = _path, uniforms = _uniforms, background = _background } = {})
    {
-      super({ name, program, path, uniforms });
+      super({ name, path, uniforms });
 
       this.background = LSL(background);
 
@@ -30,6 +30,8 @@ class Camera extends Structure
       this.normalMatrix = mat3.create();
 
       this.stack = [];
+
+      this.inheritance = ['Entity', 'Structure', 'Camera'];
    }
 
    configure()
@@ -39,11 +41,11 @@ class Camera extends Structure
       gl.clearColor.apply(gl, this.background.concat(1));
    }
 
-   bind()
+   bind(program)
    {
       mat3.normalFromMat4(this.normalMatrix, this.modelViewMatrix);
 
-      super.bind();
+      super.bind(program);
    }
 
    save()

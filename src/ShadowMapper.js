@@ -3,31 +3,39 @@
 let gl = require('./gl');
 let Structure = require('./Structure');
 let DataTexture = require('./DataTexture');
-let Renderbuffer = require('./Renderbuffer');
-let DeferredFramebuffer = require('./DeferredFramebuffer');
+let DepthTexture = require('./DepthTexture');
+let DepthFramebuffer = require('./DepthFramebuffer');
 
 const _name = 'shadow.map';
+const _uniforms = ['sampler shadowMap'];
+const _width = gl.canvas.width;
+const _height = gl.canvas.height;
 
-class ShadowMap extends Structure
+class ShadowMapper extends Structure
 {
-   constructor({ name = _name, program, path, uniforms })
+   constructor({ name = _name, path, uniforms = _uniforms, width = _width, height = _height } = {})
    {
-      super({ name, program, path, uniforms });
+      super({ name, path, uniforms });
 
-      this.view = undefined;
+      this.colorAttachment = new DataTexture({ width, height });
+      this.depthAttachment = new DepthTexture({ width, height });
+      this.view = new DepthFramebuffer({ colorAttachment: this.colorAttachment, depthAttachment: this.depthAttachment });
+      this.shadowMap = this.depthAttachment.unit;
 
-      this.configure();
+      this.inheritance = ['Entity', 'Structure', 'ShadowMapper'];
    }
 
-   configure()
+   bind(program)
    {
-      let width = gl.canvas.width;
-      let height = gl.canvas.height;
-      let colorAttachment = new DataTexture({ width: width, height: height });
-      let depthAttachment = new Renderbuffer({ width: width, height: height });
+      super.bind(program);
 
-      this.view = new DeferredFramebuffer({ colorAttachment: colorAttachment, depthAttachment: depthAttachment });
+      this.depthAttachment.bind();
+   }
+
+   unbind()
+   {
+      this.depthAttachment.unbind();
    }
 }
 
-module.exports = ShadowMap;
+module.exports = ShadowMapper;

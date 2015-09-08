@@ -14,9 +14,9 @@ const _location = [0, 0, 0];
 
 class Light extends Structure
 {
-   constructor({ name = _name, program, path = _path, uniforms = _uniforms, ambient = _ambient, diffuse = _diffuse, specular = _specular, intensity = _intensity, location = _location } = {})
+   constructor({ name = _name, path = _path, uniforms = _uniforms, ambient = _ambient, diffuse = _diffuse, specular = _specular, intensity = _intensity, location = _location } = {})
    {
-      super({ name, program, path, uniforms });
+      super({ name, path, uniforms });
 
       this.ambient = LSL(ambient);
 
@@ -29,6 +29,8 @@ class Light extends Structure
       this.location = location;
 
       this.type = 0;
+      
+      this.inheritance = ['Entity', 'Structure', 'Light'];
    }
 }
 

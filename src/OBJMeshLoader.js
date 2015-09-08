@@ -9,6 +9,8 @@ class OBJMeshLoader extends MeshLoader
    constructor({ name = _name, path } = {})
    {
       super({ name, path });
+      
+      this.inheritance = ['Entity', 'MeshLoader', 'OBJMeshLoader'];
    }
 
    parse(raw)
@@ -43,17 +45,26 @@ class OBJMeshLoader extends MeshLoader
 
    recategorise(word)
    {
-      let indices = word.split('/').map(this.decrement);
+      let indices = word.split('/').map(value => value - 1);
       let tmp = this.tmp;
-
-      this.vertices.push(tmp.vertices[indices[0]]);
-      this.uvs.push(tmp.uvs[indices[1]]);
-      this.normals.push(tmp.normals[indices[2]]);
-   }
-
-   decrement(value)
-   {
-      return value - 1;
+      let position = tmp.vertices[indices[0]];
+      let uv = tmp.uvs[indices[1]];
+      let normal = tmp.normals[indices[2]];
+      
+      if (position !== undefined)
+      {
+         this.vertices.push(position);
+      }
+      
+      if (uv !== undefined)
+      {
+         this.uvs.push(uv);
+      }
+      
+      if (normal !== undefined)
+      {
+         this.normals.push(normal);
+      }
    }
 }
 

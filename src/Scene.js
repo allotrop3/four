@@ -11,29 +11,62 @@ class Scene extends Entity
    {
       super({ name });
 
+      this.program = undefined;
+
       this.meshes = [];
+
+      this.lights = [];
 
       this.scale = [1, 1, 1];
 
       this.rotation = 0;
 
       this.translation = [0, 0, 0];
+
+      this.inheritance = ['Entity', 'Scene'];
    }
 
-   put(mesh)
+   use(program)
    {
-      this.meshes.push(mesh);
+      program.bind();
+
+      this.program = program;
    }
 
-   render(target, camera, prestep = false, poststep = false)
+   put(item)
    {
-      let step = this.render.bind(this, target, camera, prestep, poststep);
+      switch (true)
+      {
+         case item.isType('Mesh'):
+            this.meshes.push(item);
+            break;
 
+         case item.isType('Light'):
+            this.lights.push(item);
+            break;
+
+         default:
+            console.warn(`${item.name} disallowed in scene`);
+            break;
+      }
+   }
+
+   animate(target, camera, pre = false, post = false)
+   {
+      let step = this.animate.bind(this, target, camera, pre, post);
+
+      this.render.apply(this, arguments);
+
+      requestAnimationFrame(step);
+   }
+
+   render(target, camera, pre = false, post = false)
+   {
       target.bind();
 
-      if (prestep)
+      if (pre)
       {
-         prestep();
+         pre();
       }
 
       camera.save();
@@ -42,40 +75,44 @@ class Scene extends Entity
       camera.rotate(this.rotation);
       camera.translate.apply(camera, this.translation);
 
-      camera.bind();
-
+      this.lights.map(this.binder.bind(this));
       this.meshes.map(this.draw.bind(this, camera));
 
       camera.restore();
 
-      if (poststep)
+      if (post)
       {
-         poststep();
+         post();
       }
 
-      requestAnimationFrame(step);
+      target.unbind();
    }
 
    draw(camera, mesh)
    {
+      let program = this.program;
       let material = mesh.material;
 
       camera.save();
 
       camera.scale.apply(camera, mesh.scale);
       camera.rotate(mesh.rotation);
-
       camera.translate.apply(camera, mesh.translation);
 
-      camera.bind();
+      camera.bind(program);
 
-      material.bind();
+      material.bind(program)
 
-      mesh.draw();
+      mesh.draw({ program });
 
       material.unbind();
 
       camera.restore();
+   }
+
+   binder(entity)
+   {
+      entity.bind(this.program);
    }
 }
 

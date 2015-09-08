@@ -22,44 +22,48 @@ const _name = 'uniform';
 
 class Uniform extends Entity
 {
-   constructor({ name = _name, program, path, uniform, format } = {})
+   constructor({ name = _name, path, uniform, format } = {})
    {
       super({ name });
 
       this.path = path;
 
       this.uniform = uniform;
+      
+      this.location = undefined;
 
-      this.location = this.from(program, format);
+      this.format = format;
 
       this.method = `uniform${formats[format]}`;
+      
+      this.inheritance = ['Entity', 'Uniform'];
    }
 
-   from(program, format)
+   locate(program)
    {
+      let path = this.path;
       let uniform = this.uniform;
 
-      if (format !== 'sampler')
+      if (this.format !== 'sampler' && path !== undefined)
       {
-         uniform = [this.path, this.uniform].join('.');
+         uniform = [path, uniform].join('.');
       }
 
-      return gl.getUniformLocation(program.buffer, `u_${uniform}`);
+      return this.location = gl.getUniformLocation(program.buffer, `u_${uniform}`);
    }
 
-   set(value)
+   set(program, value)
    {
-      let location = this.location;
+      let location = this.locate(program);
       let method = this.method;
-      let setter = gl[this.method].bind(gl, this.location);
 
       if (method.match('Matrix') !== null)
       {
-         setter(false, value);
+         gl[method](location, false, value);
       }
       else
       {
-         setter(value);
+         gl[method](location, value);
       }
    }
 }

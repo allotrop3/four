@@ -8,13 +8,15 @@ const _direction = [0, 0, 0];
 
 class DirectionalLight extends Light
 {
-   constructor({ name = _name, program, path, uniforms = _uniforms, ambient, diffuse, specular, intensity, location, direction = _direction } = {})
+   constructor({ name = _name, path, uniforms = _uniforms, ambient, diffuse, specular, intensity, location, direction = _direction } = {})
    {
-      super({ name, program, path, uniforms, ambient, diffuse, specular, intensity, location });
+      super({ name, path, uniforms, ambient, diffuse, specular, intensity, location });
 
       this.direction = direction;
 
       this.type = 1;
+      
+      this.inheritance = ['Entity', 'Structure', 'Light', 'DirectionalLight'];
    }
 }
 

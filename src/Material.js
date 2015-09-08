@@ -10,14 +10,14 @@ const _path = 'material';
 const _uniforms = ['sampler image', 'vec3 ambient', 'vec3 diffuse', 'i shading', 'i type'];
 const _pattern = {};
 const _ambient = 0xFFFFFF;
-const _diffuse = 0x000000;
+const _diffuse = 0xFFFFFF;
 const _shading = 'smooth';
 
 class Material extends Structure
 {
-   constructor({ name = _name, program, path = _path, uniforms = _uniforms, pattern = _pattern, ambient = _ambient, diffuse = _diffuse, shading = _shading } = {})
+   constructor({ name = _name, path = _path, uniforms = _uniforms, pattern = _pattern, ambient = _ambient, diffuse = _diffuse, shading = _shading } = {})
    {
-      super({ name, program, path, uniforms });
+      super({ name, path, uniforms });
 
       this.ambient = LSL(ambient);
 
@@ -30,11 +30,13 @@ class Material extends Structure
       this.pattern = pattern;
 
       this.type = 0;
+
+      this.inheritance = ['Entity', 'Structure', 'Material'];
    }
 
-   bind()
+   bind(program)
    {
-      super.bind();
+      super.bind(program);
 
       if (this.image !== undefined)
       {

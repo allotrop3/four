@@ -16,9 +16,9 @@ const _up = [0, 1, 0];
 
 class PerspectiveCamera extends Camera
 {
-   constructor({ name = _name, program, path, uniforms, background, width = _width, height = _height, fov = _fov, near = _near, far = _far, direction = _direction, location, up = _up } = {})
+   constructor({ name = _name, path, uniforms, background, width = _width, height = _height, fov = _fov, near = _near, far = _far, direction = _direction, location, up = _up } = {})
    {
-      super({ name, program, path, uniforms, background });
+      super({ name, path, uniforms, background });
 
       this.width = width;
 
@@ -37,6 +37,8 @@ class PerspectiveCamera extends Camera
       this.location = location;
 
       this.up = up;
+      
+      this.inheritance = ['Entity', 'Structure', 'Camera', 'PerspectiveCamera'];
 
       this.configure();
    }
@@ -55,9 +57,9 @@ class PerspectiveCamera extends Camera
       mat4.lookAt(modelViewMatrix, this.location, this.direction, this.up);
    }
 
-   bind()
+   bind(program)
    {
-      super.bind();
+      super.bind(program);
 
       gl.enable(gl.DEPTH_TEST);
       gl.viewport(0, 0, this.width, this.height);

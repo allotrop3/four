@@ -12,6 +12,8 @@ class Framebuffer extends Entity
       super({ name });
 
       this.buffer = null;
+      
+      this.inheritance = ['Entity', 'Framebuffer'];
    }
 
    bind(flush = true)
@@ -31,8 +33,7 @@ class Framebuffer extends Entity
 
    flush()
    {
-      gl.clear(gl.COLOR_BUFFER_BIT);
-      gl.clear(gl.DEPTH_BUFFER_BIT);
+      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
    }
 
    check()

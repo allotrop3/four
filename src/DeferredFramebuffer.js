@@ -16,13 +16,15 @@ class DeferredFramebuffer extends Framebuffer
       this.colorAttachment = colorAttachment;
 
       this.depthAttachment = depthAttachment;
+      
+      this.inheritance = ['Entity', 'Framebuffer', 'DeferredFramebuffer'];
 
       this.configure();
    }
 
    configure()
    {
-      this.bind();
+      this.bind(false);
 
       gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.colorAttachment.buffer, 0);
       gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, this.depthAttachment.buffer);

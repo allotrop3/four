@@ -14,6 +14,8 @@ class MeshLoader extends Entity
       this.request = undefined;
 
       this.vertices = [];
+      
+      this.colors = [];
 
       this.uvs = [];
 
@@ -27,6 +29,8 @@ class MeshLoader extends Entity
       };
 
       this.indices = [];
+      
+      this.inheritance = ['Entity', 'MeshLoader'];
 
       this.fetch(path);
    }
