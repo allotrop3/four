@@ -185,12 +185,22 @@
             scene.put(floor);
             scene.put(plane);
 
+            var depthScene = new Four.Scene();
+
+            depthScene.put(pointLight);
+            depthScene.put(roof);
+            depthScene.put(body);
+            depthScene.put(walls);
+            depthScene.put(floor);
+            depthScene.put(plane);
+
             scene.animate(view, camera,
                function()
                {
-                  // scene.rotation += 0.25;
-                  scene.use(shadowMapperProgram);
-                  scene.render(shadowMapper.view, lightCamera);
+                  scene.rotation += 0.25;
+
+                  depthScene.use(shadowMapperProgram);
+                  depthScene.render(shadowMapper.view, lightCamera);
 
                   scene.use(rendererProgram);
                   lightCamera.bind(rendererProgram);
