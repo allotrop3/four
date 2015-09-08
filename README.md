@@ -32,10 +32,9 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
 
 ```javascript
 <script>
-   var meshLoader = new Four.OBJMeshLoader({ path: '../path/to/mesh.obj' });
+   var meshLoader = new Four.OBJMeshLoader({ path: 'path/to/mesh.obj' });
 
-   function main()
-   {
+   function main() {
       var program = new Four.Program({ selector: '.class-to-shaders' });
    
       var pointLight = new Four.PointLight({
@@ -45,7 +44,6 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
    
       var view = new Four.Framebuffer(
       var camera = new Four.PerspectiveCamera({
-         program: program,
          location: [40, 30, 40]
       });
       
@@ -62,8 +60,7 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
    
       scene.put(mesh);
    
-      scene.render(view, camera, function()
-      {
+      scene.render(view, camera, function() {
          scene.rotation += 0.25;
       });
    }
