@@ -35,7 +35,7 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
    var meshLoader = new Four.OBJMeshLoader({ path: 'path/to/mesh.obj' });
 
    function main() {
-      var program = new Four.Program({ selector: '.class-to-shaders' });
+      var program = new Four.Program({ selector: '.renderer' });
    
       var pointLight = new Four.PointLight({
          radius: 10,
