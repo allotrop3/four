@@ -6,8 +6,8 @@ let DataTexture = require('./DataTexture');
 let DepthTexture = require('./DepthTexture');
 let DepthFramebuffer = require('./DepthFramebuffer');
 
-const _name = 'shadow.map';
-const _uniforms = ['sampler shadowMap'];
+const _name = 'shadow.mapper';
+const _uniforms = ['sampler ShadowMapper__shadowMap'];
 const _width = gl.canvas.width;
 const _height = gl.canvas.height;
 

@@ -1,5 +1,7 @@
 'use strict';
 
+let dependencies = [];
+
 let VERTEX_SHADER = [
 ].join('\n');
 
@@ -11,13 +13,14 @@ let FRAGMENT_SHADER = [
    '   vec3 diffuse;',
    '   vec3 specular;',
    '   float shininess;',
-   '   int shading;',   
+   '   int shading;',
    '   int type;',
    '};',
-   'uniform sampler2D u_image;'
+   'uniform sampler2D u_Material__image;'
 ].join('\n');
 
 module.exports = {
+   import: dependencies,
    VERTEX_SHADER: VERTEX_SHADER,
    FRAGMENT_SHADER: FRAGMENT_SHADER
 };
