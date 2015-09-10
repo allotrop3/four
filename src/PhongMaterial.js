@@ -4,7 +4,7 @@ let LSL = require('./utils/LSL');
 let Material = require('./Material');
 
 const _name = 'phong.material';
-const _uniforms = ['sampler image', 'vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f shininess', 'i shading', 'i type'];
+const _uniforms = ['sampler Material__image', 'vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f shininess', 'i shading', 'i type'];
 const _specular = [1, 1, 1];
 const _shininess = 75;
 
@@ -19,7 +19,7 @@ class PhongMaterial extends Material
       this.shininess = shininess;
 
       this.type = 1;
-      
+
       this.inheritance = ['Entity', 'Structure', 'Material', 'PhongMaterial'];
    }
 }
