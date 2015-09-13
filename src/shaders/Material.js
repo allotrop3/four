@@ -16,7 +16,7 @@ let FRAGMENT_SHADER = [
    '   int shading;',
    '   int type;',
    '};',
-   'uniform sampler2D u_Material__image;'
+   'uniform sampler2D u_image;'
 ].join('\n');
 
 module.exports = {

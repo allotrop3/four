@@ -44,7 +44,7 @@
             v_uv = a_uv;
             v_normal = u_camera.normalMatrix * a_normal;
 
-            shadow(u_lightCamera, position);
+            ShadowMapper_init(u_lightCamera, position);
 
             gl_Position = u_camera.projectionMatrix * modelViewPosition;
          }
@@ -70,7 +70,7 @@
          void main()
          {
             vec3 base = texture2D(u_image, v_uv).rgb;
-            vec3 lighting = base * pointLight(u_light, u_material, v_position, v_normal) * visibility();
+            vec3 lighting = base * PointLight_on(u_light, u_material, v_position, v_normal) * ShadowMapper_cast();
 
             gl_FragColor = vec4(lighting, 1.0);
          }

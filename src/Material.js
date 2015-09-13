@@ -7,7 +7,7 @@ const shades = { flat: 1, smooth: 0 };
 
 const _name = 'material';
 const _path = 'material';
-const _uniforms = ['sampler Material__image', 'vec3 ambient', 'vec3 diffuse', 'i shading', 'i type'];
+const _uniforms = ['sampler image', 'vec3 ambient', 'vec3 diffuse', 'i shading', 'i type'];
 const _pattern = {};
 const _ambient = 0xFFFFFF;
 const _diffuse = 0xFFFFFF;
