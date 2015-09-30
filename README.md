@@ -14,7 +14,7 @@ See a [live demo](http://allotrop3.github.io/four).
 
 ## Getting started
 
-Simply download [Four](http://allotrop3.github.io/four/demo/scripts/four.min.js) and include the script in your project.
+Simply download [Four](http://allotrop3.github.io/four/scripts/four.min.js) and include the script in your project.
 
 ```javascript
 <script type="text/javascript" src="path/to/four.min.js"></script>
