@@ -1,6 +1,6 @@
 {
   "name": "fourjs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Four is a slightly higher level graphics API based on WebGL 1.0.",
   "main": "dist/four.min.js",
   "scripts": {
