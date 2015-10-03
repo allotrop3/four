@@ -18,10 +18,11 @@ const _uvs = [];
 const _normals = [];
 const _indices = [];
 const _usage = gl.STATIC_DRAW;
+const _primitive = gl.TRIANGLES;
 
 class Mesh extends Entity
 {
-   constructor({ name = _name, buffers, loader, vertices = _vertices, colors = _colors, uvs = _uvs, normals = _normals, indices = _indices, usage = _usage, material } = {})
+   constructor({ name = _name, buffers, loader, vertices = _vertices, colors = _colors, uvs = _uvs, normals = _normals, indices = _indices, usage = _usage, primitive = _primitive, material } = {})
    {
       super({ name });
       
@@ -38,6 +39,8 @@ class Mesh extends Entity
       this.indices = new Uint16Array(indices);
 
       this.usage = usage;
+
+      this.primitive = primitive;
 
       this.material = material;
 
@@ -126,7 +129,7 @@ class Mesh extends Entity
       [].push.apply(interleaved, contatenation.map(parseFloat));
    }
 
-   draw({ program, primitive = gl.TRIANGLES, offset = 0, count = this.count } = {})
+   draw({ program, primitive = this.primitive, offset = 0, count = this.count } = {})
    {
       let buffers = this.buffers;
 

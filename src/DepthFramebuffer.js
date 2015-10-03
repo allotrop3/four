@@ -7,9 +7,9 @@ const _name = 'depth.framebuffer';
 
 class DepthFramebuffer extends Framebuffer
 {
-   constructor({ name = _name, colorAttachment, depthAttachment } = {})
+   constructor({ name = _name, colorAttachment, depthAttachment, flushable } = {})
    {
-      super({ name });
+      super({ name, flushable });
 
       this.buffer = gl.createFramebuffer();
 

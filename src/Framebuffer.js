@@ -4,14 +4,17 @@ let gl = require('./gl');
 let Entity = require('./Entity');
 
 const _name = 'framebuffer';
+const _flushable = true;
 
 class Framebuffer extends Entity
 {
-   constructor({ name = _name } = {})
+   constructor({ name = _name, flushable = _flushable } = {})
    {
       super({ name });
 
       this.buffer = null;
+
+      this.flushable = flushable;
       
       this.inheritance = ['Entity', 'Framebuffer'];
    }
@@ -20,7 +23,7 @@ class Framebuffer extends Entity
    {
       gl.bindFramebuffer(gl.FRAMEBUFFER, this.buffer);
 
-      if (flush)
+      if (this.flushable && flush)
       {
          this.flush();
       }

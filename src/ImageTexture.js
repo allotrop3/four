@@ -42,6 +42,8 @@ class ImageTexture extends Texture
       let components = this.components;
       let anisotropy = this.anisotropy;
 
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+
       if (anisotropy)
       {
          gl.texParameterf(gl.TEXTURE_2D, this.anisotropicFilter.TEXTURE_MAX_ANISOTROPY_EXT, anisotropy);

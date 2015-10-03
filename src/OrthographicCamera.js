@@ -47,7 +47,7 @@ class OrthographicCamera extends Camera
       super.bind(program);
 
       gl.disable(gl.DEPTH_TEST);
-      gl.viewport(0, 0, this.right, this.top);
+      gl.viewport(this.left, this.top, this.right, this.bottom);
    }
 }
 
