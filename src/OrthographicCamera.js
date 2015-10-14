@@ -7,13 +7,13 @@ let Camera = require('./Camera');
 
 const _name = 'orthographic.camera';
 const _left = -1;
-const _top = -1;
+const _bottom = -1;
 const _near = 0.1;
 const _far = 1;
 
 class OrthographicCamera extends Camera
 {
-   constructor({ name = _name, path, uniforms, background, left = _left, right, bottom, top = _top, near = _near, far = _far } = {})
+   constructor({ name = _name, path, uniforms, background, left = _left, right, bottom = _bottom, top, near = _near, far = _far } = {})
    {
       super({ name, path, uniforms, background });
 
@@ -47,7 +47,7 @@ class OrthographicCamera extends Camera
       super.bind(program);
 
       gl.disable(gl.DEPTH_TEST);
-      gl.viewport(this.left, this.top, this.right, this.bottom);
+      gl.viewport(0, 0, this.right, this.top);
    }
 }
 
