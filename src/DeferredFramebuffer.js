@@ -16,7 +16,7 @@ class DeferredFramebuffer extends Framebuffer
       this.colorAttachment = colorAttachment;
 
       this.depthAttachment = depthAttachment;
-      
+
       this.inheritance = ['Entity', 'Framebuffer', 'DeferredFramebuffer'];
 
       this.configure();

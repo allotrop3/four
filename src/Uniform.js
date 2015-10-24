@@ -29,13 +29,13 @@ class Uniform extends Entity
       this.path = path;
 
       this.uniform = uniform;
-      
+
       this.location = undefined;
 
       this.format = format;
 
       this.method = `uniform${formats[format]}`;
-      
+
       this.inheritance = ['Entity', 'Uniform'];
    }
 

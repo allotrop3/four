@@ -19,7 +19,7 @@ class PhongMaterial extends Material
       this.shininess = shininess;
 
       this.type = 1;
-      
+
       this.inheritance = ['Entity', 'Structure', 'Material', 'PhongMaterial'];
    }
 }

@@ -13,7 +13,7 @@ class VertexShader extends Shader
    constructor({ name = _name, selector } = {})
    {
       super({ name, selector: `${selector}[type="${attribute}"]` }, _type);
-      
+
       this.inheritance = ['Entity', 'Shader', 'VertexShader'];
    }
 }

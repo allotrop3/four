@@ -15,7 +15,7 @@ class Framebuffer extends Entity
       this.buffer = null;
 
       this.flushable = flushable;
-      
+
       this.inheritance = ['Entity', 'Framebuffer'];
    }
 

@@ -16,7 +16,7 @@ class Renderbuffer extends Entity
       this.width = width;
 
       this.height = height;
-      
+
       this.inheritance = ['Entity', 'Renderbuffer'];
 
       this.configure();

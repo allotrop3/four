@@ -15,7 +15,7 @@ class Attribute extends Entity
       super({ name });
 
       this.attribute = attribute;
-      
+
       this.location = undefined;
 
       this.length = length;
@@ -25,7 +25,7 @@ class Attribute extends Entity
       this.normalized = normalized;
 
       this.offset = offset;
-      
+
       this.inheritance = ['Entity', 'Attribute'];
    }
 
@@ -33,7 +33,7 @@ class Attribute extends Entity
    {
       return this.length * bytes;
    }
-   
+
    locate(program)
    {
       return this.location = gl.getAttribLocation(program.buffer, `a_${this.attribute}`);

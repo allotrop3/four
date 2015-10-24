@@ -11,7 +11,7 @@ class Entity
       this.name = this.index(name);
 
       this.basename = name;
-      
+
       this.inheritance = ['Entity'];
    }
 
@@ -31,7 +31,7 @@ class Entity
    {
       return this.name.match(identity, 'i') !== null;
    }
-   
+
    isType(entity)
    {
       return this.inheritance.indexOf(entity) !== -1;

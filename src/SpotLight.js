@@ -21,7 +21,7 @@ class SpotLight extends Light
       this.direction = direction;
 
       this.type = 3;
-      
+
       this.inheritance = ['Entity', 'Structure', 'Light', 'SpotLight'];
    }
 }

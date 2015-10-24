@@ -25,7 +25,7 @@ class Mesh extends Entity
    constructor({ name = _name, buffers, loader, vertices = _vertices, colors = _colors, uvs = _uvs, normals = _normals, indices = _indices, usage = _usage, primitive = _primitive, material } = {})
    {
       super({ name });
-      
+
       this.buffers = buffers;
 
       this.vertices = vertices;
@@ -49,14 +49,14 @@ class Mesh extends Entity
       this.rotation = 0;
 
       this.translation = [0, 0, 0];
-      
+
       this.inheritance = ['Entity', 'Mesh'];
 
       this.unpack(loader);
       this.generate();
       this.configure();
    }
-   
+
    unpack(loader)
    {
       if (loader !== undefined)
@@ -68,24 +68,24 @@ class Mesh extends Entity
          this.indices = loader.indices;
       }
    }
-   
+
    generate()
    {
       if (this.buffers === undefined)
       {
          let generated = [];
          let indexed = (this.indices.length > 0);
-         
+
          for (let name in attributes)
          {
             let coordinates = this[name];
-            
+
             if (coordinates.length > 0)
             {
                generated.push(`vec${coordinates[0].length} ${attributes[name]}`);
             }
          }
-         
+
          this.buffers = new VertexArrayObject({ attributes: generated, indexed });
       }
    }

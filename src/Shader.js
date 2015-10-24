@@ -14,21 +14,21 @@ class Shader extends Entity
       super({ name });
 
       this.buffer = gl.createShader(gl[type]);
-      
+
       this.inheritance = ['Entity', 'Shader'];
-      
+
       this.compile(type, selector);
    }
-   
+
    generate(type, selector)
    {
       let source = document.querySelector(selector).textContent;
-      
+
       for (let tag in shaders)
       {
-         source = source.replace(`@${tag};`, shaders[tag][type]);  
+         source = source.replace(`@${tag};`, shaders[tag][type]);
       }
-      
+
       return source;
    }
 

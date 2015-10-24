@@ -11,7 +11,7 @@ let FRAGMENT_SHADER = [
    '   vec3 diffuse;',
    '   vec3 specular;',
    '   float shininess;',
-   '   int shading;',   
+   '   int shading;',
    '   int type;',
    '};',
    'uniform sampler2D u_image;'

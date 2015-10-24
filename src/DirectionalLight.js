@@ -15,7 +15,7 @@ class DirectionalLight extends Light
       this.direction = direction;
 
       this.type = 1;
-      
+
       this.inheritance = ['Entity', 'Structure', 'Light', 'DirectionalLight'];
    }
 }

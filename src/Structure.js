@@ -13,7 +13,7 @@ class Structure extends Entity
       super({ name });
 
       this.path = path;
-      
+
       this.inheritance = ['Entity', 'Structure'];
 
       this.uniforms = uniforms.map(this.instantiate.bind(this));

@@ -9,7 +9,7 @@ class OBJMeshLoader extends MeshLoader
    constructor({ name = _name, path } = {})
    {
       super({ name, path });
-      
+
       this.inheritance = ['Entity', 'MeshLoader', 'OBJMeshLoader'];
    }
 
@@ -50,17 +50,17 @@ class OBJMeshLoader extends MeshLoader
       let position = tmp.vertices[indices[0]];
       let uv = tmp.uvs[indices[1]];
       let normal = tmp.normals[indices[2]];
-      
+
       if (position !== undefined)
       {
          this.vertices.push(position);
       }
-      
+
       if (uv !== undefined)
       {
          this.uvs.push(uv);
       }
-      
+
       if (normal !== undefined)
       {
          this.normals.push(normal);

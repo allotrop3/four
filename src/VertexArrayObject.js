@@ -34,7 +34,7 @@ class VertexArrayObject extends Entity
       this.view = view;
 
       this.attributes = attributes.map(this.generate.bind(this));
-      
+
       this.inheritance = ['Entity', 'VertexArrayObject'];
 
       this.configure();
@@ -79,11 +79,11 @@ class VertexArrayObject extends Entity
       {
          gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.secondary);
       }
-      
+
       if (program)
       {
-         this.attributes.map(this.enable.bind(this, program));  
-      }      
+         this.attributes.map(this.enable.bind(this, program));
+      }
    }
 
    unbind()
