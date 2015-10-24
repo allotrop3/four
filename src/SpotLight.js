@@ -24,6 +24,56 @@ class SpotLight extends Light
 
       this.inheritance = ['Entity', 'Structure', 'Light', 'SpotLight'];
    }
+
+   get attenuation()
+   {
+      return this._attenuation;
+   }
+
+   set attenuation(attenuation)
+   {
+      this._attenuation = attenuation;
+   }
+
+   get cutoff()
+   {
+      return this._cutoff;
+   }
+
+   set cutoff(cutoff)
+   {
+      this._cutoff = cutoff;
+   }
+
+   get direction()
+   {
+      return this._direction;
+   }
+
+   set direction(direction)
+   {
+      this._direction = direction;
+   }
+
+   get type()
+   {
+      return this._type;
+   }
+
+   set type(type)
+   {
+      this._type = type;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
+   }
 }
 
 module.exports = SpotLight;

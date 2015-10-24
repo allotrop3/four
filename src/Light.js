@@ -18,11 +18,11 @@ class Light extends Structure
    {
       super({ name, path, uniforms });
 
-      this.ambient = LSL(ambient);
+      this.ambient = ambient;
 
-      this.diffuse = LSL(diffuse);
+      this.diffuse = diffuse;
 
-      this.specular = LSL(specular);
+      this.specular = specular;
 
       this.intensity = intensity;
 
@@ -31,6 +31,76 @@ class Light extends Structure
       this.type = 0;
 
       this.inheritance = ['Entity', 'Structure', 'Light'];
+   }
+
+   get ambient()
+   {
+      return this._ambient;
+   }
+
+   set ambient(ambient)
+   {
+      this._ambient = LSL(ambient);
+   }
+
+   get diffuse()
+   {
+      return this._diffuse;
+   }
+
+   set diffuse(diffuse)
+   {
+      this._diffuse = LSL(diffuse);
+   }
+
+   get specular()
+   {
+      return this._specular;
+   }
+
+   set specular(specular)
+   {
+      this._specular = LSL(specular);
+   }
+
+   get intensity()
+   {
+      return this._intensity;
+   }
+
+   set intensity(intensity)
+   {
+      this._intensity = intensity;
+   }
+
+   get location()
+   {
+      return this._location;
+   }
+
+   set location(location)
+   {
+      this._location = location;
+   }
+
+   get type()
+   {
+      return this._type;
+   }
+
+   set type(type)
+   {
+      this._type = type;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
    }
 }
 

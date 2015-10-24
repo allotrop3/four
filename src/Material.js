@@ -19,9 +19,9 @@ class Material extends Structure
    {
       super({ name, path, uniforms });
 
-      this.ambient = LSL(ambient);
+      this.ambient = ambient;
 
-      this.diffuse = LSL(diffuse);
+      this.diffuse = diffuse;
 
       this.image = pattern.unit;
 
@@ -32,6 +32,76 @@ class Material extends Structure
       this.type = 0;
 
       this.inheritance = ['Entity', 'Structure', 'Material'];
+   }
+
+   get ambient()
+   {
+      return this._ambient;
+   }
+
+   set ambient(ambient)
+   {
+      this._ambient = LSL(ambient);
+   }
+
+   get diffuse()
+   {
+      return this._diffuse;
+   }
+
+   set diffuse(diffuse)
+   {
+      this._diffuse = LSL(diffuse);
+   }
+
+   get image()
+   {
+      return this._image;
+   }
+
+   set image(image)
+   {
+      this._image = image;
+   }
+
+   get shading()
+   {
+      return this._shading;
+   }
+
+   set shading(shading)
+   {
+      this._shading = shades[shading];
+   }
+
+   get pattern()
+   {
+      return this._pattern;
+   }
+
+   set pattern(pattern)
+   {
+      this._pattern = pattern;
+   }
+
+   get type()
+   {
+      return this._type;
+   }
+
+   set type(type)
+   {
+      this._type = type;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
    }
 
    bind(program)

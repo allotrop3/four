@@ -24,6 +24,46 @@ class Program extends Entity
       this.link();
    }
 
+   get buffer()
+   {
+      return this._buffer;
+   }
+
+   set buffer(buffer)
+   {
+      this._buffer = buffer;
+   }
+
+   get vertexShader()
+   {
+      return this._vertexShader;
+   }
+
+   set vertexShader(vertexShader)
+   {
+      this._vertexShader = vertexShader;
+   }
+
+   get fragmentShader()
+   {
+      return this._fragmentShader;
+   }
+
+   set fragmentShader(fragmentShader)
+   {
+      this._fragmentShader = fragmentShader;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
+   }
+
    link()
    {
       let buffer = this.buffer;

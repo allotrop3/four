@@ -16,6 +16,16 @@ class FragmentShader extends Shader
 
       this.inheritance = ['Entity', 'Shader', 'FragmentShader'];
    }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
+   }
 }
 
 module.exports = FragmentShader;

@@ -17,13 +17,76 @@ class ImageTexture extends Texture
 
       this.anisotropicFilter = gl.getExtension('EXT_texture_filter_anisotropic');
 
-      this.anisotropy = this.checkAnisotropy(anisotropy);
+      this.anisotropy = anisotropy;
 
       this.mipmap = mipmap;
 
       this.inheritance = ['Entity', 'Texture', 'ImageTexture'];
 
       this.fetch(path);
+   }
+
+   get image()
+   {
+      return this._image;
+   }
+
+   set image(image)
+   {
+      this._image = image;
+   }
+
+   get anisotropicFilter()
+   {
+      return this._anisotropicFilter;
+   }
+
+   set anisotropicFilter(anisotropicFilter)
+   {
+      this._anisotropicFilter = anisotropicFilter;
+   }
+
+   get anisotropy()
+   {
+      return this._anisotropy;
+   }
+
+   set anisotropy(anisotropy)
+   {
+      let anisotropicFilter = this.anisotropicFilter;
+
+      if (anisotropicFilter && anisotropy !== false)
+      {
+         let maxAnisotropy = gl.getParameter(anisotropicFilter.MAX_TEXTURE_MAX_ANISOTROPY_EXT);
+
+         anisotropy = Math.min(anisotropy, Math.max(anisotropy, maxAnisotropy));
+      }
+      else
+      {
+         anisotropy = 0;
+      }
+
+      this._anisotropy = anisotropy;
+   }
+
+   get mipmap()
+   {
+      return this._mipmap;
+   }
+
+   set mipmap(mipmap)
+   {
+      this._mipmap = mipmap;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
    }
 
    fetch(path)
@@ -57,20 +120,6 @@ class ImageTexture extends Texture
       }
 
       this.unbind();
-   }
-
-   checkAnisotropy(anisotropy)
-   {
-      let anisotropicFilter = this.anisotropicFilter;
-
-      if (anisotropicFilter && anisotropy !== false)
-      {
-         let maxAnisotropy = gl.getParameter(anisotropicFilter.MAX_TEXTURE_MAX_ANISOTROPY_EXT);
-
-         return Math.min(anisotropy, Math.max(anisotropy, maxAnisotropy));
-      }
-
-      return 0;
    }
 }
 

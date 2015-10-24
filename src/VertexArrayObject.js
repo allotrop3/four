@@ -33,11 +33,81 @@ class VertexArrayObject extends Entity
 
       this.view = view;
 
-      this.attributes = attributes.map(this.generate.bind(this));
+      this.attributes = attributes;
 
       this.inheritance = ['Entity', 'VertexArrayObject'];
 
       this.configure();
+   }
+
+   get primary()
+   {
+      return this._primary;
+   }
+
+   set primary(primary)
+   {
+      this._primary = primary;
+   }
+
+   get secondary()
+   {
+      return this._secondary;
+   }
+
+   set secondary(secondary)
+   {
+      this._secondary = secondary;
+   }
+
+   get indexed()
+   {
+      return this._indexed;
+   }
+
+   set indexed(indexed)
+   {
+      this._indexed = indexed;
+   }
+
+   get stride()
+   {
+      return this._stride;
+   }
+
+   set stride(stride)
+   {
+      this._stride = stride;
+   }
+
+   get view()
+   {
+      return this._view;
+   }
+
+   set view(view)
+   {
+      this._view = view;
+   }
+
+   get attributes()
+   {
+      return this._attributes;
+   }
+
+   set attributes(attributes)
+   {
+      this._attributes = attributes.map(this.generate.bind(this));
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
    }
 
    configure()

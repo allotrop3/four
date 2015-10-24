@@ -8,14 +8,19 @@ class Entity
 {
    constructor({ name = _name } = {})
    {
-      this.name = this.index(name);
+      this.name = name;
 
       this.basename = name;
 
       this.inheritance = ['Entity'];
    }
 
-   index(name)
+   get name()
+   {
+      return this._name;
+   }
+
+   set name(name)
    {
       if (indices[name] === undefined)
       {
@@ -24,7 +29,27 @@ class Entity
 
       indices[name]++;
 
-      return `${name}.0${indices[name]}`;
+      this._name = `${name}.0${indices[name]}`;
+   }
+
+   get basename()
+   {
+      return this._basename;
+   }
+
+   set basename(basename)
+   {
+      this._basename = basename;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
    }
 
    is(identity)

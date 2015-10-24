@@ -26,6 +26,76 @@ class Scene extends Entity
       this.inheritance = ['Entity', 'Scene'];
    }
 
+   get program()
+   {
+      return this._program;
+   }
+
+   set program(program)
+   {
+      this._program = program;
+   }
+
+   get meshes()
+   {
+      return this._meshes;
+   }
+
+   set meshes(meshes)
+   {
+      this._meshes = meshes;
+   }
+
+   get lights()
+   {
+      return this._lights;
+   }
+
+   set lights(lights)
+   {
+      this._lights = lights;
+   }
+
+   get scale()
+   {
+      return this._scale;
+   }
+
+   set scale(scale)
+   {
+      this._scale = scale;
+   }
+
+   get rotation()
+   {
+      return this._rotation;
+   }
+
+   set rotation(rotation)
+   {
+      this._rotation = rotation;
+   }
+
+   get translation()
+   {
+      return this._translation;
+   }
+
+   set translation(translation)
+   {
+      this._translation = translation;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
+   }
+
    use(program)
    {
       program.bind();

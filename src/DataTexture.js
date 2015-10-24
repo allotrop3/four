@@ -27,6 +27,56 @@ class DataTexture extends Texture
       this.configure();
    }
 
+   get image()
+   {
+      return this._image;
+   }
+
+   set image(image)
+   {
+      this._image = image;
+   }
+
+   get width()
+   {
+      return this._width;
+   }
+
+   set width(width)
+   {
+      this._width = width;
+   }
+
+   get height()
+   {
+      return this._height;
+   }
+
+   set height(height)
+   {
+      this._height = height;
+   }
+
+   get length()
+   {
+      return this._length;
+   }
+
+   set length(length)
+   {
+      this._length = length;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
+   }
+
    configure()
    {
       super.configure();

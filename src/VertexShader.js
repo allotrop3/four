@@ -16,6 +16,16 @@ class VertexShader extends Shader
 
       this.inheritance = ['Entity', 'Shader', 'VertexShader'];
    }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
+   }
 }
 
 module.exports = VertexShader;

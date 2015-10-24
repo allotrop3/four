@@ -34,6 +34,76 @@ class OrthographicCamera extends Camera
       this.configure();
    }
 
+   get left()
+   {
+      return this._left;
+   }
+
+   set left(left)
+   {
+      this._left = left;
+   }
+
+   get right()
+   {
+      return this._right;
+   }
+
+   set right(right)
+   {
+      this._right = right;
+   }
+
+   get bottom()
+   {
+      return this._bottom;
+   }
+
+   set bottom(bottom)
+   {
+      this._bottom = bottom;
+   }
+
+   get top()
+   {
+      return this._top;
+   }
+
+   set top(top)
+   {
+      this._top = top;
+   }
+
+   get near()
+   {
+      return this._near;
+   }
+
+   set near(near)
+   {
+      this._near = near;
+   }
+
+   get far()
+   {
+      return this._far;
+   }
+
+   set far(far)
+   {
+      this._far = far;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
+   }
+
    configure()
    {
       super.configure();

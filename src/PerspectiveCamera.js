@@ -43,6 +43,106 @@ class PerspectiveCamera extends Camera
       this.configure();
    }
 
+   get width()
+   {
+      return this._width;
+   }
+
+   set width(width)
+   {
+      this._width = width;
+   }
+
+   get height()
+   {
+      return this._height;
+   }
+
+   set height(height)
+   {
+      this._height = height;
+   }
+
+   get fov()
+   {
+      return this._fov;
+   }
+
+   set fov(fov)
+   {
+      this._fov = fov;
+   }
+
+   get ratio()
+   {
+      return this._ratio;
+   }
+
+   set ratio(ratio)
+   {
+      this._ratio = ratio;
+   }
+
+   get near()
+   {
+      return this._near;
+   }
+
+   set near(near)
+   {
+      this._near = near;
+   }
+
+   get far()
+   {
+      return this._far;
+   }
+
+   set far(far)
+   {
+      this._far = far;
+   }
+
+   get direction()
+   {
+      return this._direction;
+   }
+
+   set direction(direction)
+   {
+      this._direction = direction;
+   }
+
+   get location()
+   {
+      return this._location;
+   }
+
+   set location(location)
+   {
+      this._location = location;
+   }
+
+   get up()
+   {
+      return this._up;
+   }
+
+   set up(up)
+   {
+      this._up = up;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
+   }
+
    configure()
    {
       super.configure();

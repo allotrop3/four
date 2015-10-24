@@ -19,6 +19,36 @@ class Framebuffer extends Entity
       this.inheritance = ['Entity', 'Framebuffer'];
    }
 
+   get buffer()
+   {
+      return this._buffer;
+   }
+
+   set buffer(buffer)
+   {
+      this._buffer = buffer;
+   }
+
+   get flushable()
+   {
+      return this._flushable;
+   }
+
+   set flushable(flushable)
+   {
+      this._flushable = flushable;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
+   }
+
    bind(flush = true)
    {
       gl.bindFramebuffer(gl.FRAMEBUFFER, this.buffer);

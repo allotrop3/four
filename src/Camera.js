@@ -21,7 +21,7 @@ class Camera extends Structure
    {
       super({ name, path, uniforms });
 
-      this.background = LSL(background);
+      this.background = background;
 
       this.modelViewMatrix = mat4.create();
 
@@ -32,6 +32,66 @@ class Camera extends Structure
       this.stack = [];
 
       this.inheritance = ['Entity', 'Structure', 'Camera'];
+   }
+
+   get background()
+   {
+      return this._background;
+   }
+
+   set background(background)
+   {
+      this._background = LSL(background);
+   }
+
+   get modelViewMatrix()
+   {
+      return this._modelViewMatrix;
+   }
+
+   set modelViewMatrix(modelViewMatrix)
+   {
+      this._modelViewMatrix = modelViewMatrix;
+   }
+
+   get projectionMatrix()
+   {
+      return this._projectionMatrix;
+   }
+
+   set projectionMatrix(projectionMatrix)
+   {
+      this._projectionMatrix = projectionMatrix;
+   }
+
+   get normalMatrix()
+   {
+      return this._normalMatrix;
+   }
+
+   set normalMatrix(normalMatrix)
+   {
+      this._normalMatrix = normalMatrix;
+   }
+
+   get stack()
+   {
+      return this._stack;
+   }
+
+   set stack(stack)
+   {
+      this._stack = stack;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
    }
 
    configure()

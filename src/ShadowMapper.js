@@ -18,11 +18,64 @@ class ShadowMapper extends Structure
       super({ name, path, uniforms });
 
       this.colorAttachment = new DataTexture({ width, height });
+
       this.depthAttachment = new DepthTexture({ width, height });
+
       this.view = new DepthFramebuffer({ colorAttachment: this.colorAttachment, depthAttachment: this.depthAttachment });
+
       this.shadowMap = this.depthAttachment.unit;
 
       this.inheritance = ['Entity', 'Structure', 'ShadowMapper'];
+   }
+
+   get colorAttachment()
+   {
+      return this._colorAttachment;
+   }
+
+   set colorAttachment(colorAttachment)
+   {
+      this._colorAttachment = colorAttachment;
+   }
+
+   get depthAttachment()
+   {
+      return this._depthAttachment;
+   }
+
+   set depthAttachment(depthAttachment)
+   {
+      this._depthAttachment = depthAttachment;
+   }
+
+   get view()
+   {
+      return this._view;
+   }
+
+   set view(view)
+   {
+      this._view = view;
+   }
+
+   get shadowMap()
+   {
+      return this._shadowMap;
+   }
+
+   set shadowMap(shadowMap)
+   {
+      this._shadowMap = shadowMap;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
    }
 
    bind(program)

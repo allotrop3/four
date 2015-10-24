@@ -36,7 +36,7 @@ class Mesh extends Entity
 
       this.normals = normals;
 
-      this.indices = new Uint16Array(indices);
+      this.indices = indices;
 
       this.usage = usage;
 
@@ -55,6 +55,136 @@ class Mesh extends Entity
       this.unpack(loader);
       this.generate();
       this.configure();
+   }
+
+   get buffers()
+   {
+      return this._buffers;
+   }
+
+   set buffers(buffers)
+   {
+      this._buffers = buffers;
+   }
+
+   get vertices()
+   {
+      return this._vertices;
+   }
+
+   set vertices(vertices)
+   {
+      this._vertices = vertices;
+   }
+
+   get colors()
+   {
+      return this._colors;
+   }
+
+   set colors(colors)
+   {
+      this._colors = colors;
+   }
+
+   get uvs()
+   {
+      return this._uvs;
+   }
+
+   set uvs(uvs)
+   {
+      this._uvs = uvs;
+   }
+
+   get normals()
+   {
+      return this._normals;
+   }
+
+   set normals(normals)
+   {
+      this._normals = normals;
+   }
+
+   get indices()
+   {
+      return this._indices;
+   }
+
+   set indices(indices)
+   {
+      this._indices = new Uint16Array(indices);
+   }
+
+   get usage()
+   {
+      return this._usage;
+   }
+
+   set usage(usage)
+   {
+      this._usage = usage;
+   }
+
+   get primitive()
+   {
+      return this._primitive;
+   }
+
+   set primitive(primitive)
+   {
+      this._primitive = primitive;
+   }
+
+   get material()
+   {
+      return this._material;
+   }
+
+   set material(material)
+   {
+      this._material = material;
+   }
+
+   get scale()
+   {
+      return this._scale;
+   }
+
+   set scale(scale)
+   {
+      this._scale = scale;
+   }
+
+   get rotation()
+   {
+      return this._rotation;
+   }
+
+   set rotation(rotation)
+   {
+      this._rotation = rotation;
+   }
+
+   get translation()
+   {
+      return this._translation;
+   }
+
+   set translation(translation)
+   {
+      this._translation = translation;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
    }
 
    unpack(loader)

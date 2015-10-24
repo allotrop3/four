@@ -34,9 +34,69 @@ class Uniform extends Entity
 
       this.format = format;
 
-      this.method = `uniform${formats[format]}`;
+      this.method = format;
 
       this.inheritance = ['Entity', 'Uniform'];
+   }
+
+   get path()
+   {
+      return this._path;
+   }
+
+   set path(path)
+   {
+      this._path = path;
+   }
+
+   get uniform()
+   {
+      return this._uniform;
+   }
+
+   set uniform(uniform)
+   {
+      this._uniform = uniform;
+   }
+
+   get location()
+   {
+      return this._location;
+   }
+
+   set location(location)
+   {
+      this._location = location;
+   }
+
+   get format()
+   {
+      return this._format;
+   }
+
+   get method()
+   {
+      return this._method;
+   }
+
+   set method(format)
+   {
+      this._method = `uniform${formats[format]}`;
+   }
+
+   set format(format)
+   {
+      this._format = format;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
    }
 
    locate(program)

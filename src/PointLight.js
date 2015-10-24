@@ -17,6 +17,36 @@ class PointLight extends Light
 
       this.inheritance = ['Entity', 'Structure', 'Light', 'PointLight'];
    }
+
+   get radius()
+   {
+      return this._radius;
+   }
+
+   set radius(radius)
+   {
+      this._radius = radius;
+   }
+
+   get type()
+   {
+      return this._type;
+   }
+
+   set type(type)
+   {
+      this._type = type;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
+   }
 }
 
 module.exports = PointLight;

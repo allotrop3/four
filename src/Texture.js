@@ -40,6 +40,106 @@ class Texture extends Entity
       this.inheritance = ['Entity', 'Texture'];
    }
 
+   get buffer()
+   {
+      return this._buffer;
+   }
+
+   set buffer(buffer)
+   {
+      this._buffer = buffer;
+   }
+
+   get lod()
+   {
+      return this._lod;
+   }
+
+   set lod(lod)
+   {
+      this._lod = lod;
+   }
+
+   get components()
+   {
+      return this._components;
+   }
+
+   set components(components)
+   {
+      this._components = components;
+   }
+
+   get format()
+   {
+      return this._format;
+   }
+
+   set format(format)
+   {
+      this._format = format;
+   }
+
+   get magnification()
+   {
+      return this._magnification;
+   }
+
+   set magnification(magnification)
+   {
+      this._magnification = magnification;
+   }
+
+   get minification()
+   {
+      return this._minification;
+   }
+
+   set minification(minification)
+   {
+      this._minification = minification;
+   }
+
+   get S()
+   {
+      return this._S;
+   }
+
+   set S(S)
+   {
+      this._S = S;
+   }
+
+   get T()
+   {
+      return this._T;
+   }
+
+   set T(T)
+   {
+      this._T = T;
+   }
+
+   get unit()
+   {
+      return this._unit;
+   }
+
+   set unit(unit)
+   {
+      this._unit = unit;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
+   }
+
    configure()
    {
       this.bind();

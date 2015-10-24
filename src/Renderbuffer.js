@@ -22,6 +22,46 @@ class Renderbuffer extends Entity
       this.configure();
    }
 
+   get buffer()
+   {
+      return this._buffer;
+   }
+
+   set buffer(buffer)
+   {
+      this._buffer = buffer;
+   }
+
+   get width()
+   {
+      return this._width;
+   }
+
+   set width(width)
+   {
+      this._width = width;
+   }
+
+   get height()
+   {
+      return this._height;
+   }
+
+   set height(height)
+   {
+      this._height = height;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
+   }
+
    configure()
    {
       this.bind();

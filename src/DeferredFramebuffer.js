@@ -22,6 +22,46 @@ class DeferredFramebuffer extends Framebuffer
       this.configure();
    }
 
+   get buffer()
+   {
+      return this._buffer;
+   }
+
+   set buffer(buffer)
+   {
+      this._buffer = buffer;
+   }
+
+   get colorAttachment()
+   {
+      return this._colorAttachment;
+   }
+
+   set colorAttachment(colorAttachment)
+   {
+      this._colorAttachment = colorAttachment;
+   }
+
+   get depthAttachment()
+   {
+      return this._depthAttachment;
+   }
+
+   set depthAttachment(depthAttachment)
+   {
+      this._depthAttachment = depthAttachment;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
+   }
+
    configure()
    {
       this.bind(false);

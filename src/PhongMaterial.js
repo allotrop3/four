@@ -14,13 +14,53 @@ class PhongMaterial extends Material
    {
       super({ name, path, uniforms, pattern, ambient, diffuse, shading });
 
-      this.specular = LSL(specular);
+      this.specular = specular;
 
       this.shininess = shininess;
 
       this.type = 1;
 
       this.inheritance = ['Entity', 'Structure', 'Material', 'PhongMaterial'];
+   }
+
+   get specular()
+   {
+      return this._specular;
+   }
+
+   set specular(specular)
+   {
+      this._specular = LSL(specular);
+   }
+
+   get shininess()
+   {
+      return this._shininess;
+   }
+
+   set shininess(shininess)
+   {
+      this._shininess = shininess;
+   }
+
+   get type()
+   {
+      return this._type;
+   }
+
+   set type(type)
+   {
+      this._type = type;
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
    }
 }
 

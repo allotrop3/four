@@ -14,9 +14,40 @@ class Structure extends Entity
 
       this.path = path;
 
+      this.uniforms = uniforms;
+
       this.inheritance = ['Entity', 'Structure'];
 
-      this.uniforms = uniforms.map(this.instantiate.bind(this));
+   }
+
+   get path()
+   {
+      return this._path;
+   }
+
+   set path(path)
+   {
+      this._path = path;
+   }
+
+   get uniforms()
+   {
+      return this._uniforms;
+   }
+
+   set uniforms(uniforms)
+   {
+      this._uniforms = uniforms.map(this.instantiate.bind(this));
+   }
+
+   get inheritance()
+   {
+      return this._inheritance;
+   }
+
+   set inheritance(inheritance)
+   {
+      this._inheritance = inheritance;
    }
 
    instantiate(qualifying)
