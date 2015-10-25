@@ -12,6 +12,8 @@ class Entity
 
       this.basename = name;
 
+      this.gl = undefined;
+
       this.inheritance = ['Entity'];
    }
 
@@ -40,6 +42,16 @@ class Entity
    set basename(basename)
    {
       this._basename = basename;
+   }
+
+   get gl()
+   {
+      return this._gl;
+   }
+
+   set gl(gl)
+   {
+      this._gl = gl;
    }
 
    get inheritance()

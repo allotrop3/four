@@ -3,7 +3,18 @@
 let VERTEX_SHADER = ``;
 
 let FRAGMENT_SHADER = `
-   vec3 pointLight(Light light, Material material, vec4 position, vec3 normal)
+   struct PointLight
+   {
+      vec3 ambient;
+      vec3 diffuse;
+      vec3 specular;
+      float radius;
+      float intensity;
+      vec3 location;
+      int type;
+   };
+
+   vec3 PointLight_main(PointLight light, Material material, vec4 position, vec3 normal)
    {
       normal = normalize(normal);
       vec3 pointToLight = light.location - position.xyz;
@@ -12,6 +23,9 @@ let FRAGMENT_SHADER = `
       vec3 ambient = light.ambient * material.ambient;
       vec3 diffuse = light.diffuse * material.diffuse * weight;
       vec3 specular = vec3(0.0);
+      float distanceFromLight = length(pointToLight);
+      float quadratic = pow(distanceFromLight / light.radius + 1.0, 2.0);
+      float attenuation = light.intensity / quadratic;
 
       if (material.type == 1)
       {
@@ -23,9 +37,6 @@ let FRAGMENT_SHADER = `
          }
       }
 
-      float distanceFromLight = length(pointToLight);
-      float quadratic = pow(distanceFromLight / light.radius + 1.0, 2.0);
-      float attenuation = light.intensity / quadratic;
       return ambient + (specular + diffuse) * attenuation;
    }
 `;

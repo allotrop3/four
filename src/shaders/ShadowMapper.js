@@ -1,13 +1,11 @@
 'use strict';
 
 let VERTEX_SHADER = `
-   const mat4 shadowMatrix = mat4(0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.5, 0.5, 0.5, 1.0);
-
    varying vec4 v_shadow;
 
-   void shadow(Camera camera, vec4 position)
+   void ShadowMapper_main(vec4 position)
    {
-      v_shadow = shadowMatrix * camera.projectionMatrix * camera.modelViewMatrix * position;
+      v_shadow = mat4(0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.5, 0.5, 0.5, 1.0) * position;
    }
 `;
 
@@ -16,7 +14,7 @@ let FRAGMENT_SHADER = `
 
    varying vec4 v_shadow;
 
-   float visibility()
+   float ShadowMapper_visibility()
    {
       vec3 depth = v_shadow.xyz / v_shadow.w;
 

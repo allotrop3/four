@@ -1,7 +1,6 @@
 'use strict';
 
-let VERTEX_SHADER = [
-].join('\n');
+let VERTEX_SHADER = ``;
 
 let FRAGMENT_SHADER = `
    struct Material

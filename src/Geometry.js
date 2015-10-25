@@ -11,10 +11,15 @@ class Geometry extends Entity
       super({ name });
 
       this.vertices = [];
+
       this.colors = [];
+
       this.normals = [];
+
       this.indices = [];
+
       this.faces = [];
+
       this.materials = [];
    }
 }
