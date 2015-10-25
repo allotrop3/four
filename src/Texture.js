@@ -1,17 +1,17 @@
 'use strict';
 
-let Entity = require('./Entity');
 let gl = require('./gl');
+let Entity = require('./Entity');
 let unit = 0;
 
 const _name = 'texture';
 const _lod = 0;
-const _components = gl.RGBA;
-const _format = gl.UNSIGNED_BYTE;
-const _magnification = gl.NEAREST;
-const _minification = gl.NEAREST;
-const _S = gl.CLAMP_TO_EDGE;
-const _T = gl.CLAMP_TO_EDGE;
+const _components = 'RGBA';
+const _format = 'UNSIGNED_BYTE';
+const _magnification = 'NEAREST';
+const _minification = 'NEAREST';
+const _S = 'CLAMP_TO_EDGE';
+const _T = 'CLAMP_TO_EDGE';
 
 class Texture extends Entity
 {
@@ -67,7 +67,7 @@ class Texture extends Entity
 
    set components(components)
    {
-      this._components = components;
+      this._components = gl[components];
    }
 
    get format()
@@ -77,7 +77,7 @@ class Texture extends Entity
 
    set format(format)
    {
-      this._format = format;
+      this._format = gl[format];
    }
 
    get magnification()
@@ -87,7 +87,7 @@ class Texture extends Entity
 
    set magnification(magnification)
    {
-      this._magnification = magnification;
+      this._magnification = gl[magnification];
    }
 
    get minification()
@@ -97,7 +97,7 @@ class Texture extends Entity
 
    set minification(minification)
    {
-      this._minification = minification;
+      this._minification = gl[minification];
    }
 
    get S()
@@ -107,7 +107,7 @@ class Texture extends Entity
 
    set S(S)
    {
-      this._S = S;
+      this._S = gl[S];
    }
 
    get T()
@@ -117,7 +117,7 @@ class Texture extends Entity
 
    set T(T)
    {
-      this._T = T;
+      this._T = gl[T];
    }
 
    get unit()

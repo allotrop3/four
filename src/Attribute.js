@@ -4,7 +4,7 @@ let gl = require('./gl');
 let Entity = require('./Entity');
 
 const _name = 'attribute';
-const _format = gl.FLOAT;
+const _format = 'FLOAT';
 const _normalized = false;
 const _offset = 0;
 
@@ -61,7 +61,7 @@ class Attribute extends Entity
 
    get format()
    {
-      return this._format;
+      return gl[this._format];
    }
 
    set format(format)

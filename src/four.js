@@ -3,9 +3,9 @@
 let Four = {
    glm: require('gl-matrix'),
    gl: require('./gl'),
-   Entity: require('./Entity'),
    Attribute: require('./Attribute'),
    Camera: require('./Camera'),
+   Canvas: require('./Canvas'),
    OrthographicCamera: require('./OrthographicCamera'),
    PerspectiveCamera: require('./PerspectiveCamera'),
    Framebuffer: require('./Framebuffer'),

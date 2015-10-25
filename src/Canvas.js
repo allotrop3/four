@@ -22,11 +22,11 @@ class Canvas extends Entity
 
       this.dpi = dpi;
 
-      this.gl = undefined;
+      this.gl = gl;
 
       this.inheritance = ['Entity', 'Canvas'];
 
-      this.prime();
+      this.prime(selector);
       this.contextualise();
    }
 
@@ -40,14 +40,44 @@ class Canvas extends Entity
       this._canvas = canvas;
    }
 
-   get context()
+   get width()
    {
-      return this._context;
+      return this._width;
    }
 
-   set context(context)
+   set width(width)
    {
-      this._context = context;
+      this._width = width;
+   }
+
+   get height()
+   {
+      return this._height;
+   }
+
+   set height(height)
+   {
+      this._height = height;
+   }
+
+   get dpi()
+   {
+      return this._dpi;
+   }
+
+   set dpi(dpi)
+   {
+      this._dpi = dpi;
+   }
+
+   get gl()
+   {
+      return this._gl;
+   }
+
+   set gl(gl)
+   {
+      this._gl = gl;
    }
 
    get inheritance()
@@ -60,9 +90,9 @@ class Canvas extends Entity
       this._inheritance = inheritance;
    }
 
-   prime()
+   prime(selector)
    {
-      let canvas = document.querySelector(this.selector);
+      let canvas = document.querySelector(selector);
       let width = this.width;
       let height = this.height;
       let dpi = this.dpi;

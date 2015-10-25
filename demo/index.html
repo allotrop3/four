@@ -108,11 +108,11 @@
       <script>
          'use strict';
 
-         var planePattern = new Four.ImageTexture({ path: 'textures/terrain.jpg', anisotropy: 16, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
-         var bodyPattern = new Four.ImageTexture({ path: 'textures/body.jpg', anisotropy: 16, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
-         var wallsPattern = new Four.ImageTexture({ path: 'textures/walls.jpg', anisotropy: 16, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
-         var roofPattern = new Four.ImageTexture({ path: 'textures/roof.jpg', anisotropy: 16, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
-         var floorPattern = new Four.ImageTexture({ path: 'textures/floor.jpg', anisotropy: 16, minification: Four.gl.LINEAR_MIPMAP_LINEAR, magnification: Four.gl.LINEAR_MIPMAP_LINEAR, mipmap: true });
+         var planePattern = new Four.ImageTexture({ path: 'textures/terrain.jpg', anisotropy: 16, minification: 'LINEAR_MIPMAP_LINEAR', magnification: 'LINEAR_MIPMAP_LINEAR', mipmap: true });
+         var bodyPattern = new Four.ImageTexture({ path: 'textures/body.jpg', anisotropy: 16, minification: 'LINEAR_MIPMAP_LINEAR', magnification: 'LINEAR_MIPMAP_LINEAR', mipmap: true });
+         var wallsPattern = new Four.ImageTexture({ path: 'textures/walls.jpg', anisotropy: 16, minification: 'LINEAR_MIPMAP_LINEAR', magnification: 'LINEAR_MIPMAP_LINEAR', mipmap: true });
+         var roofPattern = new Four.ImageTexture({ path: 'textures/roof.jpg', anisotropy: 16, minification: 'LINEAR_MIPMAP_LINEAR', magnification: 'LINEAR_MIPMAP_LINEAR', mipmap: true });
+         var floorPattern = new Four.ImageTexture({ path: 'textures/floor.jpg', anisotropy: 16, minification: 'LINEAR_MIPMAP_LINEAR', magnification: 'LINEAR_MIPMAP_LINEAR', mipmap: true });
          var bodyLoader = new Four.OBJMeshLoader({ path: 'meshes/body.obj' });
          var wallsLoader = new Four.OBJMeshLoader({ path: 'meshes/walls.obj' });
          var roofLoader = new Four.OBJMeshLoader({ path: 'meshes/roof.obj' });

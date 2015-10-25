@@ -1,6 +1,5 @@
 'use strict';
 
-let gl = require('./gl');
 let Shader = require('./Shader');
 
 const attribute = 'x-shader/x-vertex';

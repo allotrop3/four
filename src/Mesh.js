@@ -17,8 +17,8 @@ const _colors = [];
 const _uvs = [];
 const _normals = [];
 const _indices = [];
-const _usage = gl.STATIC_DRAW;
-const _primitive = gl.TRIANGLES;
+const _usage = 'STATIC_DRAW';
+const _primitive = 'TRIANGLES';
 
 class Mesh extends Entity
 {
@@ -124,7 +124,7 @@ class Mesh extends Entity
 
    set usage(usage)
    {
-      this._usage = usage;
+      this._usage = gl[usage];
    }
 
    get primitive()
@@ -134,7 +134,7 @@ class Mesh extends Entity
 
    set primitive(primitive)
    {
-      this._primitive = primitive;
+      this._primitive = gl[primitive];
    }
 
    get material()
