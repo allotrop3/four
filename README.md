@@ -44,7 +44,7 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
          location: [10, 15, 10]
       });
    
-      var view = new Four.Framebuffer(
+      var view = new Four.Framebuffer();
       var camera = new Four.PerspectiveCamera({
          location: [40, 30, 40]
       });
