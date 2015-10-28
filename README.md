@@ -79,7 +79,7 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
 <script class="renderer" type="x-shader/x-vertex">
    #version 100
 
-   precision mediump float
+   precision mediump float;
    
    @Camera;
 
