@@ -50,7 +50,7 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
       });
       
       var mesh = new Four.Mesh({
-         loader: meshLoader
+         loader: meshLoader,
          material: new Four.Material({
             diffuse: 0x9F8A60
          })
