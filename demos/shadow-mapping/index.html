@@ -15,14 +15,16 @@
    <body style="margin:0;background:#222;position:relative;overflow:hidden">
       <canvas></canvas>
 
+      <script src="../../dist/four.js"></script>
+
       <script class="renderer" type="x-shader/x-vertex">
          #version 100
 
          precision mediump float;
          precision mediump float;
 
-         @Camera;
-         @ShadowMapper;
+         @use Camera;
+         @use ShadowMapper;
 
          attribute vec3 a_position;
          attribute vec2 a_uv;
@@ -55,9 +57,9 @@
 
          precision mediump float;
 
-         @Material;
-         @PointLight;
-         @ShadowMapper;
+         @use Material;
+         @use PointLight;
+         @use ShadowMapper;
 
          uniform PointLight u_light;
          uniform Material u_material;
@@ -82,7 +84,7 @@
 
          attribute vec3 a_position;
 
-         @Camera;
+         @use Camera;
 
          uniform Camera u_lightCamera;
 
@@ -102,8 +104,6 @@
             gl_FragColor = vec4(0.0);
          }
       </script>
-
-      <script src="../dist/four.js"></script>
 
       <script>
          'use strict';

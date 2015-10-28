@@ -46,7 +46,7 @@ class Shader extends Entity
 
       for (let tag in shaders)
       {
-         source = source.replace(`@${tag};`, shaders[tag][type]);
+         source = source.replace(`@use ${tag};`, shaders[tag][type]);
       }
 
       return source;

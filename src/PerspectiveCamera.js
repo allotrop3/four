@@ -12,11 +12,12 @@ const _fov = 45;
 const _near = 0.1;
 const _far = 1000;
 const _direction = [0, 0, 0];
+const _location = [10, 10, -10];
 const _up = [0, 1, 0];
 
 class PerspectiveCamera extends Camera
 {
-   constructor({ name = _name, path, uniforms, background, width = _width, height = _height, fov = _fov, near = _near, far = _far, direction = _direction, location, up = _up } = {})
+   constructor({ name = _name, path, uniforms, background, width = _width, height = _height, fov = _fov, near = _near, far = _far, direction = _direction, location = _location, up = _up } = {})
    {
       super({ name, path, uniforms, background });
 

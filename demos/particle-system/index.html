@@ -1,0 +1,71 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+
+      <title>Particle system</title>
+
+      <link rel="stylesheet" href="http://benvanik.github.io/WebGL-Inspector/core/lib/gli.all.css">
+
+      <!--
+      <script src="http://benvanik.github.io/WebGL-Inspector/core/lib/gli.all.js"></script>
+      <script src="http://benvanik.github.io/WebGL-Inspector/core/embed.js"></script>
+      -->
+   </head>
+
+   <body style="margin:0;background:#222;position:relative;overflow:hidden">
+      <canvas></canvas>
+
+      <script src="../../dist/four.js"></script>
+
+      <script class="renderer" type="x-shader/x-vertex">
+         #version 100
+
+         precision mediump int;
+         precision mediump float;
+
+         @use Camera;
+
+         attribute vec3 a_position;
+
+         uniform Camera u_camera;
+
+         void main()
+         {
+            gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * vec4(a_position, 1);
+         }
+      </script>
+
+      <script class="renderer" type="x-shader/x-fragment">
+         #version 100
+
+         precision mediump int;
+         precision mediump float;
+
+         void main()
+         {
+            gl_FragColor = vec4(1);
+         }
+      </script>
+
+      <script>
+         'use strict';
+
+         function particularise(point)
+         {
+            return new Four.Particle({ position: point });
+         }
+
+         var program = new Four.Program({ selector: '.renderer' });
+         var points = [[1, 0, -1], [-1, 0, -1], [1, 0, 1], [-1, 0, 1], [0, 0, -1], [1, 0, 0], [0, 0, 1], [-1, 0, 0], [0, 0, 0], [-0.5, 0, -1], [1, 0, -0.5], [0.5, 0, 1], [-1, 0, 0.5], [0.5, 0, -1], [1, 0, 0.5], [-0.5, 0, 1], [-1, 0, -0.5], [0, 0, -0.5], [0, 0, 0.5], [-0.5, 0, 0], [0.5, 0, 0], [0.5, 0, -0.5], [-0.5, 0, -0.5], [-0.5, 0, 0.5], [0.5, 0, 0.5]];
+         var particles = points.map(particularise);
+         var solver = new Four.ParticleSystem({ particles: particles });
+         var view = new Four.Framebuffer();
+         var camera = new Four.PerspectiveCamera();
+         var scene = new Four.Scene();
+
+         scene.render(view, camera);
+
+         console.log(particles, solver);
+      </script>
+   </body>
+</html>

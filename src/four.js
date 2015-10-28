@@ -33,7 +33,9 @@ let Four = {
    DepthTexture: require('./DepthTexture'),
    ImageTexture: require('./ImageTexture'),
    Uniform: require('./Uniform'),
-   VertexArrayObject: require('./VertexArrayObject')
+   VertexArrayObject: require('./VertexArrayObject'),
+   Particle: require('./Particle'),
+   ParticleSystem: require('./ParticleSystem')
 };
 
 module.exports = window.Four = Four;
