@@ -138,7 +138,7 @@ class Particle extends Entity
       vec3.add(this.acceleration, this.acceleration, acceleration);
    }
 
-   damp(damping)
+   dampen(damping)
    {
       vec3.max(this.velocity, vec3.scale([], this.velocity, damping), [0, 0, 0]);
    }

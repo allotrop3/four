@@ -33,7 +33,7 @@
          {
             gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * vec4(a_position, 1);
 
-            gl_PointSize = 5.0;
+            gl_PointSize = 4.0;
          }
       </script>
 
@@ -149,9 +149,9 @@
             [-2.249981, 0, -2.249981]
          ];
          var particles = points.map(particularise);
-         var solver = new Four.ParticleSystem({ particles: particles, solver: 'SIMPLECTIC', timestep: 0.0001 });
+         var solver = new Four.ParticleSystem({ particles: particles, solver: 'SIMPLECTIC', timestep: 0.00005 });
          var view = new Four.Framebuffer();
-         var camera = new Four.PerspectiveCamera();
+         var camera = new Four.PerspectiveCamera({ location: [10, 5, 5] });
          var scene = new Four.Scene();
          var material = new Four.Material();
          var mesh = new Four.Mesh({ vertices: points, usage: 'DYNAMIC_DRAW', primitive: 'POINTS', material: material });
