@@ -259,6 +259,27 @@ class Mesh extends Entity
       [].push.apply(interleaved, contatenation.map(parseFloat));
    }
 
+   update(vertices = this.vertices)
+   {
+      if (this.usage === gl.DYNAMIC_DRAW)
+      {
+         let buffers = this.buffers;
+         let interleaved = [];
+
+         vertices.map(this.interleave.bind(this, interleaved));
+
+         buffers.bind();
+
+         gl.bufferSubData(gl.ARRAY_BUFFER, 0, new buffers.view(interleaved));
+
+         buffers.unbind();
+      }
+      else
+      {
+         console.warn(`Unable to update Mesh::${this.name} vertices, not DYNAMIC_*`);
+      }
+   }
+
    draw({ program, primitive = this.primitive, offset = 0, count = this.count } = {})
    {
       let buffers = this.buffers;

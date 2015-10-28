@@ -32,6 +32,8 @@
          void main()
          {
             gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * vec4(a_position, 1);
+
+            gl_PointSize = 5.0;
          }
       </script>
 
@@ -55,17 +57,31 @@
             return new Four.Particle({ position: point });
          }
 
+         function solve(solver, mesh)
+         {
+            solver.solve();
+
+            mesh.update(solver.vertices());
+         }
+
          var program = new Four.Program({ selector: '.renderer' });
          var points = [[1, 0, -1], [-1, 0, -1], [1, 0, 1], [-1, 0, 1], [0, 0, -1], [1, 0, 0], [0, 0, 1], [-1, 0, 0], [0, 0, 0], [-0.5, 0, -1], [1, 0, -0.5], [0.5, 0, 1], [-1, 0, 0.5], [0.5, 0, -1], [1, 0, 0.5], [-0.5, 0, 1], [-1, 0, -0.5], [0, 0, -0.5], [0, 0, 0.5], [-0.5, 0, 0], [0.5, 0, 0], [0.5, 0, -0.5], [-0.5, 0, -0.5], [-0.5, 0, 0.5], [0.5, 0, 0.5]];
          var particles = points.map(particularise);
-         var solver = new Four.ParticleSystem({ particles: particles });
+         var solver = new Four.ParticleSystem({ particles: particles, solver: 'SIMPLECTIC', timestep: 0.0001 });
          var view = new Four.Framebuffer();
          var camera = new Four.PerspectiveCamera();
          var scene = new Four.Scene();
+         var material = new Four.Material();
+         var mesh = new Four.Mesh({ vertices: points, usage: 'DYNAMIC_DRAW', primitive: 'POINTS', material: material });
 
-         scene.render(view, camera);
+         scene.put(mesh);
 
-         console.log(particles, solver);
+         scene.use(program);
+
+         scene.animate(view, camera, function()
+         {
+            solve(solver, mesh);
+         });
       </script>
    </body>
 </html>

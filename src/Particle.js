@@ -162,7 +162,7 @@ class Particle extends Entity
    {
       let previous = this.previous;
       let position = this.position;
-      let leap = vec3.sub([], previous, position);
+      let leap = vec3.sub([], position, previous);
 
       vec3.add(this.position, vec3.add([], position, leap), vec3.scale([], this.acceleration, Math.pow(timestep, 2)));
 

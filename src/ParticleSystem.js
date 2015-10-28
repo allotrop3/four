@@ -5,12 +5,12 @@ let Entity = require('./Entity');
 const _name = 'particle.system';
 const _particles = [];
 const _gravity = [0, -9.80665, 0];
-const _timestep = 0.03;
-const _integrator = 'SIMPLECTIC';
+const _timestep = 0.001;
+const _solver = 'SIMPLECTIC';
 
 class ParticleSystem extends Entity
 {
-   constructor({ name = _name, particles = _particles, gravity = _gravity, timestep = _timestep, integrator = _integrator } = {})
+   constructor({ name = _name, particles = _particles, gravity = _gravity, timestep = _timestep, solver = _solver } = {})
    {
       super({ name });
 
@@ -20,7 +20,7 @@ class ParticleSystem extends Entity
 
       this.timestep = timestep;
 
-      this.integrator = integrator;
+      this.solver = solver;
 
       this.inheritance = ['Entity', 'ParticleSystem'];
    }
@@ -55,14 +55,14 @@ class ParticleSystem extends Entity
       this._timestep = timestep;
    }
 
-   get integrator()
+   get solver()
    {
-      return this._integrator.toLowerCase();
+      return this._solver.toLowerCase();
    }
 
-   set integrator(integrator)
+   set solver(solver)
    {
-      this._integrator = integrator;
+      this._solver = solver;
    }
 
    get inheritance()
@@ -84,7 +84,20 @@ class ParticleSystem extends Entity
    {
       particle.accelerate(this.gravity);
 
-      particle[this.integrator](this.timestep);
+      particle[this.solver](this.timestep);
+   }
+
+   vertices()
+   {
+      let particles = this.particles;
+      let vertices = [];
+
+      particles.forEach(function(particle)
+      {
+         vertices.push(particle.position);
+      });
+
+      return vertices;
    }
 }
 
