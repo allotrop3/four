@@ -46,7 +46,7 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
    
       var view = new Four.Framebuffer();
       var camera = new Four.PerspectiveCamera({
-         location: [40, 30, 40]
+         location: [-10, 15, 10]
       });
       
       var mesh = new Four.Mesh({
@@ -84,25 +84,12 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
    @Camera;
 
    attribute vec3 a_position;
-   attribute vec2 a_uv;
-   attribute vec3 a_normal;
-
-   varying vec4 v_position;
-   varying vec2 v_uv;
-   varying vec3 v_normal;
-
+   
    uniform Camera u_camera;
 
    void main()
    {
-      vec4 position = vec4(a_position, 1.0);
-      vec4 modelViewPosition = u_camera.modelViewMatrix * position;
-
-      v_position = position;
-      v_uv = a_uv;
-      v_normal = u_camera.normalMatrix * a_normal;
-
-      gl_Position = u_camera.projectionMatrix * modelViewPosition;
+      gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * vec4(a_position, 1);
    }
 </script>
 ```
@@ -114,23 +101,9 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
 
    precision mediump float;
 
-   @Material;
-   @Light;
-   @PointLight;
-
-   uniform Light u_light;
-   uniform Material u_material;
-
-   varying vec4 v_position;
-   varying vec2 v_uv;
-   varying vec3 v_normal;
-
    void main()
    {
-      vec3 base = texture2D(u_image, v_uv).rgb;
-      vec3 lighting = base * pointLight(u_light, u_material, v_position, v_normal);
-
-      gl_FragColor = vec4(lighting, 1.0);
+      gl_FragColor = vec4(1);
    }
 </script>
 ```
