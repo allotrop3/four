@@ -60,6 +60,7 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
       
       scene.use(program);
    
+      scene.put(pointLight);
       scene.put(mesh);
    
       scene.render(view, camera, function() {
