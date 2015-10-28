@@ -35,7 +35,8 @@ let Four = {
    Uniform: require('./Uniform'),
    VertexArrayObject: require('./VertexArrayObject'),
    Particle: require('./Particle'),
-   ParticleSystem: require('./ParticleSystem')
+   ParticleSystem: require('./ParticleSystem'),
+   Spring: require('./Spring')
 };
 
 module.exports = window.Four = Four;
