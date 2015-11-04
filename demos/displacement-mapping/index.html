@@ -1,0 +1,66 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+
+      <title>Displacement mapping</title>
+
+      <link rel="stylesheet" href="http://benvanik.github.io/WebGL-Inspector/core/lib/gli.all.css">
+
+      <!--
+      <script src="http://benvanik.github.io/WebGL-Inspector/core/lib/gli.all.js"></script>
+      <script src="http://benvanik.github.io/WebGL-Inspector/core/embed.js"></script>
+      -->
+   </head>
+
+   <body style="margin:0;background:#222;position:relative;overflow:hidden">
+      <canvas></canvas>
+
+      <script src="../../dist/four.js"></script>
+
+      <script class="renderer" type="x-shader/x-vertex">
+         #version 100
+
+         precision mediump int;
+         precision mediump float;
+
+         @use Camera;
+
+         attribute vec3 a_position;
+
+         uniform Camera u_camera;
+
+         void main()
+         {
+            gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * vec4(a_position, 1);
+
+            gl_PointSize = 4.0;
+         }
+      </script>
+
+      <script class="renderer" type="x-shader/x-fragment">
+         #version 100
+
+         precision mediump int;
+         precision mediump float;
+
+         void main()
+         {
+            gl_FragColor = vec4(1);
+         }
+      </script>
+
+      <script>
+         'use strict';
+
+         var program = new Four.Program({ selector: '.renderer' });
+         var view = new Four.Framebuffer();
+         var camera = new Four.PerspectiveCamera({ location: [10, 5, 5] });
+         var scene = new Four.Scene();
+         var displacementMap = new Four.ImageTexture({ path: 'textures/displacement.jpg' });
+
+         scene.use(program);
+
+         scene.animate(view, camera);
+      </script>
+   </body>
+</html>
