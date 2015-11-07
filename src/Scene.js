@@ -153,9 +153,9 @@ class Scene extends Entity
       camera.rotate(this.rotation);
       camera.translate.apply(camera, this.translation);
 
-      this.lights.map(light => light.bind(program));
-      this.simulations.map(simulation => simulation.solve());
-      this.meshes.map(this.draw.bind(this, camera));
+      this.lights.forEach(light => light.bind(program));
+      this.simulations.forEach(simulation => simulation.solve());
+      this.meshes.forEach(this.draw.bind(this, camera));
 
       camera.restore();
 

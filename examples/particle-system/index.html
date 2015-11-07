@@ -32,8 +32,6 @@
          void main()
          {
             gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * vec4(a_position, 1);
-
-            gl_PointSize = 4.0;
          }
       </script>
 
@@ -57,9 +55,8 @@
          function main()
          {
             var program = new Four.Program({ selector: '.renderer' });
-            var material = new Four.Material();
-            var mesh = new Four.Mesh({ loader: points, usage: 'DYNAMIC_DRAW', primitive: 'POINTS', material: material });
-            var cloth = new Four.Cloth({ mesh: mesh, timestep: 0.00005 });
+            var mesh = new Four.Mesh({ loader: points, usage: 'DYNAMIC_DRAW', primitive: 'POINTS' });
+            var cloth = new Four.Cloth({ mesh: mesh, stiffness: 1, damping: 0.3, timestep: 0.00005, paused: true });
             var view = new Four.Framebuffer();
             var camera = new Four.PerspectiveCamera({ location: [10, 5, 5] });
             var scene = new Four.Scene();

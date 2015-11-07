@@ -3,6 +3,7 @@
 import gl from './gl';
 import Entity from './Entity';
 import VertexArrayObject from './VertexArrayObject';
+import Material from './Material';
 
 const attributes = {
    vertices: 'position',
@@ -19,10 +20,11 @@ const _normals = [];
 const _indices = [];
 const _usage = 'STATIC_DRAW';
 const _primitive = 'TRIANGLES';
+const _material = new Material();
 
 class Mesh extends Entity
 {
-   constructor({ name = _name, buffers, loader, vertices = _vertices, colors = _colors, uvs = _uvs, normals = _normals, indices = _indices, usage = _usage, primitive = _primitive, material } = {})
+   constructor({ name = _name, buffers, loader, vertices = _vertices, colors = _colors, uvs = _uvs, normals = _normals, indices = _indices, usage = _usage, primitive = _primitive, material = _material } = {})
    {
       super({ name });
 

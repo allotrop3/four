@@ -8,10 +8,11 @@ const _particles = [];
 const _gravity = [0, -9.80665, 0];
 const _timestep = 0.001;
 const _solver = 'SIMPLECTIC';
+const _paused = false;
 
 class ParticleSystem extends Entity
 {
-   constructor({ name = _name, mesh, gravity = _gravity, timestep = _timestep, solver = _solver } = {})
+   constructor({ name = _name, mesh, gravity = _gravity, timestep = _timestep, solver = _solver, paused = _paused } = {})
    {
       super({ name });
 
@@ -24,6 +25,8 @@ class ParticleSystem extends Entity
       this.timestep = timestep;
 
       this.solver = solver;
+
+      this.paused = paused;
 
       this.inheritance = ['Entity', 'ParticleSystem'];
    }
@@ -78,6 +81,16 @@ class ParticleSystem extends Entity
       this._solver = solver;
    }
 
+   get paused()
+   {
+      return this._paused;
+   }
+
+   set paused(paused)
+   {
+      this._paused = paused;
+   }
+
    get inheritance()
    {
       return this._inheritance;
@@ -90,9 +103,12 @@ class ParticleSystem extends Entity
 
    solve()
    {
-      this.particles.forEach(this.integrate.bind(this));
+      if (!this.paused)
+      {
+         this.particles.forEach(this.integrate.bind(this));
 
-      this.mesh.update(this.vertices());
+         this.mesh.update(this.vertices());
+      }
    }
 
    integrate(particle)
@@ -107,12 +123,19 @@ class ParticleSystem extends Entity
       let particles = this.particles;
       let positions = [];
 
-      particles.forEach(function(particle)
-      {
-         positions.push(particle.position);
-      });
+      particles.forEach(particle => positions.push(particle.position));
 
       return positions;
+   }
+
+   pause()
+   {
+      this.paused = true;
+   }
+
+   unpause()
+   {
+      this.paused = false;
    }
 }
 

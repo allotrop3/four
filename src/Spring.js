@@ -16,7 +16,7 @@ class Spring extends Entity
 
       this.B = B;
 
-      this.distance = vec3.distance.apply(vec3, particles);
+      this.equilibrium = vec3.distance(A.position, B.position);
 
       this.stiffness = stiffness;
 
@@ -93,8 +93,10 @@ class Spring extends Entity
    {
       let A = this.A;
       let B = this.B;
-      let displacement = this.distance - vec3.distance(A, B);
-      let spring = vec3.normalize([], vec3.sub([], A, B));
+      let positionA = A.position;
+      let positionB = B.position;
+      let displacement = this.equilibrium - vec3.distance(positionA, positionB);
+      let spring = vec3.normalize([], vec3.sub([], positionA, positionB));
       let stress = this.damping - this.stiffness * displacement;
 
       vec3.scale(this.force, spring, stress);
