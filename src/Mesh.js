@@ -204,13 +204,13 @@ class Mesh extends Entity
       if (this.buffers === undefined)
       {
          let generated = [];
-         let indexed = (this.indices.length > 0);
+         let indexed = Boolean(this.indices.length);
 
          for (let name in attributes)
          {
             let coordinates = this[name];
 
-            if (coordinates.length > 0)
+            if (Boolean(coordinates.length))
             {
                generated.push(`vec${coordinates[0].length} ${attributes[name]}`);
             }

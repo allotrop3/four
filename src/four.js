@@ -36,6 +36,7 @@ import VertexArrayObject from './VertexArrayObject';
 import Particle from './Particle';
 import ParticleSystem from './ParticleSystem';
 import Spring from './Spring';
+import Cloth from './Cloth';
 
 let Four = window.Four = {
    glm: glm,
@@ -73,7 +74,8 @@ let Four = window.Four = {
    VertexArrayObject: VertexArrayObject,
    Particle: Particle,
    ParticleSystem: ParticleSystem,
-   Spring: Spring
+   Spring: Spring,
+   Cloth: Cloth
 };
 
 export default Four;

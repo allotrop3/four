@@ -1,0 +1,96 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+
+      <title>Particle system</title>
+
+      <link rel="stylesheet" href="http://benvanik.github.io/WebGL-Inspector/core/lib/gli.all.css">
+
+      <!--
+      <script src="http://benvanik.github.io/WebGL-Inspector/core/lib/gli.all.js"></script>
+      <script src="http://benvanik.github.io/WebGL-Inspector/core/embed.js"></script>
+      -->
+   </head>
+
+   <body style="margin:0;background:#222;position:relative;overflow:hidden">
+      <canvas></canvas>
+
+      <script src="../../dist/four.js"></script>
+
+      <script class="renderer" type="x-shader/x-vertex">
+         #version 100
+
+         precision mediump int;
+         precision mediump float;
+
+         @use Camera;
+
+         attribute vec3 a_position;
+
+         uniform Camera u_camera;
+
+         void main()
+         {
+            gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * vec4(a_position, 1);
+
+            gl_PointSize = 4.0;
+         }
+      </script>
+
+      <script class="renderer" type="x-shader/x-fragment">
+         #version 100
+
+         precision mediump int;
+         precision mediump float;
+
+         void main()
+         {
+            gl_FragColor = vec4(1);
+         }
+      </script>
+
+      <script>
+         'use strict';
+
+         var points = new Four.OBJMeshLoader({ path: 'meshes/points.obj', indexed: true });
+
+         function particularise(point)
+         {
+            return new Four.Particle({ position: point });
+         }
+
+         function solve(solver, mesh)
+         {
+            solver.solve();
+
+            mesh.update(solver.vertices());
+         }
+
+         function main()
+         {
+            var program = new Four.Program({ selector: '.renderer' });
+            var vertices = points.vertices;
+            var particles = vertices.map(particularise);
+            var cloth = new Four.Cloth({ particles: particles, timestep: 0.00005 });
+            var view = new Four.Framebuffer();
+            var camera = new Four.PerspectiveCamera({ location: [10, 5, 5] });
+            var scene = new Four.Scene();
+            var material = new Four.Material();
+            var mesh = new Four.Mesh({ loader: points, usage: 'DYNAMIC_DRAW', primitive: 'POINTS', material: material });
+
+            console.log(points);
+
+            scene.put(mesh);
+
+            scene.use(program);
+
+            scene.animate(view, camera, function()
+            {
+               solve(cloth, mesh);
+            });
+         }
+
+         setTimeout(main, 3000);
+      </script>
+   </body>
+</html>

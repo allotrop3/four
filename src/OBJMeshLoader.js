@@ -6,9 +6,9 @@ const _name = 'obj.mesh.loader';
 
 class OBJMeshLoader extends MeshLoader
 {
-   constructor({ name = _name, path } = {})
+   constructor({ name = _name, path, indexed } = {})
    {
-      super({ name, path });
+      super({ name, path, indexed });
 
       this.inheritance = ['Entity', 'MeshLoader', 'OBJMeshLoader'];
    }
@@ -32,48 +32,87 @@ class OBJMeshLoader extends MeshLoader
    {
       let words = line.split(' ');
       let type = words.shift();
+      let tmp = this.tmp;
 
       switch (type)
       {
          case 'v':
-            this.tmp.vertices.push(words);
+            tmp.vertices.push(words);
             break;
 
          case 'vt':
-            this.tmp.uvs.push(words);
+            tmp.uvs.push(words);
             break;
 
          case 'vn':
-            this.tmp.normals.push(words);
+            tmp.normals.push(words);
             break;
 
          case 'f':
-            words.map(this.recategorise.bind(this));
+            words.map(this.fork.bind(this));
             break;
       }
    }
 
-   recategorise(word)
+   fork(word)
    {
       let indices = word.split('/').map(value => value - 1);
+
+      if (this.indexed)
+      {
+         this.keep(indices);
+      }
+      else
+      {
+         this.recategorise(indices);
+      }
+   }
+
+   keep(indices)
+   {
       let tmp = this.tmp;
-      let position = tmp.vertices[indices[0]];
-      let uv = tmp.uvs[indices[1]];
-      let normal = tmp.normals[indices[2]];
+      let index = indices[0];
+      let uv = indices[1];
+      let normal = indices[2];
 
-      if (position !== undefined)
+      if (~index)
       {
-         this.vertices.push(position);
+         this.vertices[index] = tmp.vertices[index];
+
+         this.indices.push(index);
       }
 
-      if (uv !== undefined)
+      if (~uv)
       {
-         this.uvs.push(uv);
+         this.uvs[index] = tmp.uvs[uv];
       }
 
-      if (normal !== undefined)
+      if (~normal)
       {
-         this.normals.push(normal);
+         this.normals[index] = tmp.normals[normal];
+      }
+   }
+
+   recategorise(indices)
+   {
+      let tmp = this.tmp;
+      let position = indices[0];
+      let uv = indices[1];
+      let normal = indices[2];
+
+      if (~position)
+      {
+         this.vertices.push(tmp.vertices[position]);
+      }
+
+      if (~uv)
+      {
+         this.uvs.push(tmp.uvs[uv]);
+      }
+
+      if (~normal)
+      {
+         this.normals.push(tmp.normals[normal]);
       }
    }
 }

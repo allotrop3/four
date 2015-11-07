@@ -4,10 +4,11 @@ import ajax from './utils/ajax';
 import Entity from './Entity';
 
 const _name = 'mesh.loader';
+const _indexed = false;
 
 class MeshLoader extends Entity
 {
-   constructor({ name = _name, path } = {})
+   constructor({ name = _name, path, indexed = _indexed } = {})
    {
       super({ name });
 
@@ -29,6 +30,8 @@ class MeshLoader extends Entity
       };
 
       this.indices = [];
+
+      this.indexed = indexed;
 
       this.inheritance = ['Entity', 'MeshLoader'];
 
@@ -93,6 +96,16 @@ class MeshLoader extends Entity
    set indices(indices)
    {
       this._indices = indices;
+   }
+
+   get indexed()
+   {
+      return this._indexed;
+   }
+
+   set indexed(indexed)
+   {
+      this._indexed = indexed;
    }
 
    get inheritance()

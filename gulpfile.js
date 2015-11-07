@@ -3,7 +3,7 @@
 var gulp = require('gulp');
 var webpack = require('webpack');
 var webpackStream = require('webpack-stream');
-var env = require('./webpack.config.js');
+var config = require('./webpack.config.js');
 
 /**
  * gulp js
@@ -13,7 +13,7 @@ var env = require('./webpack.config.js');
 gulp.task('js', function()
 {
    return gulp.src('src/four.js')
-      .pipe(webpackStream(env.js, webpack))
+      .pipe(webpackStream(config.js, webpack))
       .pipe(gulp.dest('dist'));
 });
 
@@ -25,7 +25,7 @@ gulp.task('js', function()
 gulp.task('build', function()
 {
    return gulp.src('src/four.js')
-      .pipe(webpackStream(env.build, webpack))
+      .pipe(webpackStream(config.build, webpack))
       .pipe(gulp.dest('dist'));
 });
 
