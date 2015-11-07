@@ -1,7 +1,7 @@
 'use strict';
 
-let gl = require('./gl');
-let Texture = require('./Texture');
+import gl from './gl';
+import Texture from './Texture';
 
 const _name = 'depth.texture';
 
@@ -74,4 +74,4 @@ class DepthTexture extends Texture
    }
 }
 
-module.exports = DepthTexture;
+export default DepthTexture;

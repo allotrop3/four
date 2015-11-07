@@ -1,7 +1,7 @@
 'use strict';
 
-let gl = require('./gl');
-let Texture = require('./Texture');
+import gl from './gl';
+import Texture from './Texture';
 
 const _name = 'data.texture';
 const _image = null;
@@ -113,4 +113,4 @@ class DataTexture extends Texture
    }
 }
 
-module.exports = DataTexture;
+export default DataTexture;

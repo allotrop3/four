@@ -1,7 +1,7 @@
 'use strict';
 
-let gl = require('./gl');
-let Entity = require('./Entity');
+import gl from './gl';
+import Entity from './Entity';
 
 const _name = 'framebuffer';
 const _flushable = true;
@@ -102,4 +102,4 @@ class Framebuffer extends Entity
    }
 }
 
-module.exports = Framebuffer;
+export default Framebuffer;

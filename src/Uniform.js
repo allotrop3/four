@@ -1,7 +1,7 @@
 'use strict';
 
-let gl = require('./gl');
-let Entity = require('./Entity');
+import gl from './gl';
+import Entity from './Entity';
 
 const formats = {
    i: '1i',
@@ -128,4 +128,4 @@ class Uniform extends Entity
    }
 }
 
-module.exports = Uniform;
+export default Uniform;

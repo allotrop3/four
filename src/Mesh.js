@@ -1,8 +1,8 @@
 'use strict';
 
-let gl = require('./gl');
-let Entity = require('./Entity');
-let VertexArrayObject = require('./VertexArrayObject');
+import gl from './gl';
+import Entity from './Entity';
+import VertexArrayObject from './VertexArrayObject';
 
 const attributes = {
    vertices: 'position',
@@ -299,4 +299,4 @@ class Mesh extends Entity
    }
 }
 
-module.exports = Mesh;
+export default Mesh;

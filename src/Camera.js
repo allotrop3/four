@@ -1,11 +1,10 @@
 'use strict';
 
-let gl = require('./gl');
-let glm = require('gl-matrix');
-let mat4 = glm.mat4;
-let mat3 = glm.mat3;
-let LSL = require('./utils/LSL');
-let Structure = require('./Structure');
+import gl from './gl';
+import { mat4 } from 'gl-matrix';
+import { mat3 } from 'gl-matrix';
+import LSL from './utils/LSL';
+import Structure from './Structure';
 
 const axis = { x: [1, 0, 0], y: [0, 1, 0], z: [0, 0, 1] };
 const radians = 0.0174532925;
@@ -195,4 +194,4 @@ class Camera extends Structure
    }
 }
 
-module.exports = Camera;
+export default Camera;

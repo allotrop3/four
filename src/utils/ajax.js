@@ -1,6 +1,6 @@
 'use strict';
 
-let promise = require('./promise');
+import promise from './promise';
 
 function ajax(url, contentType = 'text/plain')
 {
@@ -33,4 +33,4 @@ function ajax(url, contentType = 'text/plain')
    });
 }
 
-module.exports = ajax;
+export default ajax;

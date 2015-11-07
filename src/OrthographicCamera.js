@@ -1,9 +1,8 @@
 'use strict';
 
-let gl = require('./gl');
-let glm = require('gl-matrix');
-let mat4 = glm.mat4;
-let Camera = require('./Camera');
+import gl from './gl';
+import { mat4 } from 'gl-matrix';
+import Camera from './Camera';
 
 const _name = 'orthographic.camera';
 const _left = -1;
@@ -121,4 +120,4 @@ class OrthographicCamera extends Camera
    }
 }
 
-module.exports = OrthographicCamera;
+export default OrthographicCamera;

@@ -1,6 +1,6 @@
 'use strict';
 
-let Entity = require('./Entity');
+import Entity from './Entity';
 
 const _name = 'particle.system';
 const _particles = [];
@@ -90,15 +90,15 @@ class ParticleSystem extends Entity
    vertices()
    {
       let particles = this.particles;
-      let vertices = [];
+      let positions = [];
 
       particles.forEach(function(particle)
       {
-         vertices.push(particle.position);
+         positions.push(particle.position);
       });
 
-      return vertices;
+      return positions;
    }
 }
 
-module.exports = ParticleSystem;
+export default ParticleSystem;

@@ -1,7 +1,8 @@
 'use strict';
 
-let gl = require('./gl');
-let Entity = require('./Entity');
+import gl from './gl';
+import Entity from './Entity';
+
 let unit = 0;
 
 const _name = 'texture';
@@ -164,4 +165,4 @@ class Texture extends Entity
    }
 }
 
-module.exports = Texture;
+export default Texture;

@@ -14,4 +14,4 @@ function LSL(hex)
 }
 
 
-module.exports = LSL;
+export default LSL;

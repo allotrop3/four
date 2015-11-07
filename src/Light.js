@@ -1,7 +1,7 @@
 'use strict';
 
-let LSL = require('./utils/LSL');
-let Structure = require('./Structure');
+import LSL from './utils/LSL';
+import Structure from './Structure';
 
 const _name = 'light';
 const _path = 'light';
@@ -104,4 +104,4 @@ class Light extends Structure
    }
 }
 
-module.exports = Light;
+export default Light;

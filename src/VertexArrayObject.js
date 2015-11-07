@@ -1,8 +1,8 @@
 'use strict';
 
-let gl = require('./gl');
-let Entity = require('./Entity');
-let Attribute = require('./Attribute');
+import gl from './gl';
+import Entity from './Entity';
+import Attribute from './Attribute';
 
 const lengths = {
    i: 1,
@@ -169,4 +169,4 @@ class VertexArrayObject extends Entity
    }
 }
 
-module.exports = VertexArrayObject;
+export default VertexArrayObject;

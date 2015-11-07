@@ -1,8 +1,7 @@
 'use strict';
 
-let glm = require('gl-matrix');
-let vec3 = glm.vec3;
-let Entity = require('./Entity');
+import { vec3 } from 'gl-matrix';
+import Entity from './Entity';
 
 const _name = 'particle';
 const _mass = 1;
@@ -170,4 +169,4 @@ class Particle extends Entity
    }
 }
 
-module.exports = Particle;
+export default Particle;

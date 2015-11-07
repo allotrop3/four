@@ -1,7 +1,7 @@
 'use strict';
 
-let gl = require('./gl');
-let Texture = require('./Texture');
+import gl from './gl';
+import Texture from './Texture';
 
 const _name = 'image.texture';
 const _anisotropy = false;
@@ -123,4 +123,4 @@ class ImageTexture extends Texture
    }
 }
 
-module.exports = ImageTexture;
+export default ImageTexture;

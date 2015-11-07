@@ -17,7 +17,7 @@ let FRAGMENT_SHADER = `
    uniform sampler2D u_image;
 `;
 
-module.exports = {
+export default {
    VERTEX_SHADER: VERTEX_SHADER,
    FRAGMENT_SHADER: FRAGMENT_SHADER
 };

@@ -1,6 +1,6 @@
 'use strict';
 
-let Structure = require('./Structure');
+import Structure from './Structure';
 
 const _name = 'bloom';
 
@@ -12,4 +12,4 @@ class Bloom extends Structure
    }
 }
 
-module.exports = Bloom;
+export default Bloom;

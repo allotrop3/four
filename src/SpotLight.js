@@ -1,6 +1,6 @@
 'use strict';
 
-let Light = require('./Light');
+import Light from './Light';
 
 const _name = 'spot.light';
 const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'vec3 attenuation', 'f exponent', 'f cutoff', 'f intensity', 'vec3 location', 'vec3 direction', 'i type'];
@@ -76,4 +76,4 @@ class SpotLight extends Light
    }
 }
 
-module.exports = SpotLight;
+export default SpotLight;

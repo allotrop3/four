@@ -1,9 +1,9 @@
 'use strict';
 
-let gl = require('./gl');
-let Entity = require('./Entity');
-let VertexShader = require('./VertexShader');
-let FragmentShader = require('./FragmentShader');
+import gl from './gl';
+import Entity from './Entity';
+import VertexShader from './VertexShader';
+import FragmentShader from './FragmentShader';
 
 const _name = 'program';
 
@@ -98,4 +98,4 @@ class Program extends Entity
    }
 }
 
-module.exports = Program;
+export default Program;

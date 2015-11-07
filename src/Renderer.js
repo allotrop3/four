@@ -1,6 +1,6 @@
 'use strict';
 
-let Entity = require('./Entity');
+import Entity from './Entity';
 
 const _name = 'renderer';
 
@@ -12,4 +12,4 @@ class Renderer extends Entity
    }
 }
 
-module.exports = Renderer;
+export default Renderer;

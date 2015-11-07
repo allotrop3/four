@@ -1,10 +1,10 @@
 'use strict';
 
-let gl = require('./gl');
-let Structure = require('./Structure');
-let DataTexture = require('./DataTexture');
-let DepthTexture = require('./DepthTexture');
-let DepthFramebuffer = require('./DepthFramebuffer');
+import gl from './gl';
+import Structure from './Structure';
+import DataTexture from './DataTexture';
+import DepthTexture from './DepthTexture';
+import DepthFramebuffer from './DepthFramebuffer';
 
 const _name = 'shadow.map';
 const _uniforms = ['sampler shadowMap'];
@@ -91,4 +91,4 @@ class ShadowMapper extends Structure
    }
 }
 
-module.exports = ShadowMapper;
+export default ShadowMapper;

@@ -1,7 +1,7 @@
 'use strict';
 
-let gl = require('./gl');
-let Entity = require('./Entity');
+import gl from './gl';
+import Entity from './Entity';
 
 const _name = 'renderbuffer';
 
@@ -82,4 +82,4 @@ class Renderbuffer extends Entity
    }
 }
 
-module.exports = Renderbuffer;
+export default Renderbuffer;

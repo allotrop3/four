@@ -1,9 +1,8 @@
 'use strict';
 
-let gl = require('./gl');
-let ajax = require('./utils/ajax');
-let Entity = require('./Entity');
-let shaders = require('./shaders/shaders');
+import gl from './gl';
+import Entity from './Entity';
+import shaders from './shaders/shaders';
 
 const _name = 'shader';
 
@@ -80,4 +79,4 @@ class Shader extends Entity
    }
 }
 
-module.exports = Shader;
+export default Shader;

@@ -24,4 +24,4 @@ function context(name)
    return $view.getContext(name);
 }
 
-module.exports = gl;
+export default gl;

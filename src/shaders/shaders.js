@@ -1,13 +1,21 @@
 'use strict';
 
+import Camera from './Camera';
+import Light from './Light';
+import DirectionalLight from './DirectionalLight';
+import PointLight from './PointLight';
+import SpotLight from './SpotLight';
+import Material from './Material';
+import ShadowMapper from './ShadowMapper';
+
 let shaders = {
-   Camera: require('./Camera'),
-   Light: require('./Light'),
-   DirectionalLight: require('./DirectionalLight'),
-   PointLight: require('./PointLight'),
-   SpotLight: require('./SpotLight'),
-   Material: require('./Material'),
-   ShadowMapper: require('./ShadowMapper')
+   Camera: Camera,
+   Light: Light,
+   DirectionalLight: DirectionalLight,
+   PointLight: PointLight,
+   SpotLight: SpotLight,
+   Material: Material,
+   ShadowMapper: ShadowMapper
 };
 
-module.exports = shaders;
+export default shaders;

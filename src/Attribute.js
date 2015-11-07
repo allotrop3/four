@@ -1,7 +1,7 @@
 'use strict';
 
-let gl = require('./gl');
-let Entity = require('./Entity');
+import gl from './gl';
+import Entity from './Entity';
 
 const _name = 'attribute';
 const _format = 'FLOAT';
@@ -134,4 +134,4 @@ class Attribute extends Entity
    }
 }
 
-module.exports = Attribute;
+export default Attribute;

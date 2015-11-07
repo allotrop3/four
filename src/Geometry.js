@@ -1,6 +1,6 @@
 'use strict';
 
-let Entity = require('./Entity');
+import Entity from './Entity';
 
 const _name = 'geometry';
 
@@ -24,4 +24,4 @@ class Geometry extends Entity
    }
 }
 
-module.exports = Geometry;
+export default Geometry;

@@ -1,6 +1,6 @@
 'use strict';
 
-let MeshLoader = require('./MeshLoader');
+import MeshLoader from './MeshLoader';
 
 const _name = 'obj.mesh.loader';
 
@@ -78,4 +78,4 @@ class OBJMeshLoader extends MeshLoader
    }
 }
 
-module.exports = OBJMeshLoader;
+export default OBJMeshLoader;

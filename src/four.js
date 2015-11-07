@@ -1,42 +1,79 @@
 'use strict';
 
-let Four = {
-   glm: require('gl-matrix'),
-   gl: require('./gl'),
-   Attribute: require('./Attribute'),
-   Camera: require('./Camera'),
-   Canvas: require('./Canvas'),
-   OrthographicCamera: require('./OrthographicCamera'),
-   PerspectiveCamera: require('./PerspectiveCamera'),
-   Framebuffer: require('./Framebuffer'),
-   DeferredFramebuffer: require('./DeferredFramebuffer'),
-   DepthFramebuffer: require('./DepthFramebuffer'),
-   Light: require('./Light'),
-   DirectionalLight: require('./DirectionalLight'),
-   PointLight: require('./PointLight'),
-   SpotLight: require('./SpotLight'),
-   Material: require('./Material'),
-   PhongMaterial: require('./PhongMaterial'),
-   Mesh: require('./Mesh'),
-   MeshLoader: require('./MeshLoader'),
-   OBJMeshLoader: require('./OBJMeshLoader'),
-   Program: require('./Program'),
-   Renderbuffer: require('./Renderbuffer'),
-   Scene: require('./Scene'),
-   Shader: require('./Shader'),
-   FragmentShader: require('./FragmentShader'),
-   VertexShader: require('./VertexShader'),
-   ShadowMapper: require('./ShadowMapper'),
-   Structure: require('./Structure'),
-   Texture: require('./Texture'),
-   DataTexture: require('./DataTexture'),
-   DepthTexture: require('./DepthTexture'),
-   ImageTexture: require('./ImageTexture'),
-   Uniform: require('./Uniform'),
-   VertexArrayObject: require('./VertexArrayObject'),
-   Particle: require('./Particle'),
-   ParticleSystem: require('./ParticleSystem'),
-   Spring: require('./Spring')
+import glm from 'gl-matrix';
+import gl from './gl';
+import Attribute from './Attribute';
+import Camera from './Camera';
+import Canvas from './Canvas';
+import OrthographicCamera from './OrthographicCamera';
+import PerspectiveCamera from './PerspectiveCamera';
+import Framebuffer from './Framebuffer';
+import DeferredFramebuffer from './DeferredFramebuffer';
+import DepthFramebuffer from './DepthFramebuffer';
+import Light from './Light';
+import DirectionalLight from './DirectionalLight';
+import PointLight from './PointLight';
+import SpotLight from './SpotLight';
+import Material from './Material';
+import PhongMaterial from './PhongMaterial';
+import Mesh from './Mesh';
+import MeshLoader from './MeshLoader';
+import OBJMeshLoader from './OBJMeshLoader';
+import Program from './Program';
+import Renderbuffer from './Renderbuffer';
+import Scene from './Scene';
+import Shader from './Shader';
+import FragmentShader from './FragmentShader';
+import VertexShader from './VertexShader';
+import ShadowMapper from './ShadowMapper';
+import Structure from './Structure';
+import Texture from './Texture';
+import DataTexture from './DataTexture';
+import DepthTexture from './DepthTexture';
+import ImageTexture from './ImageTexture';
+import Uniform from './Uniform';
+import VertexArrayObject from './VertexArrayObject';
+import Particle from './Particle';
+import ParticleSystem from './ParticleSystem';
+import Spring from './Spring';
+
+let Four = window.Four = {
+   glm: glm,
+   gl: gl,
+   Attribute: Attribute,
+   Camera: Camera,
+   Canvas: Canvas,
+   OrthographicCamera: OrthographicCamera,
+   PerspectiveCamera: PerspectiveCamera,
+   Framebuffer: Framebuffer,
+   DeferredFramebuffer: DeferredFramebuffer,
+   DepthFramebuffer: DepthFramebuffer,
+   Light: Light,
+   DirectionalLight: DirectionalLight,
+   PointLight: PointLight,
+   SpotLight: SpotLight,
+   Material: Material,
+   PhongMaterial: PhongMaterial,
+   Mesh: Mesh,
+   MeshLoader: MeshLoader,
+   OBJMeshLoader: OBJMeshLoader,
+   Program: Program,
+   Renderbuffer: Renderbuffer,
+   Scene: Scene,
+   Shader: Shader,
+   FragmentShader: FragmentShader,
+   VertexShader: VertexShader,
+   ShadowMapper: ShadowMapper,
+   Structure: Structure,
+   Texture: Texture,
+   DataTexture: DataTexture,
+   DepthTexture: DepthTexture,
+   ImageTexture: ImageTexture,
+   Uniform: Uniform,
+   VertexArrayObject: VertexArrayObject,
+   Particle: Particle,
+   ParticleSystem: ParticleSystem,
+   Spring: Spring
 };
 
-module.exports = window.Four = Four;
+export default Four;

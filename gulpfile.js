@@ -1,27 +1,42 @@
 'use strict';
 
 var gulp = require('gulp');
-var webpack = require('gulp-webpack');
+var webpack = require('webpack');
+var webpackStream = require('webpack-stream');
+var env = require('./webpack.config.js');
 
 /**
- * gulp js (--dev)
+ * gulp js
  *
- * Compile CommonJS modules into a minified script with webpack.
+ * Compile ES6 CommonJS modules into one ES5 script with webpack and babel.
  */
 gulp.task('js', function()
 {
    return gulp.src('src/four.js')
-      .pipe(webpack(require('./webpack.config.js')))
+      .pipe(webpackStream(env.js, webpack))
+      .pipe(gulp.dest('dist'));
+});
+
+/**
+ * gulp build
+ *
+ * Minify ES5 script
+ */
+gulp.task('build', function()
+{
+   return gulp.src('src/four.js')
+      .pipe(webpackStream(env.build, webpack))
       .pipe(gulp.dest('dist'));
 });
 
 /**
  * gulp watch
  *
- * Run build tasks and watch for subsequent changes.
+ * Run babelify tasks and watch for subsequent changes.
  */
-gulp.task('watch', function() {
-    gulp.watch('src/**/*.js', ['js']);
+gulp.task('watch', function()
+{
+   return gulp.watch('src/**/*js', ['js']);
 });
 
 /**

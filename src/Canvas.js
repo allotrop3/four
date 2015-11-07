@@ -1,6 +1,6 @@
 'use strict';
 
-let Entity = require('./Entity');
+import Entity from './Entity';
 
 const _name = 'canvas';
 const _selector = 'canvas';
@@ -117,4 +117,4 @@ class Canvas extends Entity
 
 
 
-module.exports = Canvas;
+export default Canvas;

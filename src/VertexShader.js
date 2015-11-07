@@ -1,6 +1,6 @@
 'use strict';
 
-let Shader = require('./Shader');
+import Shader from './Shader';
 
 const attribute = 'x-shader/x-vertex';
 
@@ -27,4 +27,4 @@ class VertexShader extends Shader
    }
 }
 
-module.exports = VertexShader;
+export default VertexShader;

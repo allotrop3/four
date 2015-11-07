@@ -1,7 +1,7 @@
 'use strict';
 
-let ajax = require('./utils/ajax');
-let Entity = require('./Entity');
+import ajax from './utils/ajax';
+import Entity from './Entity';
 
 const _name = 'mesh.loader';
 
@@ -116,4 +116,4 @@ class MeshLoader extends Entity
    }
 }
 
-module.exports = MeshLoader;
+export default MeshLoader;

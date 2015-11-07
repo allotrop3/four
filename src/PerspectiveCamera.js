@@ -1,9 +1,8 @@
 'use strict';
 
-let gl = require('./gl');
-let glm = require('gl-matrix');
-let mat4 = glm.mat4;
-let Camera = require('./Camera');
+import gl from './gl';
+import { mat4 } from 'gl-matrix';
+import Camera from './Camera';
 
 const _name = 'perspective.camera';
 const _width = gl.canvas.width;
@@ -167,4 +166,4 @@ class PerspectiveCamera extends Camera
    }
 }
 
-module.exports = PerspectiveCamera;
+export default PerspectiveCamera;

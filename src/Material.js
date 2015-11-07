@@ -1,7 +1,7 @@
 'use strict';
 
-let LSL = require('./utils/LSL');
-let Structure = require('./Structure');
+import LSL from './utils/LSL';
+import Structure from './Structure';
 
 const shades = { flat: 1, smooth: 0 };
 
@@ -125,4 +125,4 @@ class Material extends Structure
    }
 }
 
-module.exports = Material;
+export default Material;

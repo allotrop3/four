@@ -1,9 +1,8 @@
 'use strict';
 
-var Entity = require('./Entity');
+import Entity from './Entity';
 
 const _name = 'scene';
-const _meshes = [];
 
 class Scene extends Entity
 {
@@ -186,4 +185,4 @@ class Scene extends Entity
    }
 }
 
-module.exports = Scene;
+export default Scene;

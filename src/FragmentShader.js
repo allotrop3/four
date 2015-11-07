@@ -1,6 +1,6 @@
 'use strict';
 
-let Shader = require('./Shader');
+import Shader from './Shader';
 
 const attribute = 'x-shader/x-fragment';
 
@@ -27,4 +27,4 @@ class FragmentShader extends Shader
    }
 }
 
-module.exports = FragmentShader;
+export default FragmentShader;

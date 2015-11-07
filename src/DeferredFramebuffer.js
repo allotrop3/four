@@ -1,7 +1,7 @@
 'use strict';
 
-let gl = require('./gl');
-let Framebuffer = require('./Framebuffer');
+import gl from './gl';
+import Framebuffer from './Framebuffer';
 
 const _name = 'deferred.framebuffer';
 
@@ -74,4 +74,4 @@ class DeferredFramebuffer extends Framebuffer
    }
 }
 
-module.exports = DeferredFramebuffer;
+export default DeferredFramebuffer;

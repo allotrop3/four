@@ -1,7 +1,7 @@
 'use strict';
 
-let LSL = require('./utils/LSL');
-let Material = require('./Material');
+import LSL from './utils/LSL';
+import Material from './Material';
 
 const _name = 'phong.material';
 const _uniforms = ['sampler image', 'vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f shininess', 'i shading', 'i type'];
@@ -64,4 +64,4 @@ class PhongMaterial extends Material
    }
 }
 
-module.exports = PhongMaterial;
+export default  PhongMaterial;

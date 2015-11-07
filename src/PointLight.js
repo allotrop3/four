@@ -1,6 +1,6 @@
 'use strict';
 
-let Light = require('./Light');
+import Light from './Light';
 
 const _name = 'point.light';
 const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f radius', 'f intensity', 'vec3 location', 'i type'];
@@ -49,4 +49,4 @@ class PointLight extends Light
    }
 }
 
-module.exports = PointLight;
+export default PointLight;

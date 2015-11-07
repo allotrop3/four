@@ -1,7 +1,7 @@
 'use strict';
 
-let Entity = require('./Entity');
-let Uniform = require('./Uniform');
+import Entity from './Entity';
+import Uniform from './Uniform';
 
 const _name = 'structure';
 const _uniforms = [];
@@ -72,4 +72,4 @@ class Structure extends Entity
    }
 }
 
-module.exports = Structure;
+export default Structure;

@@ -1,6 +1,6 @@
 'use strict';
 
-let Light = require('./Light');
+import Light from './Light';
 
 const _name = 'directional.light';
 const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f intensity', 'vec3 location', 'vec3 direction', 'i type'];
@@ -50,4 +50,4 @@ class DirectionalLight extends Light
    }
 }
 
-module.exports = DirectionalLight;
+export default DirectionalLight;
