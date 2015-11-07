@@ -14,6 +14,8 @@ class Scene extends Entity
 
       this.meshes = [];
 
+      this.simulations = [];
+
       this.lights = [];
 
       this.scale = [1, 1, 1];
@@ -110,6 +112,11 @@ class Scene extends Entity
             this.meshes.push(item);
             break;
 
+         case item.isType('ParticleSystem'):
+            this.simulations.push(item);
+            this.meshes.push(item.mesh);
+            break;
+
          case item.isType('Light'):
             this.lights.push(item);
             break;
@@ -131,6 +138,8 @@ class Scene extends Entity
 
    render(target, camera, pre = false, post = false)
    {
+      let program = this.program;
+
       target.bind();
 
       if (pre)
@@ -144,7 +153,8 @@ class Scene extends Entity
       camera.rotate(this.rotation);
       camera.translate.apply(camera, this.translation);
 
-      this.lights.map(this.binder.bind(this));
+      this.lights.map(light => light.bind(program));
+      this.simulations.map(simulation => simulation.solve());
       this.meshes.map(this.draw.bind(this, camera));
 
       camera.restore();
@@ -177,11 +187,6 @@ class Scene extends Entity
       material.unbind();
 
       camera.restore();
-   }
-
-   binder(entity)
-   {
-      entity.bind(this.program);
    }
 }
 

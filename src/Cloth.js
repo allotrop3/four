@@ -7,9 +7,9 @@ const _name = 'cloth';
 
 class Cloth extends ParticleSystem
 {
-   constructor({ name = _name, particles, gravity, timestep, solver })
+   constructor({ name = _name, mesh, gravity, timestep, solver })
    {
-      super({ name, particles, gravity, timestep, solver });
+      super({ name, mesh, gravity, timestep, solver });
 
       this.inheritance = ['Entity', 'ParticleSystem', 'Cloth'];
 

@@ -177,6 +177,7 @@
 
             var scene = new Four.Scene();
 
+            scene.use(rendererProgram);
             scene.put(pointLight);
             scene.put(roof);
             scene.put(body);
@@ -186,6 +187,7 @@
 
             var depthScene = new Four.Scene();
 
+            depthScene.use(shadowMapperProgram);
             depthScene.put(pointLight);
             depthScene.put(roof);
             depthScene.put(body);

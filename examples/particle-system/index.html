@@ -54,40 +54,20 @@
 
          var points = new Four.OBJMeshLoader({ path: 'meshes/points.obj', indexed: true });
 
-         function particularise(point)
-         {
-            return new Four.Particle({ position: point });
-         }
-
-         function solve(solver, mesh)
-         {
-            solver.solve();
-
-            let vertices = solver.vertices();
-
-            mesh.update(vertices);
-         }
-
          function main()
          {
             var program = new Four.Program({ selector: '.renderer' });
-            var vertices = points.vertices;
-            var particles = vertices.map(particularise);
-            var cloth = new Four.Cloth({ particles: particles, timestep: 0.00005 });
+            var material = new Four.Material();
+            var mesh = new Four.Mesh({ loader: points, usage: 'DYNAMIC_DRAW', primitive: 'POINTS', material: material });
+            var cloth = new Four.Cloth({ mesh: mesh, timestep: 0.00005 });
             var view = new Four.Framebuffer();
             var camera = new Four.PerspectiveCamera({ location: [10, 5, 5] });
             var scene = new Four.Scene();
-            var material = new Four.Material();
-            var mesh = new Four.Mesh({ loader: points, usage: 'DYNAMIC_DRAW', primitive: 'POINTS', material: material });
-
-            scene.put(mesh);
 
             scene.use(program);
+            scene.put(cloth);
 
-            scene.animate(view, camera, function()
-            {
-               solve(cloth, mesh);
-            });
+            scene.animate(view, camera);
          }
 
          setTimeout(main, 3000);

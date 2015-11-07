@@ -1,6 +1,7 @@
 'use strict';
 
 import Entity from './Entity';
+import Particle from './Particle';
 
 const _name = 'particle.system';
 const _particles = [];
@@ -10,11 +11,13 @@ const _solver = 'SIMPLECTIC';
 
 class ParticleSystem extends Entity
 {
-   constructor({ name = _name, particles = _particles, gravity = _gravity, timestep = _timestep, solver = _solver } = {})
+   constructor({ name = _name, mesh, gravity = _gravity, timestep = _timestep, solver = _solver } = {})
    {
       super({ name });
 
-      this.particles = particles;
+      this.mesh = mesh;
+
+      this.particles = mesh.vertices.map(position => new Particle({ position: position }));
 
       this.gravity = gravity;
 
@@ -23,6 +26,16 @@ class ParticleSystem extends Entity
       this.solver = solver;
 
       this.inheritance = ['Entity', 'ParticleSystem'];
+   }
+
+   get mesh()
+   {
+      return this._mesh;
+   }
+
+   set mesh(mesh)
+   {
+      this._mesh = mesh;
    }
 
    get particles()
@@ -78,6 +91,8 @@ class ParticleSystem extends Entity
    solve()
    {
       this.particles.forEach(this.integrate.bind(this));
+
+      this.mesh.update(this.vertices());
    }
 
    integrate(particle)
