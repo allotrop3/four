@@ -9,7 +9,7 @@ const _damping = 0;
 
 class Cloth extends ParticleSystem
 {
-   constructor({ name = _name, mesh, stiffness = _stiffness, damping = _damping, gravity, timestep, solver, paused, })
+   constructor({ name = _name, mesh, stiffness = _stiffness, damping = _damping, gravity, timestep, solver, paused })
    {
       super({ name, mesh, gravity, timestep, solver, paused });
 
@@ -22,8 +22,6 @@ class Cloth extends ParticleSystem
       this.inheritance = ['Entity', 'ParticleSystem', 'Cloth'];
 
       this.model();
-
-      console.log(this);
    }
 
    get stiffness()
