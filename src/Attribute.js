@@ -123,14 +123,22 @@ class Attribute extends Entity
    {
       let location = this.locate(program);
 
-      gl.enableVertexAttribArray(location);
+      if (~location)
+      {
+         gl.enableVertexAttribArray(location);
 
-      gl.vertexAttribPointer(location, this.length, this.format, this.normalized, stride, this.offset);
+         gl.vertexAttribPointer(location, this.length, this.format, this.normalized, stride, this.offset);
+      }
    }
 
    disable()
    {
-      gl.disableVertexAttribArray(this.location);
+      let location = this.location;
+
+      if (~location)
+      {
+         gl.disableVertexAttribArray(location);
+      }
    }
 }
 
