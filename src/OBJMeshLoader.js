@@ -37,15 +37,15 @@ class OBJMeshLoader extends MeshLoader
       switch (type)
       {
          case 'v':
-            tmp.vertices.push(words);
+            tmp.vertices.push(words.map(parseFloat));
             break;
 
          case 'vt':
-            tmp.uvs.push(words);
+            tmp.uvs.push(words.map(parseFloat));
             break;
 
          case 'vn':
-            tmp.normals.push(words);
+            tmp.normals.push(words.map(parseFloat));
             break;
 
          case 'f':

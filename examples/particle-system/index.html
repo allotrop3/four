@@ -63,7 +63,9 @@
          {
             solver.solve();
 
-            mesh.update(solver.vertices());
+            let vertices = solver.vertices();
+
+            mesh.update(vertices);
          }
 
          function main()
@@ -77,8 +79,6 @@
             var scene = new Four.Scene();
             var material = new Four.Material();
             var mesh = new Four.Mesh({ loader: points, usage: 'DYNAMIC_DRAW', primitive: 'POINTS', material: material });
-
-            console.log(points);
 
             scene.put(mesh);
 
