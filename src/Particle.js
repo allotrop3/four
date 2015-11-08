@@ -26,7 +26,7 @@ class Particle extends Entity
 
       this.velocity = velocity;
 
-      this.previous = position;
+      this.previous = vec3.clone(position);
 
       this.position = position;
 
@@ -75,16 +75,6 @@ class Particle extends Entity
    set velocity(velocity)
    {
       this._velocity = velocity;
-   }
-
-   get previous()
-   {
-      return this._previous;
-   }
-
-   set previous(previous)
-   {
-      this._previous = previous;
    }
 
    get previous()
@@ -177,11 +167,13 @@ class Particle extends Entity
    {
       if (!this.frozen)
       {
-         let previous = this.previous;
-         let position = this.position;
-         let leap = vec3.sub([], position, previous);
+         let previous = vec3.clone(this.previous);
+         let position = vec3.clone(this.position);
+         let displacement = vec3.sub([], position, previous);
 
-         vec3.add(this.position, vec3.add([], position, leap), vec3.scale([], this.acceleration, Math.pow(timestep, 2)));
+         vec3.scale(this.velocity, displacement, 1 / timestep);
+
+         vec3.add(this.position, vec3.add([], position, displacement), vec3.scale([], this.acceleration, Math.pow(timestep, 2)));
 
          vec3.copy(this.previous, position);
       }

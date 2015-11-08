@@ -16,38 +16,47 @@ class Spring extends Entity
 
       this.B = B;
 
-      this.equilibrium = vec3.distance(A.position, B.position);
+      this.distance = vec3.distance(A.position, B.position);
 
       this.stiffness = stiffness;
 
       this.damping = damping;
-
-      this.force = [0, 0, 0];
 
       this.type = type;
 
       this.inheritance = ['Entity', 'Spring'];
    }
 
-   get particles()
+   get A()
    {
-      return this._particles;
+      return this._A;
    }
 
-   set particles(particles)
+   set A(A)
    {
-      this._particles = particles;
+      this._A = A;
    }
 
-   get length()
+   get B()
    {
-      return this._length;
+      return this._B;
    }
 
-   set length(length)
+   set B(B)
    {
-      this._length = length;
+      this._B = B;
    }
+
+   get distance()
+   {
+      return this._distance;
+   }
+
+   set distance(distance)
+   {
+      this._distance = distance;
+   }
+
 
    get stiffness()
    {
@@ -93,16 +102,16 @@ class Spring extends Entity
    {
       let A = this.A;
       let B = this.B;
-      let positionA = A.position;
-      let positionB = B.position;
-      let displacement = this.equilibrium - vec3.distance(positionA, positionB);
-      let spring = vec3.normalize([], vec3.sub([], positionA, positionB));
-      let stress = this.damping - this.stiffness * displacement;
+      let direction = vec3.sub([], A.position, B.position);
+      let normal = vec3.normalize([], direction);
+      let velocity = vec3.sub([], A.velocity, B.velocity);
+      let stiffness = this.stiffness * (this.distance - vec3.length(direction));
+      let damping = this.damping * vec3.dot(velocity, normal);
+      let stress = stiffness + damping;
+      let force = vec3.scale([], normal, stress);
 
-      vec3.scale(this.force, spring, stress);
-
-      A.exert(this.force);
-      B.exert(vec3.negate([], this.force));
+      A.exert(vec3.negate([], force));
+      B.exert(force);
    }
 }
 
