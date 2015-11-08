@@ -6,23 +6,21 @@ import Entity from './Entity';
 const _name = 'particle';
 const _mass = 1;
 const _damping = 0;
-const _force = [0, 0, 0];
 const _acceleration = [0, 0, 0];
 const _velocity = [0, 0, 0];
 const _position = [0, 0, 0];
 const _normal = [0, 0, 0];
+const _frozen = false;
 
 class Particle extends Entity
 {
-   constructor({ name = _name, mass = _mass, damping = _damping, force = _force, acceleration = _acceleration, velocity = _velocity, position = _position, normal = _normal } = {})
+   constructor({ name = _name, mass = _mass, damping = _damping, acceleration = _acceleration, velocity = _velocity, position = _position, normal = _normal, frozen = _frozen } = {})
    {
       super({ name });
 
       this.mass = mass;
 
       this.damping = damping;
-
-      this.force = force;
 
       this.acceleration = acceleration;
 
@@ -33,6 +31,8 @@ class Particle extends Entity
       this.position = position;
 
       this.normal = normal;
+
+      this.frozen = frozen;
 
       this.inheritance = ['Entity', 'Particle'];
    }
@@ -55,16 +55,6 @@ class Particle extends Entity
    set damping(damping)
    {
       this._damping = damping;
-   }
-
-   get force()
-   {
-      return this._force;
-   }
-
-   set force(force)
-   {
-      this._force = force;
    }
 
    get acceleration()
@@ -117,6 +107,26 @@ class Particle extends Entity
       this._position = position;
    }
 
+   get normal()
+   {
+      return this._normal;
+   }
+
+   set normal(normal)
+   {
+      this._normal = normal;
+   }
+
+   get frozen()
+   {
+      return this._frozen;
+   }
+
+   set frozen(frozen)
+   {
+      this._frozen = frozen;
+   }
+
    get inheritance()
    {
       return this._inheritance;
@@ -129,7 +139,7 @@ class Particle extends Entity
 
    exert(force)
    {
-      vec3.add(this.force, this.force, force);
+      this.accelerate(vec3.scale([], force, 1 / this.mass));
    }
 
    accelerate(acceleration)
@@ -144,28 +154,47 @@ class Particle extends Entity
 
    euler(timestep)
    {
-      let velocity = this.velocity;
-      let position = this.position;
+      if (!this.frozen)
+      {
+         let velocity = this.velocity;
+         let position = this.position;
 
-      vec3.add(this.velocity, velocity, vec3.scale([], this.acceleration, timestep));
-      vec3.add(this.position, position, vec3.scale([], velocity, timestep));
+         vec3.add(this.velocity, velocity, vec3.scale([], this.acceleration, timestep));
+         vec3.add(this.position, position, vec3.scale([], velocity, timestep));
+      }
    }
 
    simplectic(timestep)
    {
-      vec3.add(this.velocity, this.velocity, vec3.scale([], this.acceleration, timestep));
-      vec3.add(this.position, this.position, vec3.scale([], this.velocity, timestep));
+      if (!this.frozen)
+      {
+         vec3.add(this.velocity, this.velocity, vec3.scale([], this.acceleration, timestep));
+         vec3.add(this.position, this.position, vec3.scale([], this.velocity, timestep));
+      }
    }
 
    verlet(timestep)
    {
-      let previous = this.previous;
-      let position = this.position;
-      let leap = vec3.sub([], position, previous);
+      if (!this.frozen)
+      {
+         let previous = this.previous;
+         let position = this.position;
+         let leap = vec3.sub([], position, previous);
 
-      vec3.add(this.position, vec3.add([], position, leap), vec3.scale([], this.acceleration, Math.pow(timestep, 2)));
+         vec3.add(this.position, vec3.add([], position, leap), vec3.scale([], this.acceleration, Math.pow(timestep, 2)));
 
-      vec3.copy(this.previous, position);
+         vec3.copy(this.previous, position);
+      }
+   }
+
+   freeze: function()
+   {
+      this.frozen = true;
+   }
+
+   unfreeze: function()
+   {
+      this.frozen = false;
    }
 }
 

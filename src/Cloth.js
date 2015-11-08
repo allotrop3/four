@@ -96,6 +96,16 @@ class Cloth extends ParticleSystem
          neighborhood.push.apply(neighborhood, neighbors);
       }
    }
+
+   solve()
+   {
+      if (!this.paused)
+      {
+         this.springs.forEach(spring => spring.relax());
+
+         super.solve();
+      }
+   }
 }
 
 export default Cloth;

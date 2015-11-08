@@ -4,7 +4,6 @@ import Entity from './Entity';
 import Particle from './Particle';
 
 const _name = 'particle.system';
-const _particles = [];
 const _gravity = [0, -9.80665, 0];
 const _timestep = 0.001;
 const _solver = 'SIMPLECTIC';
