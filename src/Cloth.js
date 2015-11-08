@@ -79,7 +79,7 @@ class Cloth extends ParticleSystem
 
    define(face, index, faces)
    {
-      let neighborhood = [];
+      let neighborhood = [index];
 
       faces.forEach(this.sew.bind(this, neighborhood, index));
    }

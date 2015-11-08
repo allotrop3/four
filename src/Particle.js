@@ -187,12 +187,12 @@ class Particle extends Entity
       }
    }
 
-   freeze: function()
+   freeze()
    {
       this.frozen = true;
    }
 
-   unfreeze: function()
+   unfreeze()
    {
       this.frozen = false;
    }

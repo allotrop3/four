@@ -102,7 +102,7 @@ class Spring extends Entity
       vec3.scale(this.force, spring, stress);
 
       A.exert(this.force);
-      B.exert(-this.force);
+      B.exert(vec3.negate([], this.force));
    }
 }
 
