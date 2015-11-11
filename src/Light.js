@@ -10,7 +10,7 @@ const _ambient = 0x000000;
 const _diffuse = 0xFFFFFF;
 const _specular = 0xFFFFFF;
 const _intensity = 1;
-const _location = [0, 0, 0];
+const _location = [-10, 10, -10];
 
 class Light extends Structure
 {
