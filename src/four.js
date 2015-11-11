@@ -1,10 +1,9 @@
 'use strict';
 
 import glm from 'gl-matrix';
-import gl from './gl';
 import Attribute from './Attribute';
 import Camera from './Camera';
-import Canvas from './Canvas';
+import Context from './Context';
 import OrthographicCamera from './OrthographicCamera';
 import PerspectiveCamera from './PerspectiveCamera';
 import Framebuffer from './Framebuffer';
@@ -41,10 +40,9 @@ import AssetLoader from './AssetLoader';
 
 let Four = window.Four = {
    glm: glm,
-   gl: gl,
    Attribute: Attribute,
    Camera: Camera,
-   Canvas: Canvas,
+   Context: Context,
    OrthographicCamera: OrthographicCamera,
    PerspectiveCamera: PerspectiveCamera,
    Framebuffer: Framebuffer,

@@ -1,6 +1,6 @@
 'use strict';
 
-import gl from './gl';
+import { gl } from './Context';
 import Entity from './Entity';
 import VertexShader from './VertexShader';
 import FragmentShader from './FragmentShader';

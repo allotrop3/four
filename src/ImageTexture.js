@@ -1,6 +1,6 @@
 'use strict';
 
-import gl from './gl';
+import { gl } from './Context';
 import image from './utils/image';
 import Texture from './Texture';
 

@@ -2,6 +2,8 @@
 
 import Entity from './Entity';
 
+let gl = undefined;
+
 const _name = 'canvas';
 const _selector = 'canvas';
 const _width = window.innerWidth;
@@ -9,9 +11,9 @@ const _height = window.innerHeight;
 const _dpi = window.devicePixelRatio;
 const _picking = false;
 
-class Canvas extends Entity
+class Context extends Entity
 {
-   constructor({ name = _name, selector = _selector, width = _width, height = _height, dpi = _dpi, picking = _picking } = {})
+   constructor({ name = _name, selector = _selector, width = _width, height = _height, dpi = _dpi } = {})
    {
       super({ name });
 
@@ -23,9 +25,7 @@ class Canvas extends Entity
 
       this.dpi = dpi;
 
-      this.gl = gl;
-
-      this.picking = picking;
+      this.gl = undefined;
 
       this.inheritance = ['Entity', 'Canvas'];
 
@@ -83,16 +83,6 @@ class Canvas extends Entity
       this._gl = gl;
    }
 
-   get picking()
-   {
-      return this._picking;
-   }
-
-   set picking(picking)
-   {
-      this._picking = picking;
-   }
-
    get inheritance()
    {
       return this._inheritance;
@@ -122,17 +112,17 @@ class Canvas extends Entity
    contextualise()
    {
       let canvas = this.canvas;
-      let gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
 
-      this.gl = gl;
+      this.gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+
+      gl = this.gl;
    }
 
-   pick()
+   use()
    {
-      // todo: picking mouse interactivity
+      gl = this.gl;
    }
 }
 
-
-
-export default Canvas;
+export { gl };
+export default Context;

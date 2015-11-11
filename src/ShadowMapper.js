@@ -1,6 +1,6 @@
 'use strict';
 
-import gl from './gl';
+import { gl } from './Context';
 import Structure from './Structure';
 import DataTexture from './DataTexture';
 import DepthTexture from './DepthTexture';
@@ -8,12 +8,10 @@ import DepthFramebuffer from './DepthFramebuffer';
 
 const _name = 'shadow.map';
 const _uniforms = ['sampler shadowMap'];
-const _width = gl.canvas.width;
-const _height = gl.canvas.height;
 
 class ShadowMapper extends Structure
 {
-   constructor({ name = _name, path, uniforms = _uniforms, width = _width, height = _height } = {})
+   constructor({ name = _name, path, uniforms = _uniforms, width = gl.canvas.width, height = gl.canvas.height } = {})
    {
       super({ name, path, uniforms });
 

@@ -1,6 +1,6 @@
 'use strict';
 
-import gl from './gl';
+import { gl } from './Context';
 import { mat4 } from 'gl-matrix';
 import { mat3 } from 'gl-matrix';
 import LSL from './utils/LSL';

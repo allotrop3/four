@@ -1,6 +1,6 @@
 'use strict';
 
-import gl from './gl';
+import { gl } from './Context';
 import Texture from './Texture';
 
 const _name = 'depth.texture';

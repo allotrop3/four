@@ -1,6 +1,6 @@
 'use strict';
 
-import gl from './gl';
+import { gl } from './Context';
 import Framebuffer from './Framebuffer';
 
 const _name = 'deferred.framebuffer';

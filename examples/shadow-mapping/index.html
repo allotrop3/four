@@ -13,7 +13,7 @@
    </head>
 
    <body style="margin:0;background:#222;position:relative;overflow:hidden">
-      <canvas></canvas>
+      <canvas id="shadow-mapper"></canvas>
 
       <script src="../../dist/four.js"></script>
 
@@ -108,6 +108,8 @@
       <script>
          'use strict';
 
+         var context = new Four.Context({ selector: '#shadow-mapper' });
+
          var planePattern = new Four.ImageTexture({ path: 'textures/terrain.jpg', anisotropy: 16, minification: 'LINEAR_MIPMAP_LINEAR', magnification: 'LINEAR_MIPMAP_LINEAR', mipmap: true });
          var bodyPattern = new Four.ImageTexture({ path: 'textures/body.jpg', anisotropy: 16, minification: 'LINEAR_MIPMAP_LINEAR', magnification: 'LINEAR_MIPMAP_LINEAR', mipmap: true });
          var wallsPattern = new Four.ImageTexture({ path: 'textures/walls.jpg', anisotropy: 16, minification: 'LINEAR_MIPMAP_LINEAR', magnification: 'LINEAR_MIPMAP_LINEAR', mipmap: true });
@@ -121,8 +123,8 @@
 
          function main()
          {
-            var width = Four.gl.canvas.width;
-            var height = Four.gl.canvas.height;
+            var width = context.width;
+            var height = context.height;
 
             var shadowMapperProgram = new Four.Program({ selector: '.shadow-mapper' });
             var rendererProgram = new Four.Program({ selector: '.renderer' });

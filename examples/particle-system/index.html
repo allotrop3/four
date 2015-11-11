@@ -13,7 +13,7 @@
    </head>
 
    <body style="margin:0;background:#222;position:relative;overflow:hidden">
-      <canvas></canvas>
+      <canvas id="particle-system"></canvas>
 
       <script src="../../dist/four.js"></script>
 
@@ -51,14 +51,14 @@
 
       <script>
          'use strict';
-
+         var context = new Four.Context({ selector: '#particle-system' });
          var points = new Four.OBJMeshLoader({ path: 'meshes/points.obj', indexed: true });
 
          function main()
          {
             var program = new Four.Program({ selector: '.renderer' });
-            var mesh = new Four.Mesh({ loader: points, usage: 'DYNAMIC_DRAW', primitive: 'POINTS' });
-            var cloth = new Four.Cloth({ mesh: mesh, stiffness: 10000, damping: 0.8, timestep: 0.0003, solver: 'VERLET' });
+            var mesh = new Four.Mesh({ loader: points, usage: 'DYNAMIC_DRAW', primitive: 'LINES' });
+            var cloth = new Four.Cloth({ mesh: mesh, stiffness: 10000, damping: 1 });
             var view = new Four.Framebuffer();
             var camera = new Four.PerspectiveCamera({ location: [10, 5, 5] });
             var scene = new Four.Scene();
