@@ -1,6 +1,7 @@
 'use strict';
 
 import gl from './gl';
+import image from './utils/image';
 import Texture from './Texture';
 
 const _name = 'image.texture';
@@ -13,7 +14,9 @@ class ImageTexture extends Texture
    {
       super({ name, lod, components, format, magnification, minification, S, T });
 
-      this.image = new Image();
+      this.image = undefined;
+
+      this.promise = this.fetch(path);
 
       this.anisotropicFilter = gl.getExtension('EXT_texture_filter_anisotropic');
 
@@ -22,8 +25,6 @@ class ImageTexture extends Texture
       this.mipmap = mipmap;
 
       this.inheritance = ['Entity', 'Texture', 'ImageTexture'];
-
-      this.fetch(path);
    }
 
    get image()
@@ -91,11 +92,12 @@ class ImageTexture extends Texture
 
    fetch(path)
    {
-      let image = this.image;
+      return image(path).then(this.define.bind(this)).then(this.configure.bind(this));
+   }
 
-      image.src = path;
-
-      image.onload = this.configure.bind(this);
+   define(image)
+   {
+      this.image = image;
    }
 
    configure()

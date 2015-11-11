@@ -12,9 +12,9 @@ const _far = 1;
 
 class OrthographicCamera extends Camera
 {
-   constructor({ name = _name, path, uniforms, background, left = _left, right, bottom = _bottom, top, near = _near, far = _far } = {})
+   constructor({ name = _name, path, uniforms, background, translucence, left = _left, right, bottom = _bottom, top, near = _near, far = _far } = {})
    {
-      super({ name, path, uniforms, background });
+      super({ name, path, uniforms, background, translucence });
 
       this.left = left;
 

@@ -169,13 +169,12 @@ class Particle extends Entity
       {
          let previous = vec3.clone(this.previous);
          let position = vec3.clone(this.position);
-         let displacement = vec3.sub([], position, previous);
 
-         vec3.scale(this.velocity, displacement, 1 / timestep);
-
-         vec3.add(this.position, vec3.add([], position, displacement), vec3.scale([], this.acceleration, Math.pow(timestep, 2)));
+         vec3.add(this.position, vec3.add([], position, vec3.sub([], position, previous)), vec3.scale([], this.acceleration, Math.pow(timestep, 2)));
 
          vec3.copy(this.previous, position);
+
+         vec3.scale(this.velocity, vec3.sub([], this.position, this.previous), 1 / timestep);
       }
    }
 

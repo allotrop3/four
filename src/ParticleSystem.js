@@ -5,8 +5,8 @@ import Particle from './Particle';
 
 const _name = 'particle.system';
 const _gravity = [0, -9.80665, 0];
-const _timestep = 0.001;
-const _solver = 'SIMPLECTIC';
+const _timestep = 0.003;
+const _solver = 'VERLET';
 const _paused = false;
 
 class ParticleSystem extends Entity

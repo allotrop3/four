@@ -12,7 +12,7 @@ class MeshLoader extends Entity
    {
       super({ name });
 
-      this.request = undefined;
+      this.promise = this.fetch(path);
 
       this.vertices = [];
 
@@ -34,18 +34,16 @@ class MeshLoader extends Entity
       this.indexed = indexed;
 
       this.inheritance = ['Entity', 'MeshLoader'];
-
-      this.fetch(path);
    }
 
-   get request()
+   get promise()
    {
-      return this._request;
+      return this._promise;
    }
 
-   set request(request)
+   set promise(promise)
    {
-      this._request = request;
+      this._promise = promise;
    }
 
    get vertices()
@@ -120,7 +118,7 @@ class MeshLoader extends Entity
 
    fetch(path)
    {
-      this.request = ajax(path).then(this.parse.bind(this)).then(this.flush.bind(this));
+      return ajax(path).then(this.parse.bind(this)).then(this.flush.bind(this));
    }
 
    flush()

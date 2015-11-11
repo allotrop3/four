@@ -13,14 +13,17 @@ const _name = 'camera';
 const _path = 'camera';
 const _uniforms = ['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix'];
 const _background = 0x000000;
+const _translucence = 1;
 
 class Camera extends Structure
 {
-   constructor({ name = _name, path = _path, uniforms = _uniforms, background = _background } = {})
+   constructor({ name = _name, path = _path, uniforms = _uniforms, background = _background, translucence = _translucence } = {})
    {
       super({ name, path, uniforms });
 
       this.background = background;
+
+      this.translucence = translucence;
 
       this.modelViewMatrix = mat4.create();
 
@@ -41,6 +44,16 @@ class Camera extends Structure
    set background(background)
    {
       this._background = LSL(background);
+   }
+
+   get translucence()
+   {
+      return this._translucence;
+   }
+
+   set translucence(translucence)
+   {
+      this._translucence = translucence;
    }
 
    get modelViewMatrix()
@@ -95,9 +108,11 @@ class Camera extends Structure
 
    configure()
    {
+      let background = this.background.concat(this.translucence);
+
       gl.enable(gl.CULL_FACE);
       gl.frontFace(gl.CCW);
-      gl.clearColor.apply(gl, this.background.concat(1));
+      gl.clearColor.apply(gl, background);
    }
 
    bind(program)
