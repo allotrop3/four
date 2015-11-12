@@ -6,7 +6,7 @@ import Material from './Material';
 const _name = 'phong.material';
 const _uniforms = ['sampler image', 'vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f shininess', 'i shading', 'i type'];
 const _specular = 0xFFFFFF;
-const _shininess = 10;
+const _shininess = 1;
 
 class PhongMaterial extends Material
 {
