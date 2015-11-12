@@ -90,16 +90,6 @@ class ParticleSystem extends Entity
       this._paused = paused;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    solve()
    {
       if (!this.paused)

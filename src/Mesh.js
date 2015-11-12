@@ -179,16 +179,6 @@ class Mesh extends Entity
       this._translation = translation;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    unpack(loader)
    {
       if (loader !== undefined)

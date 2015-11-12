@@ -131,16 +131,6 @@ class PerspectiveCamera extends Camera
       this._up = up;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    configure()
    {
       super.configure();

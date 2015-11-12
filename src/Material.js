@@ -94,16 +94,6 @@ class Material extends Structure
       this._type = type;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    bind(program)
    {
       super.bind(program);

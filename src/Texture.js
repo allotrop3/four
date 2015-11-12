@@ -131,16 +131,6 @@ class Texture extends Entity
       this._unit = unit;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    configure()
    {
       this.bind();

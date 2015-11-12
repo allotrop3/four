@@ -54,26 +54,6 @@ class SpotLight extends Light
    {
       this._direction = direction;
    }
-
-   get type()
-   {
-      return this._type;
-   }
-
-   set type(type)
-   {
-      this._type = type;
-   }
-
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
 }
 
 export default SpotLight;

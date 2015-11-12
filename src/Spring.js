@@ -88,16 +88,6 @@ class Spring extends Entity
       this._type = type;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    relax()
    {
       let A = this.A;

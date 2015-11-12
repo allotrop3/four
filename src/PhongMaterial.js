@@ -5,8 +5,8 @@ import Material from './Material';
 
 const _name = 'phong.material';
 const _uniforms = ['sampler image', 'vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f shininess', 'i shading', 'i type'];
-const _specular = [1, 1, 1];
-const _shininess = 75;
+const _specular = 0xFFFFFF;
+const _shininess = 10;
 
 class PhongMaterial extends Material
 {
@@ -41,26 +41,6 @@ class PhongMaterial extends Material
    set shininess(shininess)
    {
       this._shininess = shininess;
-   }
-
-   get type()
-   {
-      return this._type;
-   }
-
-   set type(type)
-   {
-      this._type = type;
-   }
-
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
    }
 }
 

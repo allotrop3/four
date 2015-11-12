@@ -54,16 +54,6 @@ class Program extends Entity
       this._fragmentShader = fragmentShader;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    link()
    {
       let buffer = this.buffer;

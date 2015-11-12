@@ -87,16 +87,6 @@ class Scene extends Entity
       this._translation = translation;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    use(program)
    {
       program.bind();

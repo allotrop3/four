@@ -52,16 +52,6 @@ class Renderbuffer extends Entity
       this._height = height;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    configure()
    {
       this.bind();

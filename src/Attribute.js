@@ -99,16 +99,6 @@ class Attribute extends Entity
       this._length = length;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    getByteCount(bytes)
    {
       return this.length * bytes;

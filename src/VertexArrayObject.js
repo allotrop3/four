@@ -100,16 +100,6 @@ class VertexArrayObject extends Entity
       this._attributes = attributes.map(this.generate.bind(this));
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    configure()
    {
       if (this.indexed)

@@ -89,16 +89,6 @@ class Uniform extends Entity
       this._format = format;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    locate(program)
    {
       let path = this.path;

@@ -112,16 +112,6 @@ class Particle extends Entity
       return this._frozen;
    }
 
-   set frozen(frozen)
-   {
-      this._frozen = frozen;
-   }
-
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
    set inheritance(inheritance)
    {
       this._inheritance = inheritance;

@@ -67,16 +67,6 @@ class DataTexture extends Texture
       this._length = length;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    configure()
    {
       super.configure();

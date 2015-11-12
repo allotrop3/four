@@ -93,16 +93,6 @@ class OrthographicCamera extends Camera
       this._far = far;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    configure()
    {
       super.configure();

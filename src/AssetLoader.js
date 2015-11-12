@@ -13,6 +13,8 @@ class AssetLoader extends Entity
       super({ name });
 
       this.promises = assets;
+
+      this.inheritance = ['Entity', 'AssetLoader'];
    }
 
    get promises()

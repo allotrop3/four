@@ -13,16 +13,6 @@ class OBJMeshLoader extends MeshLoader
       this.inheritance = ['Entity', 'MeshLoader', 'OBJMeshLoader'];
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    parse(raw)
    {
       raw.split('\n').map(this.categorise.bind(this));

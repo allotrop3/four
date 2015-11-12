@@ -52,16 +52,6 @@ class DepthFramebuffer extends Framebuffer
       this._depthAttachment = depthAttachment;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    configure()
    {
       this.bind(false);

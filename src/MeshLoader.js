@@ -106,16 +106,6 @@ class MeshLoader extends Entity
       this._indexed = indexed;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    fetch(path)
    {
       return ajax(path).then(this.parse.bind(this)).then(this.flush.bind(this));

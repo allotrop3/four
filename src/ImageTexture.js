@@ -80,16 +80,6 @@ class ImageTexture extends Texture
       this._mipmap = mipmap;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    fetch(path)
    {
       return image(path).then(this.define.bind(this)).then(this.configure.bind(this));

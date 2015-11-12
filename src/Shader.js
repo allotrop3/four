@@ -29,16 +29,6 @@ class Shader extends Entity
       this._buffer = buffer;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    generate(type, selector)
    {
       let source = document.querySelector(selector).textContent;

@@ -66,16 +66,6 @@ class ShadowMapper extends Structure
       this._shadowMap = shadowMap;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    bind(program)
    {
       super.bind(program);

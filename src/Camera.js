@@ -96,16 +96,6 @@ class Camera extends Structure
       this._stack = stack;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    configure()
    {
       let background = this.background.concat(this.translucence);

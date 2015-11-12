@@ -54,16 +54,6 @@ class Cloth extends ParticleSystem
       this._springs = springs;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    model()
    {
       let indices = this.mesh.indices;

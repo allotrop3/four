@@ -83,16 +83,6 @@ class Context extends Entity
       this._gl = gl;
    }
 
-   get inheritance()
-   {
-      return this._inheritance;
-   }
-
-   set inheritance(inheritance)
-   {
-      this._inheritance = inheritance;
-   }
-
    prime(selector)
    {
       let canvas = document.querySelector(selector);
