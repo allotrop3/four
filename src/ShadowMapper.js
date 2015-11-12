@@ -6,12 +6,14 @@ import DataTexture from './DataTexture';
 import DepthTexture from './DepthTexture';
 import DepthFramebuffer from './DepthFramebuffer';
 
-const _name = 'shadow.map';
-const _uniforms = ['sampler shadowMap'];
+const _name = 'shadow.mapper';
+const _path = 'shadowMapper';
+const _uniforms = ['i antialias', 'sampler shadowMap'];
+const _antialias = false;
 
 class ShadowMapper extends Structure
 {
-   constructor({ name = _name, path, uniforms = _uniforms, width, height } = {})
+   constructor({ name = _name, path = _path, uniforms = _uniforms, width, height, antialias = _antialias } = {})
    {
       super({ name, path, uniforms });
 
@@ -22,6 +24,8 @@ class ShadowMapper extends Structure
       this.view = new DepthFramebuffer({ colorAttachment: this.colorAttachment, depthAttachment: this.depthAttachment });
 
       this.shadowMap = this.depthAttachment.unit;
+
+      this.antialias = antialias;
 
       this.inheritance = ['Entity', 'Structure', 'ShadowMapper'];
    }
@@ -64,6 +68,16 @@ class ShadowMapper extends Structure
    set shadowMap(shadowMap)
    {
       this._shadowMap = shadowMap;
+   }
+
+   get antialias()
+   {
+      return this._antialias;
+   }
+
+   set antialias(antialias)
+   {
+      this._antialias = antialias;
    }
 
    bind(program)

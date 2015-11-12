@@ -113,6 +113,11 @@ class Uniform extends Entity
       }
       else
       {
+         if (typeof value === 'boolean')
+         {
+            value = ~~value;
+         }
+
          gl[method](location, value);
       }
    }
