@@ -4,10 +4,12 @@ import Light from './Light';
 
 const _name = 'point.light';
 const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f radius', 'f intensity', 'vec3 location', 'i type'];
+const _radius = 10;
+const _intensity = 10;
 
 class PointLight extends Light
 {
-   constructor({ name = _name, path, uniforms = _uniforms, ambient, diffuse, specular, radius, intensity, location } = {})
+   constructor({ name = _name, path, uniforms = _uniforms, ambient, diffuse, specular, radius = _radius, intensity = _intensity, location } = {})
    {
       super({ name, path, uniforms, ambient, diffuse, specular, intensity, location });
 
