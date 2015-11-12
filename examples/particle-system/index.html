@@ -60,7 +60,7 @@
             var mesh = new Four.Mesh({ loader: points, usage: 'DYNAMIC_DRAW', primitive: 'LINES' });
             var cloth = new Four.Cloth({ mesh: mesh, stiffness: 10000, damping: 1 });
             var view = new Four.Framebuffer();
-            var camera = new Four.PerspectiveCamera({ location: [10, 5, 5] });
+            var camera = new Four.PerspectiveCamera({ location: [10, 5, 5], width: context.canvas.width, height: context.canvas.height });
             var scene = new Four.Scene();
             var particles = cloth.particles;
 

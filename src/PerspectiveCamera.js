@@ -14,7 +14,7 @@ const _up = [0, 1, 0];
 
 class PerspectiveCamera extends Camera
 {
-   constructor({ name = _name, path, uniforms, background, translucence, width = gl.canvas.width, height = gl.canvas.height, fov = _fov, near = _near, far = _far, direction = _direction, location = _location, up = _up } = {})
+   constructor({ name = _name, path, uniforms, background, translucence, width, height, fov = _fov, near = _near, far = _far, direction = _direction, location = _location, up = _up } = {})
    {
       super({ name, path, uniforms, background, translucence });
 

@@ -11,7 +11,7 @@ const _uniforms = ['sampler shadowMap'];
 
 class ShadowMapper extends Structure
 {
-   constructor({ name = _name, path, uniforms = _uniforms, width = gl.canvas.width, height = gl.canvas.height } = {})
+   constructor({ name = _name, path, uniforms = _uniforms, width, height } = {})
    {
       super({ name, path, uniforms });
 

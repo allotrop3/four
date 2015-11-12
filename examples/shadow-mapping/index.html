@@ -126,20 +126,25 @@
             var width = context.width;
             var height = context.height;
 
-            var shadowMapperProgram = new Four.Program({ selector: '.shadow-mapper' });
-            var rendererProgram = new Four.Program({ selector: '.renderer' });
+            var shadowMapperProgram = new Four.Program({
+               selector: '.shadow-mapper'
+            });
+
+            var rendererProgram = new Four.Program({
+               selector: '.renderer'
+            });
 
             var pointLight = new Four.PointLight({
                diffuse: 0xFFD1B2,
-               radius: 10,
-               location: [10, 15, 10],
-               intensity: 10
+               location: [10, 15, 10]
             });
 
             var view = new Four.Framebuffer();
 
             var camera = new Four.PerspectiveCamera({
-               location: [-15, 10, 15]
+               location: [-15, 10, 15],
+               width: width,
+               height: height
             });
 
             var lightCamera = new Four.PerspectiveCamera({
@@ -175,9 +180,14 @@
                material: new Four.Material({ pattern: planePattern })
             });
 
-            var shadowMapper = new Four.ShadowMapper();
+            var shadowMapper = new Four.ShadowMapper({
+               width: width,
+               height: height
+            });
 
             var scene = new Four.Scene();
+
+            var depthScene = new Four.Scene();
 
             scene.use(rendererProgram);
             scene.put(pointLight);
@@ -186,8 +196,6 @@
             scene.put(walls);
             scene.put(floor);
             scene.put(plane);
-
-            var depthScene = new Four.Scene();
 
             depthScene.use(shadowMapperProgram);
             depthScene.put(pointLight);

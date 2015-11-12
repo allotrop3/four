@@ -45,7 +45,7 @@ class Context extends Entity
 
    get width()
    {
-      return this._width;
+      return this._width * this._dpi;
    }
 
    set width(width)
@@ -55,7 +55,7 @@ class Context extends Entity
 
    get height()
    {
-      return this._height;
+      return this._height * this._dpi;
    }
 
    set height(height)
@@ -90,11 +90,11 @@ class Context extends Entity
       let height = this.height;
       let dpi = this.dpi;
 
-      canvas.setAttribute('width', width * dpi);
-      canvas.setAttribute('height', height * dpi);
+      canvas.setAttribute('width', width);
+      canvas.setAttribute('height', height);
 
-      canvas.style.width = width;
-      canvas.style.height = height;
+      canvas.style.width = width / dpi;
+      canvas.style.height = height / dpi;
 
       this.canvas = canvas;
    }
