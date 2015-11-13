@@ -1,6 +1,7 @@
 'use strict';
 
 import glm from 'gl-matrix';
+import Entity from './Entity';
 import Attribute from './Attribute';
 import Camera from './Camera';
 import Context from './Context';
@@ -40,6 +41,7 @@ import AssetLoader from './AssetLoader';
 
 let Four = window.Four = {
    glm: glm,
+   Entity: Entity,
    Attribute: Attribute,
    Camera: Camera,
    Context: Context,

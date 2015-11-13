@@ -29,7 +29,7 @@ let FRAGMENT_SHADER = `
 
          if (shadow <= biased)
          {
-             return 0.3;
+            return 0.3;
          }
       }
 

@@ -9,7 +9,6 @@ const _selector = 'canvas';
 const _width = window.innerWidth;
 const _height = window.innerHeight;
 const _dpi = window.devicePixelRatio;
-const _picking = false;
 
 class Context extends Entity
 {
