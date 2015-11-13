@@ -85,6 +85,8 @@ class Program extends Entity
 
          throw new Error(error);
       }
+
+      return true;
    }
 }
 

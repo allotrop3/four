@@ -21,6 +21,8 @@ QUnit.module('Context', function()
       assert.ok(constructor === 'Context', 'Passed: Context class is available.');
       assert.ok(context instanceof Four.Entity, 'Passed: Context inherits from Entity.');
       assert.ok(context instanceof Four.Context, 'Passed: Context is an instance of Context.');
+      assert.ok(context.isType('Entity'), 'Passed: Context is of type Entity.');
+      assert.ok(context.isType('Context'), 'Passed: Context is of type Context.');
       assert.ok(canvas instanceof HTMLElement, 'Passed: Found the canvas in the DOM tree using the given selector.');
       assert.ok(renderer === 'WebGLRenderingContext', 'Passed: WebGLRenderingContext successfully created.');
       assert.ok(dpiContextWidth === context.dpi, 'Passed: Canvas width is directly proportional to the given device pixel ratio.');
