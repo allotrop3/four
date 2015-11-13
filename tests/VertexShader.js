@@ -21,7 +21,7 @@ QUnit.module('VertexShader', function()
       assert.ok(vertexShader instanceof Four.Shader, 'Passed: VertexShader inherits from Shader.');
       assert.ok(vertexShader instanceof Four.VertexShader, 'Passed: VertexShader is an instance of VertexShader.');
       assert.ok(vertexShader.isType('Entity'), 'Passed: VertexShader is of type Entity.');
-      assert.ok(vertexShader.isType('Entity'), 'Passed: VertexShader is of type Shader.');
+      assert.ok(vertexShader.isType('Shader'), 'Passed: VertexShader is of type Shader.');
       assert.ok(vertexShader.isType('VertexShader'), 'Passed: VertexShader is of type VertexShader.');
       assert.ok(buffer === 'WebGLShader', 'Passed: WebGLShader successfully created.');
       assert.ok(vertexShader.check(), 'Passed: VertexShader successfully compiled.');

@@ -21,7 +21,7 @@ QUnit.module('FragmentShader', function()
       assert.ok(fragmentShader instanceof Four.Shader, 'Passed: FragmentShader inherits from Shader.');
       assert.ok(fragmentShader instanceof Four.FragmentShader, 'Passed: FragmentShader is an instance of FragmentShader.');
       assert.ok(fragmentShader.isType('Entity'), 'Passed: FragmentShader is of type Entity.');
-      assert.ok(fragmentShader.isType('Entity'), 'Passed: FragmentShader is of type Shader.');
+      assert.ok(fragmentShader.isType('Shader'), 'Passed: FragmentShader is of type Shader.');
       assert.ok(fragmentShader.isType('FragmentShader'), 'Passed: FragmentShader is of type FragmentShader.');
       assert.ok(buffer === 'WebGLShader', 'Passed: WebGLShader successfully created.');
       assert.ok(fragmentShader.check(), 'Passed: FragmentShader successfully compiled.');
