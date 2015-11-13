@@ -52,11 +52,6 @@ class Entity
       this._inheritance = inheritance;
    }
 
-   is(identity)
-   {
-      return this.name.match(identity, 'i') !== null;
-   }
-
    isType(entity)
    {
       return this.inheritance.indexOf(entity) !== -1;

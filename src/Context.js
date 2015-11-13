@@ -26,7 +26,7 @@ class Context extends Entity
 
       this.gl = undefined;
 
-      this.inheritance = ['Entity', 'Canvas'];
+      this.inheritance = ['Entity', 'Context'];
 
       this.prime(selector);
       this.contextualise();
