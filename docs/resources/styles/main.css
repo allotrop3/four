@@ -1,0 +1,174 @@
+a
+{
+   color: inherit;
+   display: inline-block;
+   text-decoration: none;
+   vertical-align: middle;
+}
+
+.spring
+{
+   margin: 0 auto;
+   max-width: 970px;
+   padding: 0 10px;
+}
+
+.body
+{
+   color: #333;
+   font: 14px/1.5 'source sans pro', 'helvetica neue', sans-serif;
+   padding: 25px 0;
+}
+
+.heading
+{
+   font-family: 'helvetica neue';
+   font-weight: 700;
+   margin: 0;
+}
+
+.heading--1
+{
+   font-size: 30px;
+}
+
+.heading--2
+{
+   font-size: 25px;
+}
+
+.heading--3
+{
+   font-size: 20px;
+}
+
+.format
+{
+   color: #999;
+   font-weight: 400;
+}
+
+.pre
+{
+   background-color: #F5F5F5;
+   border: 1px solid #E5E5E5;
+   border-radius: 5px;
+   padding: 25px;
+}
+
+.code
+{
+   font: 12px/1.5 'fira mono ot', 'menlo', monospace;
+}
+
+.code__reference
+{
+   background-color: #D6E9E4;
+   border-radius: 5px;
+   color: #267160;
+   margin: 0 5px;
+   padding: 2.5px 5px;
+}
+
+.code__keyword
+{
+   color: #4488AF;
+}
+
+.code__class
+{
+   color: #308F79;
+}
+
+.code__type
+{
+   color: #BBB;
+   font-style: italic;
+}
+
+.code__default
+{
+   color: #999;
+}
+
+.code__return
+{
+   color: #7E6F98;
+   font-style: italic;
+}
+
+.button
+{
+   -webkit-appearance: none;
+   appearance: none;
+   border: 1px solid #333;
+   border-radius: 5px;
+   color: inherit;
+   display: inline-block;
+   font-size: 16px;
+   padding: 10px 30px;
+   text-align: center;
+   text-decoration: none;
+   transition: all .3s;
+}
+
+.button:hover
+{
+   border-color: #999;
+   color: #999;
+}
+
+.methods__description
+{
+   margin-bottom: 15px;
+   margin-left: 25px;
+}
+
+.header
+{
+   background-color: #31393A;
+   border-bottom: 5px solid #308F79;
+   padding: 50px 0;
+}
+
+.footer
+{
+   background-color: #31393A;
+   padding: 50px 0;
+}
+
+.brand
+{
+   display: inline-block;
+   width: 150px;
+}
+
+.visually-hidden
+{
+   background: red;
+   border: none;
+   clip: rect(0 0 0 0);
+   height: 1px;
+   margin: -1px;
+   overflow: hidden;
+   padding: 0;
+   position: absolute;
+   width: 1px;
+}
+
+.navigation
+{
+   float: right;
+}
+
+.navigation__item
+{
+   margin-left: 30px;
+   opacity: 0.6;
+   transition: opacity .3s;
+}
+
+.navigation__item:hover
+{
+   opacity: 1;
+}

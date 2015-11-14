@@ -1,0 +1,26 @@
+.icon
+{
+   background-image: url("images/sprite.png");
+   background-size: 80px 80px;
+   display: inline-block;
+   vertical-align: middle;
+}
+
+.icon--api
+{
+   background-position: 0px 0px;
+   height: 35px;
+   width: 35px;
+}
+.icon--experiments
+{
+   background-position: -45px 0px;
+   height: 35px;
+   width: 35px;
+}
+.icon--github
+{
+   background-position: 0px -45px;
+   height: 35px;
+   width: 35px;
+}

@@ -1,0 +1,93 @@
+<!doctype>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+
+      <title>Four.Attribute</title>
+
+      <link rel="stylesheet" href="resources/styles/normalize.css">
+      <link rel="stylesheet" href="resources/styles/sprite.css">
+      <link rel="stylesheet" href="resources/styles/main.css">
+   </head>
+
+   <header>
+      <div class="header">
+         <div class="spring">
+            <a href="/docs">
+               <img class="brand" src="resources/images/brand.png" alt="Four">
+            </a>
+
+            <div class="navigation">
+               <a href="#" class="navigation__item">
+                  <span class="visually-hidden">Experiments</span>
+                  <i class="icon icon--experiments"></i>
+               </a>
+
+               <a href="#" class="navigation__item">
+                  <span class="visually-hidden">Documentation</span>
+                  <i class="icon icon--api"></i>
+               </a>
+
+               <a href="https://github.com/allotrop3/four" target="_blank" class="navigation__item">
+                  <span class="visually-hidden">Four on GitHub</span>
+                  <i class="icon icon--github"></i>
+               </a>
+            </div>
+         </div>
+      </div>
+   </header>
+
+   <body>
+      <div class="body">
+         <div class="spring">
+            <h1 class="heading heading--1">Attributes</h1>
+
+            <p>
+               An
+               <code class="code code__reference">attribute</code>
+               is a GLSL variable declared with the
+               <code class="code code__reference">attribute</code>
+               storage qualifier. This provides a wrapper to simplify locating, enabling and disabling generic vertex attributes. Vertex attributes are used to communicate from "outside" to the vertex shader. Attributes are dynamically located when <code class="code code__reference">drawElements</code>
+               or
+               <code class="code code__reference">drawArrays</code>
+               is called.
+            </p>
+
+            <h2 class="heading heading--2">
+               <a href="https://github.com/allotrop3/four/blob/master/src/Attribute.js">
+                  Attributes<small class="format">.js</small>
+               </a>
+            </h2>
+
+            <pre class="pre"><code class="code"><span class="code__keyword">new</span> Four.<span class="code__class">Attribute</span>({<br>    <span class="code__type">string</span>  attribute: ..,<br>    <span class="code__type">number</span>  length: ..,<br>    <span class="code__type">string</span>  <span class="code__default">name: ‘attribute’,</span><br>    <span class="code__type">string</span>  <span class="code__default">format: ‘FLOAT’,</span><br>    <span class="code__type">boolean</span> <span class="code__default">normalized: false,</span><br>    <span class="code__type">number</span>  <span class="code__default">offset: 0</span><br>});</code></pre>
+
+            <h3 class="heading heading--3">Methods</h3>
+
+            <dl class="methods">
+               <dt class="methods__signature">
+                  <code class="code"><span class="code__return">number</span> locate(<span class="code__type">Four.Program</span> program)</code>
+               </dt>
+               <dd class="methods__description">Returns the vertex attribute location within the given programs vertex shader.</dd>
+
+               <dt class="methods__signature">
+                  <code class="code"><span class="code__return">undefined</span> enable()</code>
+               </dt>
+               <dd class="methods__description">Enable the  vertex attribute.</dd>
+
+               <dt class="methods__signature">
+                  <code class="code"><span class="code__return">undefined</span> disable()</code>
+               </dt>
+               <dd class="methods__description">Disable the  vertex attribute.</dd>
+            </dl>
+
+            <h3 class="heading heading--3">Example</h3>
+         </div>
+      </div>
+   </body>
+
+   <footer>
+      <div class="footer">
+         
+      </div>
+   </footer>
+</html>

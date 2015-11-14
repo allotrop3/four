@@ -22,6 +22,7 @@
     "babel-preset-es2015": "^6.1.2",
     "babel-runtime": "^6.0.14",
     "gulp": "^3.9.0",
+    "gulp.spritesmith": "^4.1.1",
     "uglify-loader": "^1.2.0",
     "webpack": "^1.12.2",
     "webpack-stream": "^2.1.1"

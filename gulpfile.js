@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var webpack = require('webpack');
 var webpackStream = require('webpack-stream');
 var config = require('./webpack.config.js');
+var spritesmith = require('gulp.spritesmith');
 
 /**
  * gulp js
@@ -27,6 +28,37 @@ gulp.task('build', function()
    return gulp.src('src/four.js')
       .pipe(webpackStream(config.build, webpack))
       .pipe(gulp.dest('dist'));
+});
+
+/**
+ * gulp sprite
+ *
+ * Generate sprite and css file from PNGs
+ */
+gulp.task('sprite', function () {
+   var sprite = gulp.src('./docs/resources/styles/images/icons/*.png')
+      .pipe(spritesmith({
+         imgName: 'sprite.png',
+         imgPath: 'images/sprite.png',
+         cssName: 'sprite.css',
+         cssOpts: {
+            cssClass: function (item) {
+               return '.icon-' + item.name;
+            }
+         },
+         cssTemplate: 'sprite.handlebars',
+         cssHandlebarsHelpers: {
+            half: function (options) {
+               var halved = Math.ceil(parseFloat(options.fn(this)) * 0.5);
+
+               return halved + 'px';
+            }
+         },
+         padding: 20
+      }));
+
+   sprite.img.pipe(gulp.dest('./docs/resources/styles/images/'));
+   sprite.css.pipe(gulp.dest('./docs/resources/styles/'));
 });
 
 /**
