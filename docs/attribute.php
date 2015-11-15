@@ -1,65 +1,22 @@
 <!doctype>
 <html lang="en">
-   <head>
-      <meta charset="utf-8">
-
-      <title>Four.Attribute</title>
-
-      <link rel="stylesheet" href="resources/styles/normalize.css">
-      <link rel="stylesheet" href="resources/styles/sprite.css">
-      <link rel="stylesheet" href="resources/styles/main.css">
-   </head>
-
+   <?php
+      $title = "Four.Attribute";
+      include("partials/head.php");
+   ?>
 
    <body>
       <div class="body">
-         <header>
-            <div class="header">
-               <div class="spring">
-                  <a href="/docs">
-                     <img class="brand" src="resources/images/brand.png" alt="Four">
-                  </a>
-
-                  <nav class="navigation">
-                     <a href="#" class="navigation__item navigation__item--first">
-                        <span class="visually-hidden">Experiments</span>
-                        <i class="icon icon--experiments"></i>
-                     </a>
-
-                     <a href="#" class="navigation__item">
-                        <span class="visually-hidden">Documentation</span>
-                        <i class="icon icon--api"></i>
-                     </a>
-
-                     <a href="https://github.com/allotrop3/four" target="_blank" class="navigation__item">
-                        <span class="visually-hidden">Four on GitHub</span>
-                        <i class="icon icon--github"></i>
-                     </a>
-
-                     <a href="https://twitter.com/allotrop3" target="_blank" class="navigation__item">
-                        <span class="visually-hidden">Follow me on Twitter</span>
-                        <i class="icon icon--twitter"></i>
-                     </a>
-                  </nav>
-               </div>
-            </div>
-         </header>
+         <?php include("partials/header.php") ?>
 
          <div class="content">
             <div class="spring">
                <h1 class="visually-hidden">Attributes</h1>
 
-               <div class="docs">
-                  <label class="docs__heading heading heading--1" for="docs__checkbox">
-                     Attribute
-                     <i class="docs__chevron icon icon--chevron-down"></i>
-                  </label>
-                  <input id="docs__checkbox" class="docs__checkbox visually-hidden" type="checkbox">
-
-                  <nav class="docs__menu">
-                     <a class="docs__item docs__item--first" href="docs/">Entity</a>
-                  </nav>
-               </div>
+               <?php
+                  $doc = "Attribute";
+                  include("partials/docs.php")
+               ?>
 
                <p>
                   An
@@ -72,11 +29,11 @@
                   is called.
                </p>
 
-               <h2 class="heading heading--2">&num; Constructor</h2>
+               <h2 class="heading heading--2">&num; constructor</h2>
 
                <pre class="pre"><code class="code"><span class="code__keyword">new</span> Four.<span class="code__class">Attribute</span>({<br>    <span class="code__type">string</span>  attribute: ..,<br>    <span class="code__type">number</span>  length: ..,<br>    <span class="code__type">string</span>  <span class="code__default">name: ‘attribute’,</span><br>    <span class="code__type">string</span>  <span class="code__default">format: ‘FLOAT’,</span><br>    <span class="code__type">boolean</span> <span class="code__default">normalized: false,</span><br>    <span class="code__type">number</span>  <span class="code__default">offset: 0</span><br>});</code></pre>
 
-               <h2 class="heading heading--2">&num; Methods</h2>
+               <h2 class="heading heading--2">&num; methods</h2>
 
                <dl class="methods">
                   <dt class="methods__signature">
@@ -95,7 +52,7 @@
                   <dd class="methods__description">Disable the  vertex attribute.</dd>
                </dl>
 
-               <h2 class="heading heading--2">&num; Example</h2>
+               <h2 class="heading heading--2">&num; example</h2>
 
                <p>Here is an example of how this class can be used to link vertex attributes located in your vertex shader. Note how the
                   <code class="code code__reference">a_</code>
@@ -111,13 +68,7 @@
             </div>
          </div>
 
-         <footer>
-            <div class="footer">
-               <div class="spring">
-                  <p>Font awsome icon pack by Dave Gandy.</p>
-               </div>
-            </div>
-         </footer>
+         <?php include("partials/footer.php") ?>
       </div>
    </body>
 </html>
