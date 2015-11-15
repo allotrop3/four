@@ -10,6 +10,7 @@
       <a class="docs__item" href="context">Context</a>
       <a class="docs__item" href="entity">Entity</a>
       <a class="docs__item" href="framebuffer">Framebuffer</a>
+      <a class="docs__item" href="renderbuffer">Renderbuffer</a>
       <a class="docs__item" href="vertex-shader">VertexShader</a>
       <a class="docs__item" href="fragment-shader">FragmentShader</a>
       <a class="docs__item" href="program">Program</a>

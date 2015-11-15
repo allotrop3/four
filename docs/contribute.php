@@ -27,7 +27,9 @@
 
                   <li>
                      <p>
-                        Four uses the Node Package Manager to manage project and development dependencies. If you do not have this installed, check out the
+                        Four uses the
+                        <a href="https://www.npmjs.com/">npm</a>
+                        to manage project and development dependencies. If you do not have this installed, check out the
                         <a href="https://nodejs.org/en/">Node.js</a>
                         website on how to install this.
                      </p>
@@ -41,7 +43,10 @@
 
                   <li>
                      <p>
-                        Once completed, NPM will have installed Gulp. This is a helpful task runner used to compile your ES6 code into ES5 using Babel. Run the following command, again at the root of your project folder, to start watching the
+                        Once completed, npm will have installed
+                        <a href="http://gulpjs.com/">Gulp</a>. This is a helpful task runner used to compile your ES6 code into ES5 using
+                        <a href="https://babeljs.io/">Babel</a>.
+                        Run the following command, again at the root of your project folder, to start watching the
                         <code class="code code--reference">src/</code>
                         folder for changes:
                      </p>
@@ -51,7 +56,11 @@
 
                   <li>
                      <p>
-                        Tests are critical to ensuring that the code we develop works and integrates well into Four. The framework uses QUnit and Blanket.js to run tests and code coverage checks, respectively. Add your own tests to the
+                        Tests are critical to ensuring that the code we develop works and integrates well into Four. The framework uses
+                        <a href="https://qunitjs.com/">QUnit</a>
+                        and
+                        <a href="http://blanketjs.org/">Blanket.js</a>
+                        to run tests and code coverage checks, respectively. Add your own tests to the
                         <code class="code code--reference">/tests</code>
                         folder.
                         Navigate to
