@@ -268,7 +268,8 @@ a
 
 .takeover
 {
-   background: url(images/hero.png) no-repeat;
+   background: url(images/hero--large.png) no-repeat;
+   background-position: 50% 50%;
    background-size: cover;
    bottom: 0;
    left: 0;
@@ -291,7 +292,7 @@ a
    color: #999;
    font: italic 16px/1.5 'fira mono ot', 'menlo', monospace;
    margin: 30px 0;
-   opacity: .6;
+   opacity: .7;
 }
 
 .takeover__credit
