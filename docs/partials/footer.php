@@ -5,7 +5,7 @@
 
          <nav>
             <a href="#">About</a>
-            <a href="#">Contributors</a>
+            <a href="contribute">Contributors</a>
          </nav>
       </div>
    </div>
