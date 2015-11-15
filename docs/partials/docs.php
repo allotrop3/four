@@ -10,5 +10,6 @@
       <a class="docs__item" href="context">Context</a>
       <a class="docs__item" href="entity">Entity</a>
       <a class="docs__item" href="framebuffer">Framebuffer</a>
+      <a class="docs__item" href="vertex-shader">VertexShader</a>
    </nav>
 </div>
