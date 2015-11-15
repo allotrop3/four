@@ -23,7 +23,7 @@ a
    background-color: #31393A;
    color: #333;
    font: 14px/1.5 'source sans pro', 'helvetica neue', sans-serif;
-   height: 100%;
+   min-height: 100%;
 }
 
 .heading
