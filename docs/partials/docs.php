@@ -6,15 +6,15 @@
    <input id="docs__checkbox" class="docs__checkbox visually-hidden" type="checkbox">
 
    <nav class="docs__menu">
-      <a class="docs__item docs__item--first" href="attribute">Attribute</a>
-      <a class="docs__item" href="context">Context</a>
-      <a class="docs__item" href="data-texture">DataTexture</a>
-      <a class="docs__item" href="entity">Entity</a>
-      <a class="docs__item" href="fragment-shader">FragmentShader</a>
-      <a class="docs__item" href="framebuffer">Framebuffer</a>
-      <a class="docs__item" href="image-texture">ImageTexture</a>
-      <a class="docs__item" href="program">Program</a>
-      <a class="docs__item" href="renderbuffer">Renderbuffer</a>
-      <a class="docs__item" href="vertex-shader">VertexShader</a>
+      <a class="docs__item docs__item--first" href="Attribute">Attribute</a>
+      <a class="docs__item" href="Context">Context</a>
+      <a class="docs__item" href="DataTexture">DataTexture</a>
+      <a class="docs__item" href="Entity">Entity</a>
+      <a class="docs__item" href="FragmentShader">FragmentShader</a>
+      <a class="docs__item" href="Framebuffer">Framebuffer</a>
+      <a class="docs__item" href="ImageTexture">ImageTexture</a>
+      <a class="docs__item" href="Program">Program</a>
+      <a class="docs__item" href="Renderbuffer">Renderbuffer</a>
+      <a class="docs__item" href="VertexShader">VertexShader</a>
    </nav>
 </div>

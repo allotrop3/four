@@ -4,7 +4,7 @@
       <i class="icon icon--experiments"></i>
    </a>
 
-   <a href="attribute" title="Documentation" class="navigation__item">
+   <a href="Attribute" title="Documentation" class="navigation__item">
       <span class="visually-hidden">Documentation</span>
       <i class="icon icon--api"></i>
    </a>
