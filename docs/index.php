@@ -7,37 +7,23 @@
 
    <body>
       <div class="body">
-         <?php include("partials/header.php") ?>
-
          <div class="content">
             <div class="spring">
-               <h1 class="visually-hidden">Four</h1>
+               <div class="takeover">
+                  <div class="takeover__center">
+                     <div class="takeover__brand">
+                        <?php include('partials/brand.php') ?>
+                     </div>
 
-               <h2 class="heading heading--2"># Getting started</h2>
+                     <?php include('partials/navigation.php') ?>
+                  </div>
 
-               <ol>
-                  <li>
-                     <p>
-                        Download the latest release of Four &rarr;
-                        <a href="https://github.com/allotrop3/four/releases">GitHub</a>
-                     </p>
-                  </li>
-
-                  <li>
-                     <p>Start coding.</p>
-                  </li>
-
-                  <li>
-                     <p>
-                        Need help? See the
-                        <a href="/docs/attribute">documentation</a>.
-                     </p>
-                  </li>
-               </ol>
+                  <div class="takeover__credit">
+                     <?php include("partials/credit.php") ?>
+                  </div>
+               </div>
             </div>
          </div>
-
-         <?php include("partials/footer.php") ?>
       </div>
    </body>
 </html>

@@ -145,7 +145,7 @@ a
 .header
 {
    background: url(images/hero.png) no-repeat;
-   background-size: 150%;
+   background-size: 100%;
    border-bottom: 5px solid #308F79;
    padding: 100px 0;
 }
@@ -178,18 +178,14 @@ a
 .navigation
 {
    float: right;
+   margin: 0 -10px;
 }
 
 .navigation__item
 {
-   margin-left: 20px;
+   padding: 0 10px;
    opacity: 0.6;
    transition: opacity .2s;
-}
-
-.navigation__item--first
-{
-   margin-left: 0;
 }
 
 .navigation__item:hover
@@ -270,6 +266,41 @@ a
    opacity: .6;
 }
 
+.takeover
+{
+   background: url(images/hero.png) no-repeat;
+   background-size: cover;
+   bottom: 0;
+   left: 0;
+   position: fixed;
+   right: 0;
+   top: 0;
+}
+
+.takeover__center
+{
+   left: 50%;
+   position: absolute;
+   text-align: center;
+   top: 50%;
+   transform: translate(-50%, -50%);
+}
+
+.takeover__brand
+{
+   margin-bottom: 50px;
+}
+
+.takeover__credit
+{
+   bottom: 0;
+   color: #999;
+   left: 0;
+   margin: 15px;
+   position: absolute;
+   right: 0;
+}
+
 @media only screen and (max-width: 467px)
 {
    .header
@@ -281,7 +312,7 @@ a
    .navigation
    {
       float: none;
-      margin-top: 30px;
+      margin: 30px -40px 0;
    }
 
    .button

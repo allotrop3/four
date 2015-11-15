@@ -1,7 +1,7 @@
 .icon
 {
    background-image: url("images/sprite.png");
-   background-size: 109px 80px;
+   background-size: 125px 80px;
    display: inline-block;
    vertical-align: middle;
 }
@@ -14,7 +14,7 @@
 }
 .icon--chevron-down
 {
-   background-position: -90px 0px;
+   background-position: -90px -45px;
    height: 12px;
    width: 19px;
 }
@@ -24,15 +24,21 @@
    height: 35px;
    width: 35px;
 }
-.icon--github
+.icon--fork
 {
    background-position: 0px -45px;
    height: 35px;
    width: 35px;
 }
-.icon--twitter
+.icon--github
 {
    background-position: -45px -45px;
+   height: 35px;
+   width: 35px;
+}
+.icon--twitter
+{
+   background-position: -90px 0px;
    height: 35px;
    width: 35px;
 }

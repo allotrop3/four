@@ -1,7 +1,7 @@
 <footer>
    <div class="footer">
       <div class="spring">
-         <a href="https://fortawesome.github.io/Font-Awesome/" class="credit">Font awsome icon pack by Dave Gandy.</a>
+         <?php include("partials/credit.php") ?>
 
          <nav>
             <a href="#">About</a>
