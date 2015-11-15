@@ -1,0 +1,92 @@
+<!doctype>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+
+      <title>Four.Entity</title>
+
+      <link rel="stylesheet" href="resources/styles/normalize.css">
+      <link rel="stylesheet" href="resources/styles/sprite.css">
+      <link rel="stylesheet" href="resources/styles/main.css">
+   </head>
+
+
+   <body>
+      <div class="body">
+         <header>
+            <div class="header">
+               <div class="spring">
+                  <a href="/docs">
+                     <img class="brand" src="resources/images/brand.png" alt="Four">
+                  </a>
+
+                  <nav class="navigation">
+                     <a href="#" class="navigation__item navigation__item--first">
+                        <span class="visually-hidden">Experiments</span>
+                        <i class="icon icon--experiments"></i>
+                     </a>
+
+                     <a href="#" class="navigation__item">
+                        <span class="visually-hidden">Documentation</span>
+                        <i class="icon icon--api"></i>
+                     </a>
+
+                     <a href="https://github.com/allotrop3/four" target="_blank" class="navigation__item">
+                        <span class="visually-hidden">Four on GitHub</span>
+                        <i class="icon icon--github"></i>
+                     </a>
+
+                     <a href="https://twitter.com/allotrop3" target="_blank" class="navigation__item">
+                        <span class="visually-hidden">Follow me on Twitter</span>
+                        <i class="icon icon--twitter"></i>
+                     </a>
+                  </nav>
+               </div>
+            </div>
+         </header>
+
+         <div class="content">
+            <div class="spring">
+               <h1 class="visually-hidden">Entities</h1>
+
+               <div class="docs">
+                  <label class="docs__heading heading heading--1" for="docs__checkbox">
+                     Entity
+                     <i class="docs__chevron icon icon--chevron-down"></i>
+                  </label>
+                  <input id="docs__checkbox" class="docs__checkbox visually-hidden" type="checkbox">
+
+                  <nav class="docs__menu">
+                     <a class="docs__item docs__item--first" href="attribute.html">Attribute</a>
+                  </nav>
+               </div>
+
+               <p>Entity is the base class from which all classes in Four inherit.</p>
+
+               <h2 class="heading heading--2">&num; constructor</h2>
+
+               <pre class="pre"><code class="code"><span class="code__keyword">new</span> Four.<span class="code__class">Entity</span>({<br>    <span class="code__type">string</span>  <span class="code__default">name: entity,</span><br>});</code></pre>
+
+               <h2 class="heading heading--2">&num; methods</h2>
+
+               <dl class="methods">
+                  <dt class="methods__signature">
+                     <code class="code"><span class="code__return">boolean</span> isType(<span class="code__type">string</span> class)</code>
+                  </dt>
+                  <dd class="methods__description">Returns whether or not the entity is an instance of the given class string.</dd>
+               </dl>
+
+               <a href="https://github.com/allotrop3/four/blob/master/src/Entity.js" target="_blank" class="button">View on GitHub</a>
+            </div>
+         </div>
+
+         <footer>
+            <div class="footer">
+               <div class="spring">
+                  <p>Font awsome icon pack by Dave Gandy.</p>
+               </div>
+            </div>
+         </footer>
+      </div>
+   </body>
+</html>

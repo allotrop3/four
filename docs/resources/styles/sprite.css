@@ -1,7 +1,7 @@
 .icon
 {
    background-image: url("images/sprite.png");
-   background-size: 80px 80px;
+   background-size: 109px 80px;
    display: inline-block;
    vertical-align: middle;
 }
@@ -11,6 +11,12 @@
    background-position: 0px 0px;
    height: 35px;
    width: 35px;
+}
+.icon--chevron-down
+{
+   background-position: -90px 0px;
+   height: 12px;
+   width: 19px;
 }
 .icon--experiments
 {

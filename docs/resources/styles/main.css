@@ -20,8 +20,10 @@ a
 
 .body
 {
+   background-color: #31393A;
    color: #333;
    font: 14px/1.5 'source sans pro', 'helvetica neue', sans-serif;
+   height: 100%;
 }
 
 .heading
@@ -115,7 +117,7 @@ a
    padding: 10px 30px;
    text-align: center;
    text-decoration: none;
-   transition: all .3s;
+   transition: all .2s;
 }
 
 .button:hover
@@ -132,14 +134,12 @@ a
 
 .header
 {
-   background-color: #31393A;
    border-bottom: 5px solid #308F79;
    padding: 50px 0;
 }
 
 .footer
 {
-   background-color: #31393A;
    color: #FFF;
    padding: 50px 0;
 }
@@ -172,7 +172,7 @@ a
 {
    margin-left: 20px;
    opacity: 0.6;
-   transition: opacity .3s;
+   transition: opacity .2s;
 }
 
 .navigation__item--first
@@ -187,6 +187,7 @@ a
 
 .content
 {
+   background-color: #FFF;
    padding: 25px 0;
 }
 
@@ -208,4 +209,60 @@ a
    {
       width: 100%;
    }
+}
+
+.docs
+{
+   position: relative;
+   max-width: 100%;
+   width: 300px;
+}
+
+.docs__heading:hover
+{
+   cursor: pointer;
+}
+
+.docs:hover .docs__chevron,
+.docs__checkbox:checked + .docs__menu
+{
+   opacity: 1;
+   z-index: 1;
+}
+
+.docs__chevron,
+.docs__menu
+{
+   opacity: 0;
+   transition: opacity .2s;
+}
+
+.docs__menu
+{
+   background-color: #FFF;
+   border: 1px solid #E5E5E5;
+   border-radius: 5px;
+   box-shadow: 0 0 15px -10px #000;
+   margin-top: 10px;
+   position: absolute;
+   width: 100%;
+   z-index: -1;
+}
+
+.docs__item
+{
+   border-top: 1px solid #E5E5E5;
+   display: block;
+   padding: 15px;
+   padding-right: 20px;
+}
+
+.docs__item:hover
+{
+   text-decoration: underline;
+}
+
+.docs__item--first
+{
+   border-top: none;
 }
