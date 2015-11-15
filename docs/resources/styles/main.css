@@ -144,8 +144,10 @@ a
 
 .header
 {
+   background: url(images/hero.png) no-repeat;
+   background-size: 150%;
    border-bottom: 5px solid #308F79;
-   padding: 50px 0;
+   padding: 100px 0;
 }
 
 .footer
@@ -272,7 +274,7 @@ a
 {
    .header
    {
-      padding: 30px 0;
+      padding: 50px 0;
       text-align: center;
    }
 

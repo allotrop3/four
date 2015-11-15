@@ -51,6 +51,8 @@
 
                <h2 class="heading heading--2">&num; example</h2>
 
+               <p>Here is an example of how programs can be used to compile and link shaders located in your HTML:</p>
+
                <pre class="pre"><code class="code"><span class="code__comment">// HTML</span><br><span class="code__tag">&lt;script</span> class=<span class="code__attribute">"shader"</span> type=<span class="code__attribute">"x-shader/x-vertex"</span><span class="code__tag">&gt;</span>...<span class="code__tag">&lt;/script&gt;</span><br><span class="code__tag">&lt;script</span> class=<span class="code__attribute">"shader"</span> type=<span class="code__attribute">"x-shader/x-fragment"</span><span class="code__tag">&gt;</span>...<span class="code__tag">&lt;/script&gt;</span><br><br><span class="code__comment">// javascript</span><br><span class="code__keyword">var</span> program = <span class="code__keyword">new</span> Four.<span class="code__class">Program</span>({<br>    selector: '.shader'<br>});</code></pre>
 
                <?php
