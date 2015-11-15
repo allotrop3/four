@@ -9,7 +9,7 @@
       <i class="icon icon--api"></i>
    </a>
 
-   <a href="contribute" target="_blank" title="Contribute" class="navigation__item">
+   <a href="contribute" title="Contribute" class="navigation__item">
       <span class="visually-hidden">Contribute</span>
       <i class="icon icon--fork"></i>
    </a>

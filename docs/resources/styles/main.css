@@ -237,7 +237,9 @@ a
    border-radius: 5px;
    box-shadow: 0 0 15px 9999em rgba(0, 0, 0, .8);
    margin-top: 10px;
+   max-height: 300px;
    max-width: 100%;
+   overflow: auto;
    position: absolute;
    width: 300px;
    z-index: -1;
