@@ -105,6 +105,16 @@ a
    font-style: italic;
 }
 
+.code__tag
+{
+   color: #4488AF;
+}
+
+.code__attribute
+{
+   color: #308F79;
+}
+
 .button
 {
    -webkit-appearance: none;
@@ -265,4 +275,9 @@ a
 .docs__item--first
 {
    border-top: none;
+}
+
+.credit
+{
+   opacity: .6;
 }

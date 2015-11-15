@@ -22,7 +22,7 @@
 
                <h2 class="heading heading--2">&num; constructor</h2>
 
-               <pre class="pre"><code class="code"><span class="code__keyword">new</span> Four.<span class="code__class">Entity</span>({<br>    <span class="code__type">string</span>  <span class="code__default">name: entity,</span><br>});</code></pre>
+               <pre class="pre"><code class="code"><span class="code__keyword">new</span> Four.<span class="code__class">Entity</span>({<br>    <span class="code__type">string</span> <span class="code__default">name: 'entity'</span><br>});</code></pre>
 
                <h2 class="heading heading--2">&num; methods</h2>
 
@@ -33,7 +33,10 @@
                   <dd class="methods__description">Returns whether or not the entity is an instance of the given class string.</dd>
                </dl>
 
-               <a href="https://github.com/allotrop3/four/blob/master/src/Entity.js" target="_blank" class="button">View on GitHub</a>
+               <?php
+                  $filename = "Entity";
+                  include("partials/view.php");
+               ?>
             </div>
          </div>
 

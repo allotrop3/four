@@ -31,7 +31,7 @@
 
                <h2 class="heading heading--2">&num; constructor</h2>
 
-               <pre class="pre"><code class="code"><span class="code__keyword">new</span> Four.<span class="code__class">Attribute</span>({<br>    <span class="code__type">string</span>  attribute: ..,<br>    <span class="code__type">number</span>  length: ..,<br>    <span class="code__type">string</span>  <span class="code__default">name: ‘attribute’,</span><br>    <span class="code__type">string</span>  <span class="code__default">format: ‘FLOAT’,</span><br>    <span class="code__type">boolean</span> <span class="code__default">normalized: false,</span><br>    <span class="code__type">number</span>  <span class="code__default">offset: 0</span><br>});</code></pre>
+               <pre class="pre"><code class="code"><span class="code__keyword">new</span> Four.<span class="code__class">Attribute</span>({<br>    <span class="code__type">string</span>  attribute: ..,<br>    <span class="code__type">number</span>  length: ..,<br>    <span class="code__type">string</span>  <span class="code__default">name: 'attribute',</span><br>    <span class="code__type">string</span>  <span class="code__default">format: 'FLOAT',</span><br>    <span class="code__type">boolean</span> <span class="code__default">normalized: false,</span><br>    <span class="code__type">number</span>  <span class="code__default">offset: 0</span><br>});</code></pre>
 
                <h2 class="heading heading--2">&num; methods</h2>
 
@@ -42,19 +42,28 @@
                   <dd class="methods__description">Returns the vertex attribute location within the given programs vertex shader.</dd>
 
                   <dt class="methods__signature">
-                     <code class="code"><span class="code__return">undefined</span> enable()</code>
+                     <code class="code"><span class="code__return">undefined</span> enable(<span class="code__type">Four.Program</span> program, <span class="code__type">number</span> stride = 0)</code>
                   </dt>
-                  <dd class="methods__description">Enable the  vertex attribute.</dd>
+                  <dd class="methods__description">
+                     Enables the  vertex attribute. In addition to the
+                     <code class="code code__reference">program</code>
+                     argument, it accepts a
+                     <code class="code code__reference">stride</code>
+                     that specifies the number of bytes between two values for the attribute in the vertex array buffer.
+                  </dd>
 
                   <dt class="methods__signature">
                      <code class="code"><span class="code__return">undefined</span> disable()</code>
                   </dt>
-                  <dd class="methods__description">Disable the  vertex attribute.</dd>
+                  <dd class="methods__description">Disables the  vertex attribute.</dd>
                </dl>
 
                <h2 class="heading heading--2">&num; example</h2>
 
-               <p>Here is an example of how this class can be used to link vertex attributes located in your vertex shader. Note how the
+               <p>
+                  Here is an example of how an
+                  <code class="code code__reference">Attribute</code>
+                  can be used to link vertex attributes located in your vertex shader. Note how the
                   <code class="code code__reference">a_</code>
                   is implied by the
                   <code class="code code__reference">Attribute</code>
@@ -64,7 +73,10 @@
                <pre class="pre"><code class="code"><span class="code__comment">// javascript</span><br><span class="code__keyword">var</span> position = <span class="code__keyword">new</span> Four.<span class="code__class">Attribute</span>({<br>   attribute: 'position',<br>   length: <span class="code__number">3</span><br>});<br><br>position.enable(program);<br><br><span class="code__comment">// attribute declaration in the vertex shader linked to the program</span><br><span class="code__keyword">attribute</span> <span class="code__type">vec3</span> a_position;</code>
                   </code></pre>
 
-               <a href="https://github.com/allotrop3/four/blob/master/src/Attribute.js" target="_blank" class="button">View on GitHub</a>
+               <?php
+                  $filename = "Attribute";
+                  include("partials/view.php");
+               ?>
             </div>
          </div>
 

@@ -6,7 +6,8 @@
    <input id="docs__checkbox" class="docs__checkbox visually-hidden" type="checkbox">
 
    <nav class="docs__menu">
-      <a class="docs__item docs__item--first" href="entity">Entity</a>
-      <a class="docs__item" href="attribute">Attribute</a>
+      <a class="docs__item docs__item--first" href="attribute">Attribute</a>
+      <a class="docs__item" href="context">Context</a>
+      <a class="docs__item" href="entity">Entity</a>
    </nav>
 </div>

@@ -11,7 +11,7 @@
                <i class="icon icon--experiments"></i>
             </a>
 
-            <a href="#" class="navigation__item">
+            <a href="attribute" class="navigation__item">
                <span class="visually-hidden">Documentation</span>
                <i class="icon icon--api"></i>
             </a>
