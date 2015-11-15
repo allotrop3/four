@@ -201,31 +201,9 @@ a
    padding: 25px 0;
 }
 
-@media only screen and (max-width: 467px)
-{
-   .header
-   {
-      padding: 30px 0;
-      text-align: center;
-   }
-
-   .navigation
-   {
-      float: none;
-      margin-top: 30px;
-   }
-
-   .button
-   {
-      width: 100%;
-   }
-}
-
 .docs
 {
    position: relative;
-   max-width: 100%;
-   width: 300px;
 }
 
 .docs__format
@@ -261,8 +239,9 @@ a
    border-radius: 5px;
    box-shadow: 0 0 15px 9999em rgba(0, 0, 0, .8);
    margin-top: 10px;
+   max-width: 100%;
    position: absolute;
-   width: 100%;
+   width: 300px;
    z-index: -1;
 }
 
@@ -287,4 +266,29 @@ a
 .credit
 {
    opacity: .6;
+}
+
+@media only screen and (max-width: 467px)
+{
+   .header
+   {
+      padding: 30px 0;
+      text-align: center;
+   }
+
+   .navigation
+   {
+      float: none;
+      margin-top: 30px;
+   }
+
+   .button
+   {
+      width: 100%;
+   }
+
+   .docs__menu
+   {
+      width: 100%;
+   }
 }

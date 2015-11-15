@@ -11,7 +11,7 @@
 
          <div class="content">
             <div class="spring">
-               <h1 class="visually-hidden">Entities</h1>
+               <h1 class="visually-hidden">Framebuffers</h1>
 
                <?php
                   $doc = "Framebuffer";
@@ -19,7 +19,7 @@
                ?>
 
                <p>
-                  Framebuffers provided a wrapper on the WebGL framebuffer object. The
+                  Framebuffer provides a wrapper on the WebGL framebuffer object. The
                   <code class="code code--reference">buffer</code>
                   property is set to
                   <code class="code code--reference">null</code>.
@@ -46,7 +46,7 @@
                      argument specifies whether or not the contents of the framebuffer should be flushed. However this argument is only considered if the
                      <code class="code code--reference">flushable</code>
                      property allows it.
-                     </dd>
+                  </dd>
 
                   <dt class="methods__signature">
                      <code class="code"><span class="code__return">undefined</span> unbind()</code>

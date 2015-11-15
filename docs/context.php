@@ -36,12 +36,14 @@
                   <dt class="methods__signature">
                      <code class="code"><span class="code__return">undefined</span> prime(<span class="code__type">string</span> selector)</code>
                   </dt>
-                  <dd class="methods__description">Searches the DOM tree for the canvas using the given query selector and configures its dimensions using the
-                  <code class="code code--reference">width</code>,
-                  <code class="code code--reference">height</code>,
-                  and
-                  <code class="code code--reference">dpi</code>
-                  properties.</dd>
+                  <dd class="methods__description">
+                     Searches the DOM tree for the canvas using the given query selector and configures its dimensions using the
+                     <code class="code code--reference">width</code>,
+                     <code class="code code--reference">height</code>,
+                     and
+                     <code class="code code--reference">dpi</code>
+                     properties.
+                  </dd>
 
                   <dt class="methods__signature">
                      <code class="code"><span class="code__return">undefined</span> contextualise()</code>
