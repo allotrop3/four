@@ -286,9 +286,12 @@ a
    transform: translate(-50%, -50%);
 }
 
-.takeover__brand
+.takeover__subtitle
 {
-   margin-bottom: 50px;
+   color: #999;
+   font: italic 16px/1.5 'fira mono ot', 'menlo', monospace;
+   margin: 30px 0;
+   opacity: .6;
 }
 
 .takeover__credit

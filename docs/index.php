@@ -11,9 +11,9 @@
             <div class="spring">
                <div class="takeover">
                   <div class="takeover__center">
-                     <div class="takeover__brand">
-                        <?php include('partials/brand.php') ?>
-                     </div>
+                     <?php include('partials/brand.php') ?>
+
+                     <p class="takeover__subtitle">// WebGL made a little easier</p>
 
                      <?php include('partials/navigation.php') ?>
                   </div>
