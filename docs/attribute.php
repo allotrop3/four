@@ -70,8 +70,7 @@
                   class.
                </p>
 
-               <pre class="pre"><code class="code"><span class="code__comment">// javascript</span><br><span class="code__keyword">var</span> position = <span class="code__keyword">new</span> Four.<span class="code__class">Attribute</span>({<br>   attribute: 'position',<br>   length: <span class="code__number">3</span><br>});<br><br>position.enable(program);<br><br><span class="code__comment">// attribute declaration in the vertex shader linked to the program</span><br><span class="code__keyword">attribute</span> <span class="code__type">vec3</span> a_position;</code>
-                  </code></pre>
+               <pre class="pre"><code class="code"><span class="code__comment">// javascript</span><br><span class="code__keyword">var</span> position = <span class="code__keyword">new</span> Four.<span class="code__class">Attribute</span>({<br>   attribute: 'position',<br>   length: <span class="code__number">3</span><br>});<br><br>position.enable(program);<br><br><span class="code__comment">// attribute declaration in the vertex shader linked to the program</span><br><span class="code__keyword">attribute</span> <span class="code__type">vec3</span> a_position;</code></code></pre>
 
                <?php
                   $filename = "Attribute";

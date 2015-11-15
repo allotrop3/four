@@ -1,5 +1,5 @@
 <nav class="navigation">
-   <a href="#" title="Experiments" class="navigation__item navigation__item--first">
+   <a href="#" title="Experiments" class="navigation__item">
       <span class="visually-hidden">Experiments</span>
       <i class="icon icon--experiments"></i>
    </a>
