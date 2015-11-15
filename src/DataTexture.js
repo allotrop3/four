@@ -5,11 +5,10 @@ import Texture from './Texture';
 
 const _name = 'data.texture';
 const _image = null;
-const _length = 4;
 
 class DataTexture extends Texture
 {
-   constructor({ name = _name, image = _image, lod, width, height, length = _length, components, format, magnification, minification, S, T } = {})
+   constructor({ name = _name, image = _image, width, height, lod, components, format, magnification, minification, S, T } = {})
    {
       super({ name, lod, components, format, magnification, minification, S, T });
 
@@ -19,7 +18,7 @@ class DataTexture extends Texture
 
       this.height = height;
 
-      this.length = length;
+      this.length = components.length;
 
       this.inheritance = ['Entity', 'Texture', 'DataTexture'];
 

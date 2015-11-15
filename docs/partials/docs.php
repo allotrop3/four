@@ -8,6 +8,7 @@
    <nav class="docs__menu">
       <a class="docs__item docs__item--first" href="attribute">Attribute</a>
       <a class="docs__item" href="context">Context</a>
+      <a class="docs__item" href="data-texture">DataTexture</a>
       <a class="docs__item" href="entity">Entity</a>
       <a class="docs__item" href="fragment-shader">FragmentShader</a>
       <a class="docs__item" href="framebuffer">Framebuffer</a>
