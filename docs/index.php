@@ -13,10 +13,7 @@
             <div class="spring">
                <h1 class="visually-hidden">Four</h1>
 
-               <?php
-                  $doc = "Documentation";
-                  include("partials/docs.php")
-               ?>
+               <h2 class="visually-hidden">Features</h2>
             </div>
          </div>
 
