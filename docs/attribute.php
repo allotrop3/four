@@ -20,12 +20,12 @@
 
                <p>
                   An
-                  <code class="code code__reference">attribute</code>
+                  <code class="code code--reference">attribute</code>
                   is a GLSL variable declared with the
-                  <code class="code code__reference">attribute</code>
-                  storage qualifier. This provides a wrapper to simplify locating, enabling and disabling generic vertex attributes. Vertex attributes are used to communicate from "outside" to the vertex shader. Attributes are dynamically located when <code class="code code__reference">drawElements</code>
+                  <code class="code code--reference">attribute</code>
+                  storage qualifier. This provides a wrapper to simplify locating, enabling and disabling generic vertex attributes. Vertex attributes are used to communicate from "outside" to the vertex shader. Attributes are dynamically located when <code class="code code--reference">drawElements</code>
                   or
-                  <code class="code code__reference">drawArrays</code>
+                  <code class="code code--reference">drawArrays</code>
                   is called.
                </p>
 
@@ -42,13 +42,13 @@
                   <dd class="methods__description">Returns the vertex attribute location within the given programs vertex shader.</dd>
 
                   <dt class="methods__signature">
-                     <code class="code"><span class="code__return">undefined</span> enable(<span class="code__type">Four.Program</span> program, <span class="code__type">number</span> stride = 0)</code>
+                     <code class="code"><span class="code__return">undefined</span> enable(<span class="code__type">Four.Program</span> program, <span class="code__type">number</span> stride = <span class="code__number">0</span>)</code>
                   </dt>
                   <dd class="methods__description">
                      Enables the  vertex attribute. In addition to the
-                     <code class="code code__reference">program</code>
+                     <code class="code code--reference">program</code>
                      argument, it accepts a
-                     <code class="code code__reference">stride</code>
+                     <code class="code code--reference">stride</code>
                      that specifies the number of bytes between two values for the attribute in the vertex array buffer.
                   </dd>
 
@@ -62,11 +62,11 @@
 
                <p>
                   Here is an example of how an
-                  <code class="code code__reference">Attribute</code>
+                  <code class="code code--reference">Attribute</code>
                   can be used to link vertex attributes located in your vertex shader. Note how the
-                  <code class="code code__reference">a_</code>
+                  <code class="code code--reference">a_</code>
                   is implied by the
-                  <code class="code code__reference">Attribute</code>
+                  <code class="code code--reference">Attribute</code>
                   class.
                </p>
 

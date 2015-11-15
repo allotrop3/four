@@ -20,9 +20,9 @@
 
                <p>
                   Contexts instatiate the WebGL rendering context using the HTML
-                  <code class="code code__reference">canvas</code>
+                  <code class="code code--reference">canvas</code>
                   element. It searches the DOM for the
-                  <code class="code code__reference">canvas</code>
+                  <code class="code code--reference">canvas</code>
                   using the given query selector.
                </p>
 
@@ -37,10 +37,10 @@
                      <code class="code"><span class="code__return">undefined</span> prime(<span class="code__type">string</span> selector)</code>
                   </dt>
                   <dd class="methods__description">Searches the DOM tree for the canvas using the given query selector and configures its dimensions using the
-                  <code class="code code__reference">width</code>,
-                  <code class="code code__reference">height</code>,
+                  <code class="code code--reference">width</code>,
+                  <code class="code code--reference">height</code>,
                   and
-                  <code class="code code__reference">dpi</code>
+                  <code class="code code--reference">dpi</code>
                   properties.</dd>
 
                   <dt class="methods__signature">
@@ -58,13 +58,13 @@
 
                <p>
                   Here is an example of how a
-                  <code class="code code__reference">Context</code>
+                  <code class="code code--reference">Context</code>
                   can be used to link a WebGL rendering context to your
-                  <code class="code code__reference">canvas</code>
+                  <code class="code code--reference">canvas</code>
                   in the HTML. Note you don't need to call
-                  <code class="code code__reference">use()</code>
+                  <code class="code code--reference">use()</code>
                   because the WebGL rendering context is automatically enabled when the
-                  <code class="code code__reference">Context</code>
+                  <code class="code code--reference">Context</code>
                   is instantiated.
                </p>
 
