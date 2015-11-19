@@ -22,7 +22,7 @@ gulp.task('js', function()
  *
  * Minify ES5 script
  */
-gulp.task('build', function()
+gulp.task('build', ['js'], function()
 {
    return gulp.src('src/four.js')
       .pipe(webpackStream(config.build, webpack))
