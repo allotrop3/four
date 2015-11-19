@@ -25,8 +25,8 @@ QUnit.module('Light', function()
       light.diffuse = 0x00FF00;
       light.specular = 0x0000FF;
 
-      assert.deepEqual(light.ambient, [0, 1, 1], 'Passed: Ambient color set to [' + light.ambient + '] using 0x00FFFF');
-      assert.deepEqual(light.diffuse, [0, 1, 0], 'Passed: Diffuse color set to [' + light.diffuse + '] using 0x00FF00');
-      assert.deepEqual(light.specular, [0, 0, 1], 'Passed: Specular color set to [' + light.specular + '] using 0x0000FF');
+      assert.deepEqual(light.ambient, [0, 1, 1], 'Passed: Ambient color successfully set to [' + light.ambient + '] using 0x00FFFF');
+      assert.deepEqual(light.diffuse, [0, 1, 0], 'Passed: Diffuse color successfully set to [' + light.diffuse + '] using 0x00FF00');
+      assert.deepEqual(light.specular, [0, 0, 1], 'Passed: Specular color successfully set to [' + light.specular + '] using 0x0000FF');
    });
 });

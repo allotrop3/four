@@ -24,7 +24,7 @@ QUnit.module('Material', function()
       material.ambient = 0x00FFFF;
       material.diffuse = 0x00FF00;
 
-      assert.deepEqual(material.ambient, [0, 1, 1], 'Passed: Ambient color set to [' + material.ambient + '] using 0x00FFFF');
-      assert.deepEqual(material.diffuse, [0, 1, 0], 'Passed: Diffuse color set to [' + material.diffuse + '] using 0x00FF00');
+      assert.deepEqual(material.ambient, [0, 1, 1], 'Passed: Ambient color successfully set to [' + material.ambient + '] using 0x00FFFF');
+      assert.deepEqual(material.diffuse, [0, 1, 0], 'Passed: Diffuse color successfully set to [' + material.diffuse + '] using 0x00FF00');
    });
 });
