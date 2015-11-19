@@ -15,7 +15,7 @@ QUnit.module('Entity', function()
       var index2 = parseInt(name2.split('.').pop());
       var difference = index2 - index1;
 
-      assert.ok(constructor === 'Entity', 'Passed: Entity class is available.');
+      assert.strictEqual(constructor, 'Entity', 'Passed: Entity class is available.');
       assert.ok(entity1 instanceof Four.Entity, 'Passed: Entity 1 is an instance of Entity.');
       assert.ok(entity2 instanceof Four.Entity, 'Passed: Entity 2 is an instance of Entity.');
       assert.ok(entity1.isType('Entity'), 'Passed: Entity 1 is of type Entity.');
@@ -24,9 +24,9 @@ QUnit.module('Entity', function()
       assert.ok(basename2.length, 'Passed: Entity 2 has a default basename: ' + basename2);
       assert.ok(name1.length, 'Passed: Entity 1 has a default name: ' + name1);
       assert.ok(name2.length, 'Passed: Entity 2 has a default name: ' + name2);
-      assert.ok(typeof index1 === 'number', 'Passed: Entity 1 has an index: ' + index1);
-      assert.ok(typeof index2 === 'number', 'Passed: Entity 2 has an index: ' + index2);
-      assert.ok(difference === 1, 'Passed: Entity\'s with the same basename automatically incremented the indices.');
+      assert.strictEqual(typeof index1, 'number', 'Passed: Entity 1 has an index: ' + index1);
+      assert.strictEqual(typeof index2, 'number', 'Passed: Entity 2 has an index: ' + index2);
+      assert.strictEqual(difference, 1, 'Passed: Entity\'s with the same basename automatically incremented the indices.');
    });
 
    QUnit.test('should override the default name with a given name', function(assert)
@@ -35,7 +35,7 @@ QUnit.module('Entity', function()
       var basename = entity.basename;
       var name = entity.name;
 
-      assert.ok(basename === 'test', 'Entitys\' basename correctly assigned using the given name: ' + basename + '.');
-      assert.ok(name.match('test') !== null, 'Passed: Entitys\' name correctly assigned using the given name: ' + name + '.');
+      assert.strictEqual(basename, 'test', 'Entitys\' basename correctly assigned using the given name: ' + basename + '.');
+      assert.notStrictEqual(name.match('test'), null, 'Passed: Entitys\' name correctly assigned using the given name: ' + name + '.');
    });
 });

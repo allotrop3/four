@@ -19,10 +19,11 @@ const formats = {
 };
 
 const _name = 'uniform';
+const _path = undefined;
 
 class Uniform extends Entity
 {
-   constructor({ name = _name, path, uniform, format } = {})
+   constructor({ name = _name, path = _path, uniform, format } = {})
    {
       super({ name });
 

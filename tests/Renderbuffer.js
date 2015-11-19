@@ -18,14 +18,14 @@ QUnit.module('Renderbuffer', function()
       var width = renderbuffer.width;
       var height = renderbuffer.height;
 
-      assert.ok(constructor === 'Renderbuffer', 'Passed: Renderbuffer class is available.');
+      assert.strictEqual(constructor, 'Renderbuffer', 'Passed: Renderbuffer class is available.');
       assert.ok(renderbuffer instanceof Four.Entity, 'Passed: Renderbuffer inherits from Entity.');
       assert.ok(renderbuffer instanceof Four.Renderbuffer, 'Passed: Renderbuffer is an instance of Renderbuffer.');
       assert.ok(renderbuffer.isType('Entity'), 'Passed: Renderbuffer is of type Entity.');
       assert.ok(renderbuffer.isType('Renderbuffer'), 'Passed: Renderbuffer is of type Renderbuffer.');
-      assert.ok(buffer === 'WebGLRenderbuffer', 'Passed: WebGLRenderbuffer successfully created.');
-      assert.ok(width === 1, 'Passed: Renderbuffer width successfully set ' + width + '.');
-      assert.ok(height === 1, 'Passed: Renderbuffer height successfully set ' + height + '.');
+      assert.strictEqual(buffer, 'WebGLRenderbuffer', 'Passed: WebGLRenderbuffer successfully created.');
+      assert.strictEqual(width, 1, 'Passed: Renderbuffer width successfully set ' + width + '.');
+      assert.strictEqual(height, 1, 'Passed: Renderbuffer height successfully set ' + height + '.');
 
       document.body.removeChild(canvas);
    });

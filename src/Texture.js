@@ -26,6 +26,8 @@ class Texture extends Entity
 
       this.components = components;
 
+      this.length = components.length;
+
       this.format = format;
 
       this.magnification = magnification;

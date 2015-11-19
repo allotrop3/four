@@ -18,8 +18,6 @@ class DataTexture extends Texture
 
       this.height = height;
 
-      this.length = components.length;
-
       this.inheritance = ['Entity', 'Texture', 'DataTexture'];
 
       this.autofill();

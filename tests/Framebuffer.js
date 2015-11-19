@@ -16,12 +16,12 @@ QUnit.module('Framebuffer', function()
       var framebuffer = new Four.Framebuffer();
       var buffer = framebuffer.buffer;
 
-      assert.ok(constructor === 'Framebuffer', 'Passed: Framebuffer class is available.');
+      assert.strictEqual(constructor, 'Framebuffer', 'Passed: Framebuffer class is available.');
       assert.ok(framebuffer instanceof Four.Entity, 'Passed: Framebuffer inherits from Entity.');
       assert.ok(framebuffer instanceof Four.Framebuffer, 'Passed: Framebuffer is an instance of Framebuffer.');
       assert.ok(framebuffer.isType('Entity'), 'Passed: Framebuffer is of type Entity.');
       assert.ok(framebuffer.isType('Framebuffer'), 'Passed: Framebuffer is of type Framebuffer.');
-      assert.ok(buffer === null, 'Passed: Framebuffer buffer references the default framebuffer: ' + buffer + '.');
+      assert.strictEqual(buffer, null, 'Passed: Framebuffer buffer references the default framebuffer: ' + buffer + '.');
 
       document.body.removeChild(canvas);
    });

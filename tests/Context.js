@@ -18,15 +18,15 @@ QUnit.module('Context', function()
       var dpiContextWidth = context.width / parseInt(context.canvas.style.width);
       var dpiContextHeight = context.height / parseInt(context.canvas.style.height);
 
-      assert.ok(constructor === 'Context', 'Passed: Context class is available.');
+      assert.strictEqual(constructor, 'Context', 'Passed: Context class is available.');
       assert.ok(context instanceof Four.Entity, 'Passed: Context inherits from Entity.');
       assert.ok(context instanceof Four.Context, 'Passed: Context is an instance of Context.');
       assert.ok(context.isType('Entity'), 'Passed: Context is of type Entity.');
       assert.ok(context.isType('Context'), 'Passed: Context is of type Context.');
       assert.ok(canvas instanceof HTMLElement, 'Passed: Found the canvas in the DOM tree using the given selector.');
-      assert.ok(renderer === 'WebGLRenderingContext', 'Passed: WebGLRenderingContext successfully created.');
-      assert.ok(dpiContextWidth === context.dpi, 'Passed: Canvas width is directly proportional to the given device pixel ratio.');
-      assert.ok(dpiContextHeight === context.dpi, 'Passed: Canvas height is directly proportional to the given device pixel ratio.');
+      assert.strictEqual(renderer, 'WebGLRenderingContext', 'Passed: WebGLRenderingContext successfully created.');
+      assert.strictEqual(dpiContextWidth, context.dpi, 'Passed: Canvas width is directly proportional to the given device pixel ratio.');
+      assert.strictEqual(dpiContextHeight, context.dpi, 'Passed: Canvas height is directly proportional to the given device pixel ratio.');
 
       document.body.removeChild(canvas);
    });
