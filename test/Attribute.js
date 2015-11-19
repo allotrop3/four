@@ -16,7 +16,6 @@ QUnit.module('Attribute', function()
 
    QUnit.test('should locate the attribute within the given program', function(assert)
    {
-      var constructor = Four.Attribute.prototype.constructor.name;
       var context = new Four.Context({ selector: '#test' });
       var program = new Four.Program({ selector: '.test__renderer' });
       var attribute1 = new Four.Attribute({ attribute: 'position', length: 3 });
@@ -31,7 +30,6 @@ QUnit.module('Attribute', function()
 
    QUnit.test('should enable and disable the attribute location for the given program', function(assert)
    {
-      var constructor = Four.Attribute.prototype.constructor.name;
       var context = new Four.Context({ selector: '#test' });
       var gl = context.gl;
       var program = new Four.Program({ selector: '.test__renderer' });
