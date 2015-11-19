@@ -18,6 +18,8 @@ QUnit.module('Context', function()
       var dpiContextWidth = context.width / parseInt(context.canvas.style.width);
       var dpiContextHeight = context.height / parseInt(context.canvas.style.height);
 
+      console.log(context.canvas.style);
+
       assert.strictEqual(constructor, 'Context', 'Passed: Context class is available.');
       assert.ok(context instanceof Four.Entity, 'Passed: Context inherits from Entity.');
       assert.ok(context instanceof Four.Context, 'Passed: Context is an instance of Context.');

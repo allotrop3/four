@@ -22,6 +22,7 @@ QUnit.module('Framebuffer', function()
       assert.ok(framebuffer.isType('Entity'), 'Passed: Framebuffer is of type Entity.');
       assert.ok(framebuffer.isType('Framebuffer'), 'Passed: Framebuffer is of type Framebuffer.');
       assert.strictEqual(buffer, null, 'Passed: Framebuffer buffer references the default framebuffer: ' + buffer + '.');
+      assert.ok(framebuffer.check(), 'Passed: Framebuffer is complete.');
 
       document.body.removeChild(canvas);
    });

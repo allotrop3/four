@@ -89,6 +89,8 @@ class Framebuffer extends Entity
 
          throw new Error(error);
       }
+
+      return true;
    }
 }
 
