@@ -13,10 +13,7 @@ QUnit.module('Attribute', function()
       assert.ok(attribute.isType('Entity'), 'Passed: Attribute is of type Entity.');
       assert.ok(attribute.isType('Attribute'), 'Passed: Attribute is of type Attribute.');
    });
-});
 
-QUnit.module('Attribute', function()
-{
    QUnit.test('should locate the attribute within the given program', function(assert)
    {
       var canvas = document.createElement('canvas');
@@ -65,5 +62,13 @@ QUnit.module('Attribute', function()
       assert.notOk(gl.getVertexAttrib(attribute.location, gl.VERTEX_ATTRIB_ARRAY_ENABLED), 'Passed: Position attribute successfully disabled.');
 
       document.body.removeChild(canvas);
+   });
+
+   QUnit.test('should return the number of bytes for the attribute using the given byte length', function(assert)
+   {
+      var attribute = new Four.Attribute({ length: 3 });
+      var byteCount = attribute.getByteCount(4);
+
+      assert.strictEqual(byteCount, 12, 'Passed: Attribute byte count calculated using given byte length.');
    });
 });
