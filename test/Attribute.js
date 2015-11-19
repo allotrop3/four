@@ -16,13 +16,6 @@ QUnit.module('Attribute', function()
 
    QUnit.test('should locate the attribute within the given program', function(assert)
    {
-      var canvas = document.createElement('canvas');
-
-      canvas.setAttribute('id', 'test');
-      canvas.setAttribute('style', 'display: none');
-
-      document.body.appendChild(canvas);
-
       var constructor = Four.Attribute.prototype.constructor.name;
       var context = new Four.Context({ selector: '#test' });
       var program = new Four.Program({ selector: '.test__renderer' });
@@ -34,19 +27,10 @@ QUnit.module('Attribute', function()
 
       assert.notStrictEqual(attribute1.location, -1, 'Passed: Position attribute successfully located within the given program.');
       assert.strictEqual(attribute2.location, -1, 'Passed: Color attribute not found within the given program.');
-
-      document.body.removeChild(canvas);
    });
 
    QUnit.test('should enable and disable the attribute location for the given program', function(assert)
    {
-      var canvas = document.createElement('canvas');
-
-      canvas.setAttribute('id', 'test');
-      canvas.setAttribute('style', 'display: none');
-
-      document.body.appendChild(canvas);
-
       var constructor = Four.Attribute.prototype.constructor.name;
       var context = new Four.Context({ selector: '#test' });
       var gl = context.gl;
@@ -60,8 +44,6 @@ QUnit.module('Attribute', function()
       attribute.disable();
 
       assert.notOk(gl.getVertexAttrib(attribute.location, gl.VERTEX_ATTRIB_ARRAY_ENABLED), 'Passed: Position attribute successfully disabled.');
-
-      document.body.removeChild(canvas);
    });
 
    QUnit.test('should return the number of bytes for the attribute using the given byte length', function(assert)

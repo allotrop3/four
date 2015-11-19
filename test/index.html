@@ -11,42 +11,11 @@
       <div id="qunit"></div>
       <div id="qunit-fixture"></div>
 
-      <script class="test__renderer" type="x-shader/x-vertex">
-         #version 100
-
-         precision mediump int;
-         precision mediump float;
-
-         @use Camera;
-
-         attribute vec3 a_position;
-
-         uniform Camera u_camera;
-
-         void main()
-         {
-            gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * vec4(a_position, 1);
-
-            gl_PointSize = 4.0;
-         }
-      </script>
-
-      <script class="test__renderer" type="x-shader/x-fragment">
-         #version 100
-
-         precision mediump int;
-         precision mediump float;
-
-         void main()
-         {
-            gl_FragColor = vec4(1);
-         }
-      </script>
-
       <script src="lib/qunit/qunit-1.20.0.js"></script>
       <script src="lib/blanket/blanket.min.js"></script>
       <script src="../dist/four.js" data-cover></script>
 
+      <script src="setup.js"></script>
       <script src="Entity.js"></script>
       <script src="Context.js"></script>
       <script src="VertexShader.js"></script>

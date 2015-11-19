@@ -16,6 +16,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'dist/four.js',
+      'test/setup.js',
       'test/Entity.js',
       'test/Context.js',
       'test/VertexShader.js',

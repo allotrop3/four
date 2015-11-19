@@ -4,13 +4,6 @@ QUnit.module('VertexShader', function()
 {
    QUnit.test('should return a valid instance of VertexShader', function(assert)
    {
-      var canvas = document.createElement('canvas');
-
-      canvas.setAttribute('id', 'test');
-      canvas.setAttribute('style', 'display: none');
-
-      document.body.appendChild(canvas);
-
       var constructor = Four.VertexShader.prototype.constructor.name;
       var context = new Four.Context({ selector: '#test' });
       var vertexShader = new Four.VertexShader({ selector: '.test__renderer' });
@@ -25,7 +18,5 @@ QUnit.module('VertexShader', function()
       assert.ok(vertexShader.isType('VertexShader'), 'Passed: VertexShader is of type VertexShader.');
       assert.strictEqual(buffer, 'WebGLShader', 'Passed: WebGLShader successfully created.');
       assert.ok(vertexShader.check(), 'Passed: VertexShader successfully compiled.');
-
-      document.body.removeChild(canvas);
    });
 });

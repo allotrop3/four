@@ -4,13 +4,6 @@ QUnit.module('Renderbuffer', function()
 {
    QUnit.test('should return a valid instance of Renderbuffer', function(assert)
    {
-      var canvas = document.createElement('canvas');
-
-      canvas.setAttribute('id', 'test');
-      canvas.setAttribute('style', 'display: none');
-
-      document.body.appendChild(canvas);
-
       var constructor = Four.Renderbuffer.prototype.constructor.name;
       var context = new Four.Context({ selector: '#test' });
       var renderbuffer = new Four.Renderbuffer({ width: 1, height: 1 });
@@ -26,7 +19,5 @@ QUnit.module('Renderbuffer', function()
       assert.strictEqual(buffer, 'WebGLRenderbuffer', 'Passed: WebGLRenderbuffer successfully created.');
       assert.strictEqual(width, 1, 'Passed: Renderbuffer width successfully set ' + width + '.');
       assert.strictEqual(height, 1, 'Passed: Renderbuffer height successfully set ' + height + '.');
-
-      document.body.removeChild(canvas);
    });
 });

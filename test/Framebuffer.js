@@ -4,13 +4,6 @@ QUnit.module('Framebuffer', function()
 {
    QUnit.test('should return a valid instance of Framebuffer', function(assert)
    {
-      var canvas = document.createElement('canvas');
-
-      canvas.setAttribute('id', 'test');
-      canvas.setAttribute('style', 'display: none');
-
-      document.body.appendChild(canvas);
-
       var constructor = Four.Framebuffer.prototype.constructor.name;
       var context = new Four.Context({ selector: '#test' });
       var framebuffer = new Four.Framebuffer();
@@ -23,7 +16,5 @@ QUnit.module('Framebuffer', function()
       assert.ok(framebuffer.isType('Framebuffer'), 'Passed: Framebuffer is of type Framebuffer.');
       assert.strictEqual(buffer, null, 'Passed: Framebuffer buffer references the default framebuffer: ' + buffer + '.');
       assert.ok(framebuffer.check(), 'Passed: Framebuffer is complete.');
-
-      document.body.removeChild(canvas);
    });
 });
