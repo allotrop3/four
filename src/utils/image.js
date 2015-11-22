@@ -10,10 +10,15 @@ function image(src)
 
       image.src = src;
 
-      image.onload = function()
+      image.onload = function(response)
       {
-         resolve(image);
+         resolve(image, response);
       };
+
+      image.onerror = function(response)
+      {
+         reject(response);
+      }
    });
 }
 

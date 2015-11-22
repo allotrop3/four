@@ -15,6 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      { pattern: 'test/resources/**/*.*', watch: false, included: false, served: true },
       'dist/four.js',
       'test/setup.js',
       'test/Entity.js',
@@ -25,17 +26,28 @@ module.exports = function(config) {
       'test/Renderbuffer.js',
       'test/Framebuffer.js',
       'test/Material.js',
+      'test/PhongMaterial.js',
       'test/Light.js',
       'test/PointLight.js',
       'test/SpotLight.js',
       'test/Attribute.js',
-      'test/PerspectiveCamera.js'
+      'test/PerspectiveCamera.js',
+      'test/OrthographicCamera.js',
+      'test/VertexArrayObject.js',
+      'test/Mesh.js',
+      'test/ImageTexture.js'
     ],
 
 
     // list of files to exclude
     exclude: [
     ],
+
+
+    // file path proxies
+    proxies: {
+      '/resources': '/base/test/resources'
+    },
 
 
     // preprocess matching files before serving them to the browser
@@ -48,7 +60,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage'],
+    reporters: ['progress', 'verbose', 'coverage'],
 
 
     // web server port
@@ -77,9 +89,11 @@ module.exports = function(config) {
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: true,
 
+
     // Concurrency level
     // how many browser should be started simultanous
     concurrency: Infinity,
+
 
     // Configure the reporter
     coverageReporter: {
