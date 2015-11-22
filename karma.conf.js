@@ -95,7 +95,7 @@ module.exports = function(config) {
     concurrency: Infinity,
 
 
-    // Configure the reporter
+    // Configure the code coverage reporter
     coverageReporter: {
       type : 'html',
       dir : 'test/coverage/'

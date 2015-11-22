@@ -27,7 +27,7 @@ module('OrthographicCamera', function()
       });
    });
 
-   test('should bind the perspective projection', function(assert)
+   test('should bind the orthographic projection', function(assert)
    {
       var context = new Four.Context({ selector: '#test' });
       var gl = context.gl;

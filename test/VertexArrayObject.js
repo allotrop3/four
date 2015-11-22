@@ -13,7 +13,6 @@ module('VertexArrayObject', function()
       assert.ok(vao instanceof Four.VertexArrayObject, 'Passed: VertexArrayObject is an instance of VertexArrayObject.');
       assert.ok(vao.isType('Entity'), 'Passed: VertexArrayObject is of type Entity.');
       assert.ok(vao.isType('VertexArrayObject'), 'Passed: VertexArrayObject is of type VertexArrayObject.');
-      // assert.ok(gl.isBuffer(vao.primary), 'Passed: WebGLBuffer created successfully.');
    });
 
    test('should instantiate Attributes from the given attributes using the built-in setter method', function(assert)
