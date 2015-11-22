@@ -1,16 +1,16 @@
 // Karma configuration
 // Generated on Thu Nov 19 2015 21:56:11 GMT+0000 (GMT)
 
-module.exports = function(config) {
+module.exports = function(config)
+{
   config.set({
-
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['qunit'],
+    frameworks: [ 'qunit' ],
 
 
     // list of files / patterns to load in the browser
@@ -40,27 +40,24 @@ module.exports = function(config) {
 
 
     // list of files to exclude
-    exclude: [
-    ],
+    exclude: [],
 
 
     // file path proxies
-    proxies: {
-      '/resources': '/base/test/resources'
-    },
+    proxies: { '/resources': '/base/test/resources' },
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'dist/four.js': ['coverage']
+      'dist/four.js': [ 'coverage' ]
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'verbose', 'coverage'],
+    reporters: [ 'progress', 'verbose', 'coverage' ],
 
 
     // web server port
@@ -82,7 +79,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Firefox'],
+    browsers: [ 'Firefox' ],
 
 
     // Continuous Integration mode
@@ -101,4 +98,4 @@ module.exports = function(config) {
       dir : 'test/coverage/'
     }
   })
-}
+};

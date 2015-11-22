@@ -67,19 +67,19 @@ class Framebuffer extends Entity
       switch (status)
       {
          case gl.FRAMEBUFFER_UNSUPPORTED:
-            error = 'unsupported';
+            error = 'FRAMEBUFFER_UNSUPPORTED';
             break;
 
          case gl.FRAMEBUFFER_INCOMPLETE_ATTACHMENT:
-            error = 'attachments incomplete';
+            error = 'FRAMEBUFFER_INCOMPLETE_ATTACHMENT';
             break;
 
          case gl.FRAMEBUFFER_INCOMPLETE_DIMENSIONS:
-            error = 'dimensions incomplete';
+            error = 'FRAMEBUFFER_INCOMPLETE_DIMENSIONS';
             break;
 
          case gl.FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:
-            error = 'attachment missing';
+            error = 'FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT';
             break;
       }
 
