@@ -1,8 +1,8 @@
 'use strict';
 
-QUnit.module('Renderbuffer', function()
+module('Renderbuffer', function()
 {
-   QUnit.test('should return a valid instance of Renderbuffer', function(assert)
+   test('should return a valid instance of Renderbuffer', function(assert)
    {
       var constructor = Four.Renderbuffer.prototype.constructor.name;
       var context = new Four.Context({ selector: '#test' });

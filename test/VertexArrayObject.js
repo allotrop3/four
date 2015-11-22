@@ -1,21 +1,22 @@
 'use strict';
 
-QUnit.module('VertexArrayObject', function()
+module('VertexArrayObject', function()
 {
-   QUnit.test('should return a valid instance of VertexArrayObject', function(assert)
+   test('should return a valid instance of VertexArrayObject', function(assert)
    {
-      var constructor = Four.VertexArrayObject.prototype.constructor.name;
       var context = new Four.Context({ selector: '#test' });
+      var gl = context.gl;
       var vao = new Four.VertexArrayObject();
 
-      assert.strictEqual(constructor, 'VertexArrayObject', 'Passed: VertexArrayObject class is available.');
+      assert.strictEqual(Four.VertexArrayObject.prototype.constructor.name, 'VertexArrayObject', 'Passed: VertexArrayObject class is available.');
       assert.ok(vao instanceof Four.Entity, 'Passed: VertexArrayObject inherits from Entity.');
       assert.ok(vao instanceof Four.VertexArrayObject, 'Passed: VertexArrayObject is an instance of VertexArrayObject.');
       assert.ok(vao.isType('Entity'), 'Passed: VertexArrayObject is of type Entity.');
       assert.ok(vao.isType('VertexArrayObject'), 'Passed: VertexArrayObject is of type VertexArrayObject.');
+      assert.ok(gl.isBuffer(vao.primary), 'Passed: WebGLBuffer created successfully.');
    });
 
-   QUnit.test('should instantiate Attributes from the given attributes using the built-in setter method', function(assert)
+   test('should instantiate Attributes from the given attributes using the built-in setter method', function(assert)
    {
       var context = new Four.Context({ selector: '#test' });
       var vao = new Four.VertexArrayObject({ attributes: ['vec3 position', 'vec3 normal'] });
@@ -26,7 +27,7 @@ QUnit.module('VertexArrayObject', function()
       });
    });
 
-   QUnit.test('should enable all attributes', function(assert)
+   test('should enable all attributes', function(assert)
    {
       var context = new Four.Context({ selector: '#test' });
       var gl = context.gl;
@@ -41,7 +42,7 @@ QUnit.module('VertexArrayObject', function()
       });
    });
 
-   QUnit.test('should disable all attributes', function(assert)
+   test('should disable all attributes', function(assert)
    {
       var context = new Four.Context({ selector: '#test' });
       var gl = context.gl;

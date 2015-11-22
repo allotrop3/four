@@ -1,10 +1,9 @@
 'use strict';
 
-QUnit.module('Entity', function()
+module('Entity', function()
 {
-   QUnit.test('should return a valid instance of Entity', function(assert)
+   test('should return a valid instance of Entity', function(assert)
    {
-      var constructor = Four.Entity.prototype.constructor.name;
       var entity1 = new Four.Entity();
       var entity2 = new Four.Entity();
       var basename1 = entity1.basename;
@@ -15,7 +14,7 @@ QUnit.module('Entity', function()
       var index2 = parseInt(name2.split('.').pop());
       var difference = index2 - index1;
 
-      assert.strictEqual(constructor, 'Entity', 'Passed: Entity class is available.');
+      assert.strictEqual(Four.Entity.prototype.constructor.name, 'Entity', 'Passed: Entity class is available.');
       assert.ok(entity1 instanceof Four.Entity, 'Passed: Entity 1 is an instance of Entity.');
       assert.ok(entity2 instanceof Four.Entity, 'Passed: Entity 2 is an instance of Entity.');
       assert.ok(entity1.isType('Entity'), 'Passed: Entity 1 is of type Entity.');
@@ -29,7 +28,7 @@ QUnit.module('Entity', function()
       assert.strictEqual(difference, 1, 'Passed: Entity\'s with the same basename automatically incremented the indices.');
    });
 
-   QUnit.test('should override the default name with a given name', function(assert)
+   test('should override the default name with a given name', function(assert)
    {
       var entity = new Four.Entity({ name: 'test' });
       var basename = entity.basename;

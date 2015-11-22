@@ -1,13 +1,12 @@
 'use strict';
 
-QUnit.module('Material', function()
+module('Material', function()
 {
-   QUnit.test('should return a valid instance of a Material', function(assert)
+   test('should return a valid instance of a Material', function(assert)
    {
-      var constructor = Four.Material.prototype.constructor.name;
       var material = new Four.Material();
 
-      assert.strictEqual(constructor, 'Material', 'Passed: Material class is available.');
+      assert.strictEqual(Four.Material.prototype.constructor.name, 'Material', 'Passed: Material class is available.');
       assert.ok(material instanceof Four.Entity, 'Passed: Material inherits from Entity.');
       assert.ok(material instanceof Four.Structure, 'Passed: Material inherits from Structure.');
       assert.ok(material instanceof Four.Material, 'Passed: Material is an instance of Material.');
@@ -17,7 +16,19 @@ QUnit.module('Material', function()
       assert.strictEqual(material.type, 0, 'Passed: Material is a lambertian material with type set to 0.');
    });
 
-   QUnit.test('should convert hexadecimal color values into valid LSL values using setter methods', function(assert)
+   test('should ensure the given uniforms have corresponding properties', function(assert)
+   {
+      var material = new Four.Material();
+
+      material.uniforms.forEach(function(uniform)
+      {
+         var name = uniform.uniform;
+
+         assert.ok(name in material, 'Passed: Material has uniform property ' + name);
+      });
+   });
+
+   test('should convert hexadecimal color values into valid LSL values using setter methods', function(assert)
    {
       var material = new Four.Material();
 

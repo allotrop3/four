@@ -1,13 +1,12 @@
 'use strict';
 
-QUnit.module('Light', function()
+module('Light', function()
 {
-   QUnit.test('should return a valid instance of a Light', function(assert)
+   test('should return a valid instance of a Light', function(assert)
    {
-      var constructor = Four.Light.prototype.constructor.name;
       var light = new Four.Light();
 
-      assert.strictEqual(constructor, 'Light', 'Passed: Light class is available.');
+      assert.strictEqual(Four.Light.prototype.constructor.name, 'Light', 'Passed: Light class is available.');
       assert.ok(light instanceof Four.Entity, 'Passed: Light inherits from Entity.');
       assert.ok(light instanceof Four.Structure, 'Passed: Light inherits from Structure.');
       assert.ok(light instanceof Four.Light, 'Passed: Light is an instance of Light.');
@@ -17,7 +16,19 @@ QUnit.module('Light', function()
       assert.strictEqual(light.type, 0, 'Passed: Light is an ambient light with type set to 0.');
    });
 
-   QUnit.test('should convert hexadecimal color values into valid LSL values using setter methods', function(assert)
+   test('should ensure the given uniforms have corresponding properties', function(assert)
+   {
+      var light = new Four.Light();
+
+      light.uniforms.forEach(function(uniform)
+      {
+         var name = uniform.uniform;
+
+         assert.ok(name in light, 'Passed: Light has uniform property ' + name);
+      });
+   });
+
+   test('should convert hexadecimal color values into valid LSL values using setter methods', function(assert)
    {
       var light = new Four.Light();
 

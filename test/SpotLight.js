@@ -1,11 +1,10 @@
-QUnit.module('SpotLight', function()
+module('SpotLight', function()
 {
-   QUnit.test('should return a valid instance of a SpotLight', function(assert)
+   test('should return a valid instance of a SpotLight', function(assert)
    {
-      var constructor = Four.SpotLight.prototype.constructor.name;
       var spotLight = new Four.SpotLight();
 
-      assert.strictEqual(constructor, 'SpotLight', 'Passed: SpotLight class is available.');
+      assert.strictEqual(Four.SpotLight.prototype.constructor.name, 'SpotLight', 'Passed: SpotLight class is available.');
       assert.ok(spotLight instanceof Four.Entity, 'Passed: SpotLight inherits from Entity.');
       assert.ok(spotLight instanceof Four.Structure, 'Passed: SpotLight inherits from Structure.');
       assert.ok(spotLight instanceof Four.Light, 'Passed: SpotLight inherits from Light.');
@@ -15,5 +14,17 @@ QUnit.module('SpotLight', function()
       assert.ok(spotLight.isType('Light'), 'Passed: SpotLight is of type Light.');
       assert.ok(spotLight.isType('SpotLight'), 'Passed: SpotLight is of type spotLight.');
       assert.strictEqual(spotLight.type, 3, 'Passed: SpotLight is a spot light with type set to 3.');
+   });
+
+   test('should ensure the given uniforms have corresponding properties', function(assert)
+   {
+      var spotLight = new Four.SpotLight();
+
+      spotLight.uniforms.forEach(function(uniform)
+      {
+         var name = uniform.uniform;
+
+         assert.ok(name in spotLight, 'Passed: SpotLight has uniform property ' + name);
+      });
    });
 });
