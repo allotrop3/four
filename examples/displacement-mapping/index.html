@@ -58,10 +58,15 @@
          var camera = new Four.PerspectiveCamera({ location: [10, 5, 5] });
          var scene = new Four.Scene();
          var displacementMap = new Four.ImageTexture({ path: 'textures/displacement.jpg' });
+         var bundle = new Four.Bundle({ items: [displacementMap] });
 
-         scene.use(program);
+         bundle.ready(function()
+         {
+            scene.use(program);
 
-         scene.animate(view, camera);
+            scene.animate(view, camera);
+         });
+
       </script>
    </body>
 </html>

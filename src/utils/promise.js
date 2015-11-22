@@ -1,8 +1,15 @@
 'use strict';
 
-function promise(handler)
+function promise(handler = false)
 {
-   return new Promise(handler);
+   if (handler === false)
+   {
+      return Promise;
+   }
+   else
+   {
+      return new Promise(handler);
+   }
 }
 
 export default promise;

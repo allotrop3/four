@@ -109,7 +109,6 @@
          'use strict';
 
          var context = new Four.Context({ selector: '#shadow-mapper' });
-
          var planePattern = new Four.ImageTexture({ path: 'textures/terrain.jpg', anisotropy: 16, minification: 'LINEAR_MIPMAP_LINEAR', magnification: 'LINEAR_MIPMAP_LINEAR', mipmap: true });
          var bodyPattern = new Four.ImageTexture({ path: 'textures/body.jpg', anisotropy: 16, minification: 'LINEAR_MIPMAP_LINEAR', magnification: 'LINEAR_MIPMAP_LINEAR', mipmap: true });
          var wallsPattern = new Four.ImageTexture({ path: 'textures/walls.jpg', anisotropy: 16, minification: 'LINEAR_MIPMAP_LINEAR', magnification: 'LINEAR_MIPMAP_LINEAR', mipmap: true });
@@ -120,8 +119,15 @@
          var roofLoader = new Four.OBJMeshLoader({ path: 'meshes/roof.obj' });
          var floorLoader = new Four.OBJMeshLoader({ path: 'meshes/floor.obj' });
          var planeLoader = new Four.OBJMeshLoader({ path: 'meshes/plane.obj' });
+         var bundle = new Four.Bundle({
+            items: [planePattern, bodyPattern, wallsPattern, roofPattern, bodyLoader, wallsLoader, roofLoader, planeLoader],
+            step: function(progress)
+            {
+               console.log(progress);
+            }
+         });
 
-         function main()
+         bundle.ready(function()
          {
             var width = context.width;
             var height = context.height;
@@ -223,9 +229,7 @@
                   shadowMapper.unbind();
                }
             );
-         }
-
-         setTimeout(main, 3000);
+         });
       </script>
    </body>
 </html>

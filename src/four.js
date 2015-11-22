@@ -37,7 +37,7 @@ import Particle from './Particle';
 import ParticleSystem from './ParticleSystem';
 import Spring from './Spring';
 import Cloth from './Cloth';
-import AssetLoader from './AssetLoader';
+import Bundle from './Bundle';
 
 let Four = window.Four = {
    glm: glm,
@@ -77,7 +77,7 @@ let Four = window.Four = {
    ParticleSystem: ParticleSystem,
    Spring: Spring,
    Cloth: Cloth,
-   AssetLoader: AssetLoader
+   Bundle: Bundle
 };
 
 export default Four;

@@ -53,8 +53,9 @@
          'use strict';
          var context = new Four.Context({ selector: '#particle-system' });
          var points = new Four.OBJMeshLoader({ path: 'meshes/points.obj', indexed: true });
+         var bundle = new Four.Bundle({ items: [points] });
 
-         function main()
+         bundle.ready(function()
          {
             var program = new Four.Program({ selector: '.renderer' });
             var mesh = new Four.Mesh({ loader: points, usage: 'DYNAMIC_DRAW', primitive: 'LINES' });
@@ -72,9 +73,7 @@
             scene.put(cloth);
 
             scene.animate(view, camera);
-         }
-
-         setTimeout(main, 3000);
+         });
       </script>
    </body>
 </html>

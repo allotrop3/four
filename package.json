@@ -19,8 +19,8 @@
   "devDependencies": {
     "babel-core": "^6.2.0",
     "babel-loader": "^6.2.0",
+    "babel-plugin-transform-regenerator": "^6.2.0",
     "babel-preset-es2015": "^6.1.18",
-    "babel-runtime": "^6.2.0",
     "gulp": "^3.9.0",
     "jasmine-core": "^2.3.4",
     "karma": "^0.12.0",
@@ -29,6 +29,7 @@
     "karma-qunit": "^0.1.8",
     "karma-verbose-reporter": "0.0.3",
     "qunitjs": "^1.20.0",
+    "regenerator": "^0.8.42",
     "uglify-loader": "^1.3.0",
     "webpack": "^1.12.6",
     "webpack-stream": "^2.1.1"
