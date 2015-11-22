@@ -19,10 +19,13 @@
       'precision mediump float;',
       '@use Camera;',
       'attribute vec3 a_position;',
+      'attribute vec3 a_normal;',
       'uniform Camera u_camera;',
+      'varying vec3 v_normal;',
       'void main()',
       '{',
       '   gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * vec4(a_position, 1);',
+      '   v_normal = a_normal;',
       '}'
    ].join('\n');
 
@@ -30,6 +33,7 @@
       '#version 100',
       'precision mediump int;',
       'precision mediump float;',
+      'varying vec3 v_normal;',
       'void main()',
       '{',
       '   gl_FragColor = vec4(1);',
