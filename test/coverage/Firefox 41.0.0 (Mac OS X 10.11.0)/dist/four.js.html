@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">54.02% </span>
+        <span class="strong">54.07% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>2801/5185</span>
+        <span class='fraction'>2801/5180</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">46.89% </span>
+        <span class="strong">46.94% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>883/1883</span>
+        <span class='fraction'>883/1881</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">58.6% </span>
+        <span class="strong">58.72% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>613/1046</span>
+        <span class='fraction'>613/1044</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50.41% </span>
+        <span class="strong">50.48% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2072/4110</span>
+        <span class='fraction'>2072/4105</span>
       </div>
     </div>
   </div>
@@ -10769,19 +10769,7 @@
 10724
 10725
 10726
-10727
-10728
-10729
-10730
-10731
-10732
-10733
-10734
-10735
-10736
-10737
-10738
-10739</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+10727</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -21127,7 +21115,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">6×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -21158,10 +21146,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -21196,14 +21180,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -31580,7 +31556,7 @@
 	   }, {
 	      key: 'dampen',
 	      value: <span class="fstat-no" title="function not covered" >function dampen(damping) {</span>
-<span class="cstat-no" title="statement not covered" >	         _glMatrix.vec3.max(this.velocity, _glMatrix.vec3.scale(_glMatrix.vec3.create(), this.velocity, damping), _glMatrix.vec3.fromValues(0, 0, 0));</span>
+<span class="cstat-no" title="statement not covered" >	         _glMatrix.vec3.scale(this.velocity, this.velocity, damping);</span>
 	      }
 	   }, {
 	      key: 'euler',
@@ -31897,8 +31873,6 @@
 <span class="cstat-no" title="statement not covered" >	      var damping = _ref.damping;</span>
 <span class="cstat-no" title="statement not covered" >	      var _ref$name = _ref.name;</span>
 <span class="cstat-no" title="statement not covered" >	      var name = _ref$name === undefined ? 'spring' : _ref$name;</span>
-<span class="cstat-no" title="statement not covered" >	      var _ref$type = _ref.type;</span>
-<span class="cstat-no" title="statement not covered" >	      var type = _ref$type === undefined ? 'STRUCTURAL' : _ref$type;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >	      _classCallCheck(this, Spring);</span>
 &nbsp;
@@ -31914,8 +31888,6 @@
 &nbsp;
 <span class="cstat-no" title="statement not covered" >	      _this.damping = damping;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	      _this.type = type;</span>
-&nbsp;
 <span class="cstat-no" title="statement not covered" >	      _this.inheritance = ['Entity', 'Spring'];</span>
 <span class="cstat-no" title="statement not covered" >	      return _this;</span>
 	   }
@@ -31925,16 +31897,16 @@
 	      value: <span class="fstat-no" title="function not covered" >function relax() {</span>
 <span class="cstat-no" title="statement not covered" >	         var A = this.A;</span>
 <span class="cstat-no" title="statement not covered" >	         var B = this.B;</span>
-<span class="cstat-no" title="statement not covered" >	         var direction = _glMatrix.vec3.sub(_glMatrix.vec3.create(), A.position, B.position);</span>
-<span class="cstat-no" title="statement not covered" >	         var normal = _glMatrix.vec3.normalize(_glMatrix.vec3.create(), direction);</span>
+<span class="cstat-no" title="statement not covered" >	         var spring = _glMatrix.vec3.sub(_glMatrix.vec3.create(), B.position, A.position);</span>
+<span class="cstat-no" title="statement not covered" >	         var displacement = _glMatrix.vec3.length(spring) - this.distance;</span>
+<span class="cstat-no" title="statement not covered" >	         var normal = _glMatrix.vec3.normalize(_glMatrix.vec3.create(), spring);</span>
 <span class="cstat-no" title="statement not covered" >	         var velocity = _glMatrix.vec3.sub(_glMatrix.vec3.create(), A.velocity, B.velocity);</span>
-<span class="cstat-no" title="statement not covered" >	         var stiffness = this.stiffness * (this.distance - _glMatrix.vec3.length(direction));</span>
-<span class="cstat-no" title="statement not covered" >	         var damping = this.damping * _glMatrix.vec3.dot(velocity, normal);</span>
-<span class="cstat-no" title="statement not covered" >	         var stress = stiffness + damping;</span>
-<span class="cstat-no" title="statement not covered" >	         var force = _glMatrix.vec3.scale(_glMatrix.vec3.create(), normal, stress);</span>
+<span class="cstat-no" title="statement not covered" >	         var stiffness = _glMatrix.vec3.scale(_glMatrix.vec3.create(), _glMatrix.vec3.scale(_glMatrix.vec3.create(), normal, displacement), this.stiffness);</span>
+<span class="cstat-no" title="statement not covered" >	         var damping = _glMatrix.vec3.scale(_glMatrix.vec3.create(), velocity, -this.damping);</span>
+<span class="cstat-no" title="statement not covered" >	         var force = _glMatrix.vec3.add(_glMatrix.vec3.create(), stiffness, damping);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	         A.exert(_glMatrix.vec3.negate(_glMatrix.vec3.create(), force));</span>
-<span class="cstat-no" title="statement not covered" >	         B.exert(force);</span>
+<span class="cstat-no" title="statement not covered" >	         A.exert(force);</span>
+<span class="cstat-no" title="statement not covered" >	         B.exert(_glMatrix.vec3.negate(_glMatrix.vec3.create(), force));</span>
 	      }
 	   }, {
 	      key: 'A',
@@ -31975,14 +31947,6 @@
 	      },
 	      set: <span class="fstat-no" title="function not covered" >function set(damping) {</span>
 <span class="cstat-no" title="statement not covered" >	         this._damping = damping;</span>
-	      }
-	   }, {
-	      key: 'type',
-	      get: <span class="fstat-no" title="function not covered" >function get() {</span>
-<span class="cstat-no" title="statement not covered" >	         return this._type;</span>
-	      },
-	      set: <span class="fstat-no" title="function not covered" >function set(type) {</span>
-<span class="cstat-no" title="statement not covered" >	         this._type = type;</span>
 	      }
 	   }]);
 &nbsp;
@@ -32263,7 +32227,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 23 2015 19:52:01 GMT+0000 (GMT)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Nov 23 2015 21:51:04 GMT+0000 (GMT)
 </div>
 </div>
 <script src="../prettify.js"></script>

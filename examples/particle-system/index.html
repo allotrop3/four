@@ -26,14 +26,23 @@
          @use Camera;
 
          attribute vec3 a_position;
+         attribute vec3 a_normal;
 
          uniform Camera u_camera;
 
+         varying vec4 v_position;
+         varying vec3 v_normal;
+
          void main()
          {
-            gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * vec4(a_position, 1);
+            vec4 position = vec4(a_position, 1);
+
+            gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * position;
 
             gl_PointSize = 4.0;
+
+            v_position = position;
+            v_normal = u_camera.normalMatrix * a_normal;
          }
       </script>
 
@@ -43,9 +52,20 @@
          precision mediump int;
          precision mediump float;
 
+         @use Material;
+         @use PointLight;
+
+         uniform Material u_material;
+         uniform PointLight u_light;
+
+         varying vec4 v_position;
+         varying vec3 v_normal;
+
          void main()
          {
-            gl_FragColor = vec4(1);
+            vec3 lighting = PointLight_main(u_light, u_material, v_position, v_normal);
+
+            gl_FragColor = vec4(lighting, 1);
          }
       </script>
 
@@ -58,8 +78,9 @@
          bundle.ready(function()
          {
             var program = new Four.Program({ selector: '.renderer' });
+            var light = new Four.PointLight({ diffuse: 0xFFD1B2, location: [10, 15, 0] });
             var mesh = new Four.Mesh({ loader: points, usage: 'DYNAMIC_DRAW', primitive: 'LINES' });
-            var cloth = new Four.Cloth({ mesh: mesh, stiffness: 1000, damping: 50, timestep: 0.003, solver: 'SIMPLECTIC' });
+            var cloth = new Four.Cloth({ mesh: mesh, stiffness: 1000, damping: 50, paused: true });
             var view = new Four.Framebuffer();
             var camera = new Four.PerspectiveCamera({ location: [10, 5, 5], width: context.canvas.width, height: context.canvas.height });
             var scene = new Four.Scene();
@@ -68,11 +89,14 @@
             for (var i = 0; i < 10; i++) particles[i].freeze();
 
             scene.use(program);
+            scene.put(light);
             scene.put(cloth);
 
             scene.translation = [0, 5, 0];
 
             scene.animate(view, camera);
+
+            window.cloth = cloth;
          });
       </script>
    </body>

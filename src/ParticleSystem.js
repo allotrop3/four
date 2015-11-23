@@ -125,7 +125,7 @@ class ParticleSystem extends Entity
       this.paused = true;
    }
 
-   unpause()
+   play()
    {
       this.paused = false;
    }

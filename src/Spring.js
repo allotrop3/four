@@ -7,49 +7,46 @@ class Spring extends Entity
 {
    constructor(
    {
-      A,
-      B,
+      i,
+      j,
       stiffness,
       damping,
-      name = 'spring',
-      type = 'STRUCTURAL'
+      name = 'spring'
    } = {})
    {
       super({ name });
 
-      this.A = A;
+      this.i = i;
 
-      this.B = B;
+      this.j = j;
 
-      this.distance = vec3.distance(A.position, B.position);
+      this.distance = vec3.distance(i.position, j.position);
 
       this.stiffness = stiffness;
 
       this.damping = damping;
 
-      this.type = type;
-
       this.inheritance = ['Entity', 'Spring'];
    }
 
-   get A()
+   get i()
    {
-      return this._A;
+      return this._i;
    }
 
-   set A(A)
+   set i(i)
    {
-      this._A = A;
+      this._i = i;
    }
 
-   get B()
+   get j()
    {
-      return this._B;
+      return this._j;
    }
 
-   set B(B)
+   set j(j)
    {
-      this._B = B;
+      this._j = j;
    }
 
    get distance()
@@ -83,35 +80,20 @@ class Spring extends Entity
       this._damping = damping;
    }
 
-   get type()
-   {
-      return this._type;
-   }
-
-   set type(type)
-   {
-      this._type = type;
-   }
-
    relax()
    {
-      let A = this.A;
-      let B = this.B;
-      let distance = this.distance;
-      let direction = vec3.sub(vec3.create(), B.position, A.position);
-      let length = vec3.length(direction);
+      let i = this.i;
+      let j = this.j;
+      let spring = vec3.sub(vec3.create(), j.position, i.position);
+      let displacement = vec3.length(spring) - this.distance;
+      let normal = vec3.normalize(vec3.create(), spring);
+      let velocity = vec3.sub(vec3.create(), i.velocity, j.velocity);
+      let stiffness = vec3.scale(vec3.create(), vec3.scale(vec3.create(), normal, displacement), this.stiffness);
+      let damping = vec3.scale(vec3.create(), velocity, -this.damping);
+      let force = vec3.add(vec3.create(), stiffness, damping);
 
-      if (length >= distance)
-      {
-         let displacement = length - distance;
-         let normal = vec3.normalize(vec3.create(), direction);
-         let velocity = vec3.sub(vec3.create(), A.velocity, B.velocity);
-         let stiffness = vec3.scale(vec3.create(), vec3.scale(vec3.create(), normal, displacement), this.stiffness);
-         let damping = vec3.scale(vec3.create(), velocity, -this.damping);
-         let force = vec3.add(vec3.create(), stiffness, damping);
-
-         A.exert(force);
-      }
+      i.exert(force);
+      j.exert(vec3.negate(vec3.create(), force));
    }
 }
 

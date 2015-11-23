@@ -85,7 +85,7 @@ class Cloth extends ParticleSystem
       {
          let particles = this.particles;
          let neighbors = indices.filter(neighbor => !~neighborhood.indexOf(neighbor));
-         let springs = neighbors.map(neighbor => new Spring({ A: particles[index], B: particles[neighbor], stiffness: this.stiffness, damping: this.damping }));
+         let springs = neighbors.map(neighbor => new Spring({ i: particles[index], j: particles[neighbor], stiffness: this.stiffness, damping: this.damping }));
 
          this.springs.push.apply(this.springs, springs);
          neighborhood.push.apply(neighborhood, neighbors);
