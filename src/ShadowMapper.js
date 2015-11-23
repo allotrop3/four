@@ -6,14 +6,17 @@ import DataTexture from './DataTexture';
 import DepthTexture from './DepthTexture';
 import DepthFramebuffer from './DepthFramebuffer';
 
-const _name = 'shadow.mapper';
-const _path = 'shadowMapper';
-const _uniforms = ['i antialias', 'sampler shadowMap'];
-const _antialias = false;
-
 class ShadowMapper extends Structure
 {
-   constructor({ name = _name, path = _path, uniforms = _uniforms, width, height, antialias = _antialias } = {})
+   constructor(
+   {
+      width,
+      height,
+      name = 'shadow.mapper',
+      path = 'shadowMapper',
+      uniforms = ['i antialias', 'sampler shadowMap'],
+      antialias = false
+   } = {})
    {
       super({ name, path, uniforms });
 

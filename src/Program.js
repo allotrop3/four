@@ -5,11 +5,13 @@ import Entity from './Entity';
 import VertexShader from './VertexShader';
 import FragmentShader from './FragmentShader';
 
-const _name = 'program';
-
 class Program extends Entity
 {
-   constructor({ name = _name, selector } = {})
+   constructor(
+   {
+      selector,
+      name = 'program'
+   } = {})
    {
       super({ name });
 

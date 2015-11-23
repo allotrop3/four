@@ -1,12 +1,14 @@
 'use strict';
 
+import { vec3 } from 'gl-matrix';
 import Entity from './Entity';
-
-const _name = 'scene';
 
 class Scene extends Entity
 {
-   constructor({ name = _name } = {})
+   constructor(
+   {
+      name = 'scene'
+   } = {})
    {
       super({ name });
 
@@ -18,11 +20,11 @@ class Scene extends Entity
 
       this.lights = [];
 
-      this.scale = [1, 1, 1];
+      this.scale = vec3.fromValues(1, 1, 1);
 
       this.rotation = 0;
 
-      this.translation = [0, 0, 0];
+      this.translation = vec3.fromValues(0, 0, 0);
 
       this.inheritance = ['Entity', 'Scene'];
    }

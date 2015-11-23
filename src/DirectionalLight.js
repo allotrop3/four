@@ -1,14 +1,22 @@
 'use strict';
 
+import { vec3 } from 'gl-matrix';
 import Light from './Light';
-
-const _name = 'directional.light';
-const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f intensity', 'vec3 location', 'vec3 direction', 'i type'];
-const _direction = [0, 0, 0];
 
 class DirectionalLight extends Light
 {
-   constructor({ name = _name, path, uniforms = _uniforms, ambient, diffuse, specular, intensity, location, direction = _direction } = {})
+   constructor(
+   {
+      path,
+      ambient,
+      diffuse,
+      specular,
+      intensity,
+      location,
+      name = 'directional.light',
+      uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f intensity', 'vec3 location', 'vec3 direction', 'i type'],
+      direction = vec3.fromValues(0, 0, 0)
+   } = {})
    {
       super({ name, path, uniforms, ambient, diffuse, specular, intensity, location });
 

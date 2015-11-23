@@ -3,11 +3,14 @@
 import { gl } from './Context';
 import Entity from './Entity';
 
-const _name = 'renderbuffer';
-
 class Renderbuffer extends Entity
 {
-   constructor({ name = _name, width, height } = {})
+   constructor(
+   {
+      width,
+      height,
+      name = 'renderbuffer'
+   } = {})
    {
       super({ name });
 

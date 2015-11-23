@@ -1,5 +1,6 @@
 'use strict';
 
+import { vec3 } from 'gl-matrix';
 import { gl } from './Context';
 import Entity from './Entity';
 import VertexArrayObject from './VertexArrayObject';
@@ -12,19 +13,22 @@ const attributes = {
    normals: 'normal'
 };
 
-const _name = 'mesh';
-const _vertices = [];
-const _colors = [];
-const _uvs = [];
-const _normals = [];
-const _indices = [];
-const _usage = 'STATIC_DRAW';
-const _primitive = 'TRIANGLES';
-const _material = new Material();
-
 class Mesh extends Entity
 {
-   constructor({ name = _name, buffers, loader, vertices = _vertices, colors = _colors, uvs = _uvs, normals = _normals, indices = _indices, usage = _usage, primitive = _primitive, material = _material } = {})
+   constructor(
+   {
+      buffers,
+      loader,
+      name = 'mesh',
+      vertices = [],
+      colors = [],
+      uvs = [],
+      normals = [],
+      indices = [],
+      usage = 'STATIC_DRAW',
+      primitive = 'TRIANGLES',
+      material = new Material()
+   } = {})
    {
       super({ name });
 
@@ -46,11 +50,11 @@ class Mesh extends Entity
 
       this.material = material;
 
-      this.scale = [1, 1, 1];
+      this.scale = vec3.fromValues(1, 1, 1);
 
       this.rotation = 0;
 
-      this.translation = [0, 0, 0];
+      this.translation = vec3.create();
 
       this.inheritance = ['Entity', 'Mesh'];
 

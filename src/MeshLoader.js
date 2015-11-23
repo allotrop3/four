@@ -3,12 +3,14 @@
 import ajax from './utils/ajax';
 import Entity from './Entity';
 
-const _name = 'mesh.loader';
-const _indexed = false;
-
 class MeshLoader extends Entity
 {
-   constructor({ name = _name, path, indexed = _indexed } = {})
+   constructor(
+   {
+      path,
+      name = 'mesh.loader',
+      indexed = false
+   } = {})
    {
       super({ name });
 

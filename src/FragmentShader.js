@@ -2,16 +2,15 @@
 
 import Shader from './Shader';
 
-const attribute = 'x-shader/x-fragment';
-
-const _name = 'fragment.shader';
-const _type = 'FRAGMENT_SHADER';
-
 class FragmentShader extends Shader
 {
-   constructor({ name = _name, selector } = {})
+   constructor(
    {
-      super({ name, selector: `${selector}[type="${attribute}"]` }, _type);
+      selector,
+      name = 'fragment.shader'
+   } = {})
+   {
+      super({ name, selector: `${selector}[type="x-shader/x-fragment"]` }, 'FRAGMENT_SHADER');
 
       this.inheritance = ['Entity', 'Shader', 'FragmentShader'];
    }

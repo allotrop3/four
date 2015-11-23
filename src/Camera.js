@@ -9,15 +9,16 @@ import Structure from './Structure';
 const axis = { x: [1, 0, 0], y: [0, 1, 0], z: [0, 0, 1] };
 const radians = 0.0174532925;
 
-const _name = 'camera';
-const _path = 'camera';
-const _uniforms = ['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix'];
-const _background = 0x000000;
-const _translucence = 1;
-
 class Camera extends Structure
 {
-   constructor({ name = _name, path = _path, uniforms = _uniforms, background = _background, translucence = _translucence } = {})
+   constructor(
+   {
+      name = 'camera',
+      path = 'camera',
+      uniforms = ['mat4 projectionMatrix', 'mat4 modelViewMatrix', 'mat3 normalMatrix'],
+      background = 0x000000,
+      translucence = 1
+   } = {})
    {
       super({ name, path, uniforms });
 

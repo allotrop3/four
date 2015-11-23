@@ -2,11 +2,12 @@
 
 import Entity from './Entity';
 
-const _name = 'geometry';
-
 class Geometry extends Entity
 {
-   constructor({ name = _name } = {})
+   constructor(
+   {
+      name = 'geometry'
+   } = {})
    {
       super({ name });
 

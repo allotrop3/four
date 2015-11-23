@@ -3,13 +3,18 @@
 import ParticleSystem from './ParticleSystem';
 import Spring from './Spring';
 
-const _name = 'cloth';
-const _stiffness = 0;
-const _damping = 0;
-
 class Cloth extends ParticleSystem
 {
-   constructor({ name = _name, mesh, stiffness = _stiffness, damping = _damping, gravity, timestep, solver, paused })
+   constructor({
+      mesh,
+      gravity,
+      timestep,
+      solver,
+      paused,
+      name = 'cloth',
+      stiffness = 0,
+      damping = 0
+   } = {})
    {
       super({ name, mesh, gravity, timestep, solver, paused });
 

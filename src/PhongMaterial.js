@@ -3,14 +3,20 @@
 import LSL from './utils/LSL';
 import Material from './Material';
 
-const _name = 'phong.material';
-const _uniforms = ['sampler image', 'vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f shininess', 'i shading', 'i type'];
-const _specular = 0xFFFFFF;
-const _shininess = 1;
-
 class PhongMaterial extends Material
 {
-   constructor({ name = _name, path, uniforms = _uniforms, pattern, ambient, diffuse, specular = _specular, shading, shininess = _shininess } = {})
+   constructor(
+   {
+      path,
+      pattern,
+      ambient,
+      diffuse,
+      shading,
+      name = 'phong.material',
+      uniforms = ['sampler image', 'vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f shininess', 'i shading', 'i type'],
+      specular = 0xFFFFFF,
+      shininess = 1
+   } = {})
    {
       super({ name, path, uniforms, pattern, ambient, diffuse, shading });
 

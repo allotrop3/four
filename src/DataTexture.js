@@ -1,14 +1,25 @@
 'use strict';
 
+import { vec3 } from 'gl-matrix';
 import { gl } from './Context';
 import Texture from './Texture';
 
-const _name = 'data.texture';
-const _image = null;
-
 class DataTexture extends Texture
 {
-   constructor({ name = _name, image = _image, width, height, lod, components, format, magnification, minification, S, T } = {})
+   constructor(
+   {
+      width,
+      height,
+      lod,
+      components,
+      format,
+      magnification,
+      minification,
+      S,
+      T,
+      name = 'data.texture',
+      image = null
+   } = {})
    {
       super({ name, lod, components, format, magnification, minification, S, T });
 

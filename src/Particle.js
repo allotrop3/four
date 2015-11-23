@@ -3,18 +3,19 @@
 import { vec3 } from 'gl-matrix';
 import Entity from './Entity';
 
-const _name = 'particle';
-const _mass = 1;
-const _damping = 0;
-const _acceleration = [0, 0, 0];
-const _velocity = [0, 0, 0];
-const _position = [0, 0, 0];
-const _normal = [0, 0, 0];
-const _frozen = false;
-
 class Particle extends Entity
 {
-   constructor({ name = _name, mass = _mass, damping = _damping, acceleration = _acceleration, velocity = _velocity, position = _position, normal = _normal, frozen = _frozen } = {})
+   constructor(
+   {
+      name = 'particle',
+      mass = 1,
+      damping = 0,
+      acceleration = vec3.fromValues(0, 0, 0),
+      velocity = vec3.fromValues(0, 0, 0),
+      position = vec3.fromValues(0, 0, 0),
+      normal = vec3.fromValues(0, 0, 0),
+      frozen = false
+   } = {})
    {
       super({ name });
 
@@ -129,7 +130,7 @@ class Particle extends Entity
 
    dampen(damping)
    {
-      vec3.max(this.velocity, vec3.scale([], this.velocity, damping), [0, 0, 0]);
+      vec3.max(this.velocity, vec3.scale([], this.velocity, damping), vec3.fromValues(0, 0, 0));
    }
 
    euler(timestep)

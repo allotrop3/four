@@ -2,11 +2,12 @@
 
 import Structure from './Structure';
 
-const _name = 'bloom';
-
 class Bloom extends Structure
 {
-   constructor({ name = _name } = {})
+   constructor(
+   {
+      name = 'bloom'
+   } = {})
    {
       super({ name });
    }

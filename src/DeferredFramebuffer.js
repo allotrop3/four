@@ -3,11 +3,15 @@
 import { gl } from './Context';
 import Framebuffer from './Framebuffer';
 
-const _name = 'deferred.framebuffer';
-
 class DeferredFramebuffer extends Framebuffer
 {
-   constructor({ name = _name, colorAttachment, depthAttachment, flushable } = {})
+   constructor(
+   {
+      colorAttachment,
+      depthAttachment,
+      flushable,
+      name = 'deferred.framebuffer'
+   } = {})
    {
       super({ name, flushable });
 

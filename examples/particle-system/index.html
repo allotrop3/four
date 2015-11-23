@@ -59,20 +59,26 @@
          {
             var program = new Four.Program({ selector: '.renderer' });
             var mesh = new Four.Mesh({ loader: points, usage: 'DYNAMIC_DRAW', primitive: 'LINES' });
-            var cloth = new Four.Cloth({ mesh: mesh, stiffness: 10000, damping: 1 });
+            var cloth = new Four.Cloth({ mesh: mesh, stiffness: 10000, damping: 1, timestep: 0.00001 });
             var view = new Four.Framebuffer();
             var camera = new Four.PerspectiveCamera({ location: [10, 5, 5], width: context.canvas.width, height: context.canvas.height });
             var scene = new Four.Scene();
             var particles = cloth.particles;
 
-            for (var i = 0; i < 60; i++) particles[i].freeze();
-
-            console.log(cloth);
+            for (var i = 0; i < 10; i++) particles[i].freeze();
 
             scene.use(program);
             scene.put(cloth);
 
-            scene.animate(view, camera);
+            scene.translation = [0, 5, 0];
+
+            scene.render(view, camera);
+            scene.render(view, camera);
+            scene.render(view, camera);
+            scene.render(view, camera);
+            scene.render(view, camera);
+            scene.render(view, camera);
+            scene.render(view, camera);
          });
       </script>
    </body>

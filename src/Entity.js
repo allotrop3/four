@@ -2,11 +2,12 @@
 
 let indices = {};
 
-const _name = 'entity';
-
 class Entity
 {
-   constructor({ name = _name } = {})
+   constructor(
+   {
+      name = 'entity'
+   } = {})
    {
       this.name = name;
 

@@ -4,15 +4,22 @@ import { gl } from './Context';
 import { mat4 } from 'gl-matrix';
 import Camera from './Camera';
 
-const _name = 'orthographic.camera';
-const _left = -1;
-const _bottom = -1;
-const _near = 0.1;
-const _far = 1;
-
 class OrthographicCamera extends Camera
 {
-   constructor({ name = _name, path, uniforms, background, translucence, left = _left, right, bottom = _bottom, top, near = _near, far = _far } = {})
+   constructor(
+   {
+      path,
+      uniforms,
+      background,
+      translucence,
+      right,
+      top,
+      name = 'orthographic.camera',
+      left = -1,
+      bottom = -1,
+      near = 0.1,
+      far = 1
+   } = {})
    {
       super({ name, path, uniforms, background, translucence });
 

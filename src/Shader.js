@@ -4,11 +4,13 @@ import { gl } from './Context';
 import Entity from './Entity';
 import shaders from './shaders/shaders';
 
-const _name = 'shader';
-
 class Shader extends Entity
 {
-   constructor({ name = _name, selector } = {}, type)
+   constructor(
+   {
+      selector,
+      name = 'shader'
+   } = {}, type)
    {
       super({ name });
 

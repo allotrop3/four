@@ -3,14 +3,17 @@
 import { gl } from './Context';
 import Entity from './Entity';
 
-const _name = 'attribute';
-const _format = 'FLOAT';
-const _normalized = false;
-const _offset = 0;
-
 class Attribute extends Entity
 {
-   constructor({ name = _name, attribute, length, format = _format, normalized = _normalized, offset = _offset } = {})
+   constructor(
+   {
+      attribute,
+      length,
+      name = 'attribute',
+      format = 'FLOAT',
+      normalized = false,
+      offset = 0
+   } = {})
    {
       super({ name });
 

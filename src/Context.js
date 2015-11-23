@@ -4,15 +4,16 @@ import Entity from './Entity';
 
 let gl = undefined;
 
-const _name = 'canvas';
-const _selector = 'canvas';
-const _width = window.innerWidth;
-const _height = window.innerHeight;
-const _dpi = window.devicePixelRatio;
-
 class Context extends Entity
 {
-   constructor({ name = _name, selector = _selector, width = _width, height = _height, dpi = _dpi } = {})
+   constructor(
+   {
+      name = 'canvas',
+      selector = 'canvas',
+      width = window.innerWidth,
+      height = window.innerHeight,
+      dpi = window.devicePixelRatio
+   } = {})
    {
       super({ name });
 

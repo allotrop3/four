@@ -3,13 +3,14 @@
 import Entity from './Entity';
 import promise from './utils/promise';
 
-const _name = 'bundle';
-const _items = [];
-const _step = function(){};
-
 class Bundle extends Entity
 {
-   constructor({ name = _name, items = _items, step = _step } = {})
+   constructor(
+   {
+      name = 'bundle',
+      items = [],
+      step = function() {}
+   } = {})
    {
       super({ name });
 

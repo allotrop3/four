@@ -1,20 +1,22 @@
 'use strict';
 
+import { vec3 } from 'gl-matrix';
 import LSL from './utils/LSL';
 import Structure from './Structure';
 
-const _name = 'light';
-const _path = 'light';
-const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f intensity', 'vec3 location', 'i type'];
-const _ambient = 0x000000;
-const _diffuse = 0xFFFFFF;
-const _specular = 0xFFFFFF;
-const _intensity = 1;
-const _location = [-10, 10, -10];
-
 class Light extends Structure
 {
-   constructor({ name = _name, path = _path, uniforms = _uniforms, ambient = _ambient, diffuse = _diffuse, specular = _specular, intensity = _intensity, location = _location } = {})
+   constructor(
+   {
+      name = 'light',
+      path = 'light',
+      uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f intensity', 'vec3 location', 'i type'],
+      ambient = 0x000000,
+      diffuse = 0xFFFFFF,
+      specular = 0xFFFFFF,
+      intensity = 1,
+      location = vec3.fromValues(-10, 10, -10)
+   } = {})
    {
       super({ name, path, uniforms });
 

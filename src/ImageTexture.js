@@ -4,13 +4,22 @@ import { gl } from './Context';
 import image from './utils/image';
 import Texture from './Texture';
 
-const _name = 'image.texture';
-const _anisotropy = false;
-const _mipmap = false;
-
 class ImageTexture extends Texture
 {
-   constructor({ name = _name, path, lod, components, format, magnification, minification, S, T, anisotropy = _anisotropy, mipmap = _mipmap } = {})
+   constructor(
+   {
+      path,
+      lod,
+      components,
+      format,
+      magnification,
+      minification,
+      S,
+      T,
+      name = 'image.texture',
+      anisotropy = false,
+      mipmap = false
+   } = {})
    {
       super({ name, lod, components, format, magnification, minification, S, T });
 

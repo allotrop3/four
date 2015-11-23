@@ -1,17 +1,20 @@
 'use strict';
 
+import { vec3 } from 'gl-matrix';
 import Entity from './Entity';
 import Particle from './Particle';
 
-const _name = 'particle.system';
-const _gravity = [0, -9.80665, 0];
-const _timestep = 0.003;
-const _solver = 'VERLET';
-const _paused = false;
-
 class ParticleSystem extends Entity
 {
-   constructor({ name = _name, mesh, gravity = _gravity, timestep = _timestep, solver = _solver, paused = _paused } = {})
+   constructor(
+   {
+      mesh,
+      name = 'particle.system',
+      gravity = vec3.fromValues(0, -9.80665, 0),
+      timestep = 0.003,
+      solver = 'VERLET',
+      paused = false
+   } = {})
    {
       super({ name });
 

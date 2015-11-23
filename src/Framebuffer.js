@@ -3,12 +3,13 @@
 import { gl } from './Context';
 import Entity from './Entity';
 
-const _name = 'framebuffer';
-const _flushable = true;
-
 class Framebuffer extends Entity
 {
-   constructor({ name = _name, flushable = _flushable } = {})
+   constructor(
+   {
+      name = 'framebuffer',
+      flushable = true
+   } = {})
    {
       super({ name });
 

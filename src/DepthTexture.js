@@ -3,11 +3,14 @@
 import { gl } from './Context';
 import Texture from './Texture';
 
-const _name = 'depth.texture';
-
 class DepthTexture extends Texture
 {
-   constructor({ name = _name, width, height } = {})
+   constructor(
+   {
+      width,
+      height,
+      name = 'depth.texture'
+   } = {})
    {
       super({ name });
 

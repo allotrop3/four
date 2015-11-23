@@ -2,14 +2,20 @@
 
 import Light from './Light';
 
-const _name = 'point.light';
-const _uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f radius', 'f intensity', 'vec3 location', 'i type'];
-const _radius = 10;
-const _intensity = 10;
-
 class PointLight extends Light
 {
-   constructor({ name = _name, path, uniforms = _uniforms, ambient, diffuse, specular, radius = _radius, intensity = _intensity, location } = {})
+   constructor(
+   {
+      path,
+      ambient,
+      diffuse,
+      specular,
+      location,
+      name = 'point.light',
+      uniforms = ['vec3 ambient', 'vec3 diffuse', 'vec3 specular', 'f radius', 'f intensity', 'vec3 location', 'i type'],
+      radius = 10,
+      intensity = 10
+   } = {})
    {
       super({ name, path, uniforms, ambient, diffuse, specular, intensity, location });
 

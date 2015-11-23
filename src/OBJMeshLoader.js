@@ -2,11 +2,14 @@
 
 import MeshLoader from './MeshLoader';
 
-const _name = 'obj.mesh.loader';
-
 class OBJMeshLoader extends MeshLoader
 {
-   constructor({ name = _name, path, indexed } = {})
+   constructor(
+   {
+      path,
+      indexed,
+      name = 'obj.mesh.loader'
+   } = {})
    {
       super({ name, path, indexed });
 
