@@ -35,7 +35,8 @@ module.exports = function(config)
       'test/OrthographicCamera.js',
       'test/VertexArrayObject.js',
       'test/Mesh.js',
-      'test/ImageTexture.js'
+      'test/ImageTexture.js',
+      'test/DataTexture.js'
     ],
 
 
