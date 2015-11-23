@@ -12,14 +12,15 @@ const lengths = {
    vec4: 4
 };
 
-const _name = 'vertex.array.object';
-const _indexed = false;
-const _view = Float32Array;
-const _attributes = [];
-
 class VertexArrayObject extends Entity
 {
-   constructor({ name = _name, indexed = _indexed, view = _view, attributes = _attributes } = {})
+   constructor(
+   {
+      name = 'vertex.array.object',
+      indexed = false,
+      view = Float32Array,
+      attributes = []
+   } = {})
    {
       super({ name });
 

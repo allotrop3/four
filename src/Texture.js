@@ -5,18 +5,19 @@ import Entity from './Entity';
 
 let unit = 0;
 
-const _name = 'texture';
-const _lod = 0;
-const _components = 'RGBA';
-const _format = 'UNSIGNED_BYTE';
-const _magnification = 'NEAREST';
-const _minification = 'NEAREST';
-const _S = 'CLAMP_TO_EDGE';
-const _T = 'CLAMP_TO_EDGE';
-
 class Texture extends Entity
 {
-   constructor({ name = _name, lod = _lod, components = _components, format = _format, magnification = _magnification, minification = _minification, S = _S, T = _T } = {})
+   constructor(
+   {
+      name = 'texture',
+      lod = 0,
+      components = 'RGBA',
+      format = 'UNSIGNED_BYTE',
+      magnification = 'NEAREST',
+      minification = 'NEAREST',
+      S = 'CLAMP_TO_EDGE',
+      T = 'CLAMP_TO_EDGE'
+   } = {})
    {
       super({ name });
 

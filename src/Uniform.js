@@ -18,12 +18,15 @@ const formats = {
    sampler: '1i'
 };
 
-const _name = 'uniform';
-const _path = undefined;
-
 class Uniform extends Entity
 {
-   constructor({ name = _name, path = _path, uniform, format } = {})
+   constructor(
+   {
+      uniform,
+      format,
+      name = 'uniform',
+      path = undefined
+   } = {})
    {
       super({ name });
 

@@ -3,12 +3,14 @@
 import Entity from './Entity';
 import Uniform from './Uniform';
 
-const _name = 'structure';
-const _uniforms = [];
-
 class Structure extends Entity
 {
-   constructor({ name = _name, path, uniforms = _uniforms })
+   constructor(
+   {
+      path,
+      name = 'structure',
+      uniforms = []
+   } = {})
    {
       super({ name });
 

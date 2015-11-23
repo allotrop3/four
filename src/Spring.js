@@ -3,12 +3,17 @@
 import { vec3 } from 'gl-matrix';
 import Entity from './Entity';
 
-const _name = 'spring';
-const _type = 'STRUCTURAL';
-
 class Spring extends Entity
 {
-   constructor({ name = _name, A, B, stiffness, damping, type = _type })
+   constructor(
+   {
+      A,
+      B,
+      stiffness,
+      damping,
+      name = 'spring',
+      type = 'STRUCTURAL'
+   } = {})
    {
       super({ name });
 
