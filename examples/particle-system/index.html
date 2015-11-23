@@ -59,7 +59,7 @@
          {
             var program = new Four.Program({ selector: '.renderer' });
             var mesh = new Four.Mesh({ loader: points, usage: 'DYNAMIC_DRAW', primitive: 'LINES' });
-            var cloth = new Four.Cloth({ mesh: mesh, stiffness: 10000, damping: 1, timestep: 0.00001 });
+            var cloth = new Four.Cloth({ mesh: mesh, stiffness: 1000, damping: 50, timestep: 0.003, solver: 'SIMPLECTIC' });
             var view = new Four.Framebuffer();
             var camera = new Four.PerspectiveCamera({ location: [10, 5, 5], width: context.canvas.width, height: context.canvas.height });
             var scene = new Four.Scene();
@@ -72,13 +72,7 @@
 
             scene.translation = [0, 5, 0];
 
-            scene.render(view, camera);
-            scene.render(view, camera);
-            scene.render(view, camera);
-            scene.render(view, camera);
-            scene.render(view, camera);
-            scene.render(view, camera);
-            scene.render(view, camera);
+            scene.animate(view, camera);
          });
       </script>
    </body>

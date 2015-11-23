@@ -120,7 +120,7 @@ class Particle extends Entity
 
    exert(force)
    {
-      this.accelerate(vec3.scale([], force, 1 / this.mass));
+      this.accelerate(vec3.scale(vec3.create(), force, 1 / this.mass));
    }
 
    accelerate(acceleration)
@@ -130,7 +130,7 @@ class Particle extends Entity
 
    dampen(damping)
    {
-      vec3.max(this.velocity, vec3.scale([], this.velocity, damping), vec3.fromValues(0, 0, 0));
+      vec3.scale(this.velocity, this.velocity, damping);
    }
 
    euler(timestep)
@@ -140,8 +140,8 @@ class Particle extends Entity
          let velocity = this.velocity;
          let position = this.position;
 
-         vec3.add(this.velocity, velocity, vec3.scale([], this.acceleration, timestep));
-         vec3.add(this.position, position, vec3.scale([], velocity, timestep));
+         vec3.add(this.velocity, velocity, vec3.scale(vec3.create(), this.acceleration, timestep));
+         vec3.add(this.position, position, vec3.scale(vec3.create(), velocity, timestep));
       }
    }
 
@@ -149,8 +149,8 @@ class Particle extends Entity
    {
       if (!this.frozen)
       {
-         vec3.add(this.velocity, this.velocity, vec3.scale([], this.acceleration, timestep));
-         vec3.add(this.position, this.position, vec3.scale([], this.velocity, timestep));
+         vec3.add(this.velocity, this.velocity, vec3.scale(vec3.create(), this.acceleration, timestep));
+         vec3.add(this.position, this.position, vec3.scale(vec3.create(), this.velocity, timestep));
       }
    }
 
@@ -161,11 +161,11 @@ class Particle extends Entity
          let previous = vec3.clone(this.previous);
          let position = vec3.clone(this.position);
 
-         vec3.add(this.position, vec3.add([], position, vec3.sub([], position, previous)), vec3.scale([], this.acceleration, Math.pow(timestep, 2)));
+         vec3.add(this.position, vec3.add(vec3.create(), position, vec3.sub(vec3.create(), position, previous)), vec3.scale(vec3.create(), this.acceleration, Math.pow(timestep, 2)));
 
          vec3.copy(this.previous, position);
 
-         vec3.scale(this.velocity, vec3.sub([], this.position, this.previous), 1 / timestep);
+         vec3.scale(this.velocity, vec3.sub(vec3.create(), this.position, this.previous), 1 / timestep);
       }
    }
 

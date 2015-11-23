@@ -97,16 +97,21 @@ class Spring extends Entity
    {
       let A = this.A;
       let B = this.B;
-      let direction = vec3.sub([], A.position, B.position);
-      let normal = vec3.normalize([], direction);
-      let velocity = vec3.sub([], A.velocity, B.velocity);
-      let stiffness = this.stiffness * (this.distance - vec3.length(direction));
-      let damping = this.damping * vec3.dot(velocity, normal);
-      let stress = stiffness + damping;
-      let force = vec3.scale([], normal, stress);
+      let distance = this.distance;
+      let direction = vec3.sub(vec3.create(), B.position, A.position);
+      let length = vec3.length(direction);
 
-      A.exert(vec3.negate([], force));
-      B.exert(force);
+      if (length >= distance)
+      {
+         let displacement = length - distance;
+         let normal = vec3.normalize(vec3.create(), direction);
+         let velocity = vec3.sub(vec3.create(), A.velocity, B.velocity);
+         let stiffness = vec3.scale(vec3.create(), vec3.scale(vec3.create(), normal, displacement), this.stiffness);
+         let damping = vec3.scale(vec3.create(), velocity, -this.damping);
+         let force = vec3.add(vec3.create(), stiffness, damping);
+
+         A.exert(force);
+      }
    }
 }
 
