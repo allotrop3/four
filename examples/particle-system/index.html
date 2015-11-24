@@ -80,7 +80,7 @@
             var program = new Four.Program({ selector: '.renderer' });
             var light = new Four.PointLight({ diffuse: 0xFFD1B2, location: [10, 15, 0] });
             var mesh = new Four.Mesh({ loader: points, usage: 'DYNAMIC_DRAW', primitive: 'LINES' });
-            var cloth = new Four.Cloth({ mesh: mesh, stiffness: 1000, damping: 50, paused: true });
+            var cloth = new Four.Cloth({ mesh: mesh, stiffness: 1000, damping: 30 });
             var view = new Four.Framebuffer();
             var camera = new Four.PerspectiveCamera({ location: [10, 5, 5], width: context.canvas.width, height: context.canvas.height });
             var scene = new Four.Scene();
