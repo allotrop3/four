@@ -26,7 +26,7 @@ class Cloth extends ParticleSystem
 
       this.inheritance = ['Entity', 'ParticleSystem', 'Cloth'];
 
-      this.model();
+      this.sketch();
    }
 
    get stiffness()
@@ -59,7 +59,7 @@ class Cloth extends ParticleSystem
       this._springs = springs;
    }
 
-   model()
+   sketch()
    {
       let indices = this.mesh.indices;
       let faces = [];
@@ -69,10 +69,10 @@ class Cloth extends ParticleSystem
          faces.push([ indices[i], indices[i + 1], indices[i + 2] ]);
       }
 
-      faces.forEach(this.define.bind(this));
+      faces.forEach(this.cut.bind(this));
    }
 
-   define(face, index, faces)
+   cut(face, index, faces)
    {
       let neighborhood = [index];
 
@@ -84,8 +84,9 @@ class Cloth extends ParticleSystem
       if (~indices.indexOf(index))
       {
          let particles = this.particles;
+         let i = particles[index];
          let neighbors = indices.filter(neighbor => !~neighborhood.indexOf(neighbor));
-         let springs = neighbors.map(neighbor => new Spring({ i: particles[index], j: particles[neighbor], stiffness: this.stiffness, damping: this.damping }));
+         let springs = neighbors.map((neighbor, index) => new Spring({ i: i, j: particles[neighbor], stiffness: this.stiffness, damping: this.damping, type: (index % 2 ? 'STRUCTURAL' : 'SHEAR') }));
 
          this.springs.push.apply(this.springs, springs);
          neighborhood.push.apply(neighborhood, neighbors);

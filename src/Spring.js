@@ -11,7 +11,8 @@ class Spring extends Entity
       j,
       stiffness,
       damping,
-      name = 'spring'
+      name = 'spring',
+      type = 'STRUCTURAL'
    } = {})
    {
       super({ name });
@@ -21,6 +22,14 @@ class Spring extends Entity
       this.j = j;
 
       this.length = vec3.distance(i.position, j.position);
+
+      this.type = type;
+
+      this.ratio = {
+         STRUCTURAL: 100,
+         SHEAR: 10,
+         BEND: 1
+      };
 
       this.stiffness = stiffness;
 
@@ -49,16 +58,25 @@ class Spring extends Entity
       this._j = j;
    }
 
-   get distance()
+   get length()
    {
-      return this._distance;
+      return this._length;
    }
 
-   set distance(distance)
+   set length(length)
    {
-      this._distance = distance;
+      this._length = length;
    }
 
+   get type()
+   {
+      return this._type;
+   }
+
+   set type(type)
+   {
+      this._type = type;
+   }
 
    get stiffness()
    {
@@ -67,7 +85,7 @@ class Spring extends Entity
 
    set stiffness(stiffness)
    {
-      this._stiffness = stiffness;
+      this._stiffness = this.spread(stiffness);
    }
 
    get damping()
@@ -77,17 +95,32 @@ class Spring extends Entity
 
    set damping(damping)
    {
-      this._damping = damping;
+      this._damping = this.spread(damping);
+   }
+
+   get ratio()
+   {
+      return this._ratio;
+   }
+
+   set ratio(ratio)
+   {
+      this._ratio = ratio;
+   }
+
+   spread(value)
+   {
+      return value * (this.ratio[this.type] / 100);
    }
 
    relax()
    {
       let i = this.i;
       let j = this.j;
-      let spring = vec3.sub(vec3.create(), j.previous, i.previous);
+      let spring = vec3.sub(vec3.create(), i.previous, j.previous);
       let displacement = vec3.length(spring) - this.length;
       let velocity = vec3.sub(vec3.create(), i.velocity, j.velocity);
-      let force = vec3.scale(vec3.create(), velocity, -this.damping);
+      let force = vec3.scale(vec3.create(), velocity, this.damping);
 
       if (displacement >= 0)
       {
@@ -97,8 +130,8 @@ class Spring extends Entity
          vec3.add(force, force, stiffness);
       }
 
-      i.exert(force);
-      j.exert(vec3.negate(vec3.create(), force));
+      i.exert(vec3.negate(vec3.create(), force));
+      j.exert(force);
    }
 }
 

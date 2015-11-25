@@ -137,11 +137,10 @@ class Particle extends Entity
    {
       if (!this.frozen)
       {
-         let velocity = this.velocity;
-         let position = this.position;
+         let velocity = vec3.clone(this.velocity);
 
          vec3.add(this.velocity, velocity, vec3.scale(vec3.create(), this.acceleration, timestep));
-         vec3.add(this.position, position, vec3.scale(vec3.create(), velocity, timestep));
+         vec3.add(this.position, this.position, vec3.scale(vec3.create(), velocity, timestep));
       }
    }
 
