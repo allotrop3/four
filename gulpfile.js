@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var webpack = require('webpack');
 var webpackStream = require('webpack-stream');
 var config = require('./webpack.config.js');
+var webserver = require('gulp-webserver');
 
 /**
  * gulp js
@@ -27,6 +28,22 @@ gulp.task('build', ['js'], function()
    return gulp.src('src/four.js')
       .pipe(webpackStream(config.build, webpack))
       .pipe(gulp.dest('dist'));
+});
+
+/**
+ * gulp serve
+ *
+ * Setup local web server
+ */
+gulp.task('serve', function()
+{
+   return gulp.src('./')
+      .pipe(webserver({
+         port: 8001,
+         livereload: false,
+         directoryListing: true,
+         open: true
+      }));
 });
 
 /**
