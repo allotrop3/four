@@ -10,11 +10,9 @@ In case you want to learn more about Four and why I've built it, I suggest you t
 
 See a [live demo](http://allotrop3.github.io/four).
 
-<img src="https://github.com/allotrop3/four/blob/master/screenshots/demo.png" alt="Four" height="width:100%"> 
-
 ## Getting started
 
-Simply download [Four](http://allotrop3.github.io/four/scripts/four.min.js) and include the script in your project.
+Simply download [Four](https://raw.githubusercontent.com/allotrop3/four/master/dist/four.min.js) and include the script in your project.
 
 ```javascript
 <script type="text/javascript" src="path/to/four.min.js"></script>
