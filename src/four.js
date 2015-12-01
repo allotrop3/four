@@ -37,6 +37,7 @@ import Particle from './Particle';
 import ParticleSystem from './ParticleSystem';
 import Spring from './Spring';
 import Cloth from './Cloth';
+import Face from './Face';
 import Bundle from './Bundle';
 
 let Four = window.Four = {
@@ -77,6 +78,7 @@ let Four = window.Four = {
    ParticleSystem: ParticleSystem,
    Spring: Spring,
    Cloth: Cloth,
+   Face: Face,
    Bundle: Bundle
 };
 

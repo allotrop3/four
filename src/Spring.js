@@ -3,6 +3,12 @@
 import { vec3 } from 'gl-matrix';
 import Entity from './Entity';
 
+const spread = {
+   STRUCTURAL: 100,
+   SHEAR: 10,
+   BEND: 1
+};
+
 class Spring extends Entity
 {
    constructor(
@@ -24,12 +30,6 @@ class Spring extends Entity
       this.length = vec3.distance(i.position, j.position);
 
       this.type = type;
-
-      this.ratio = {
-         STRUCTURAL: 100,
-         SHEAR: 10,
-         BEND: 1
-      };
 
       this.stiffness = stiffness;
 
@@ -98,19 +98,9 @@ class Spring extends Entity
       this._damping = this.spread(damping);
    }
 
-   get ratio()
-   {
-      return this._ratio;
-   }
-
-   set ratio(ratio)
-   {
-      this._ratio = ratio;
-   }
-
    spread(value)
    {
-      return value * (this.ratio[this.type] / 100);
+      return value * (spread[this.type] / 100);
    }
 
    relax()
