@@ -120,7 +120,7 @@ class Mesh extends Entity
 
    set indices(indices)
    {
-      this._indices = new Uint16Array(indices);
+      this._indices = indices;
    }
 
    get usage()
@@ -233,7 +233,7 @@ class Mesh extends Entity
       {
          let indices = this.indices;
 
-         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, usage);
+         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), usage);
 
          this.count = indices.length;
       }

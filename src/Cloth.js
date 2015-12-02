@@ -82,17 +82,16 @@ class Cloth extends ParticleSystem
       faces.forEach(this.instantiate.bind(this, neighborhood, index));
    }
 
-   instantiate(neighborhood, index, indices)
+   instantiate(neighborhood, index, face)
    {
-      if (~indices.indexOf(index))
+      if (~face.indexOf(index))
       {
          let particles = this.particles;
-         let i = particles[index];
-         let neighbors = indices.filter(neighbor => !~neighborhood.indexOf(neighbor));
-         let springs = neighbors.map((neighbor, index) => new Spring({ i: i, j: particles[neighbor], stiffness: this.stiffness, damping: this.damping, type: (index % 2 ? 'STRUCTURAL' : 'SHEAR') }));
+         let neighbors = face.filter(neighbor => !~neighborhood.indexOf(neighbor));
+         let springs = neighbors.map((neighbor, index) => new Spring({ i: particles[index], j: particles[neighbor], stiffness: this.stiffness, damping: this.damping, type: (index % 2 ? 'STRUCTURAL' : 'SHEAR') }));
 
-         this.springs.push.apply(this.springs, springs);
-         neighborhood.push.apply(neighborhood, neighbors);
+         this.springs.push(...springs);
+         neighborhood.push(...neighbors);
       }
    }
 

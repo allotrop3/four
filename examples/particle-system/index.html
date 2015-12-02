@@ -66,6 +66,7 @@
 
       <script>
          'use strict';
+
          var context = new Four.Context({ selector: '#particle-system' });
          var points = new Four.OBJMeshLoader({ path: 'meshes/points.obj', indexed: true });
          var bundle = new Four.Bundle({ items: [points] });
@@ -81,7 +82,7 @@
             var scene = new Four.Scene();
             var particles = cloth.particles;
 
-            for (var i = 0; i < 100; i++) particles[i].freeze();
+            for (var i = 0; i < 10; i++) particles[i].freeze();
 
             scene.use(program);
             scene.put(light);
