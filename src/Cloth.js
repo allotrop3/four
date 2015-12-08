@@ -86,11 +86,11 @@ class Cloth extends ParticleSystem
    {
       if (~face.indexOf(i))
       {
-         let neighbors = face.filter(neighbor => neighbor !== i && !~cache.indexOf(neighbor));
-         let springs = neighbors.map(this.stitch.bind(this, i));
+         let nearest = face.filter(neighbor => neighbor !== i && !~cache.indexOf(neighbor));
+         let springs = nearest.map(this.stitch.bind(this, i));
 
          this.springs.push(...springs);
-         cache.push(...neighbors);
+         cache.push(...nearest);
       }
    }
 
@@ -99,7 +99,7 @@ class Cloth extends ParticleSystem
       let particles = this.particles;
       let type = 'SHEAR';
 
-      if (locale % 2)
+      if (locale % 2 === 0)
       {
          type = 'STRUCTURAL';
       }
