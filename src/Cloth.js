@@ -72,27 +72,39 @@ class Cloth extends ParticleSystem
          faces.push(face);
       }
 
-      faces.forEach(this.huddle.bind(this));
+      this.particles.forEach(this.find.bind(this, faces));
    }
 
-   huddle(face, index, faces)
+   find(faces, particle, i)
    {
-      let neighborhood = [index];
+      let cache = [];
 
-      faces.forEach(this.instantiate.bind(this, neighborhood, index));
+      faces.forEach(this.thread.bind(this, cache, i));
    }
 
-   instantiate(neighborhood, index, face)
+   thread(cache, i, face)
    {
-      if (~face.indexOf(index))
+      if (~face.indexOf(i))
       {
-         let particles = this.particles;
-         let neighbors = face.filter(neighbor => !~neighborhood.indexOf(neighbor));
-         let springs = neighbors.map((neighbor, index) => new Spring({ i: particles[index], j: particles[neighbor], stiffness: this.stiffness, damping: this.damping, type: (index % 2 ? 'STRUCTURAL' : 'SHEAR') }));
+         let neighbors = face.filter(neighbor => neighbor !== i && !~cache.indexOf(neighbor));
+         let springs = neighbors.map(this.stitch.bind(this, i));
 
          this.springs.push(...springs);
-         neighborhood.push(...neighbors);
+         cache.push(...neighbors);
       }
+   }
+
+   stitch(i, j, locale)
+   {
+      let particles = this.particles;
+      let type = 'SHEAR';
+
+      if (locale % 2)
+      {
+         type = 'STRUCTURAL';
+      }
+
+      return new Spring({ i: particles[i], j: particles[j], stiffness: this.stiffness, damping: this.damping, type: type });
    }
 
    solve()
