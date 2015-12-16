@@ -120,7 +120,9 @@ class Particle extends Entity
 
    exert(force)
    {
-      this.accelerate(vec3.scale(vec3.create(), force, 1 / this.mass));
+      let acceleration = vec3.scale(vec3.create(), force, 1 / this.mass);
+
+      this.accelerate(acceleration);
    }
 
    accelerate(acceleration)
@@ -139,7 +141,7 @@ class Particle extends Entity
       {
          let velocity = vec3.clone(this.velocity);
 
-         vec3.add(this.velocity, velocity, vec3.scale(vec3.create(), this.acceleration, timestep));
+         vec3.add(this.velocity, this.velocity, vec3.scale(vec3.create(), this.acceleration, timestep));
          vec3.add(this.position, this.position, vec3.scale(vec3.create(), velocity, timestep));
       }
    }

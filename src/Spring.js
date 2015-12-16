@@ -107,18 +107,13 @@ class Spring extends Entity
    {
       let i = this.i;
       let j = this.j;
-      let spring = vec3.sub(vec3.create(), i.previous, j.previous);
-      let displacement = vec3.length(spring) - this.length;
+      let spring = vec3.sub(vec3.create(), i.position, j.position);
+      let length = vec3.length(spring);
+      let normal = vec3.normalize(vec3.create(), spring);
       let velocity = vec3.sub(vec3.create(), i.velocity, j.velocity);
-      let force = vec3.scale(vec3.create(), velocity, this.damping);
-
-      if (displacement >= 0)
-      {
-         let direction = vec3.normalize(vec3.create(), spring);
-         let stiffness = vec3.scale(vec3.create(), vec3.scale(vec3.create(), direction, displacement), this.stiffness);
-
-         vec3.add(force, force, stiffness);
-      }
+      let relaxation = this.stiffness * (length - this.length);
+      let resistance = this.damping * vec3.dot(velocity, normal);
+      let force = vec3.scale(vec3.create(), normal, relaxation + resistance);
 
       i.exert(vec3.negate(vec3.create(), force));
       j.exert(force);
