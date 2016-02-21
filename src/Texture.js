@@ -74,6 +74,16 @@ class Texture extends Entity
       this._components = gl[components];
    }
 
+   get length()
+   {
+      return this._length;
+   }
+
+   set length(length)
+   {
+      this._length = length;
+   }
+
    get format()
    {
       return this._format;

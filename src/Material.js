@@ -5,17 +5,18 @@ import Structure from './Structure';
 
 const shades = { flat: 1, smooth: 0 };
 
-const _name = 'material';
-const _path = 'material';
-const _uniforms = ['sampler image', 'vec3 ambient', 'vec3 diffuse', 'i shading', 'i type'];
-const _pattern = {};
-const _ambient = 0xFFFFFF;
-const _diffuse = 0xFFFFFF;
-const _shading = 'smooth';
-
 class Material extends Structure
 {
-   constructor({ name = _name, path = _path, uniforms = _uniforms, pattern = _pattern, ambient = _ambient, diffuse = _diffuse, shading = _shading } = {})
+   constructor(
+   {
+       name = 'material',
+       path = 'material',
+       uniforms = ['sampler image', 'vec3 ambient', 'vec3 diffuse', 'i shading', 'i type'],
+       pattern = {},
+       ambient = 0xFFFFFF,
+       diffuse = 0xFFFFFF,
+       shading = 'smooth'
+   } = {})
    {
       super({ name, path, uniforms });
 

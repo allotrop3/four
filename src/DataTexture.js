@@ -65,16 +65,6 @@ class DataTexture extends Texture
       this._height = height;
    }
 
-   get length()
-   {
-      return this._length;
-   }
-
-   set length(length)
-   {
-      this._length = length;
-   }
-
    configure()
    {
       super.configure();

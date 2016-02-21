@@ -68,7 +68,7 @@ gulp.task('md', function()
       .pipe(gulp.dest('.api'))
       .pipe(prettify(
          {
-            indent_size: 3
+            indent_size: 4
          }
       ))
       .pipe(gulp.dest('.api'))
