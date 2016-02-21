@@ -11,9 +11,7 @@ import Framebuffer from './Framebuffer';
 import DeferredFramebuffer from './DeferredFramebuffer';
 import DepthFramebuffer from './DepthFramebuffer';
 import Light from './Light';
-import DirectionalLight from './DirectionalLight';
 import PointLight from './PointLight';
-import SpotLight from './SpotLight';
 import Material from './Material';
 import PhongMaterial from './PhongMaterial';
 import Mesh from './Mesh';
@@ -37,7 +35,6 @@ import Particle from './Particle';
 import ParticleSystem from './ParticleSystem';
 import Spring from './Spring';
 import Cloth from './Cloth';
-import Face from './Face';
 import Bundle from './Bundle';
 
 let Four = window.Four = {
@@ -52,9 +49,7 @@ let Four = window.Four = {
    DeferredFramebuffer: DeferredFramebuffer,
    DepthFramebuffer: DepthFramebuffer,
    Light: Light,
-   DirectionalLight: DirectionalLight,
    PointLight: PointLight,
-   SpotLight: SpotLight,
    Material: Material,
    PhongMaterial: PhongMaterial,
    Mesh: Mesh,
@@ -78,7 +73,6 @@ let Four = window.Four = {
    ParticleSystem: ParticleSystem,
    Spring: Spring,
    Cloth: Cloth,
-   Face: Face,
    Bundle: Bundle
 };
 
