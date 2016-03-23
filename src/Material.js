@@ -7,113 +7,113 @@ const shades = { flat: 1, smooth: 0 };
 
 class Material extends Structure
 {
-   constructor(
-   {
-       name = 'material',
-       path = 'material',
-       uniforms = ['sampler image', 'vec3 ambient', 'vec3 diffuse', 'i shading', 'i type'],
-       pattern = {},
-       ambient = 0xFFFFFF,
-       diffuse = 0xFFFFFF,
-       shading = 'smooth'
-   } = {})
-   {
-      super({ name, path, uniforms });
+    constructor(
+    {
+        name = 'material',
+        path = 'material',
+        uniforms = ['sampler image', 'vec3 ambient', 'vec3 diffuse', 'i shading', 'i type'],
+        pattern = {},
+        ambient = 0xFFFFFF,
+        diffuse = 0xFFFFFF,
+        shading = 'smooth'
+    } = {})
+    {
+        super({ name, path, uniforms });
 
-      this.ambient = ambient;
+        this.ambient = ambient;
 
-      this.diffuse = diffuse;
+        this.diffuse = diffuse;
 
-      this.image = pattern.unit;
+        this.image = pattern.unit;
 
-      this.shading = shades[shading];
+        this.shading = shades[shading];
 
-      this.pattern = pattern;
+        this.pattern = pattern;
 
-      this.type = 0;
+        this.type = 0;
 
-      this.inheritance = ['Entity', 'Structure', 'Material'];
-   }
+        this.inheritance = ['Entity', 'Structure', 'Material'];
+    }
 
-   get ambient()
-   {
-      return this._ambient;
-   }
+    get ambient()
+    {
+        return this._ambient;
+    }
 
-   set ambient(ambient)
-   {
-      this._ambient = LSL(ambient);
-   }
+    set ambient(ambient)
+    {
+        this._ambient = LSL(ambient);
+    }
 
-   get diffuse()
-   {
-      return this._diffuse;
-   }
+    get diffuse()
+    {
+        return this._diffuse;
+    }
 
-   set diffuse(diffuse)
-   {
-      this._diffuse = LSL(diffuse);
-   }
+    set diffuse(diffuse)
+    {
+        this._diffuse = LSL(diffuse);
+    }
 
-   get image()
-   {
-      return this._image;
-   }
+    get image()
+    {
+        return this._image;
+    }
 
-   set image(image)
-   {
-      this._image = image;
-   }
+    set image(image)
+    {
+        this._image = image;
+    }
 
-   get shading()
-   {
-      return this._shading;
-   }
+    get shading()
+    {
+        return this._shading;
+    }
 
-   set shading(shading)
-   {
-      this._shading = shades[shading];
-   }
+    set shading(shading)
+    {
+        this._shading = shades[shading];
+    }
 
-   get pattern()
-   {
-      return this._pattern;
-   }
+    get pattern()
+    {
+        return this._pattern;
+    }
 
-   set pattern(pattern)
-   {
-      this._pattern = pattern;
-   }
+    set pattern(pattern)
+    {
+        this._pattern = pattern;
+    }
 
-   get type()
-   {
-      return this._type;
-   }
+    get type()
+    {
+        return this._type;
+    }
 
-   set type(type)
-   {
-      this._type = type;
-   }
+    set type(type)
+    {
+        this._type = type;
+    }
 
-   bind(program)
-   {
-      super.bind(program);
+    bind(program)
+    {
+        super.bind(program);
 
-      if (this.image !== undefined)
-      {
-         this.pattern.bind();
-      }
-   }
+        if (this.image !== undefined)
+        {
+            this.pattern.bind();
+        }
+    }
 
-   unbind()
-   {
-      super.unbind();
+    unbind()
+    {
+        super.unbind();
 
-      if (this.image !== undefined)
-      {
-         this.pattern.unbind();
-      }
-   }
+        if (this.image !== undefined)
+        {
+            this.pattern.unbind();
+        }
+    }
 }
 
 export default Material;

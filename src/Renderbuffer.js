@@ -5,74 +5,74 @@ import Entity from './Entity';
 
 class Renderbuffer extends Entity
 {
-   constructor(
-   {
-      width,
-      height,
-      name = 'renderbuffer'
-   } = {})
-   {
-      super({ name });
+    constructor(
+    {
+        width,
+        height,
+        name = 'renderbuffer'
+    } = {})
+    {
+        super({ name });
 
-      this.buffer = gl.createRenderbuffer();
+        this.buffer = gl.createRenderbuffer();
 
-      this.width = width;
+        this.width = width;
 
-      this.height = height;
+        this.height = height;
 
-      this.inheritance = ['Entity', 'Renderbuffer'];
+        this.inheritance = ['Entity', 'Renderbuffer'];
 
-      this.configure();
-   }
+        this.configure();
+    }
 
-   get buffer()
-   {
-      return this._buffer;
-   }
+    get buffer()
+    {
+        return this._buffer;
+    }
 
-   set buffer(buffer)
-   {
-      this._buffer = buffer;
-   }
+    set buffer(buffer)
+    {
+        this._buffer = buffer;
+    }
 
-   get width()
-   {
-      return this._width;
-   }
+    get width()
+    {
+        return this._width;
+    }
 
-   set width(width)
-   {
-      this._width = width;
-   }
+    set width(width)
+    {
+        this._width = width;
+    }
 
-   get height()
-   {
-      return this._height;
-   }
+    get height()
+    {
+        return this._height;
+    }
 
-   set height(height)
-   {
-      this._height = height;
-   }
+    set height(height)
+    {
+        this._height = height;
+    }
 
-   configure()
-   {
-      this.bind();
+    configure()
+    {
+        this.bind();
 
-      gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, this.width, this.height);
+        gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, this.width, this.height);
 
-      this.unbind();
-   }
+        this.unbind();
+    }
 
-   bind()
-   {
-      gl.bindRenderbuffer(gl.RENDERBUFFER, this.buffer);
-   }
+    bind()
+    {
+        gl.bindRenderbuffer(gl.RENDERBUFFER, this.buffer);
+    }
 
-   unbind()
-   {
-      gl.bindRenderbuffer(gl.RENDERBUFFER, null);
-   }
+    unbind()
+    {
+        gl.bindRenderbuffer(gl.RENDERBUFFER, null);
+    }
 }
 
 export default Renderbuffer;

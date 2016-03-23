@@ -31,11 +31,11 @@ gulp.task('build', ['js'], function()
 });
 
 /**
- * gulp serve
+ * gulp php
  *
  * Setup local web server
  */
-gulp.task('serve', function()
+gulp.task('php', function()
 {
    return gulp.src('./')
       .pipe(webserver({
@@ -62,3 +62,11 @@ gulp.task('watch', function()
  * Alias for gulp watch.
  */
 gulp.task('default', ['watch']);
+
+/**
+ * gulp serve
+ *
+ * Setup local web server and watch source files for
+ * changes
+ */
+gulp.task('serve', ['watch', 'php']);

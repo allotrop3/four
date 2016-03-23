@@ -6,129 +6,129 @@ import Particle from './Particle';
 
 class ParticleSystem extends Entity
 {
-   constructor(
-   {
-      mesh,
-      name = 'particle.system',
-      gravity = vec3.fromValues(0, -9.80665, 0),
-      timestep = 0.003,
-      solver = 'VERLET',
-      paused = false
-   } = {})
-   {
-      super({ name });
+    constructor(
+    {
+        mesh,
+        name = 'particle.system',
+        gravity = vec3.fromValues(0, -9.80665, 0),
+        timestep = 0.003,
+        solver = 'VERLET',
+        paused = false
+    } = {})
+    {
+        super({ name });
 
-      this.mesh = mesh;
+        this.mesh = mesh;
 
-      this.particles = mesh.vertices.map(position => new Particle({ position: position }));
+        this.particles = mesh.vertices.map(position => new Particle({ position: position }));
 
-      this.gravity = gravity;
+        this.gravity = gravity;
 
-      this.timestep = timestep;
+        this.timestep = timestep;
 
-      this.solver = solver;
+        this.solver = solver;
 
-      this.paused = paused;
+        this.paused = paused;
 
-      this.inheritance = ['Entity', 'ParticleSystem'];
-   }
+        this.inheritance = ['Entity', 'ParticleSystem'];
+    }
 
-   get mesh()
-   {
-      return this._mesh;
-   }
+    get mesh()
+    {
+        return this._mesh;
+    }
 
-   set mesh(mesh)
-   {
-      this._mesh = mesh;
-   }
+    set mesh(mesh)
+    {
+        this._mesh = mesh;
+    }
 
-   get particles()
-   {
-      return this._particles;
-   }
+    get particles()
+    {
+        return this._particles;
+    }
 
-   set particles(particles)
-   {
-      this._particles = particles;
-   }
+    set particles(particles)
+    {
+        this._particles = particles;
+    }
 
-   get gravity()
-   {
-      return this._gravity;
-   }
+    get gravity()
+    {
+        return this._gravity;
+    }
 
-   set gravity(gravity)
-   {
-      this._gravity = gravity;
-   }
+    set gravity(gravity)
+    {
+        this._gravity = gravity;
+    }
 
-   get timestep()
-   {
-      return this._timestep;
-   }
+    get timestep()
+    {
+        return this._timestep;
+    }
 
-   set timestep(timestep)
-   {
-      this._timestep = timestep;
-   }
+    set timestep(timestep)
+    {
+        this._timestep = timestep;
+    }
 
-   get solver()
-   {
-      return this._solver.toLowerCase();
-   }
+    get solver()
+    {
+        return this._solver.toLowerCase();
+    }
 
-   set solver(solver)
-   {
-      this._solver = solver;
-   }
+    set solver(solver)
+    {
+        this._solver = solver;
+    }
 
-   get paused()
-   {
-      return this._paused;
-   }
+    get paused()
+    {
+        return this._paused;
+    }
 
-   set paused(paused)
-   {
-      this._paused = paused;
-   }
+    set paused(paused)
+    {
+        this._paused = paused;
+    }
 
-   solve()
-   {
-      if (!this.paused)
-      {
-         this.particles.forEach(this.integrate.bind(this));
+    solve()
+    {
+        if (!this.paused)
+        {
+            this.particles.forEach(this.integrate.bind(this));
 
-         this.mesh.update(this.vertices());
-      }
-   }
+            this.mesh.update(this.vertices());
+        }
+    }
 
-   integrate(particle)
-   {
-      particle.accelerate(this.gravity);
+    integrate(particle)
+    {
+        particle.accelerate(this.gravity);
 
-      particle[this.solver](this.timestep);
-   }
+        particle[this.solver](this.timestep);
+    }
 
-   vertices()
-   {
-      let particles = this.particles;
-      let positions = [];
+    vertices()
+    {
+        let particles = this.particles;
+        let positions = [];
 
-      particles.forEach(particle => positions.push(particle.position));
+        particles.forEach(particle => positions.push(particle.position));
 
-      return positions;
-   }
+        return positions;
+    }
 
-   pause()
-   {
-      this.paused = true;
-   }
+    stop()
+    {
+        this.paused = true;
+    }
 
-   play()
-   {
-      this.paused = false;
-   }
+    run()
+    {
+        this.paused = false;
+    }
 }
 
 export default ParticleSystem;

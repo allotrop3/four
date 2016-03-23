@@ -5,67 +5,67 @@ import Framebuffer from './Framebuffer';
 
 class DeferredFramebuffer extends Framebuffer
 {
-   constructor(
-   {
-      colorAttachment,
-      depthAttachment,
-      flushable,
-      name = 'deferred.framebuffer'
-   } = {})
-   {
-      super({ name, flushable });
+    constructor(
+    {
+        colorAttachment,
+        depthAttachment,
+        flushable,
+        name = 'deferred.framebuffer'
+    } = {})
+    {
+        super({ name, flushable });
 
-      this.buffer = gl.createFramebuffer();
+        this.buffer = gl.createFramebuffer();
 
-      this.colorAttachment = colorAttachment;
+        this.colorAttachment = colorAttachment;
 
-      this.depthAttachment = depthAttachment;
+        this.depthAttachment = depthAttachment;
 
-      this.inheritance = ['Entity', 'Framebuffer', 'DeferredFramebuffer'];
+        this.inheritance = ['Entity', 'Framebuffer', 'DeferredFramebuffer'];
 
-      this.configure();
-   }
+        this.configure();
+    }
 
-   get buffer()
-   {
-      return this._buffer;
-   }
+    get buffer()
+    {
+        return this._buffer;
+    }
 
-   set buffer(buffer)
-   {
-      this._buffer = buffer;
-   }
+    set buffer(buffer)
+    {
+        this._buffer = buffer;
+    }
 
-   get colorAttachment()
-   {
-      return this._colorAttachment;
-   }
+    get colorAttachment()
+    {
+        return this._colorAttachment;
+    }
 
-   set colorAttachment(colorAttachment)
-   {
-      this._colorAttachment = colorAttachment;
-   }
+    set colorAttachment(colorAttachment)
+    {
+        this._colorAttachment = colorAttachment;
+    }
 
-   get depthAttachment()
-   {
-      return this._depthAttachment;
-   }
+    get depthAttachment()
+    {
+        return this._depthAttachment;
+    }
 
-   set depthAttachment(depthAttachment)
-   {
-      this._depthAttachment = depthAttachment;
-   }
+    set depthAttachment(depthAttachment)
+    {
+        this._depthAttachment = depthAttachment;
+    }
 
-   configure()
-   {
-      this.bind(false);
+    configure()
+    {
+        this.bind(false);
 
-      gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.colorAttachment.buffer, 0);
-      gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, this.depthAttachment.buffer);
+        gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.colorAttachment.buffer, 0);
+        gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, this.depthAttachment.buffer);
 
-      this.check();
-      this.unbind();
-   }
+        this.check();
+        this.unbind();
+    }
 }
 
 export default DeferredFramebuffer;

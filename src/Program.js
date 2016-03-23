@@ -7,89 +7,89 @@ import FragmentShader from './FragmentShader';
 
 class Program extends Entity
 {
-   constructor(
-   {
-      selector,
-      name = 'program'
-   } = {})
-   {
-      super({ name });
+    constructor(
+    {
+        selector,
+        name = 'program'
+    } = {})
+    {
+        super({ name });
 
-      this.buffer = gl.createProgram();
+        this.buffer = gl.createProgram();
 
-      this.vertexShader = new VertexShader({ selector: selector });
+        this.vertexShader = new VertexShader({ selector: selector });
 
-      this.fragmentShader = new FragmentShader({ selector: selector });
+        this.fragmentShader = new FragmentShader({ selector: selector });
 
-      this.inheritance = ['Entity', 'Program'];
+        this.inheritance = ['Entity', 'Program'];
 
-      this.link();
-   }
+        this.link();
+    }
 
-   get buffer()
-   {
-      return this._buffer;
-   }
+    get buffer()
+    {
+        return this._buffer;
+    }
 
-   set buffer(buffer)
-   {
-      this._buffer = buffer;
-   }
+    set buffer(buffer)
+    {
+        this._buffer = buffer;
+    }
 
-   get vertexShader()
-   {
-      return this._vertexShader;
-   }
+    get vertexShader()
+    {
+        return this._vertexShader;
+    }
 
-   set vertexShader(vertexShader)
-   {
-      this._vertexShader = vertexShader;
-   }
+    set vertexShader(vertexShader)
+    {
+        this._vertexShader = vertexShader;
+    }
 
-   get fragmentShader()
-   {
-      return this._fragmentShader;
-   }
+    get fragmentShader()
+    {
+        return this._fragmentShader;
+    }
 
-   set fragmentShader(fragmentShader)
-   {
-      this._fragmentShader = fragmentShader;
-   }
+    set fragmentShader(fragmentShader)
+    {
+        this._fragmentShader = fragmentShader;
+    }
 
-   link()
-   {
-      let buffer = this.buffer;
+    link()
+    {
+        let buffer = this.buffer;
 
-      gl.attachShader(buffer, this.vertexShader.buffer);
-      gl.attachShader(buffer, this.fragmentShader.buffer);
+        gl.attachShader(buffer, this.vertexShader.buffer);
+        gl.attachShader(buffer, this.fragmentShader.buffer);
 
-      gl.linkProgram(buffer);
+        gl.linkProgram(buffer);
 
-      this.check();
-   }
+        this.check();
+    }
 
-   bind()
-   {
-      gl.useProgram(this.buffer);
-   }
+    bind()
+    {
+        gl.useProgram(this.buffer);
+    }
 
-   check()
-   {
-      let buffer = this.buffer;
-      let status = gl.getProgramParameter(buffer, gl.LINK_STATUS);
-      let context = gl.isContextLost();
+    check()
+    {
+        let buffer = this.buffer;
+        let status = gl.getProgramParameter(buffer, gl.LINK_STATUS);
+        let context = gl.isContextLost();
 
-      if (!status && !context)
-      {
-         let error = gl.getProgramInfoLog(buffer);
+        if (!status && !context)
+        {
+            let error = gl.getProgramInfoLog(buffer);
 
-         gl.deleteProgram(buffer);
+            gl.deleteProgram(buffer);
 
-         throw new Error(error);
-      }
+            throw new Error(error);
+        }
 
-      return true;
-   }
+        return true;
+    }
 }
 
 export default Program;

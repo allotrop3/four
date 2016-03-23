@@ -7,292 +7,292 @@ import VertexArrayObject from './VertexArrayObject';
 import Material from './Material';
 
 const attributes = {
-   vertices: 'position',
-   colors: 'color',
-   uvs: 'uv',
-   normals: 'normal'
+    vertices: 'position',
+    colors: 'color',
+    uvs: 'uv',
+    normals: 'normal'
 };
 
 class Mesh extends Entity
 {
-   constructor(
-   {
-      buffers,
-      loader,
-      name = 'mesh',
-      vertices = [],
-      colors = [],
-      uvs = [],
-      normals = [],
-      indices = [],
-      usage = 'STATIC_DRAW',
-      primitive = 'TRIANGLES',
-      material = new Material()
-   } = {})
-   {
-      super({ name });
+    constructor(
+    {
+        buffers,
+        loader,
+        name = 'mesh',
+        vertices = [],
+        colors = [],
+        uvs = [],
+        normals = [],
+        indices = [],
+        usage = 'STATIC_DRAW',
+        primitive = 'TRIANGLES',
+        material = new Material()
+    } = {})
+    {
+        super({ name });
 
-      this.buffers = buffers;
+        this.buffers = buffers;
 
-      this.vertices = vertices;
+        this.vertices = vertices;
 
-      this.colors = colors;
+        this.colors = colors;
 
-      this.uvs = uvs;
+        this.uvs = uvs;
 
-      this.normals = normals;
+        this.normals = normals;
 
-      this.indices = indices;
+        this.indices = indices;
 
-      this.usage = usage;
+        this.usage = usage;
 
-      this.primitive = primitive;
+        this.primitive = primitive;
 
-      this.material = material;
+        this.material = material;
 
-      this.scale = vec3.fromValues(1, 1, 1);
+        this.scale = vec3.fromValues(1, 1, 1);
 
-      this.rotation = 0;
+        this.rotation = 0;
 
-      this.translation = vec3.create();
+        this.translation = vec3.create();
 
-      this.inheritance = ['Entity', 'Mesh'];
+        this.inheritance = ['Entity', 'Mesh'];
 
-      this.unpack(loader);
-      this.generate();
-      this.configure();
-   }
+        this.unpack(loader);
+        this.generate();
+        this.configure();
+    }
 
-   get buffers()
-   {
-      return this._buffers;
-   }
+    get buffers()
+    {
+        return this._buffers;
+    }
 
-   set buffers(buffers)
-   {
-      this._buffers = buffers;
-   }
+    set buffers(buffers)
+    {
+        this._buffers = buffers;
+    }
 
-   get vertices()
-   {
-      return this._vertices;
-   }
+    get vertices()
+    {
+        return this._vertices;
+    }
 
-   set vertices(vertices)
-   {
-      this._vertices = vertices;
-   }
+    set vertices(vertices)
+    {
+        this._vertices = vertices;
+    }
 
-   get colors()
-   {
-      return this._colors;
-   }
+    get colors()
+    {
+        return this._colors;
+    }
 
-   set colors(colors)
-   {
-      this._colors = colors;
-   }
+    set colors(colors)
+    {
+        this._colors = colors;
+    }
 
-   get uvs()
-   {
-      return this._uvs;
-   }
+    get uvs()
+    {
+        return this._uvs;
+    }
 
-   set uvs(uvs)
-   {
-      this._uvs = uvs;
-   }
+    set uvs(uvs)
+    {
+        this._uvs = uvs;
+    }
 
-   get normals()
-   {
-      return this._normals;
-   }
+    get normals()
+    {
+        return this._normals;
+    }
 
-   set normals(normals)
-   {
-      this._normals = normals;
-   }
+    set normals(normals)
+    {
+        this._normals = normals;
+    }
 
-   get indices()
-   {
-      return this._indices;
-   }
+    get indices()
+    {
+        return this._indices;
+    }
 
-   set indices(indices)
-   {
-      this._indices = indices;
-   }
+    set indices(indices)
+    {
+        this._indices = indices;
+    }
 
-   get usage()
-   {
-      return this._usage;
-   }
+    get usage()
+    {
+        return this._usage;
+    }
 
-   set usage(usage)
-   {
-      this._usage = gl[usage];
-   }
+    set usage(usage)
+    {
+        this._usage = gl[usage];
+    }
 
-   get primitive()
-   {
-      return this._primitive;
-   }
+    get primitive()
+    {
+        return this._primitive;
+    }
 
-   set primitive(primitive)
-   {
-      this._primitive = gl[primitive];
-   }
+    set primitive(primitive)
+    {
+        this._primitive = gl[primitive];
+    }
 
-   get material()
-   {
-      return this._material;
-   }
+    get material()
+    {
+        return this._material;
+    }
 
-   set material(material)
-   {
-      this._material = material;
-   }
+    set material(material)
+    {
+        this._material = material;
+    }
 
-   get scale()
-   {
-      return this._scale;
-   }
+    get scale()
+    {
+        return this._scale;
+    }
 
-   set scale(scale)
-   {
-      this._scale = scale;
-   }
+    set scale(scale)
+    {
+        this._scale = scale;
+    }
 
-   get rotation()
-   {
-      return this._rotation;
-   }
+    get rotation()
+    {
+        return this._rotation;
+    }
 
-   set rotation(rotation)
-   {
-      this._rotation = rotation;
-   }
+    set rotation(rotation)
+    {
+        this._rotation = rotation;
+    }
 
-   get translation()
-   {
-      return this._translation;
-   }
+    get translation()
+    {
+        return this._translation;
+    }
 
-   set translation(translation)
-   {
-      this._translation = translation;
-   }
+    set translation(translation)
+    {
+        this._translation = translation;
+    }
 
-   unpack(loader)
-   {
-      if (loader !== undefined)
-      {
-         this.vertices = loader.vertices;
-         this.colors = loader.colors;
-         this.uvs = loader.uvs;
-         this.normals = loader.normals;
-         this.indices = loader.indices;
-      }
-   }
+    unpack(loader)
+    {
+        if (loader !== undefined)
+        {
+            this.vertices = loader.vertices;
+            this.colors = loader.colors;
+            this.uvs = loader.uvs;
+            this.normals = loader.normals;
+            this.indices = loader.indices;
+        }
+    }
 
-   generate()
-   {
-      if (this.buffers === undefined)
-      {
-         let generated = [];
-         let indexed = Boolean(this.indices.length);
+    generate()
+    {
+        if (this.buffers === undefined)
+        {
+            let generated = [];
+            let indexed = Boolean(this.indices.length);
 
-         for (let name in attributes)
-         {
-            let coordinates = this[name];
-
-            if (Boolean(coordinates.length))
+            for (let name in attributes)
             {
-               generated.push(`vec${coordinates[0].length} ${attributes[name]}`);
+                let coordinates = this[name];
+
+                if (Boolean(coordinates.length))
+                {
+                    generated.push(`vec${coordinates[0].length} ${attributes[name]}`);
+                }
             }
-         }
 
-         this.buffers = new VertexArrayObject({ attributes: generated, indexed });
-      }
-   }
+            this.buffers = new VertexArrayObject({ attributes: generated, indexed });
+        }
+    }
 
-   configure()
-   {
-      let buffers = this.buffers;
-      let usage = this.usage;
-      let interleaved = [];
-      let vertices = this.vertices;
+    configure()
+    {
+        let buffers = this.buffers;
+        let usage = this.usage;
+        let interleaved = [];
+        let vertices = this.vertices;
 
-      vertices.map(this.interleave.bind(this, interleaved));
+        vertices.map(this.interleave.bind(this, interleaved));
 
-      buffers.bind();
+        buffers.bind();
 
-      gl.bufferData(gl.ARRAY_BUFFER, new buffers.view(interleaved), usage);
+        gl.bufferData(gl.ARRAY_BUFFER, new buffers.view(interleaved), usage);
 
-      if (buffers.indexed)
-      {
-         let indices = this.indices;
+        if (buffers.indexed)
+        {
+            let indices = this.indices;
 
-         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), usage);
+            gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), usage);
 
-         this.count = indices.length;
-      }
-      else
-      {
-         this.count = vertices.length;
-      }
+            this.count = indices.length;
+        }
+        else
+        {
+            this.count = vertices.length;
+        }
 
-      buffers.unbind();
-   }
+        buffers.unbind();
+    }
 
-   interleave(interleaved, vertex, index)
-   {
-      let color = this.colors[index] || [];
-      let uv = this.uvs[index] || [];
-      let normal = this.normals[index] || [];
-      let contatenation = [].concat(vertex, color, uv, normal);
+    interleave(interleaved, vertex, index)
+    {
+        let color = this.colors[index] || [];
+        let uv = this.uvs[index] || [];
+        let normal = this.normals[index] || [];
+        let contatenation = [].concat(vertex, color, uv, normal);
 
-      [].push.apply(interleaved, contatenation.map(parseFloat));
-   }
+        [].push.apply(interleaved, contatenation.map(parseFloat));
+    }
 
-   update(vertices = this.vertices)
-   {
-      if (this.usage === gl.DYNAMIC_DRAW)
-      {
-         let buffers = this.buffers;
-         let interleaved = [];
+    update(vertices = this.vertices)
+    {
+        if (this.usage === gl.DYNAMIC_DRAW)
+        {
+            let buffers = this.buffers;
+            let interleaved = [];
 
-         vertices.map(this.interleave.bind(this, interleaved));
+            vertices.map(this.interleave.bind(this, interleaved));
 
-         buffers.bind();
+            buffers.bind();
 
-         gl.bufferSubData(gl.ARRAY_BUFFER, 0, new buffers.view(interleaved));
+            gl.bufferSubData(gl.ARRAY_BUFFER, 0, new buffers.view(interleaved));
 
-         buffers.unbind();
-      }
-      else
-      {
-         console.warn(`Unable to update Mesh::${this.name} vertices, not DYNAMIC_*`);
-      }
-   }
+            buffers.unbind();
+        }
+        else
+        {
+            console.warn(`Unable to update Mesh::${this.name} vertices, not DYNAMIC_*`);
+        }
+    }
 
-   draw({ program, primitive = this.primitive, offset = 0, count = this.count } = {})
-   {
-      let buffers = this.buffers;
+    draw({ program, primitive = this.primitive, offset = 0, count = this.count } = {})
+    {
+        let buffers = this.buffers;
 
-      buffers.bind(program);
+        buffers.bind(program);
 
-      if (buffers.indexed)
-      {
-         gl.drawElements(primitive, count, gl.UNSIGNED_SHORT, offset);
-      }
-      else
-      {
-         gl.drawArrays(primitive, offset, count);
-      }
+        if (buffers.indexed)
+        {
+            gl.drawElements(primitive, count, gl.UNSIGNED_SHORT, offset);
+        }
+        else
+        {
+            gl.drawArrays(primitive, offset, count);
+        }
 
-      buffers.unbind();
-   }
+        buffers.unbind();
+    }
 }
 
 export default Mesh;

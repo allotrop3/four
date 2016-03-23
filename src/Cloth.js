@@ -5,117 +5,113 @@ import Spring from './Spring';
 
 class Cloth extends ParticleSystem
 {
-   constructor({
-      mesh,
-      gravity,
-      timestep,
-      solver,
-      paused,
-      name = 'cloth',
-      stiffness = 0,
-      damping = 0
-   } = {})
-   {
-      super({ name, mesh, gravity, timestep, solver, paused });
+    constructor(
+    {
+        mesh,
+        gravity,
+        timestep,
+        solver,
+        paused,
+        name = 'cloth',
+        stiffness = 0,
+        damping = 0
+    } = {})
+    {
+        super({ name, mesh, gravity, timestep, solver, paused });
 
-      this.stiffness = stiffness;
+        this.stiffness = stiffness;
 
-      this.damping = damping;
+        this.damping = damping;
 
-      this.springs = [];
+        this.springs = [];
 
-      this.inheritance = ['Entity', 'ParticleSystem', 'Cloth'];
+        this.inheritance = ['Entity', 'ParticleSystem', 'Cloth'];
 
-      this.model();
-   }
+        this.model();
+    }
 
-   get stiffness()
-   {
-      return this._stiffness;
-   }
+    get stiffness()
+    {
+        return this._stiffness;
+    }
 
-   set stiffness(stiffness)
-   {
-      this._stiffness = stiffness;
-   }
+    set stiffness(stiffness)
+    {
+        this._stiffness = stiffness;
+    }
 
-   get damping()
-   {
-      return this._damping;
-   }
+    get damping()
+    {
+        return this._damping;
+    }
 
-   set damping(damping)
-   {
-      this._damping = damping;
-   }
+    set damping(damping)
+    {
+        this._damping = damping;
+    }
 
-   get springs()
-   {
-      return this._springs;
-   }
+    get springs()
+    {
+        return this._springs;
+    }
 
-   set springs(springs)
-   {
-      this._springs = springs;
-   }
+    set springs(springs)
+    {
+        this._springs = springs;
+    }
 
-   model()
-   {
-      let indices = this.mesh.indices;
-      let faces = [];
-      let corners = 3;
+    model()
+    {
+        let indices = this.mesh.indices;
+        let faces = [];
+        let corners = 3;
 
-      for (let index = 0, _index = indices.length; index < _index; index += corners)
-      {
-         let face = indices.slice(index, index + corners);
+        for (let index = 0, _index = indices.length; index < _index; index += corners)
+        {
+            let face = indices.slice(index, index + corners);
 
-         faces.push(face);
-      }
+            faces.push(face);
+        }
 
-      this.particles.forEach(this.find.bind(this, faces));
-   }
+        this.particles.forEach(this.find.bind(this, faces));
+    }
 
-   find(faces, particle, i)
-   {
-      let cache = [];
+    find(faces, particle, i)
+    {
+        let cache = [];
 
-      faces.forEach(this.thread.bind(this, cache, i));
-   }
+        faces.forEach(this.thread.bind(this, cache, i));
+    }
 
-   thread(cache, i, face)
-   {
-      if (~face.indexOf(i))
-      {
-         let nearest = face.filter(neighbor => neighbor !== i && !~cache.indexOf(neighbor));
-         let springs = nearest.map(this.stitch.bind(this, i));
+    thread(cache, i, face)
+    {
+        if (~face.indexOf(i))
+        {
+            let nearest = face.filter(neighbor => neighbor !== i && !~cache.indexOf(neighbor));
+            let springs = nearest.map(this.stitch.bind(this, i));
 
-         this.springs.push(...springs);
-         cache.push(...nearest);
-      }
-   }
+            this.springs.push(...springs);
+            cache.push(...nearest);
+        }
+    }
 
-   stitch(i, j, locale)
-   {
-      let particles = this.particles;
-      let type = 'SHEAR';
+    stitch(i, j, index)
+    {
+        let particles = this.particles;
+        let type = (index % 2) ? 'STRUCTURAL' : 'SHEAR';
 
-      if (locale % 2 === 0)
-      {
-         type = 'STRUCTURAL';
-      }
+        return new Spring({ i: particles[i], j: particles[j], stiffness: this.stiffness, damping: this.damping, type: type });
+    }
 
-      return new Spring({ i: particles[i], j: particles[j], stiffness: this.stiffness, damping: this.damping, type: type });
-   }
+    solve()
+    {
+        if (!this.paused)
+        {
+            this.springs.forEach(spring => spring.relax());
 
-   solve()
-   {
-      if (!this.paused)
-      {
-         this.springs.forEach(spring => spring.relax());
-
-         super.solve();
-      }
-   }
+            super.solve();
+        }
+    }
 }
 
 export default Cloth;
