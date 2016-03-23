@@ -15,7 +15,7 @@ See a [live demo](http://allotrop3.github.io/four).
 Simply download [Four](https://raw.githubusercontent.com/allotrop3/four/master/dist/four.min.js) and include the script in your project.
 
 ```javascript
-<script type="text/javascript" src="path/to/four.min.js"></script>
+<script src="path/to/four.min.js"></script>
 ```
 
 Also be sure to include an HTML `canvas` element in your project. If no default `width` or `height` attributes are set, the framework assumes their respective window dimension.
@@ -40,8 +40,8 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
    bundle.ready(function() {
       var program = new Four.Program({ selector: '.renderer' });
       var light = new Four.PointLight({ diffuse: 0xFFD1B2, location: [10, 15, 0] });
-      var mesh_1 = new Four.Mesh({ loader: mesh_loader_1, usage: 'DYNAMIC_DRAW', primitive: 'LINES' });
-      var mesh_2 = new Four.Mesh({ loader: mesh_loader_2, usage: 'DYNAMIC_DRAW', primitive: 'LINES' });
+      var mesh_1 = new Four.Mesh({ loader: mesh_loader_1 });
+      var mesh_2 = new Four.Mesh({ loader: mesh_loader_2 });
       var view = new Four.Framebuffer();
       var camera = new Four.PerspectiveCamera({ location: [10, 5, 5], width: context.canvas.width, height: context.canvas.height });
       var scene = new Four.Scene();
