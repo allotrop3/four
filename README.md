@@ -32,7 +32,14 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
 
 ```javascript
 <script>
-   var meshLoader = new Four.OBJMeshLoader({ path: 'path/to/mesh.obj' });
+   var context = new Four.Context({ selector: '#canvas' });
+   var mesh_1 = new Four.OBJMeshLoader({ path: 'path/to/mesh-1.obj', indexed: true });
+   var mesh_2 = new Four.OBJMeshLoader({ path: 'path/to/mesh-2.obj', indexed: true });
+   var bundle = new Four.Bundle({ items: [mesh_1, mesh_2] });
+
+   bundle.ready(function() {
+      var program = new Four.Program({ selector: '.renderer' });
+   });
 
    function main() {
       var program = new Four.Program({ selector: '.renderer' });
@@ -77,18 +84,28 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
 ```glsl
 <script class="renderer" type="x-shader/x-vertex">
    #version 100
-
-   precision mediump float;
    
-   @Camera;
+   precision mediump int;
+   precision mediump float;
+
+   @use Camera;
 
    attribute vec3 a_position;
-   
+   attribute vec3 a_normal;
+
    uniform Camera u_camera;
+
+   varying vec4 v_position;
+   varying vec3 v_normal;
 
    void main()
    {
-      gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * vec4(a_position, 1);
+      vec4 position = vec4(a_position, 1);
+
+      gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * position;
+
+      v_position = position;
+      v_normal = u_camera.normalMatrix * a_normal;
    }
 </script>
 ```
@@ -97,12 +114,25 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
 ```glsl
 <script class="renderer" type="x-shader/x-fragment">
    #version 100
-
+   
+   precision mediump int;
    precision mediump float;
+
+
+   @use Material;
+   @use PointLight;
+
+   uniform Material u_material;
+   uniform PointLight u_light;
+
+   varying vec4 v_position;
+   varying vec3 v_normal;
 
    void main()
    {
-      gl_FragColor = vec4(1);
+      vec3 lighting = PointLight_main(u_light, u_material, v_position, v_normal);
+
+      gl_FragColor = vec4(lighting, 1);
    }
 </script>
 ```
