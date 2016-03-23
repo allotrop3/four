@@ -33,47 +33,30 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
 ```javascript
 <script>
    var context = new Four.Context({ selector: '#canvas' });
-   var mesh_1 = new Four.OBJMeshLoader({ path: 'path/to/mesh-1.obj', indexed: true });
-   var mesh_2 = new Four.OBJMeshLoader({ path: 'path/to/mesh-2.obj', indexed: true });
+   var mesh_loader_1 = new Four.OBJMeshLoader({ path: 'path/to/mesh-1.obj', indexed: true });
+   var mesh_loader_2 = new Four.OBJMeshLoader({ path: 'path/to/mesh-2.obj', indexed: true });
    var bundle = new Four.Bundle({ items: [mesh_1, mesh_2] });
 
    bundle.ready(function() {
       var program = new Four.Program({ selector: '.renderer' });
-   });
-
-   function main() {
-      var program = new Four.Program({ selector: '.renderer' });
-   
-      var pointLight = new Four.PointLight({
-         radius: 10,
-         location: [10, 15, 10]
-      });
-   
+      var light = new Four.PointLight({ diffuse: 0xFFD1B2, location: [10, 15, 0] });
+      var mesh_1 = new Four.Mesh({ loader: mesh_loader_1, usage: 'DYNAMIC_DRAW', primitive: 'LINES' });
+      var mesh_2 = new Four.Mesh({ loader: mesh_loader_2, usage: 'DYNAMIC_DRAW', primitive: 'LINES' });
       var view = new Four.Framebuffer();
-      var camera = new Four.PerspectiveCamera({
-         location: [-10, 15, 10]
-      });
-      
-      var mesh = new Four.Mesh({
-         loader: meshLoader,
-         material: new Four.Material({
-            diffuse: 0x9F8A60
-         })
-      });
-   
-      scene = new Four.Scene();
+      var camera = new Four.PerspectiveCamera({ location: [10, 5, 5], width: context.canvas.width, height: context.canvas.height });
+      var scene = new Four.Scene();
       
       scene.use(program);
-   
-      scene.put(pointLight);
-      scene.put(mesh);
-   
-      scene.render(view, camera, function() {
+
+      scene.put(light);
+      
+      scene.put(mesh_1);
+      scene.put(mesh_2);
+      
+      scene.animate(view, camera, function() {
          scene.rotation += 0.25;
       });
-   }
-   
-   setTimeout(main, 3000);
+   });
 </script>
 ```
 
