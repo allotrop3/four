@@ -101,7 +101,6 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
    precision mediump int;
    precision mediump float;
 
-
    @use Material;
    @use PointLight;
 
@@ -122,7 +121,7 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
 
 ## Documentation
 
-See full [documentation](https://github.com/allotrop3/four/wiki).
+See full [documentation](http://fourjs.io/docs).
 
 ## Author
 
