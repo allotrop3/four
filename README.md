@@ -15,7 +15,7 @@ See a [live demo](http://allotrop3.github.io/four).
 Simply download [Four](https://raw.githubusercontent.com/allotrop3/four/master/dist/four.min.js) and include the script in your project.
 
 ```javascript
-<script type="text/javascript" src="path/to/four.min.js"></script>
+<script src="path/to/four.min.js"></script>
 ```
 
 Also be sure to include an HTML `canvas` element in your project. If no default `width` or `height` attributes are set, the framework assumes their respective window dimension.
@@ -32,41 +32,31 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
 
 ```javascript
 <script>
-   var meshLoader = new Four.OBJMeshLoader({ path: 'path/to/mesh.obj' });
+   var context = new Four.Context({ selector: '#canvas' });
+   var mesh_loader_1 = new Four.OBJMeshLoader({ path: 'path/to/mesh-1.obj', indexed: true });
+   var mesh_loader_2 = new Four.OBJMeshLoader({ path: 'path/to/mesh-2.obj', indexed: true });
+   var bundle = new Four.Bundle({ items: [mesh_1, mesh_2] });
 
-   function main() {
+   bundle.ready(function() {
       var program = new Four.Program({ selector: '.renderer' });
-   
-      var pointLight = new Four.PointLight({
-         radius: 10,
-         location: [10, 15, 10]
-      });
-   
+      var light = new Four.PointLight({ diffuse: 0xFFD1B2, location: [10, 15, 0] });
+      var mesh_1 = new Four.Mesh({ loader: mesh_loader_1 });
+      var mesh_2 = new Four.Mesh({ loader: mesh_loader_2 });
       var view = new Four.Framebuffer();
-      var camera = new Four.PerspectiveCamera({
-         location: [-10, 15, 10]
-      });
-      
-      var mesh = new Four.Mesh({
-         loader: meshLoader,
-         material: new Four.Material({
-            diffuse: 0x9F8A60
-         })
-      });
-   
-      scene = new Four.Scene();
+      var camera = new Four.PerspectiveCamera({ location: [10, 5, 5], width: context.canvas.width, height: context.canvas.height });
+      var scene = new Four.Scene();
       
       scene.use(program);
-   
-      scene.put(pointLight);
-      scene.put(mesh);
-   
-      scene.render(view, camera, function() {
+
+      scene.put(light);
+      
+      scene.put(mesh_1);
+      scene.put(mesh_2);
+      
+      scene.animate(view, camera, function() {
          scene.rotation += 0.25;
       });
-   }
-   
-   setTimeout(main, 3000);
+   });
 </script>
 ```
 
@@ -77,18 +67,28 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
 ```glsl
 <script class="renderer" type="x-shader/x-vertex">
    #version 100
-
-   precision mediump float;
    
-   @Camera;
+   precision mediump int;
+   precision mediump float;
+
+   @use Camera;
 
    attribute vec3 a_position;
-   
+   attribute vec3 a_normal;
+
    uniform Camera u_camera;
+
+   varying vec4 v_position;
+   varying vec3 v_normal;
 
    void main()
    {
-      gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * vec4(a_position, 1);
+      vec4 position = vec4(a_position, 1);
+
+      gl_Position = u_camera.projectionMatrix * u_camera.modelViewMatrix * position;
+
+      v_position = position;
+      v_normal = u_camera.normalMatrix * a_normal;
    }
 </script>
 ```
@@ -97,19 +97,31 @@ The following example assumes an OBJ mesh file loader to import a mesh into the 
 ```glsl
 <script class="renderer" type="x-shader/x-fragment">
    #version 100
-
+   
+   precision mediump int;
    precision mediump float;
+
+   @use Material;
+   @use PointLight;
+
+   uniform Material u_material;
+   uniform PointLight u_light;
+
+   varying vec4 v_position;
+   varying vec3 v_normal;
 
    void main()
    {
-      gl_FragColor = vec4(1);
+      vec3 lighting = PointLight_main(u_light, u_material, v_position, v_normal);
+
+      gl_FragColor = vec4(lighting, 1);
    }
 </script>
 ```
 
 ## Documentation
 
-See full [documentation](https://github.com/allotrop3/four/wiki).
+See full [documentation](http://fourjs.io/docs).
 
 ## Author
 
