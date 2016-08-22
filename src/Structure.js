@@ -43,9 +43,7 @@ class Structure extends Entity
 
     instantiate(qualifying)
     {
-        let properties = qualifying.split(' ');
-        let format = properties[0];
-        let uniform = properties[1];
+        let [format, uniform] = qualifying.split(' ');
 
         return new Uniform({ path: this.path, uniform: uniform, format: format });
     }
