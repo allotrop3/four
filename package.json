@@ -1,10 +1,12 @@
 {
   "name": "fourjs",
-  "version": "v0.3.0",
+  "version": "v1.0.0",
   "description": "Four is a slightly higher level graphics API based on WebGL 1.0.",
-  "main": "dist/four.min.js",
+  "main": "dist/four.js",
   "scripts": {
-    "build": "./node_modules/.bin/gulp build",
+    "lint": "eslint --fix",
+    "watch": "./node_modules/.bin/webpack --mode development --hot",
+    "build": "./node_modules/.bin/webpack --mode production",
     "test": "./node_modules/.bin/karma start"
   },
   "repository": {
@@ -18,27 +20,35 @@
   },
   "homepage": "https://github.com/allotrop3/four",
   "devDependencies": {
-    "babel-core": "^6.2.0",
-    "babel-loader": "^6.2.0",
-    "babel-plugin-transform-regenerator": "^6.2.0",
-    "babel-preset-es2015": "^6.1.18",
-    "gulp": "^3.9.0",
-    "gulp-clean": "^0.3.1",
-    "gulp-webserver": "^0.9.1",
-    "highlight.js": "^9.1.0",
-    "jasmine-core": "^2.3.4",
-    "karma": "^0.12.0",
-    "karma-coverage": "^0.5.3",
-    "karma-firefox-launcher": "^0.1.7",
-    "karma-qunit": "^0.1.8",
-    "karma-verbose-reporter": "0.0.3",
-    "qunitjs": "^1.20.0",
-    "regenerator": "^0.8.42",
-    "uglify-loader": "^1.3.0",
-    "webpack": "^1.12.6",
-    "webpack-stream": "^2.1.1"
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-private-methods": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-flow": "^7.0.0",
+    "babel-eslint": "11.0.0-beta.0",
+    "babel-loader": "^8.0.6",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "flow-bin": "^0.101.0",
+    "husky": "^2.4.1",
+    "jasmine-core": "^3.4.0",
+    "karma": "^4.1.0",
+    "karma-coverage": "^1.1.2",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-qunit": "^3.1.2",
+    "karma-verbose-reporter": "0.0.6",
+    "lint-staged": "^8.2.0",
+    "prettier": "^1.18.2",
+    "qunit": "^2.9.2",
+    "qunitjs": "^2.4.1",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.4"
   },
   "dependencies": {
-    "gl-matrix": "^2.3.1"
+    "gl-matrix": "^3.0.0",
+    "lodash": "^4.17.11",
+    "uuid": "^3.3.2"
   }
 }

@@ -1,0 +1,9 @@
+
+{
+  "eslint.autoFixOnSave": true,
+  "eslint.enable": true,
+  "flow.enabled": true,
+  "flow.runOnEdit": true,
+  "flow.useNPMPackagedFlow": true,
+  "javascript.validate.enable": false
+}
